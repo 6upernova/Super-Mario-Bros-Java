@@ -1,12 +1,12 @@
 package game;
 
+import factories.Sprite;
 import views.Observer;
 
 public abstract class Entity {
 
     protected int x;
     protected int y;
-    
     protected Sprite sprite;
     protected Observer observer;
 
@@ -21,7 +21,7 @@ public abstract class Entity {
     }
 
     public Sprite setSprite(Sprite sprite){
-        this.sprite = sprite;
+        return this.sprite = sprite;
     }
 
     public void registerObserver(Observer observer){
