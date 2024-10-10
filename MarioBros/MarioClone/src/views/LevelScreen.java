@@ -26,9 +26,8 @@ public class LevelScreen extends JPanel {
     }
 
     public void setBackgroundAndScroll() {
-        
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/assets/backgrounds/background-lvl1.png"));
-        int scale = calculateScale(backgroundIcon.getIconHeight(),ViewConstants.PANEL_HEIGHT);
+        float scale = calculateScale(backgroundIcon.getIconHeight(),ViewConstants.PANEL_HEIGHT);
         backgroundIcon = scaleImage(scale, backgroundIcon);
         backgroundImage = new JLabel();
         backgroundImage.setIcon(backgroundIcon);
@@ -36,7 +35,7 @@ public class LevelScreen extends JPanel {
         
         backgroundImage.setPreferredSize(new Dimension(backgroundImage.getIcon().getIconWidth(), backgroundImage.getIcon().getIconHeight()));
         backgroundImage.setLayout(null);
-		backgroundImage.setBounds(0,0, ViewConstants.PANEL_WITDH, ViewConstants.PANEL_HEIGHT);
+		backgroundImage.setBounds(0,0, backgroundIcon.getIconWidth(), ViewConstants.PANEL_HEIGHT);
         
         contentPanel = new JPanel(null); 
         contentPanel.setPreferredSize(new Dimension(backgroundImage.getIcon().getIconWidth(), backgroundImage.getIcon().getIconHeight()));
@@ -52,13 +51,15 @@ public class LevelScreen extends JPanel {
         this.add(scrollPanel, BorderLayout.CENTER);
     }
 
-    private ImageIcon scaleImage(int scale, ImageIcon imageIcon){
+    private ImageIcon scaleImage(float scale, ImageIcon imageIcon){
         Image image = imageIcon.getImage();
-        image = image.getScaledInstance(imageIcon.getIconWidth() * scale, imageIcon.getIconHeight() * scale , ABORT);
+        int width = Math.round(imageIcon.getIconWidth() * scale);
+        int height = Math.round(imageIcon.getIconHeight() * scale);
+        image = image.getScaledInstance(width,  height, ABORT);
         return new ImageIcon(image);
     }
 
-    private int calculateScale(int origin, int destination){
+    private float calculateScale(float origin, float destination){
         return destination / origin;
     }
 
