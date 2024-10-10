@@ -15,7 +15,7 @@ public class Game {
         //pasarle a entity facotory modo=custom si se quiere modo custom
         //si se quiere crear modo original asignar modo = "original"
         levelGenerator = new LevelGenerator(new EntityFactory(modo);
-       player = new Player();
+        player = new Player();
     }
     
     public setViewController(ViewController viewController){

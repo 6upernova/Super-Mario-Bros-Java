@@ -38,7 +38,7 @@ public class ViewController  {
 		window.setSize(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-
+        
     }
 
     public void showLevelScreen(){
