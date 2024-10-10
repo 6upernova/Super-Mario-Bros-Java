@@ -19,19 +19,19 @@ public class ViewController  {
     public ViewController(Game game){
         this.game = game;
         levelScreen = new LevelScreen(this);
-        setWindow();
+        configureWindow();
         //To do resto de screens
         
     }
     public ViewController(){
         levelScreen = new LevelScreen(this);
-        setWindow();
+        configureWindow();
         
         //To do resto de screens
         
     }
 
-    public void setWindow (){
+    public void configureWindow (){
         window = new JFrame("p-comision23 :: MarioBros");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);

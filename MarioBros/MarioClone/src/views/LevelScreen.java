@@ -26,21 +26,14 @@ public class LevelScreen extends JPanel {
     }
 
     public void setBackgroundAndScroll() {
-        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/assets/backgrounds/background-lvl1.png"));
-        float scale = calculateScale(backgroundIcon.getIconHeight(),ViewConstants.PANEL_HEIGHT);
-        backgroundIcon = scaleImage(scale, backgroundIcon);
+        ImageIcon backgroundIcon = getBackgroundIcon("/assets/backgrounds/background-lvl1.png");
         backgroundImage = new JLabel();
         backgroundImage.setIcon(backgroundIcon);
-
-        
-        backgroundImage.setPreferredSize(new Dimension(backgroundImage.getIcon().getIconWidth(), backgroundImage.getIcon().getIconHeight()));
-        backgroundImage.setLayout(null);
-		backgroundImage.setBounds(0,0, backgroundIcon.getIconWidth(), ViewConstants.PANEL_HEIGHT);
+        configureBackground();
         
         contentPanel = new JPanel(null); 
         contentPanel.setPreferredSize(new Dimension(backgroundImage.getIcon().getIconWidth(), backgroundImage.getIcon().getIconHeight()));
         contentPanel.add(backgroundImage);
-
        
         scrollPanel = new JScrollPane(contentPanel); 
         scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -49,6 +42,19 @@ public class LevelScreen extends JPanel {
 
         
         this.add(scrollPanel, BorderLayout.CENTER);
+    }
+
+    private ImageIcon getBackgroundIcon(String path){
+        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource(path));
+        float scale = calculateScale(backgroundIcon.getIconHeight(),ViewConstants.PANEL_HEIGHT);
+        backgroundIcon = scaleImage(scale, backgroundIcon);
+        return backgroundIcon;
+    }
+    
+    private void configureBackground(){
+        backgroundImage.setPreferredSize(new Dimension(backgroundImage.getIcon().getIconWidth(), backgroundImage.getIcon().getIconHeight()));
+        backgroundImage.setLayout(null);
+		backgroundImage.setBounds(0,0, backgroundImage.getIcon().getIconWidth(), ViewConstants.PANEL_HEIGHT);
     }
 
     private ImageIcon scaleImage(float scale, ImageIcon imageIcon){
