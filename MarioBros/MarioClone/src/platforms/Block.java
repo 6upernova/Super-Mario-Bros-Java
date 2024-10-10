@@ -1,5 +1,5 @@
 package platforms;
 
-public abstract class Block {
+public abstract class Block implements Platform{
 
 }
