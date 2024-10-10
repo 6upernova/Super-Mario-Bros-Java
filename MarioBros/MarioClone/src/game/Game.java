@@ -18,7 +18,9 @@ public class Game {
         this.viewController = viewController;
     }
 
-    
+    public void setObservers(){
+        //To do
+    }
 
 
 
