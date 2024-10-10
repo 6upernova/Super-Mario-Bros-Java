@@ -3,7 +3,7 @@ package game;
 import factories.Sprite;
 import views.Observer;
 
-public abstract class Entity {
+public abstract class Entity implements LogicalEntity {
 
     protected int x;
     protected int y;
