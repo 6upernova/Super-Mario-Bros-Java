@@ -1,6 +1,7 @@
 package game;
 
 import factories.LevelGenerator;
+import views.ViewController;
 
 public class Game {
     protected Player player;

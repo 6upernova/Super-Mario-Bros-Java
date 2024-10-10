@@ -1,10 +1,12 @@
 package views;
 
 public class ViewConstants {
-    public static final int WINHEIGHT = 600;
-	public static final int WINWIDTH = 800;	
+    public static final int WIN_HEIGHT = 600;
+	public static final int WIN_WIDTH = 800;	
 	
-	public static final int PANELHEIGHT = 600;
-	public static final int PANELWITDH = 800;	
+	public static final int PANEL_HEIGHT = 600;
+	public static final int PANEL_WITDH = 800;
+	
+	public static final int 
 
 }

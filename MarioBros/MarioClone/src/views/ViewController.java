@@ -35,7 +35,7 @@ public class ViewController  {
         window = new JFrame("p-comision23 :: MarioBros");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-		window.setSize(ViewConstants.WINWIDTH, ViewConstants.WINHEIGHT);
+		window.setSize(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 
