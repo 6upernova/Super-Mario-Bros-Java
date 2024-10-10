@@ -1,5 +1,8 @@
 package game;
 
+import factories.Sprite;
+import views.Observer;
+
 public abstract class Entity {
 
     protected int x;
@@ -18,26 +21,26 @@ public abstract class Entity {
     }
 
     public Sprite setSprite(Sprite sprite){
-        this.sprite = sprite;
+        return this.sprite = sprite;
     }
 
-    public registerObserver(Observer observer){
+    public void registerObserver(Observer observer){
         this.observer = observer;
     }
 
-    public setX(int x){
+    public void setX(int x){
         this.x = x;
     }
 
-    public setY(int y){
+    public void setY(int y){
         this.y = y;
     }
 
-    public getX(){
+    public int getX(){
         return x;
     }
 
-    public getY(){
+    public int getY(){
         return y;
     }
 
