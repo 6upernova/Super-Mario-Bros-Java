@@ -16,70 +16,84 @@ public class EntityFactory {
 		}
 		else spriteFactory= new Original(direction);
 	}
+	
+	public Entity createEntity(int type,int worldX, int worldY) {
+        //SEGUN EL TIPO QUE ES CREA CON LA ENTITY
+        Entity entity = null;
+        if( type>1 && type<9 )
+            entity= newEnemy(type,worldX,worldY);
+                    
+        if( type>9 && type<15 )
+            entity= newPowerUp(type,worldX,worldY);
+                    
+        if( type>19 && type<25 )
+            entity= newPlatform(type,worldX,worldY);
+        return entity;
+    }
 
-	public Entity newEnemy(char subType, int worldX, int worldY) {
+	private Entity newEnemy(int type, int worldX, int worldY) {
 	  Entity enemy=null;
-	  switch (subType) {
-	         case 'G':{
+	  switch (type) {
+	         case 2:{
 		               enemy= newGoomba(worldX,worldY);
 	                  }
-	         case 'P':{ 
-	        	       enemy= newPiranhaPlant(worldX,worldY);
+	         case 3:{ 
+      	               enemy= newKoopaTroopa(worldX,worldY);
 	                  }
-	         case 'L':{
-	        	       enemy= newLakitu(worldX,worldY);
+	         case 4:{
+      	               enemy= newPiranhaPlant(worldX,worldY);
 	                  }
-	         case 'B':{
-	        	       enemy= newBuzzyBeetle(worldX,worldY);
+	         case 5:{
+      	               enemy= newLakitu(worldX,worldY);
 	                  }
-	         case 'K':{ 
-	        	       enemy= newKoopaTroopa(worldX,worldY);
+	         case 7:{ 
+      	               enemy= newBuzzyBeetle(worldX,worldY);
                       }
 	  }
 		return enemy;
 	}
-	public Entity newPowerUp(char subType, int worldX, int worldY) {
+	public Entity newPowerUp(int type, int worldX, int worldY) {
 		Entity powerUp=null;
-		  switch (subType) {
-		         case 'M':{
-			               powerUp= newMushroom(worldX,worldY);
-		                  }
-		         case 'G':{ 
-		        	       powerUp= newGreenMushroom(worldX,worldY);
-		                  }
-		         case 'F':{
-		        	       powerUp= newFireFlower(worldX,worldY);
-		                  }
-		         case 'C':{
-		        	       powerUp= newCoin(worldX,worldY);
-		                  }
-		         case 'S':{ 
-		        	       powerUp= newStar(worldX,worldY);
-	                      }
+		  switch (type) {
+		         case 10:{
+			              powerUp= newMushroom(worldX,worldY);
+		                 }
+		         case 11:{
+	        	          powerUp= newFireFlower(worldX,worldY);
+	                     }
+		         case 12:{ 
+		        	      powerUp= newStar(worldX,worldY);
+	                     }
+		         case 13:{ 
+		        	      powerUp= newGreenMushroom(worldX,worldY);
+		                 }
+		         case 14:{
+		        	      powerUp= newCoin(worldX,worldY);
+		                 }
 		  }
 			return powerUp;
 	}
-	public Entity newPlatform(char subType, int worldX, int worldY) {
+	public Entity newPlatform(int type, int worldX, int worldY) {
 		Entity platform=null;
-		  switch (subType) {
-		         case 'S':{
-			               platform= newSolid(worldX,worldY);
-		                  }
-		         case 'B':{ 
-		        	       platform= newBrick(worldX,worldY);
-		                  }
-		         case 'V':{
-		        	       platform= newVoid(worldX,worldY);
-		                  }
-		         case 'Q':{
-		        	       platform= newQuestion(worldX,worldY);
-		                  }
-		         case 'F':{ 
+		  switch (type) {
+		         case 20:{
+			              platform= newSolid(worldX,worldY);
+		                 }
+		         case 21:{ 
+		        	      platform= newBrick(worldX,worldY);
+		                 }
+		         case 22:{
+	        	          platform= newQuestion(worldX,worldY);
+	                     }
+		         case 23:{ 
+	        	          platform= newPipe(worldX,worldY);
+                         }
+		         case 24:{
+		        	      platform= newVoid(worldX,worldY);
+		                 }
+		         case 25:{ 
 		        	       platform= newFlag(worldX,worldY);
 	                      }
-		         case 'P':{ 
-	        	           platform= newPipe(worldX,worldY);
-                          }
 		  }
 			return platform;
 	}
