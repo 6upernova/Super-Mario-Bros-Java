@@ -80,6 +80,10 @@ public class LevelScreen extends JPanel {
         return destination / origin;
     }
 
+    public void updateScroll(){
+        
+    }
+
 
 }
     

@@ -20,7 +20,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
     }
 
     public void updateSprite(){
-        String path = observedEntity.getSprite().getImagePath()
+        String path = observedEntity.getSprite().getImagePath();
     }
 
 
