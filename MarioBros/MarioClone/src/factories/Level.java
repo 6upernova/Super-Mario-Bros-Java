@@ -2,18 +2,22 @@ package factories;
 
 import java.util.List;
 
+import game.Entity;
 import platforms.Platform;
 
 public class Level {
-    //To do: Add power-up and enemies list
     protected int remainingTime; 
-    protected List<Platform> platformList; 
+    protected List<Platform> platformList;
+    protected List<Enemy> enemyList;
+    protected List<PowerUp> powerUpList;
     protected boolean running;
     protected boolean paused;
 
-    public Level(List<Platform> platforms){
+    public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
         remainingTime = 400;
         platformList = platforms;
+        enemyList = enemies;
+        powerUpList = powerUps;
         running = false;
         paused = true;
     }
@@ -35,6 +39,12 @@ public class Level {
 
     public List<Platform> getPlatforms(){
         return platformList;
+    }
+    public List<Platform> getEnemies(){
+        return enemyList;
+    }
+    public List<Platform> getPowerUps(){
+        return powerUpList;
     }
     public int getRemainingTime(){
         return remainingTime;
