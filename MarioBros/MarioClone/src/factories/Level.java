@@ -16,7 +16,7 @@ public class Level {
     public void pause(){}
     public void end(){}
     public void resume(){}
-    public void addEntity(Entity entity,int x,int y){
+    public void addEntity(Entity entity){
         map[x][y] = entity;
     }
     public void setBackGround(int number){
