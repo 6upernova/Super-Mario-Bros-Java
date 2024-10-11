@@ -1,18 +1,16 @@
 package character;
 
-public class Normal extends State{
+public class NormalState implements CharacterState{
+
 	
 	protected final String name= "Normal";
 
-
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public void damaged(Character mario) {
-		mario.dead();
+		//mario.dead();
 	}
-
+	
 }

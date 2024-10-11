@@ -2,60 +2,59 @@ package character;
 
 import factories.Sprite;
 import game.Entity;
+import views.ViewConstants;
 
 public class Character extends Entity {
 	
 	protected int lifes;
 	protected int score;
-	protected boolean invinsible;
-	protected State state; 
+	protected boolean invincible;
+	protected CharacterState state; 
 	
 	public Character(String sprite) {
         super( new Sprite("assets.player.1") ,6,4);
 		score=0;
 		lifes=3;
-        invinsible= false;
+        invincible= false;
 	}
 	
 	public void moveLeft(){
 		int worldX = getX();
-	    setX(worldX +6);
+	    setX(worldX +ViewConstants.PLAYER_VELOCITY);
 	}
 	
 	public void moveRight(){
         int worldX = getX();
-	    setX(worldX - 6);
+	    setX(worldX - ViewConstants.PLAYER_VELOCITY);
 	}
 	
+	/*
 	public void jump(){
 		//no es necesario por el momento
 	}
 	
 	public void dead(){
 		lifes--;
-		//animation.dead();
+		animation.dead();
 	}
 	
 	public void damaged() {
-		state.damaged(this);
+		//no es necesario por el momento
 	}
 
-	public void addScore(int number){
-		score += number;
-	}
 	
-	public void subtractScore(int number){
-		score -= number;
-	}
+	
 	
 	public void visitStar(Star star) {
 		int points= star.getPoints();
-		if (invinsible)
+		if (invincible)
 			points +=-15;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
-		invinsible= true;
+		invincible= true;
 	}
+	
+	
 	
 	public void visitFireFlower(FireFlower flower) {
 		state= new Fire();
@@ -68,36 +67,49 @@ public class Character extends Entity {
 		//hacer que desaparezca de la pantalla
 	}
 	
-	public void visitGreenMushroom(GreenMushroom star) {
+	public void visitGreenMushroom(GreenMushroom greenMushroom) {
 		lifes++;
-		addScore( star.getPoints() );
+		addScore( greenMushroom.getPoints() );
 		//hacer que desaparezca de la pantalla
 	}
 	
-	public void visitMushroom(Mushroom mushroom) {
+	
+	public void visitSuperMushroom(Mushroom mushroom) {
 		state= new Super();
-		int points= mushroom.getPoints();
+		int points= superMushroom.getPoints();
 		if (state.getName() == "Super")
 			points +=-40;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
 	}
 	
+	
     public void visitCoin(Coin coin) {
     	addScore( coin.getPoints() );
 		//hacer que desaparezca de la pantalla
     }
     
-    public int getScore() {
-    	return score;
-    }
+   
     
     public void collision(Entity e){
     	e.acceptVisit(this);
     }
     
-    protected void changeState(State newState) {
+    protected void changeState(CharacterState newState) {
         //animacion de cambio de estado
     	state= newState;
     }
+    */
+	
+	public int getScore() {
+	    return score;
+	}
+	
+	public void addScore(int number){
+		score += number;
+	}
+	
+	public void subtractScore(int number){
+			score -= number;
+	}
 }

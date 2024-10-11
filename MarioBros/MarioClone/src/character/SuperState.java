@@ -1,18 +1,16 @@
 package character;
 
-public class Super extends State{
+public class SuperState implements CharacterState{
 	
 	protected final String name= "Super";
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public void damaged(Character mario) {
-		State newState= new Normal();
-		mario.changeState(newState);
+		CharacterState newState= new NormalState();
+		//mario.changeState(newState);
 	}
 
 }

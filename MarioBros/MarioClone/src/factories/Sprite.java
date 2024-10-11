@@ -1,13 +1,13 @@
 package factories;
 public class Sprite {	
 	
-	protected String imageRoute;
+	protected String imagePath;
 
-	public Sprite (String imageRoute) {
-		this.imageRoute = imageRoute;
+	public Sprite (String imagePath) {
+		this.imagePath = imagePath;
 	}
 
-	public String getSkinPath() {
-		return imageRoute;
+	public String getImagePath() {
+		return imagePath;
 	}
 }

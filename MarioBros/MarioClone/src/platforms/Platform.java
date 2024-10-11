@@ -1,5 +1,20 @@
 package platforms;
+
 import factories.Sprite;
-public interface Platform {
-	public Sprite getSkin();
+import game.Entity;
+
+public abstract class Platform extends Entity{
+
+	protected boolean isBreakeable;
+	
+	public Platform(Sprite sprite, int x, int y, boolean isBreakeable) {
+		super(sprite, x, y);
+		this.isBreakeable=isBreakeable;
+	}
+	
+	
+
+	protected boolean isBreakeable() {
+		return isBreakeable;
+	}
 }

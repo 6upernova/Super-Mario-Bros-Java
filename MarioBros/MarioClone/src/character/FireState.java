@@ -2,13 +2,13 @@ package character;
 
 import projectile.*;
 
-public class Fire extends Super{
+public class FireState extends SuperState{
 	
 	protected final String name= "Fire";
 	protected Projectile fireBall;
 	protected int numberFireBall;
 	
-	public Fire() {
+	public FireState() {
 		fireBall= new FireBall();
 	}
 
@@ -34,7 +34,7 @@ public class Fire extends Super{
 		else toReturn= false;
 		return toReturn;
 	}
-	
+	//Las bolas de fuego son infinitas?
 	public void addFireBallsThrowers() {
 		numberFireBall++;
 	}

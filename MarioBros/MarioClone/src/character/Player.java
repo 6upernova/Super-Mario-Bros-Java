@@ -1,62 +1,35 @@
 package character;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
-public class Player implements KeyListener{
+public class Player{
 
-	protected String namePlayer;
-	protected int score;
-	protected JPanel game;
+	protected String playerName;
+	protected int playerScore;
+	protected JPanel gamePanel;
 	private Character character;
+	private Keyboard playerKeyboard;
 	
 	public Player(String name, JPanel panel ) {
-		namePlayer= name;
+		playerName= name;
 		character= new Character("assets.player.1");
-		score= 0;
-		game= panel;
-		conectsPanelWithKeyListener();
+		playerScore= 0;
+		gamePanel= panel;
+		playerKeyboard=new Keyboard();
+		connectKeyboardToPanel();
 	}
 	
-	public void conectsPanelWithKeyListener() {
-		game.addKeyListener(this);
-		game.setFocusable(true);
+	private void connectKeyboardToPanel() {
+		gamePanel.addKeyListener(playerKeyboard);
+		
 	}
 	
-	public int getScore() {
-		return character.getScore();
+	public void setFinalScore() {
+		playerScore=character.getScore();
 	}
 	
 	public String getNamePlayer() {
-		return namePlayer;
+		return playerName;
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		//No hay necesidad de implementar
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(e.getKeyChar() == 'a') {
-			character.moveLeft();
-		}
-		if(e.getKeyChar() == 'd') {
-			character.moveRight();
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if(e.getKeyChar() == 'w') {
-				character.jump();
-		}
-		if(e.getKeyChar() == 'a') {
-			character.moveLeft();
-		}
-		if(e.getKeyChar() == 'd') {
-			character.moveRight();
-		}
-	}
+	
 }
