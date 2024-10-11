@@ -1,0 +1,38 @@
+Levels format: 
+
+Level name convention: levelX.txt
+        X represents the number of level
+
+int type, int position in x, int position in y
+
+type is represented by int number:
+    type        vulues  represents
+            1       character    
+    enemies
+            2       Goomba
+            3       KoopaTroopa
+            4       Piranha Plant
+            5       Lakitu
+            6       Spiny
+            7       Buzzy Beetle
+            8       Shell
+
+    power ups
+            10       Mushroom
+            11       FireFlower
+            12      Star
+            13      GreenMushroom
+            14      Coin
+    platforms   
+            20      SolidBlock
+            21      BickBlock
+            22      QuestionBlock
+            23      Pipe
+            24      Void
+    projetiles
+            30      Fireball
+            31      SpinyEgg
+
+Values greater than 100 represent compositions
+    101     questionBlock 
+    102     pipe with piranhaPlant
