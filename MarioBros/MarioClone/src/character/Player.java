@@ -13,6 +13,7 @@ public class Player implements KeyListener{
 	
 	public Player(String name, JPanel panel ) {
 		namePlayer= name;
+		character= new Character("assets.player.1");
 		score= 0;
 		game= panel;
 		conectsPanelWithKeyListener();
