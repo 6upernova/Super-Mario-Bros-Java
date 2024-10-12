@@ -2,10 +2,9 @@ package factories;
 
 import java.util.List;
 
-import game.Entity;
 import platforms.Platform;
+import powerUps.PowerUp;
 import enemies.*;
-import powerUps.*;
 
 public class Level {
     protected int remainingTime; 

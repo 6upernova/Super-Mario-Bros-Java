@@ -4,7 +4,7 @@ import game.LogicalEntity;
 
 public interface CharacterEntity extends LogicalEntity {
     public int getLives();
-    public boolean isInvencible();
+    public boolean isInvincible();
     public int getSpeed();
 }
 
