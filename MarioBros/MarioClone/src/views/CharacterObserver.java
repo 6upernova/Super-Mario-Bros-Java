@@ -15,9 +15,9 @@ public class CharacterObserver extends GraphicObserver{
     
     public void update() {
         super.update();
-        levelScreen.updateScrollRight(character);
+        this.setFocusable(true);
     }
-
     
+
 
 }

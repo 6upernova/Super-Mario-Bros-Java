@@ -3,9 +3,10 @@ package views;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import character.CharacterEntity;
 import game.Game;
 
-public class ViewController  {
+public class ViewController    {
    
     protected JFrame window;
     protected LevelScreen levelScreen;
@@ -53,5 +54,14 @@ public class ViewController  {
     public void refresh(){
         window.revalidate();
         window.repaint();
+    }
+
+    // ObserverEntityMethods
+
+    public Observer registerEntity(CharacterEntity character ){
+        Observer characterObserver = levelScreen.drawEntityCharacter(character);
+        refresh();
+        return characterObserver;
+
     }
 }

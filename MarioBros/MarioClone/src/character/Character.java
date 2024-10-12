@@ -4,28 +4,29 @@ import factories.Sprite;
 import game.Entity;
 import views.ViewConstants;
 
-public class Character extends Entity {
+public class Character extends Entity implements CharacterEntity {
 	
-	protected int lifes;
+	protected int lives;
 	protected int score;
 	protected boolean invincible;
 	protected CharacterState state; 
 	
-	public Character(String sprite) {
-        super( new Sprite("assets.player.1") ,6,4);
+	public Character(Sprite sprite) {
+        super( sprite ,6,4);
 		score=0;
-		lifes=3;
+		lives=3;
         invincible= false;
 	}
+
 	
 	public void moveLeft(){
 		int worldX = getX();
-	    setX(worldX +ViewConstants.PLAYER_VELOCITY);
+	    setX(worldX +ViewConstants.CHARACTER_SPEED);
 	}
 	
 	public void moveRight(){
         int worldX = getX();
-	    setX(worldX - ViewConstants.PLAYER_VELOCITY);
+	    setX(worldX - ViewConstants.CHARACTER_SPEED);
 	}
 	
 	/*
@@ -112,4 +113,19 @@ public class Character extends Entity {
 	public void subtractScore(int number){
 			score -= number;
 	}
+
+
+	@Override
+	public int getLives() {
+		return lives;
+	}
+
+
+	@Override
+	public boolean isInvencible() {
+		return invincible;
+	}
+
+
+	
 }

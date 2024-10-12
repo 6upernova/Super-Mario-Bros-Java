@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+import javax.swing.plaf.ViewportUI;
 
 import character.CharacterEntity;
 import game.LogicalEntity;
@@ -69,12 +70,12 @@ public class LevelScreen extends JPanel {
     private ImageIcon getBackgroundIcon(String path){
 
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource(path));
-        float scale = calculateScale(backgroundIcon.getIconHeight(),ViewConstants.PANEL_HEIGHT);
-        backgroundIcon = scaleImage(scale, backgroundIcon);
+        backgroundIcon = scaleImage(backgroundIcon.getIconHeight(), ViewConstants.PANEL_HEIGHT, backgroundIcon);
         return backgroundIcon;
     }
 
-    private ImageIcon scaleImage(float scale, ImageIcon imageIcon){
+    private ImageIcon scaleImage(float origin,float destination, ImageIcon imageIcon){
+        float scale = calculateScale(origin, destination);
         Image image = imageIcon.getImage();
         int width = Math.round(imageIcon.getIconWidth() * scale);
         int height = Math.round(imageIcon.getIconHeight() * scale);
@@ -90,20 +91,23 @@ public class LevelScreen extends JPanel {
 
     public void updateScrollRight(CharacterEntity character){
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        horizontalBar.setValue(horizontalBar.getValue()+character.getSpeed());
+        horizontalBar.setValue(horizontalBar.getValue()+ViewConstants.CHARACTER_SPEED);
 
     }
 
     public void updateScrollLeft(CharacterEntity character){
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        horizontalBar.setValue(horizontalBar.getValue()-character.getSpeed());
+        horizontalBar.setValue(horizontalBar.getValue()-ViewConstants.CHARACTER_SPEED);
     }
 
 
     //View Controller and draw operations
 
-    public Observer drawEntity(LogicalEntity logicalEntity){
-        EntityObserver
+    public Observer drawEntityCharacter( CharacterEntity characterEntity){
+        CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
+        backgroundImageLabel.add(characterObserver);
+        
+        return characterObserver;
     }
 
 }   
