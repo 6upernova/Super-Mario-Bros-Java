@@ -4,6 +4,8 @@ import java.util.List;
 
 import game.Entity;
 import platforms.Platform;
+import enemies.*;
+import powerUps.*;
 
 public class Level {
     protected int remainingTime; 
@@ -40,10 +42,10 @@ public class Level {
     public List<Platform> getPlatforms(){
         return platformList;
     }
-    public List<Platform> getEnemies(){
+    public List<Enemy> getEnemies(){
         return enemyList;
     }
-    public List<Platform> getPowerUps(){
+    public List<PowerUp> getPowerUps(){
         return powerUpList;
     }
     public int getRemainingTime(){
