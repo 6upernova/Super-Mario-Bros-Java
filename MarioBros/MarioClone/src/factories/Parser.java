@@ -14,7 +14,7 @@ public class Parser{
     protected String path;    
 
     public Parser(int numberLevel){
-        this.path = "levels/level"+numberLevel+".txt";
+        this.path = "src/levels/level"+numberLevel+".txt";
         levelContent = new LinkedList<>();
         levelContent = getLevelContent();
         //printContent();
@@ -30,8 +30,8 @@ public class Parser{
                 numbersTrio = new Vector<Integer>();
                 cycle = 1;
                 String[] curretRowReading = currentRow.split(","); 
-                for (String elemento : curretRowReading) {                    
-                    Integer number = Integer.parseInt(elemento);
+                for (String element : curretRowReading) {                    
+                    Integer number = Integer.parseInt(element);
                     addInListByCycle(cycle,number,numbersTrio);
                     cycle++; 
                 }  
@@ -52,12 +52,7 @@ public class Parser{
         if(cycle == 3) 
         	numbersTrio.setY(number);
     }
-    
-    /*private void printContent(){
-        for(Vector<Integer> vector:levelContent)
-            vector.printVector();
-    }
-    */
+   
     
     public int getType(){
         int type= levelContent.peekFirst().getRepresentacion();
@@ -85,9 +80,16 @@ public class Parser{
      public boolean hasToRead(){
         return levelContent.isEmpty();
     }
-    /* 
+    
+    /*
+    private void printContent(){
+        for(Vector<Integer> vector:levelContent)
+            vector.printVector();
+    }
+    */
+    /*
     public static void main(String args[]){
-        Parser p = new Parser("level.txt"); 
+        Parser p = new Parser(1); 
         p.printContent();
         int x,y,z;
         x = p.getPositionX();
@@ -97,5 +99,6 @@ public class Parser{
         System.out.println(x+" "+y+" "+z);
         System.out.println("------------------");
         p.printContent();    
-    }*/
+    } */
+        
 }
