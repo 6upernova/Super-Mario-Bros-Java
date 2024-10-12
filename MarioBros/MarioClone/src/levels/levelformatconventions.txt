@@ -29,6 +29,9 @@ type is represented by int number:
             22      QuestionBlock
             23      Pipe
             24      Void
+    projetiles
+            30      Fireball
+            31      SpinyEgg
 
 Values greater than 100 represent compositions
     101     questionBlock 
