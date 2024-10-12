@@ -7,8 +7,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+
+import character.CharacterEntity;
+import game.LogicalEntity;
 
 public class LevelScreen extends JPanel {
     
@@ -25,7 +29,9 @@ public class LevelScreen extends JPanel {
         setBackgroundAndScroll();
     }
 
-    public void setBackgroundAndScroll() {
+    //Constructor operations
+
+    protected void setBackgroundAndScroll() {
         
         configureBackgroundLabel();
         configureContentPanel();
@@ -80,12 +86,27 @@ public class LevelScreen extends JPanel {
         return destination / origin;
     }
 
-    public void updateScroll(){
-        
+    //Observer operation
+
+    public void updateScrollRight(CharacterEntity character){
+        JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
+        horizontalBar.setValue(horizontalBar.getValue()+character.getSpeed());
+
+    }
+
+    public void updateScrollLeft(CharacterEntity character){
+        JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
+        horizontalBar.setValue(horizontalBar.getValue()-character.getSpeed());
     }
 
 
-}
+    //View Controller and draw operations
+
+    public Observer drawEntity(LogicalEntity logicalEntity){
+        EntityObserver
+    }
+
+}   
     
 
 
