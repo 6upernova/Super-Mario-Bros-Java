@@ -2,6 +2,7 @@ package character;
 
 import factories.Sprite;
 import game.Entity;
+import powerUps.PowerUp;
 import views.ViewConstants;
 
 public class Character extends Entity {
@@ -100,6 +101,10 @@ public class Character extends Entity {
     	state= newState;
     }
     */
+	
+	private void computeScoreFromEntity(Entity e) {
+		
+	}
 	
 	public int getScore() {
 	    return score;

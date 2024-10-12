@@ -10,7 +10,7 @@ public abstract class Entity implements LogicalEntity {
     protected Sprite sprite;
     protected Observer observer;
 
-    protected Entity(Sprite sprite, int x, int y){
+    public Entity(Sprite sprite, int x, int y){
         this.sprite = sprite;
         this.x = x;
         this.y = y;

@@ -1,10 +1,10 @@
 package factories;
 
-import java.nio.channels.Pipe;
-
 import enemies.Goomba;
 import game.Entity;
-import powerUps.Mushroom;
+import platforms.Pipe;
+import powerUps.*;
+import enemies.*;
 
 public class EntityFactory {
 	
@@ -56,7 +56,7 @@ public class EntityFactory {
 		Entity powerUp=null;
 		  switch (type) {
 		         case 10:{
-			              powerUp= newMushroom(worldX,worldY);
+			              powerUp= newSuperMushroom(worldX,worldY);
 		                 }
 		         case 11:{
 	        	          powerUp= newFireFlower(worldX,worldY);
@@ -98,85 +98,63 @@ public class EntityFactory {
 			return platform;
 	}
 	
-	private Entity newMushroom(int worldX, int worldY) {
-		Mushroom mushroom = new Mushroom();
-	    mushroom.setPositionInWorld(worldX,worldY);
-	    mushroom.setSprite(spriteFactory.getMushroom());
-	    return mushroom;
+	private Entity newSuperMushroom(int worldX, int worldY) {
+		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getMushroom(),worldX,worldY);
+	    return superMushroom;
 	}
     
 	private Entity newGreenMushroom(int worldX, int worldY) {
-	    GreenMushroom greenMushroom= new GreenMushroom();
-	    greenMushroom.setPositionInWorld(worldX,worldY);
-	    greenMushroom.setSprite( spriteFactory.getGreenMushroom()) ;
+	    GreenMushroom greenMushroom= new GreenMushroom(spriteFactory.getGreenMushroom(),worldX,worldY);
 	    return greenMushroom;                   
     }
 	
 	private Entity newStar(int worldX, int worldY) {
-	    Star star= new Star();
-	    star.setPositionInWorld(worldX,worldY);
-	    star.setSprite( spriteFactory.getStar() );
+	    Star star= new Star(spriteFactory.getStar(),worldX,worldY);
 	    return star;
 	}
 	
 	private Entity newCoin(int worldX, int worldY) {
-	    Coin coin= new Coin();
-	    coin.setPositionInWorld(worldX,worldY);
-	    coin.setSprite( spriteFactory.getCoin() );
+	    Coin coin= new Coin(spriteFactory.getCoin(),worldX,worldY );
 	    return coin;
 	}
 	
 	private Entity newFireFlower(int worldX, int worldY) {
-		FireFlower flower= new FireFlower();
-	    flower.setPositionInWorld(worldX,worldY);
-	    flower.setSprite( spriteFactory.getFireFlower() );
+		FireFlower flower= new FireFlower(spriteFactory.getFireFlower(), worldX,worldY);
 	    return flower;
 	}
 
 	private Entity newKoopaTroopa(int worldX, int worldY) {
-	    KoopaTroopa koopa= new KoopaTroopa();
-	    koopa.setPositionInWorld(worldX,worldY);
-	    koopa.setSprite( spriteFactory.getKoopaTroopa() );
+	    KoopaTroopa koopa= new KoopaTroopa(spriteFactory.getKoopaTroopa(),worldX,worldY);
 	    return koopa;
 	}
 
 	private Entity newBuzzyBeetle(int worldX, int worldY) {
-		BuzzyBeetle beetle= new BuzzyBeetle();
-	    beetle.setPositionInWorld(worldX,worldY);
-	    beetle.setSprite(spriteFactory.getBuzzyBeetle() );
+		BuzzyBeetle beetle= new BuzzyBeetle(spriteFactory.getBuzzyBeetle(),worldX,worldY);
 	    return beetle;
 	}
 
 	private Entity newLakitu(int worldX, int worldY) {
-		Lakitu lakitu= new Lakitu();
-	    lakitu.setPositionInWorld(worldX,worldY);
-	    lakitu.setSprite( spriteFactory.getLakitu() );
+		Lakitu lakitu= new Lakitu(spriteFactory.getLakitu(),worldX,worldY);
 	    return lakitu;
 	}
 
 	private Entity newPiranhaPlant(int worldX, int worldY) {
-		PiranhaPlant piranha= new PiranhaPlant();
-	    piranha.setPositionInWorld(worldX,worldY);
-	    piranha.setSprite( spriteFactory.getPiranhaPlant() );
+		PiranhaPlant piranha= new PiranhaPlant(spriteFactory.getPiranhaPlant(),worldX,worldY);
 	    return piranha;
 	}
 
 	private Entity newGoomba(int worldX, int worldY) {
-		Goomba goomba= new Goomba();
-	    goomba.setPositionInWorld(worldX,worldY);
-	    goomba.setSprite( spriteFactory.getGoomba() );
+		Goomba goomba= new Goomba(spriteFactory.getGoomba(), worldX,worldY);
 	    return goomba;
 	}
     
 	private Entity newPipe(int worldX, int worldY) {
-		Pipe pipe= new Pipe();
-	    pipe.setPositionInWorld(worldX,worldY);
-	    pipe.setSprite( spriteFactory.getPipe() );
+		Pipe pipe= new Pipe(spriteFactory.getPipe(),worldX,worldY);
 	    return pipe;
 	}
 	
 	private Entity newVoid(int worldX, int worldY) {
-		Void v= new Void();
+		Void Void= new Void(null, worldX,worldY);
 	    v.setPositionInWorld(worldX,worldY);
 	    return v;
 	}

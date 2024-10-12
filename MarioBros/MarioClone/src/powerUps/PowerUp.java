@@ -5,14 +5,20 @@ import game.Entity;
 
 public abstract class PowerUp extends Entity{
 
-    protected PowerUp(Sprite sprite, int x, int y) {
+	private int points;
+	
+    protected PowerUp(Sprite sprite, int x, int y, int points) {
         super(sprite, x, y);
+        this.points=points;
     }
 
     public void effect(Character character) {
 
     }
-
+    
+    public int getPoints() {
+    	return points;
+    }
    // public void acceptVisit(Visitor v) {}
 
     

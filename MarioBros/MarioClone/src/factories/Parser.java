@@ -45,18 +45,12 @@ public class Parser{
     }
     
     private void addInListByCycle(int cycle, Integer number, Vector<Integer> numbersTrio) {
-<<<<<<< HEAD
-        if(cycle == 1) numbersTrio.setRepresentation(number);
-        if(cycle == 2) numbersTrio.setX(number);
-        if(cycle == 3) numbersTrio.setY(number);
-=======
         if(cycle == 1) 
         	numbersTrio.setRepresentation(number);
         if(cycle == 2) 
         	numbersTrio.setX(number);
         if(cycle == 3) 
         	numbersTrio.setY(number);
->>>>>>> noah-maxi
     }
     
     /*private void printContent(){
