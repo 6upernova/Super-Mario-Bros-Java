@@ -1,5 +1,6 @@
 package views;
 
+<<<<<<< HEAD
 import character.CharacterEntity;
 
 public class CharacterObserver extends GraphicObserver{
@@ -21,3 +22,8 @@ public class CharacterObserver extends GraphicObserver{
 
 
 }
+=======
+public class CharacterObserver {
+
+}
+>>>>>>> 0b5b8f05ac19619f42eb6c918dcbd8cb5b3d8629

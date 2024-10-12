@@ -12,9 +12,7 @@ public abstract class Platform extends Entity{
 		this.isBreakeable=isBreakeable;
 	}
 	
-	
-
-	protected boolean isBreakeable() {
+	public boolean isBreakeable() {
 		return isBreakeable;
 	}
 }

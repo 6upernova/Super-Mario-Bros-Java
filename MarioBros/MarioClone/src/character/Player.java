@@ -10,11 +10,10 @@ public class Player{
 	private Character character;
 	private Keyboard playerKeyboard;
 	
-	public Player(String name, JPanel panel ) {
+	public Player(String name) {
 		playerName= name;
 		character= new Character("assets.player.1");
 		playerScore= 0;
-		gamePanel= panel;
 		playerKeyboard=new Keyboard();
 		connectKeyboardToPanel();
 	}
