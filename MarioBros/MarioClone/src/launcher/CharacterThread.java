@@ -4,6 +4,7 @@ import character.Character;
 import character.Keyboard;
 
 public class CharacterThread extends Thread {
+	
     protected Keyboard keyboard;
     protected Character character;
 
@@ -11,6 +12,7 @@ public class CharacterThread extends Thread {
         this.keyboard = keyboard;
         this.character = character;
     }
+    
     public void run(){
         while(true){
             

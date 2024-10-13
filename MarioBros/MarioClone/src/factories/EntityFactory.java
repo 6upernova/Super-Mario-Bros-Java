@@ -2,7 +2,8 @@ package factories;
 
 import enemies.Goomba;
 import game.Entity;
-import platforms.Pipe;
+import platforms.*;
+import platforms.Void;
 import powerUps.*;
 import enemies.*;
 
@@ -77,7 +78,7 @@ public class EntityFactory {
 		Entity platform=null;
 		  switch (type) {
 		         case 20:{
-			              platform= newSolid(worldX,worldY);
+			              platform= newBlock(worldX,worldY);
 		                 }
 		         case 21:{ 
 		        	      platform= newBrick(worldX,worldY);
@@ -99,92 +100,83 @@ public class EntityFactory {
 	}
 	
 	private Entity newSuperMushroom(int worldX, int worldY) {
-		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getMushroom(),worldX,worldY);
+		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
 	    return superMushroom;
 	}
     
 	private Entity newGreenMushroom(int worldX, int worldY) {
-	    GreenMushroom greenMushroom= new GreenMushroom(spriteFactory.getGreenMushroom(),worldX,worldY);
+	    GreenMushroom greenMushroom= new GreenMushroom(spriteFactory.getGreenMushroomSprite(),worldX,worldY);
 	    return greenMushroom;                   
     }
 	
 	private Entity newStar(int worldX, int worldY) {
-	    Star star= new Star(spriteFactory.getStar(),worldX,worldY);
+	    Star star= new Star(spriteFactory.getStarSprite(),worldX,worldY);
 	    return star;
 	}
 	
 	private Entity newCoin(int worldX, int worldY) {
-	    Coin coin= new Coin(spriteFactory.getCoin(),worldX,worldY );
+	    Coin coin= new Coin(spriteFactory.getCoinSprite(),worldX,worldY );
 	    return coin;
 	}
 	
 	private Entity newFireFlower(int worldX, int worldY) {
-		FireFlower flower= new FireFlower(spriteFactory.getFireFlower(), worldX,worldY);
+		FireFlower flower= new FireFlower(spriteFactory.getFireFlowerSprite(), worldX,worldY);
 	    return flower;
 	}
 
 	private Entity newKoopaTroopa(int worldX, int worldY) {
-	    KoopaTroopa koopa= new KoopaTroopa(spriteFactory.getKoopaTroopa(),worldX,worldY);
+	    KoopaTroopa koopa= new KoopaTroopa(spriteFactory.getKoopaTroopaSprite(),worldX,worldY);
 	    return koopa;
 	}
 
 	private Entity newBuzzyBeetle(int worldX, int worldY) {
-		BuzzyBeetle beetle= new BuzzyBeetle(spriteFactory.getBuzzyBeetle(),worldX,worldY);
+		BuzzyBeetle beetle= new BuzzyBeetle(spriteFactory.getBuzzyBeetleSprite(),worldX,worldY);
 	    return beetle;
 	}
 
 	private Entity newLakitu(int worldX, int worldY) {
-		Lakitu lakitu= new Lakitu(spriteFactory.getLakitu(),worldX,worldY);
+		Lakitu lakitu= new Lakitu(spriteFactory.getLakituSprite(),worldX,worldY);
 	    return lakitu;
 	}
 
 	private Entity newPiranhaPlant(int worldX, int worldY) {
-		PiranhaPlant piranha= new PiranhaPlant(spriteFactory.getPiranhaPlant(),worldX,worldY);
+		PiranhaPlant piranha= new PiranhaPlant(spriteFactory.getPiranhaPlantSprite(),worldX,worldY);
 	    return piranha;
 	}
 
 	private Entity newGoomba(int worldX, int worldY) {
-		Goomba goomba= new Goomba(spriteFactory.getGoomba(), worldX,worldY);
+		Goomba goomba= new Goomba(spriteFactory.getGoombaSprite(), worldX,worldY);
 	    return goomba;
 	}
     
 	private Entity newPipe(int worldX, int worldY) {
-		Pipe pipe= new Pipe(spriteFactory.getPipe(),worldX,worldY);
+		Pipe pipe= new Pipe(spriteFactory.getPipeSprite(),worldX,worldY);
 	    return pipe;
 	}
 	
 	private Entity newVoid(int worldX, int worldY) {
-		Void Void= new Void(null, worldX,worldY);
-	    v.setPositionInWorld(worldX,worldY);
-	    return v;
+		Void gameVoid= new Void(spriteFactory.getVoidSprite(), worldX,worldY);
+	    return gameVoid;
 	}
 	
 	private Entity newFlag(int worldX, int worldY) {
-		Flag flag= new Flag();
-	    flag.setPositionInWorld(worldX,worldY);
-	    flag.setSprite( spriteFactory.getFlag() );
+		Flag flag= new Flag(spriteFactory.getFlagSprite(), worldX,worldY);
 	    return flag;
 	}
 	
 	private Entity newQuestion(int worldX, int worldY) {
-		Question question= new Question();
-	    question.setPositionInWorld(worldX,worldY);
-	    question.setSprite( spriteFactory.getQuestionBlock() );
+		Question question= new Question(spriteFactory.getQuestionBlockSprite(),worldX,worldY);
 	    return question;
 	}
 	
 	private Entity newBrick(int worldX, int worldY) {
-		Brick brick= new Brick();
-	    brick.setPositionInWorld(worldX,worldY);
-	    brick.setSprite( spriteFactory.getBrickBlock() );
+		Brick brick= new Brick(spriteFactory.getBrickSprite(),worldX,worldY);
 	    return brick;
 	}
 	
-	private Entity newSolid(int worldX, int worldY) {
-		Solid solid= new Solid();
-	    solid.setPositionInWorld(worldX,worldY);
-	    solid.setSprite( spriteFactory.getSolidBlock() );
-	    return solid;
+	private Entity newBlock(int worldX, int worldY) {
+		Block block= new Block(spriteFactory.getBlockSprite(),worldX,worldY);
+	    return block;
 	}
 	
 }
