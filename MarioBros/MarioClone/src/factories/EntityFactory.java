@@ -1,11 +1,11 @@
 package factories;
 
-import enemies.Goomba;
 import game.Entity;
 import platforms.*;
 import platforms.Void;
 import powerUps.*;
 import enemies.*;
+import character.Character;
 
 public class EntityFactory {
 	
@@ -29,8 +29,14 @@ public class EntityFactory {
                     
         if( type>19 && type<25 )
             entity= newPlatform(type,worldX,worldY);
+
         return entity;
     }
+
+	public Entity createCharacter(){
+        Character character = new Character(spriteFactory.getCharacterSprite());
+		return character;
+	}
 
 	private Entity newEnemy(int type, int worldX, int worldY) {
 	  Entity enemy=null;

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import character.CharacterEntity;
 import character.Keyboard;
 import game.Game;
+import game.LogicalEntity;
 
 public class ViewController {
    
@@ -71,5 +72,11 @@ public class ViewController {
         refresh();
         return characterObserver;
 
+    }
+
+    public Observer registerEntity(LogicalEntity entity){
+        Observer entityObserver = levelScreen.drawLogicalEntity(entity);
+        refresh();
+        return entityObserver;
     }
 }

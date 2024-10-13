@@ -24,6 +24,7 @@ public class LevelGenerator {
         List<Platform> platformList = new LinkedList<Platform>();
         List<Enemy> enemyList = new LinkedList<Enemy>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
+        Character character = entityFactory.createCharacter();
         //LEE CADA LINEA DEL TXT Y LO PASA A UN A CREATE, DESPUES CON ESO LO AÑADE
         while(parser.hasToRead()) {
             type= parser.getType();
@@ -38,7 +39,7 @@ public class LevelGenerator {
             else if( type>19 && type<25) //pltfrm
                 platformList.add((Platform) e);
         }
-        return new Level(platformList, enemyList, powerUpList);
+        return new Level(platformList, enemyList, powerUpList, character);
     }
 
 }

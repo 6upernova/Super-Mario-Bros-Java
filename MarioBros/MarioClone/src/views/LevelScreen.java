@@ -11,6 +11,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import character.CharacterEntity;
+import game.LogicalEntity;
 
 public class LevelScreen extends JPanel {
     
@@ -97,11 +98,18 @@ public class LevelScreen extends JPanel {
     //View Controller and draw operations
 
     public Observer drawEntityCharacter( CharacterEntity characterEntity){
-       
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
         
         return characterObserver;
+    }
+
+    public Observer drawLogicalEntity(LogicalEntity entity) {
+        EntityObserver entityObserver = new EntityObserver(entity);
+        backgroundImageLabel.add(entityObserver);
+
+        return entityObserver;
+        
     }
 
 }   

@@ -18,6 +18,6 @@ public class Launcher {
         CharacterThread thread = new CharacterThread(controlador_vistas.getKeyboard(), prueba1);
         thread.start();
         controlador_vistas.showLevelScreen();
-        controlador_vistas.refresh();
+        
     }
 }

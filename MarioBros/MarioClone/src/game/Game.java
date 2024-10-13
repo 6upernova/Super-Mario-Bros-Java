@@ -16,31 +16,19 @@ import views.ViewController;
 
 
 public class Game {
-    protected Player player;
+    
     protected LevelGenerator levelGenerator;
     protected Level currentLevel;
     protected ViewController viewController;
     protected int numberLevel;
+    protected String currentPlayer;//Crear label en el menu para ingresar nombre
     
 
     public Game (int level) {
-        numberLevel= 1;
-        //String modo = custom;
-        //pasarle a entity facotory modo=custom si se quiere modo custom
-        //si se quiere crear modo original asignar modo = "original"
-        
-        //crear nivel 
-        levelGenerator = new LevelGenerator("Orignal",numberLevel);
-        currentLevel= levelGenerator.createLevel(numberLevel);
-        
-        //Crear Player
-        player = new Player("player");
-        
-        //crear obserserver para las entidades creadas
+        levelGenerator = new LevelGenerator("Orignal",level);
+        currentLevel= levelGenerator.createLevel(level);
         setObservers();
-        //setObserversEntity(currentLevel.getEnemys());
-        //setObserversEntity(currentLevel.getPowerUps());
-        //chargeEntitysSpritesLevel();    
+           
     }
 
     //Launcher operation
@@ -48,20 +36,18 @@ public class Game {
     public void setViewController(ViewController viewController){
         this.viewController = viewController;
     }
+
+
+    //Graphic operations
         
 
     public void setObservers(){
         //Hay que revisar la clase character y player
-        setObserverCharacter(player.getCharacter());
+        setObserverCharacter(currentLevel.getCharacter());
+        setObserversPlatforms(currentLevel.getPlatforms());
     }
 
-    protected void setObserversEntity(List<Entity> entityList){
-    	for (Entity entity : entityList) {
-        Observer observer = new EntityObserver(entity);
-        entity.registerObserver(observer);
-    	}
-    }
-    
+
     protected void setObserverCharacter(Character character){
         Observer characterObserver = viewController.registerEntity(character);
         character.registerObserver(characterObserver);
@@ -70,7 +56,8 @@ public class Game {
     
     protected void setObserversPlatforms(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-    		registerObserver();
+            Observer platFormObserver = viewController.registerEntity(platform);
+    		platform.registerObserver(platFormObserver);
     	}
     }
     

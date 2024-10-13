@@ -11,6 +11,7 @@ public class Level {
     protected List<Platform> platformList;
     protected List<Enemy> enemyList;
     protected List<PowerUp> powerUpList;
+    protected Character character;
     protected boolean running;
     protected boolean paused;
 
@@ -46,6 +47,10 @@ public class Level {
     }
     public List<PowerUp> getPowerUps(){
         return powerUpList;
+    }
+
+    public Character geCharacter(){
+        return character;
     }
     public int getRemainingTime(){
         return remainingTime;

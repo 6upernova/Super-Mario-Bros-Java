@@ -11,7 +11,7 @@ import character.Character;
 
 public class GraphicTools {
 
-    
+    // Relative position methods
     public static int transformX(int x, JLabel observer){
         return x;
     }
@@ -19,6 +19,8 @@ public class GraphicTools {
     public static int transformY(int y , JLabel observer ){
         return ViewConstants.PANEL_HEIGHT - observer.getIcon().getIconHeight() -y   ;
     }
+
+    //Scaling methods
 
     public static ImageIcon scaleImage(float origin, float destination, ImageIcon imageIcon){
         float scale = calculateScale(origin, destination);
