@@ -122,15 +122,23 @@ public class Character extends Entity implements CharacterEntity {
 	}
 
 
-	@Override
+	
 	public int getLives() {
 		return lives;
 	}
 
 
-	@Override
-	public boolean isInvencible() {
-		return invincible;
+	
+	public boolean isInvincible() {
+		
+		return false;
+	}
+
+
+	
+	public int getSpeed() {
+		
+		return 0;
 	}
 
 

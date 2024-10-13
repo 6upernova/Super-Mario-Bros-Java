@@ -23,12 +23,18 @@ public class Player{
 		
 	}
 	
+	
+	
 	public void setFinalScore() {
 		playerScore=character.getScore();
 	}
 	
 	public String getNamePlayer() {
 		return playerName;
+	}
+
+	public Character getCharacter() {
+		return character;
 	}
 	
 }

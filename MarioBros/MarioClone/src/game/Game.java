@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import character.Character;
+import character.Player;
 import factories.Level;
 import factories.LevelGenerator;
 import platforms.Platform;
