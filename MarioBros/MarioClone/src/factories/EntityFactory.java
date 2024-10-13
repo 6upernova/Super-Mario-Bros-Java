@@ -8,7 +8,6 @@ import powerUps.*;
 import enemies.*;
 
 public class EntityFactory {
-	
 	protected SpriteFactory spriteFactory;
 	
 	public EntityFactory(String direction) {
@@ -98,7 +97,7 @@ public class EntityFactory {
 		  }
 			return platform;
 	}
-	
+	//POWER UPS 
 	private Entity newSuperMushroom(int worldX, int worldY) {
 		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
 	    return superMushroom;
@@ -123,7 +122,7 @@ public class EntityFactory {
 		FireFlower flower= new FireFlower(spriteFactory.getFireFlowerSprite(), worldX,worldY);
 	    return flower;
 	}
-
+	//ENEMYS
 	private Entity newKoopaTroopa(int worldX, int worldY) {
 	    KoopaTroopa koopa= new KoopaTroopa(spriteFactory.getKoopaTroopaSprite(),worldX,worldY);
 	    return koopa;
@@ -148,7 +147,7 @@ public class EntityFactory {
 		Goomba goomba= new Goomba(spriteFactory.getGoombaSprite(), worldX,worldY);
 	    return goomba;
 	}
-    
+    //PLATFORMS
 	private Entity newPipe(int worldX, int worldY) {
 		Pipe pipe= new Pipe(spriteFactory.getPipeSprite(),worldX,worldY);
 	    return pipe;

@@ -81,7 +81,7 @@ public class Parser{
         return levelContent.isEmpty();
     }
     
-    /*
+    
     private void printContent(){
         for(Vector<Integer> vector:levelContent)
             vector.printVector();
@@ -99,5 +99,5 @@ public class Parser{
         System.out.println("------------------");
         p.printContent();    
     } 
-      */   
+         
 }

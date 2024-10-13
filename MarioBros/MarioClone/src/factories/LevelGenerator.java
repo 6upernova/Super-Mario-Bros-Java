@@ -1,11 +1,10 @@
 package factories;
 import java.util.LinkedList;
 import java.util.List;
-
-import enemies.Enemy;
 import game.Entity;
 import platforms.Platform;
 import powerUps.PowerUp;
+import enemies.Enemy;
 
 public class LevelGenerator {
 
@@ -33,10 +32,10 @@ public class LevelGenerator {
             
             if( type>1 && type<9 ) //e
                 enemyList.add((Enemy) e);
-            else if( type>9 && type<15) //pwp
-                powerUpList.add((PowerUp) e);
-            else if( type>19 && type<25) //pltfrm
-                platformList.add((Platform) e);
+            else    if( type>9 && type<15) //pwp
+                        powerUpList.add((PowerUp) e);
+                    else    if( type>19 && type<25) //pltfrm
+                                platformList.add((Platform) e);
         }
         return new Level(platformList, enemyList, powerUpList);
     }
