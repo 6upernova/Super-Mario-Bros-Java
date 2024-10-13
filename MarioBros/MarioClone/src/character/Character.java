@@ -13,7 +13,7 @@ public class Character extends Entity implements CharacterEntity {
 	protected CharacterState state; 
 	
 	public Character(Sprite sprite) {
-        super( sprite ,10,4);
+        super( sprite ,0,0);
 		score=0;
 		lives=3;
         invincible= false;

@@ -13,7 +13,7 @@ public class CharacterThread extends Thread {
     }
     public void run(){
         while(true){
-            System.out.println(character.getX());
+            System.out.println(character.getY());
             if(keyboard.getPlayerDirection() == "right"){
                 character.moveRight();
             }
