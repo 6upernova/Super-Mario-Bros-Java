@@ -23,7 +23,7 @@ public class GraphicTools {
         Image image = imageIcon.getImage();
         int width = Math.round(imageIcon.getIconWidth() * scale);
         int height = Math.round(imageIcon.getIconHeight() * scale);
-        image = image.getScaledInstance(width,  height, 128);
+        image = image.getScaledInstance(width,  height, Image.SCALE_SMOOTH);
         return new ImageIcon(image);
     }
 

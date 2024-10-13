@@ -49,7 +49,7 @@ public class LevelScreen extends JPanel {
     private void configureContentPanel(){
 
         contentPanel = new JPanel(null); 
-        contentPanel.setPreferredSize(new Dimension(backgroundImageLabel.getIcon().getIconWidth(), backgroundImageLabel.getIcon().getIconHeight()));
+        contentPanel.setPreferredSize(new Dimension(backgroundImageLabel.getIcon().getIconWidth(), ViewConstants.PANEL_HEIGHT));
         contentPanel.add(backgroundImageLabel);
     }
 
