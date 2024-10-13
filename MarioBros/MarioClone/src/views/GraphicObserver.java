@@ -9,7 +9,7 @@ import game.LogicalEntity;
 
 public abstract class GraphicObserver extends JLabel implements Observer {
     
-    private LogicalEntity observedEntity;
+    protected LogicalEntity observedEntity;
 
     GraphicObserver( LogicalEntity observedEntity){
         super();

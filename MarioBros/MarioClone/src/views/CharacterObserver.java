@@ -4,21 +4,24 @@ import character.CharacterEntity;
 
 public class CharacterObserver extends GraphicObserver{
 
-    LevelScreen levelScreen;
-    CharacterEntity character;
+    protected LevelScreen levelScreen;
+    protected CharacterEntity observedCharacter;
 
-    public CharacterObserver(LevelScreen levelScreen, CharacterEntity character){
-        super(character);
+    public CharacterObserver(LevelScreen levelScreen, CharacterEntity observedCharacter){
+        super(observedCharacter);
         this.levelScreen = levelScreen;
+        this.observedCharacter = observedCharacter;
         update();
     }
 
     
     public void update() {
-        super.update();
-        levelScreen.updateScrollRight(character);
+        if(observedCharacter.getX() >= levelScreen.getViewportX())
+            super.update();
+        if(observedCharacter.getX()-levelScreen.getViewportX() > ViewConstants.LEFT_CHARACTER_SPACE){
+            levelScreen.updateScrollRight(observedCharacter);
+        }
     }
     
-
 
 }

@@ -7,6 +7,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import character.Character;
+
 public class GraphicTools {
 
     
@@ -30,5 +32,7 @@ public class GraphicTools {
     private static float calculateScale(float origin, float destination){
         return destination / origin;
     }
+
+    
     
 }

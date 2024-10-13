@@ -10,4 +10,6 @@ public class ViewConstants {
 
 	public static final int CHARACTER_SPEED=4;
 
+	public static final int LEFT_CHARACTER_SPACE = 100;
+
 }

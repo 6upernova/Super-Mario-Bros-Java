@@ -89,10 +89,15 @@ public class LevelScreen extends JPanel {
         horizontalBar.setValue(horizontalBar.getValue()-ViewConstants.CHARACTER_SPEED);
     }
 
+    public int getViewportX(){
+        return scrollPanel.getHorizontalScrollBar().getValue();
+    }
+
 
     //View Controller and draw operations
 
     public Observer drawEntityCharacter( CharacterEntity characterEntity){
+       
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
         
