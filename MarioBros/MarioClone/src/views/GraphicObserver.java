@@ -24,7 +24,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
     }
 
     protected void updateSprite(){
-        String path = observedEntity.getSprite().getImagePath();
+        String path = observedEntity.getSprite().getSkinPath();
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(path));
         icon = scaleImage(icon.getIconWidth(),36    , icon);
         this.setIcon(icon);

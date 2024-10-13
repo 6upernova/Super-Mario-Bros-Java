@@ -9,11 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.Border;
-import javax.swing.plaf.ViewportUI;
 
 import character.CharacterEntity;
-import game.LogicalEntity;
 
 public class LevelScreen extends JPanel {
     

@@ -7,7 +7,7 @@ public class Keyboard extends java.awt.event.KeyAdapter {
 
     private String playerDirection="none";
 
-    public void KeyPressed(KeyEvent pressedKey) {
+    public void keyPressed(KeyEvent pressedKey) {
             switch(pressedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
                     playerDirection="right";

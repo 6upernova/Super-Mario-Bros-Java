@@ -20,6 +20,12 @@ public class CharacterThread extends Thread {
             else if(keyboard.getPlayerDirection() == "left" && character.getX() > 0){
                 character.moveLeft();
             }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }

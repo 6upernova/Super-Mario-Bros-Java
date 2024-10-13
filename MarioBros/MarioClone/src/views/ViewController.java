@@ -4,15 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import character.CharacterEntity;
+import character.Keyboard;
 import game.Game;
 
-public class ViewController    {
+public class ViewController {
    
     protected JFrame window;
     protected LevelScreen levelScreen;
     //protected GameOverScreen gameOverScreen;
     //protected RankingScreen rankingScreen;
     //protected MenuScreen menuScreen;
+
+    protected Keyboard keyboardInputs;
 
     protected Game game;
 
@@ -33,13 +36,14 @@ public class ViewController    {
     }
 
     public void configureWindow (){
+        keyboardInputs = new Keyboard();
         window = new JFrame("p-comision23 :: MarioBros");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setSize(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT);
 		window.setLocationRelativeTo(null);
+        window.addKeyListener(keyboardInputs);
 		window.setVisible(true);
-
     }
 
     public void showLevelScreen(){
@@ -54,6 +58,10 @@ public class ViewController    {
     public void refresh(){
         window.revalidate();
         window.repaint();
+    }
+    
+    public Keyboard getKeyboard(){
+        return keyboardInputs;
     }
 
     // ObserverEntityMethods
