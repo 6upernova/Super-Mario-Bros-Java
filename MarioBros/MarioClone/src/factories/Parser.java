@@ -14,7 +14,7 @@ public class Parser{
     protected String path;    
 
     public Parser(int numberLevel){
-        this.path = "src/levels/level"+numberLevel+".txt";
+        this.path = "src\\levels\\level"+numberLevel+".txt";
         levelContent = new LinkedList<>();
         levelContent = getLevelContent();
         //printContent();
@@ -86,8 +86,7 @@ public class Parser{
         for(Vector<Integer> vector:levelContent)
             vector.printVector();
     }
-    */
-    /*
+            
     public static void main(String args[]){
         Parser p = new Parser(1); 
         p.printContent();
@@ -99,6 +98,6 @@ public class Parser{
         System.out.println(x+" "+y+" "+z);
         System.out.println("------------------");
         p.printContent();    
-    } */
-        
+    } 
+      */   
 }
