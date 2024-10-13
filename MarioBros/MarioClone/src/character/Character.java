@@ -13,7 +13,7 @@ public class Character extends Entity implements CharacterEntity {
 	protected CharacterState state; 
 	
 	public Character(Sprite sprite) {
-        super( sprite ,6,4);
+        super( sprite ,10,4);
 		score=0;
 		lives=3;
         invincible= false;
@@ -22,12 +22,14 @@ public class Character extends Entity implements CharacterEntity {
 	
 	public void moveLeft(){
 		int worldX = getX();
-	    setX(worldX +ViewConstants.CHARACTER_SPEED);
+	    setX(worldX - ViewConstants.CHARACTER_SPEED);
+		observer.update();
 	}
 	
 	public void moveRight(){
         int worldX = getX();
-	    setX(worldX - ViewConstants.CHARACTER_SPEED);
+	    setX(worldX + ViewConstants.CHARACTER_SPEED);
+		observer.update();
 	}
 	
 	/*
