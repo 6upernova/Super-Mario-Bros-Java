@@ -5,6 +5,7 @@ import java.util.List;
 import platforms.Platform;
 import powerUps.PowerUp;
 import enemies.*;
+import character.Character;
 
 public class Level {
     protected int remainingTime; 
@@ -15,11 +16,12 @@ public class Level {
     protected boolean running;
     protected boolean paused;
 
-    public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
+    public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps, Character character){
         remainingTime = 400;
         platformList = platforms;
         enemyList = enemies;
         powerUpList = powerUps;
+        this.character = character;
         running = false;
         paused = true;
     }
