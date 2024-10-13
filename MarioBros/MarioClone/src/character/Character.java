@@ -13,7 +13,7 @@ public class Character extends Entity implements CharacterEntity {
 	protected CharacterState state; 
 	
 	public Character(Sprite sprite) {
-        super( sprite ,0,0);
+        super( sprite ,100,85);
 		score=0;
 		lives=3;
         invincible= false;
@@ -122,15 +122,25 @@ public class Character extends Entity implements CharacterEntity {
 	}
 
 
-	@Override
+	
 	public int getLives() {
 		return lives;
 	}
 
 
+	
+	
+
+
 	@Override
-	public boolean isInvencible() {
+	public boolean isInvincible() {
 		return invincible;
+	}
+
+
+	@Override
+	public int getSpeed() {
+		return ViewConstants.CHARACTER_SPEED;
 	}
 
 
