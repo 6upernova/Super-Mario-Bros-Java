@@ -28,7 +28,10 @@ public class LevelGenerator {
         Character character = entityFactory.createCharacter();
         //LEE CADA LINEA DEL TXT Y LO PASA A UN A CREATE, DESPUES CON ESO LO AÑADE
         while(parser.hasToRead()) {
-        	getsAtributions(type, worldX, worldY);
+            type= parser.getType();
+            worldX = parser.getPositionX();
+            worldY = parser.getPositionY();
+            System.out.println("leo "+type);
             if( type>1 && type<9 ) {
             	Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
                 enemyList.add(enemy);
@@ -43,13 +46,16 @@ public class LevelGenerator {
                             }
             
         }
+        //System.out.println(platformList.size()+" "+enemyList.size()+" "+powerUpList.size());
         return new Level(platformList, enemyList, powerUpList, character);
     }
 
-	private void getsAtributions(int type, int worldX, int worldY) {
-        type= parser.getType();
-        worldX = parser.getPositionX();
-        worldY = parser.getPositionY();
-	}
+    /*
+     * public static void main(String[] args) {
+        LevelGenerator l = new LevelGenerator("original", 1);
+        Level level1 = l.createLevel();
+    }
+     * 
+     */
     
 }

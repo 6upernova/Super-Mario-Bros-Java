@@ -78,11 +78,10 @@ public class Parser{
     }
 
      public boolean hasToRead(){
-        return levelContent.isEmpty();
+        return !levelContent.isEmpty();
     }
     
-    
-    private void printContent(){
+    /*private void printContent(){
         for(Vector<Integer> vector:levelContent)
             vector.printVector();
     }
@@ -98,6 +97,8 @@ public class Parser{
         System.out.println(x+" "+y+" "+z);
         System.out.println("------------------");
         p.printContent();    
-    } 
+    }  
+        */
+    
          
 }
