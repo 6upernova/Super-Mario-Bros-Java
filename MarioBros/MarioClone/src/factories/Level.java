@@ -51,7 +51,7 @@ public class Level {
         return powerUpList;
     }
 
-    public Character geCharacter(){
+    public Character getCharacter(){
         return character;
     }
     public int getRemainingTime(){

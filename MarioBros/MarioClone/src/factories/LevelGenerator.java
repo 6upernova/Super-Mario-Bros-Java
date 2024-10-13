@@ -18,7 +18,7 @@ public class LevelGenerator {
         parser= new Parser(levelNumber);
     }
 
-    public Level createLevel(int numberLevel){
+    public Level createLevel(){
         int type=0;
         int worldX=0;
         int worldY=0;

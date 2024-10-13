@@ -32,7 +32,7 @@ public class ViewController {
         levelScreen = new LevelScreen(this);
         configureWindow();
         
-        //To do resto de screens
+        
         
     }
 
@@ -51,10 +51,9 @@ public class ViewController {
         window.setContentPane(levelScreen);
         refresh();
     }
-
-    public void startGame(){
-        game.start();
-    }
+    //To do resto de screens
+    
+    
 
     public void refresh(){
         window.revalidate();

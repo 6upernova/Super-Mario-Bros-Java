@@ -5,9 +5,9 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import character.Character;
-import character.Player;
 import factories.Level;
 import factories.LevelGenerator;
+import launcher.CharacterThread;
 import platforms.Platform;
 import views.CharacterObserver;
 import views.EntityObserver;
@@ -25,9 +25,9 @@ public class Game {
     
 
     public Game (int level) {
+
+        //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
         levelGenerator = new LevelGenerator("Orignal",level);
-        currentLevel= levelGenerator.createLevel(level);
-        setObservers();
            
     }
 
@@ -35,6 +35,14 @@ public class Game {
 
     public void setViewController(ViewController viewController){
         this.viewController = viewController;
+    }
+
+    public void start(){
+        currentLevel= levelGenerator.createLevel();
+        setObservers();
+        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter());
+        thread.start();
+        viewController.showLevelScreen();
     }
 
 
@@ -55,6 +63,7 @@ public class Game {
     }  
     
     protected void setObserversPlatforms(List<Platform> platformsList) {
+        System.out.println(platformsList.size());
     	for (Platform platform: platformsList) {
             Observer platFormObserver = viewController.registerEntity(platform);
     		platform.registerObserver(platFormObserver);
