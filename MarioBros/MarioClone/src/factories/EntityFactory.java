@@ -22,18 +22,23 @@ public class EntityFactory {
 	  switch (type) {
 	         case 2:{
 		               enemy= newGoomba(worldX,worldY);
+					   break;
 	                  }
 	         case 3:{ 
       	               enemy= newKoopaTroopa(worldX,worldY);
+						 break;
 	                  }
 	         case 4:{
       	               enemy= newPiranhaPlant(worldX,worldY);
+						 break;
 	                  }
 	         case 5:{
       	               enemy= newLakitu(worldX,worldY);
+						 break;
 	                  }
 	         case 7:{ 
       	               enemy= newBuzzyBeetle(worldX,worldY);
+						 break;
                       }
 	  }
 		return enemy;
@@ -43,18 +48,23 @@ public class EntityFactory {
 		  switch (type) {
 		         case 10:{
 			              powerUp= newSuperMushroom(worldX,worldY);
+						  break;
 		                 }
 		         case 11:{
 	        	          powerUp= newFireFlower(worldX,worldY);
+						  break;
 	                     }
 		         case 12:{ 
 		        	      powerUp= newStar(worldX,worldY);
+						  break;
 	                     }
 		         case 13:{ 
 		        	      powerUp= newGreenMushroom(worldX,worldY);
+						  break;
 		                 }
 		         case 14:{
 		        	      powerUp= newCoin(worldX,worldY);
+						  break;
 		                 }
 		  }
 			return powerUp;

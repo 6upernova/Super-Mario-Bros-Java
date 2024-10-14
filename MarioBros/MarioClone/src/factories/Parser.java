@@ -4,10 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
 
 public class Parser{
     protected LinkedList<Vector<Integer>> levelContent;    
@@ -80,8 +76,8 @@ public class Parser{
      public boolean hasToRead(){
         return !levelContent.isEmpty();
     }
-    
-    /*private void printContent(){
+    /*
+    private void printContent(){
         for(Vector<Integer> vector:levelContent)
             vector.printVector();
     }
@@ -98,7 +94,6 @@ public class Parser{
         System.out.println("------------------");
         p.printContent();    
     }  
-        */
-    
+     */
          
 }
