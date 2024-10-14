@@ -13,12 +13,14 @@ public class GraphicTools {
 
     // Relative position methods
     public static int transformX(int x, JLabel observer){
-        return x;
+        return x ;
     }
 
     public static int transformY(int y , JLabel observer ){
-        return ViewConstants.PANEL_HEIGHT - observer.getIcon().getIconHeight() -y   ;
+        return ViewConstants.PANEL_HEIGHT - observer.getIcon().getIconHeight() -y    ;
     }
+
+
 
     //Scaling methods
 

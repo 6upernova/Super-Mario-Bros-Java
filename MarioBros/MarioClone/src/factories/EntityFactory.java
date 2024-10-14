@@ -64,21 +64,27 @@ public class EntityFactory {
 		  switch (type) {
 		         case 20:{
 			              platform= newBlock(worldX,worldY);
+						  break;
 		                 }
 		         case 21:{ 
 		        	      platform= newBrick(worldX,worldY);
+						  break;
 		                 }
 		         case 22:{
 	        	          platform= newQuestion(worldX,worldY);
+						  break;
 	                     }
 		         case 23:{ 
 	        	          platform= newPipe(worldX,worldY);
+						  break;
                          }
 		         case 24:{
 		        	      platform= newVoid(worldX,worldY);
+						  break;
 		                 }
 		         case 25:{ 
 		        	       platform= newFlag(worldX,worldY);
+						   break;
 	                      }
 		  }
 			return platform;
@@ -163,6 +169,7 @@ public class EntityFactory {
 	}
 	
 	private Platform newBrick(int worldX, int worldY) {
+		System.out.println("se crea brick");
 		Brick brick= new Brick(spriteFactory.getBrickSprite(),worldX,worldY);
 	    return brick;
 	}

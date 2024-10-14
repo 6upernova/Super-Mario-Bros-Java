@@ -40,7 +40,7 @@ public class ViewController {
         keyboardInputs = new Keyboard();
         window = new JFrame("p-comision23 :: MarioBros");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false);
+		window.setResizable(true);
 		window.setSize(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT);
 		window.setLocationRelativeTo(null);
         window.addKeyListener(keyboardInputs);

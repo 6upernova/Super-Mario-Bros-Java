@@ -43,6 +43,7 @@ public class LevelGenerator {
                     else    if( type>19 && type<25) { 
                     	        Platform platform= entityFactory.newPlatform(type, worldX, worldY);
                                 platformList.add(platform);
+                                System.out.println(platform.getSprite().getSkinPath());
                             }
             
         }
