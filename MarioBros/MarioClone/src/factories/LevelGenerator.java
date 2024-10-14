@@ -2,7 +2,6 @@ package factories;
 
 import java.util.LinkedList;
 import java.util.List;
-import game.Entity;
 import platforms.Platform;
 import powerUps.PowerUp;
 import enemies.Enemy;

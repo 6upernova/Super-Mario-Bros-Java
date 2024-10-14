@@ -1,7 +1,6 @@
 package character;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Keyboard extends java.awt.event.KeyAdapter {
 

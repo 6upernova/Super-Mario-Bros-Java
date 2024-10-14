@@ -2,7 +2,6 @@ package character;
 
 import factories.Sprite;
 import game.Entity;
-import powerUps.PowerUp;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity {
@@ -105,11 +104,11 @@ public class Character extends Entity implements CharacterEntity {
         //animacion de cambio de estado
     	state= newState;
     }
-    */
+    
 	
 	private void computeScoreFromEntity(Entity e) {
 		
-	}
+	}*/
 	
 	public int getScore() {
 	    return score;
