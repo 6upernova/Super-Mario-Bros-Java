@@ -16,7 +16,6 @@ public class CharacterThread extends Thread {
     
     public void run(){
         while(true){
-            if(java.lang.System.currentTimeMillis() - last) > frequency){
                 if(keyboard.getPlayerDirection() == "right"){
                     character.moveRight();
                 }
@@ -29,8 +28,7 @@ public class CharacterThread extends Thread {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-            }
-            last = java.lang.System.currentTimeMillis();
+            
         }
     }
 }

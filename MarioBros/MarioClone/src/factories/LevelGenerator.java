@@ -31,7 +31,6 @@ public class LevelGenerator {
             type= parser.getType();
             worldX = parser.getPositionX();
             worldY = parser.getPositionY();
-            System.out.println("leo "+type);
             if( type>1 && type<9 ) {
             	Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
                 enemyList.add(enemy);
@@ -43,11 +42,10 @@ public class LevelGenerator {
                     else    if( type>19 && type<25) { 
                     	        Platform platform= entityFactory.newPlatform(type, worldX, worldY);
                                 platformList.add(platform);
-                                System.out.println(platform.getSprite().getSkinPath());
                             }
             
         }
-        //System.out.println(platformList.size()+" "+enemyList.size()+" "+powerUpList.size());
+        
         return new Level(platformList, enemyList, powerUpList, character);
     }
 

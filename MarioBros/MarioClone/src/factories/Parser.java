@@ -4,10 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
+
 
 public class Parser{
     protected LinkedList<Vector<Integer>> levelContent;    
