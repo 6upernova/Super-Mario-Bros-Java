@@ -9,7 +9,6 @@ public class PiranhaPlant extends Enemy{
 	
 	public PiranhaPlant(Sprite sprite, int x, int y) {
 		super(sprite, x, y, pointsOnDeath, pointsOnKill);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int getPoints() {
