@@ -70,13 +70,13 @@ public class Game {
     		enemy.getObserver().update();
     	}
     }*/
-    
-   /* public void chargePowerUpsLevel(List<PowerUp> powerUpList) {
+    /*
+    public void chargePowerUpsLevel(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList) {
     		powerUp.getObserver().update();
     	}
     }
-    
+     
     public void nextLevel() {
     	numberLevel++;
     	newGame();

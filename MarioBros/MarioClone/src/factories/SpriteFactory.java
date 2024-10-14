@@ -16,55 +16,55 @@ public abstract class SpriteFactory {
     }
     //ENEMYS SPRITES
     public Sprite getGoombaSprite(){
-        return new Sprite(folderPath + File.separator+"Goomba.png");	 
+        return new Sprite(folderPath + File.separator+"Goomba.gif");	 
     }
     public Sprite getKoopaTroopaSprite(){
-        return new Sprite(folderPath + File.separator+"KoopaTroopa.png");	 
+        return new Sprite(folderPath + File.separator+"KoopaTroopa.gif");	 
     }
     public Sprite getPiranhaPlantSprite(){
-        return new Sprite(folderPath + File.separator+"PiranhaPlant.png");	 
+        return new Sprite(folderPath + File.separator+"PiranhaPlant.gif");	 
     }    
     public Sprite getLakituSprite(){
-        return new Sprite(folderPath + File.separator+"Lakitu.png");	 
+        return new Sprite(folderPath + File.separator+"Lakitu.gif");	 
     }
     public Sprite getBuzzyBeetleSprite(){
-        return new Sprite(folderPath + File.separator+"BuzzyBeetle.png");	 
+        return new Sprite(folderPath + File.separator+"BuzzyBeetle.gif");	 
     }
     public Sprite getSpinySprite(){
-        return new Sprite(folderPath + File.separator+"Spiny.png");	 
+        return new Sprite(folderPath + File.separator+"Spiny.gif");	 
     }
     public Sprite getShellSprite(){
         return new Sprite(folderPath + File.separator+"Shell.png");	 
-    }    
-    //POWERUPS SPRITES
-    public Sprite getStarSprite(){
-        return new Sprite(folderPath + File.separator+"Star.png");	 
     }
+    //POWERUPS SPRITES    
     public Sprite getSuperMushroomSprite(){
         return new Sprite(folderPath + File.separator+"Mushroom.png");	 
-    }
-    public Sprite getFireFlowerSprite(){
-        return new Sprite(folderPath + File.separator+"FireFlower.png");	 
     }
     public Sprite getGreenMushroomSprite(){
         return new Sprite(folderPath + File.separator+"GreenMushroom.png");	 
     }
+    public Sprite getFireFlowerSprite(){
+        return new Sprite(folderPath + File.separator+"FireFlower.gif");	 
+    }
+    public Sprite getStarSprite(){
+        return new Sprite(folderPath + File.separator+"Star.gif");	 
+    }    
     public Sprite getCoinSprite(){
-        return new Sprite(folderPath + File.separator+"Coin.png");	 
+        return new Sprite(folderPath + File.separator+"Coin.gif");	 
     }
     //PROJETILE
     public Sprite getFireballSprite(){
         return new Sprite(folderPath + File.separator+"Fireball.png");	 
     }
     public Sprite getSpinyEggSprite(){
-        return new Sprite(folderPath + File.separator+"SpinyEgg.png");	 
+        return new Sprite(folderPath + File.separator+"SpinyEgg.gif");	 
     }
     //PLATFLORMS
     public Sprite getBrickSprite(){
         return new Sprite(folderPath + File.separator+"BrickBlock.png");	 
     }
     public Sprite getQuestionBlockSprite(){
-        return new Sprite(folderPath + File.separator+"QuestionBlock.png");	 
+        return new Sprite(folderPath + File.separator+"QuestionBlock.gif");	 
     }
     public Sprite getBlockSprite(){
         return new Sprite(folderPath + File.separator+"SolidBlock.png");	 
