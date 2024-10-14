@@ -179,7 +179,6 @@ public class EntityFactory {
 	}
 	
 	private Platform newBrick(int worldX, int worldY) {
-		System.out.println("se crea brick");
 		Brick brick= new Brick(spriteFactory.getBrickSprite(),worldX,worldY);
 	    return brick;
 	}

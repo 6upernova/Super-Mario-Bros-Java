@@ -107,7 +107,6 @@ public class LevelScreen extends JPanel {
     public Observer drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
         backgroundImageLabel.add(entityObserver);
-        System.out.println("Se pinta la plataforma");
 
         return entityObserver;
         

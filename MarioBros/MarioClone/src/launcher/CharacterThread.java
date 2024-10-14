@@ -19,17 +19,21 @@ public class CharacterThread extends Thread {
     
     public void run(){
         while(true){
-            if(java.lang.System.currentTimeMillis() - last > frequency){
+            
                 if(keyboard.getPlayerDirection() == "right"){
                     character.moveRight();
                 }
                 else if(keyboard.getPlayerDirection() == "left" && character.getX()>0){
                     character.moveLeft();
                 }
+            
+            try {
+                Thread.sleep(15);
+            } 
+            catch (InterruptedException e) { 
+                e.printStackTrace();
             }
-            last = java.lang.System.currentTimeMillis();
         }
     }
 }
-
 

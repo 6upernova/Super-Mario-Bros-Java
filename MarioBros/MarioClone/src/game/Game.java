@@ -63,7 +63,6 @@ public class Game {
     }  
     
     protected void setObserversPlatforms(List<Platform> platformsList) {
-        System.out.println(platformsList.size());
     	for (Platform platform: platformsList) {
             Observer platFormObserver = viewController.registerEntity(platform);
     		platform.registerObserver(platFormObserver);

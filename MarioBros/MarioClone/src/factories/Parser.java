@@ -4,6 +4,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06024c24969dc462abcafd52aeaffc7625ed1f42
 
 public class Parser{
     protected LinkedList<Vector<Integer>> levelContent;    
