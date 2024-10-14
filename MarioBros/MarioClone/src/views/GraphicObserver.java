@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Image;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,7 +26,11 @@ public abstract class GraphicObserver extends JLabel implements Observer {
 
     protected void updateSprite(){
         String path = observedEntity.getSprite().getSkinPath();
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(path));
+        URL imageUrl = getClass().getResource(path);
+        if (imageUrl == null) {
+            throw new IllegalArgumentException("Imagen no encontrada:"+path);
+        }
+        ImageIcon icon = new ImageIcon(getClass().getResource(path));
         icon = GraphicTools.scaleImage(icon.getIconWidth(),36, icon);
         this.setIcon(icon);
     }
