@@ -24,14 +24,14 @@ public class Character extends Entity implements CharacterEntity {
 		int worldX = getX();
 	    setX(worldX - ViewConstants.CHARACTER_SPEED);
 		observer.update();
-		System.out.print("izquierda");
+		
 	}
 	
 	public void moveRight(){
         int worldX = getX();
 	    setX(worldX + ViewConstants.CHARACTER_SPEED);
 		observer.update();
-		System.out.print("derecha");
+		
 	}
 	
 	/*

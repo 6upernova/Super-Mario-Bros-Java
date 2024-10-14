@@ -19,7 +19,7 @@ public class CharacterObserver extends GraphicObserver{
         //hacer metodos privados para las comparaciones
         if(observedCharacter.getX() >= levelScreen.getViewportX())
             super.update();
-        if(observedCharacter.getX()-levelScreen.getViewportX() > ViewConstants.LEFT_CHARACTER_SPACE){
+        if(observedCharacter.getX()-levelScreen.getViewportX() >= ViewConstants.LEFT_CHARACTER_SPACE){
             levelScreen.updateScrollRight(observedCharacter);
         }
     }
