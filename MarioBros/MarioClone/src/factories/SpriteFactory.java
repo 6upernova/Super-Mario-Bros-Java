@@ -38,7 +38,7 @@ public abstract class SpriteFactory {
     }
     //POWERUPS SPRITES    
     public Sprite getSuperMushroomSprite(){
-        return new Sprite(folderPath + File.separator+"Mushroom.png");	 
+        return new Sprite(folderPath + File.separator+"SuperMushroom.png");	 
     }
     public Sprite getGreenMushroomSprite(){
         return new Sprite(folderPath + File.separator+"GreenMushroom.png");	 

@@ -2,6 +2,7 @@ package powerUps;
 
 import factories.Sprite;
 import game.Entity;
+import views.Observer;
 
 public abstract class PowerUp extends Entity{
 
@@ -14,6 +15,10 @@ public abstract class PowerUp extends Entity{
 
     public void effect(Character character) {
 
+    }
+    
+    public Observer getObserver() {
+    	return observer;
     }
     
     public int getPoints() {

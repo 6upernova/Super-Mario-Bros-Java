@@ -34,5 +34,5 @@ type is represented by int number:
             31      SpinyEgg
 
 Values greater than 100 represent compositions
-    101     questionBlock 
-    102     pipe with piranhaPlant
+    		101     QuestionBlock 
+    		102     PiranhaPipe

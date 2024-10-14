@@ -7,6 +7,7 @@ import factories.Level;
 import factories.LevelGenerator;
 import launcher.CharacterThread;
 import platforms.Platform;
+import powerUps.PowerUp;
 import views.Observer;
 import views.ViewController;
 
@@ -49,6 +50,7 @@ public class Game {
         //Hay que revisar la clase character y player
         setObserverCharacter(currentLevel.getCharacter());
         setObserversPlatforms(currentLevel.getPlatforms());
+        setObserversPowerUp(currentLevel.getPowerUps());
     }
 
 
@@ -60,8 +62,8 @@ public class Game {
     
     protected void setObserversPlatforms(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-            Observer platFormObserver = viewController.registerEntity(platform);
-    		platform.registerObserver(platFormObserver);
+            Observer platformObserver = viewController.registerEntity(platform);
+    		platform.registerObserver(platformObserver);
     	}
     }
     
@@ -70,13 +72,14 @@ public class Game {
     		enemy.getObserver().update();
     	}
     }*/
-    /*
-    public void chargePowerUpsLevel(List<PowerUp> powerUpList) {
+    
+    public void setObserversPowerUp(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList) {
-    		powerUp.getObserver().update();
+    		Observer powerUpObserver= viewController.registerEntity(powerUp);
+    		powerUp.registerObserver(powerUpObserver);
     	}
     }
-     
+     /*
     public void nextLevel() {
     	numberLevel++;
     	newGame();
