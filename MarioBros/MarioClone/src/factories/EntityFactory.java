@@ -1,6 +1,5 @@
 package factories;
 
-import game.Entity;
 import platforms.*;
 import platforms.Void;
 import powerUps.*;

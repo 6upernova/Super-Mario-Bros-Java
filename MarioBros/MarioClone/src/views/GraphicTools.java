@@ -17,7 +17,7 @@ public class GraphicTools {
     }
 
     public static int transformY(int y , JLabel observer ){
-        return ViewConstants.PANEL_HEIGHT - observer.getIcon().getIconHeight() -y    ;
+        return ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y)    ;
     }
 
 

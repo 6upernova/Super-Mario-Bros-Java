@@ -2,15 +2,11 @@ package game;
 
 import java.util.List;
 
-import javax.swing.JPanel;
-
 import character.Character;
 import factories.Level;
 import factories.LevelGenerator;
 import launcher.CharacterThread;
 import platforms.Platform;
-import views.CharacterObserver;
-import views.EntityObserver;
 import views.Observer;
 import views.ViewController;
 

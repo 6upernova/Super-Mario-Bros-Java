@@ -1,11 +1,7 @@
 package launcher;
 
-import character.Character;	
-import factories.Sprite;
 import game.Game;
-import views.Observer;
 import views.ViewController;
-import java.io.File;
 
 public class Launcher {
     public static void main(String arg[]){
