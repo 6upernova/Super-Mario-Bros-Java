@@ -8,6 +8,8 @@ public class ViewConstants {
 	public static final int PANEL_HEIGHT = 560;
 	public static final int PANEL_WITDH = 800;
 
+	public static final int CELL_SIZE = 43;
+
 	public static final int CHARACTER_SPEED=4;
 
 	public static final int LEFT_CHARACTER_SPACE = 100;
