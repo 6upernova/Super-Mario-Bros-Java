@@ -2,6 +2,7 @@ package enemies;
 
 import factories.Sprite;
 import game.Entity;
+import views.Observer;
 
 public abstract class Enemy extends Entity{
 	
@@ -13,5 +14,14 @@ public abstract class Enemy extends Entity{
 		this.pointsOnDeath=pointsOnDeath;//Puntos cuando enemigo muere
 		this.pointsOnKill=pointsOnKill;//Puntos cuando enemigo mata
 	}
-
+	
+	public int pointsOnDeath() {
+		return pointsOnDeath;
+	}
+	public int getPointsOnKill() {
+		return pointsOnKill;
+	}
+	public Observer getObserver() {
+		return observer;
+	}
 }

@@ -11,7 +11,7 @@ public class Goomba extends Enemy{
 		super(sprite, x, y,pointsOnDeath,pointsOnKill);
 	}
 
-	public int getPoints() {
+	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
 	public int getPointsOnKill() {

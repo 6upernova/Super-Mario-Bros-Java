@@ -7,13 +7,14 @@ import enemies.*;
 import character.Character;
 
 public class EntityFactory {
+	
 	protected SpriteFactory spriteFactory;
 	
-	public EntityFactory(String direction) {
-		if( direction == "custom" ) {
-		   spriteFactory= new Custom(direction);
+	public EntityFactory(String mode) {
+		if( mode == "custom" ) {
+		   spriteFactory= new Custom(mode);
 		}
-		else spriteFactory= new Original(direction);
+		else spriteFactory= new Original(mode);
 	}
 
 	public Enemy newEnemy(int type, int worldX, int worldY) {
@@ -100,7 +101,7 @@ public class EntityFactory {
 	}
 
 	public Character createCharacter(){
-        Character character = new Character(spriteFactory.getCharacterSprite());
+        Character character = new Character(spriteFactory.getCharacterStillSprite());
 		return character;
 	}
 

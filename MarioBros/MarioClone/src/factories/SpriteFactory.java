@@ -3,35 +3,54 @@ package factories;
 import java.io.File;
 
 public abstract class SpriteFactory {
+	
     String folderPath; 
     
     protected SpriteFactory(String path){
         this.folderPath = path;
     }
-    public Sprite getCharacterSprite(){
-        return new Sprite(folderPath + File.separator+"Character.png");	 
+    public Sprite getCharacterStillSprite(){
+        return new Sprite(folderPath + File.separator+"CharacterStill.png");
+    }
+    public Sprite getCharacterRight1Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterRight1.png");
+    }
+    public Sprite getCharacterRight2Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterRight2.png");
+    }
+    public Sprite getCharacterRight3Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterRight3.png");
+    }
+    public Sprite getCharacterLeft1Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterLeft1.png");
+    }
+    public Sprite getCharacterLeft2Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterLeft2.png");
+    }
+    public Sprite getCharacterLeft3Sprite() {
+    	return new Sprite(folderPath + File.separator+"CharacterLeft3.png");
     }
     public Sprite getBackgroundSprite(int number){
         return new Sprite(folderPath + File.separator+"Character"+number+".png");	 
     }
-    //ENEMYS SPRITES
+    //ENEMIES SPRITES
     public Sprite getGoombaSprite(){
-        return new Sprite(folderPath + File.separator+"Goomba.gif");	 
+        return new Sprite(folderPath + File.separator+"GoombaLeft.png");	 
     }
     public Sprite getKoopaTroopaSprite(){
-        return new Sprite(folderPath + File.separator+"KoopaTroopa.gif");	 
+        return new Sprite(folderPath + File.separator+"KoopaTroopaLeft.png");	 
     }
     public Sprite getPiranhaPlantSprite(){
-        return new Sprite(folderPath + File.separator+"PiranhaPlant.gif");	 
+        return new Sprite(folderPath + File.separator+"PiranhaPlant1.png");	 
     }    
     public Sprite getLakituSprite(){
-        return new Sprite(folderPath + File.separator+"Lakitu.gif");	 
+        return new Sprite(folderPath + File.separator+"LakituLeft.png");	 
     }
     public Sprite getBuzzyBeetleSprite(){
-        return new Sprite(folderPath + File.separator+"BuzzyBeetle.gif");	 
+        return new Sprite(folderPath + File.separator+"BeetleLeft1.png");	 
     }
     public Sprite getSpinySprite(){
-        return new Sprite(folderPath + File.separator+"Spiny.gif");	 
+        return new Sprite(folderPath + File.separator+"SpinyLeft1.png");	 
     }
     public Sprite getShellSprite(){
         return new Sprite(folderPath + File.separator+"Shell.png");	 

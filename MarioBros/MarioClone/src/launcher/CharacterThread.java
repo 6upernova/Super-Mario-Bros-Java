@@ -2,37 +2,76 @@ package launcher;
 
 import character.Character;
 import character.Keyboard;
+import factories.Custom;
+import factories.Original;
+import factories.SpriteFactory;
 
 public class CharacterThread extends Thread {
 	
     protected Keyboard keyboard;
     protected Character character;
-    protected long frequency;
-    protected long last;
+    protected SpriteFactory spriteFactory;
+    private int frameCount=0;
+    private int spriteNumber=1;
 
-    public CharacterThread(Keyboard keyboard, Character character){
+    public CharacterThread(Keyboard keyboard, Character character, String mode){
         this.keyboard = keyboard;
         this.character = character;
-        last=0;
-        frequency=50;
+        if( mode == "custom" ) {
+ 		   spriteFactory= new Custom(mode);
+ 		}
+ 		else spriteFactory= new Original(mode);
     }
     
     public void run(){
-        while(true){
-            
-                if(keyboard.getPlayerDirection() == "right"){
-                    character.moveRight();
-                }
-                else if(keyboard.getPlayerDirection() == "left" && character.getX()>0){
-                    character.moveLeft();
-                }
-            
+    	while(true){
+        	frameCount++;
+        	if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
+        		if(frameCount%3==0) {
+        			switch(spriteNumber) {
+        			case 1: 
+        				spriteNumber=2;
+        				if(keyboard.getPlayerDirection()=="right") {
+            				character.setSprite(spriteFactory.getCharacterRight2Sprite());
+        				}
+        				else
+        					character.setSprite(spriteFactory.getCharacterLeft2Sprite());
+        				break;
+        			case 2:
+        				spriteNumber=3;
+        				if(keyboard.getPlayerDirection()=="right") {
+            				character.setSprite(spriteFactory.getCharacterRight3Sprite());
+        				}
+        				else
+        					character.setSprite(spriteFactory.getCharacterLeft3Sprite());
+        				break;
+        			case 3:
+        				spriteNumber=1;
+        				if(keyboard.getPlayerDirection()=="right") {
+            				character.setSprite(spriteFactory.getCharacterRight1Sprite());
+        				}
+        				else
+        					character.setSprite(spriteFactory.getCharacterLeft1Sprite());
+        				break;
+        			}
+        		}
+        	}
+        	else if(keyboard.getPlayerDirection()=="none")
+        		character.setSprite(spriteFactory.getCharacterStillSprite());
+        	
+        	if(keyboard.getPlayerDirection() == "right"){
+        		character.moveRight();
+        	}
+        	else if(keyboard.getPlayerDirection() == "left" && character.getX()>0){
+        			character.moveLeft();
+        	}
             try {
-                Thread.sleep(15);
+                Thread.sleep(16);
             } 
             catch (InterruptedException e) { 
                 e.printStackTrace();
             }
+
         }
     }
 }

@@ -12,7 +12,7 @@ public class KoopaTroopa extends Enemy{
 		super(sprite, x, y, pointsOnDeath, pointsOnKill);
 	}
 
-	public int getPoints() {
+	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
 	

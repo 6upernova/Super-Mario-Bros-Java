@@ -3,8 +3,10 @@ package game;
 import java.util.List;
 
 import character.Character;
+import enemies.Enemy;
 import factories.Level;
 import factories.LevelGenerator;
+import factories.SpriteFactory;
 import launcher.CharacterThread;
 import platforms.Platform;
 import powerUps.PowerUp;
@@ -19,6 +21,7 @@ public class Game {
     protected ViewController viewController;
     protected int numberLevel;
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
+    protected SpriteFactory spriteFactory;
     
 
     public Game (int level) {
@@ -37,7 +40,7 @@ public class Game {
     public void start(){
         currentLevel= levelGenerator.createLevel();
         setObservers();
-        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter());
+        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter(),"original");
         thread.start();
         viewController.showLevelScreen();
     }
@@ -48,32 +51,34 @@ public class Game {
 
     public void setObservers(){
         //Hay que revisar la clase character y player
-        setObserverCharacter(currentLevel.getCharacter());
-        setObserversPlatforms(currentLevel.getPlatforms());
-        setObserversPowerUp(currentLevel.getPowerUps());
+        setCharacterObserver(currentLevel.getCharacter());
+        setPlatformsObservers(currentLevel.getPlatforms());
+        setPowerUpsObservers(currentLevel.getPowerUps());
+        setEnemiesObservers(currentLevel.getEnemies());
     }
 
 
-    protected void setObserverCharacter(Character character){
+    protected void setCharacterObserver(Character character){
         Observer characterObserver = viewController.registerEntity(character);
         character.registerObserver(characterObserver);
 
     }  
     
-    protected void setObserversPlatforms(List<Platform> platformsList) {
+    protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
             Observer platformObserver = viewController.registerEntity(platform);
     		platform.registerObserver(platformObserver);
     	}
     }
     
-   /* public void chargeEnemyLevel(List<Enemy> enemyList) {
+   protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		enemy.getObserver().update();
+    		Observer enemyObserver=viewController.registerEntity(enemy);
+    		enemy.registerObserver(enemyObserver);
     	}
-    }*/
+    }
     
-    public void setObserversPowerUp(List<PowerUp> powerUpList) {
+    public void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList) {
     		Observer powerUpObserver= viewController.registerEntity(powerUp);
     		powerUp.registerObserver(powerUpObserver);
