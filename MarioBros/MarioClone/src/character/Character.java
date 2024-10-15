@@ -1,5 +1,8 @@
 package character;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import factories.Sprite;
 import game.Entity;
 import views.ViewConstants;
@@ -9,10 +12,16 @@ public class Character extends Entity implements CharacterEntity {
 	protected int lives;
 	protected int score;
 	protected boolean invincible;
-	protected CharacterState state; 
+	protected CharacterState state;
+
+	//Preguntar si lo dejamos en el CharacterThread o si nos la rebuscamos para ponerlo en el character 
+	HashMap<String, Sprite> spritesList; 
+
 	
-	public Character(Sprite sprite) {
+	
+	public Character(Sprite sprite, HashMap<String,Sprite> spritesList) {
         super( sprite ,100,0);
+		this.spritesList = spritesList;
 		score=0;
 		lives=3;
         invincible= false;
@@ -22,6 +31,7 @@ public class Character extends Entity implements CharacterEntity {
 	public void moveLeft(){
 		int worldX = getX();
 	    setX(worldX - ViewConstants.CHARACTER_SPEED);
+		
 		observer.update();
 		
 	}
@@ -32,6 +42,8 @@ public class Character extends Entity implements CharacterEntity {
 		observer.update();
 		
 	}
+
+
 	
 	/*
 	public void jump(){

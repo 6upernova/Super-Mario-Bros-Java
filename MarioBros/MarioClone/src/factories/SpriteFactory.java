@@ -38,7 +38,7 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"GoombaLeft.png");	 
     }
     public Sprite getKoopaTroopaSprite(){
-        return new Sprite(folderPath + File.separator+"KoopaTroopaLeft.png");	 
+        return new Sprite(folderPath + File.separator+"KoopaTroopaLeft1.png");	 
     }
     public Sprite getPiranhaPlantSprite(){
         return new Sprite(folderPath + File.separator+"PiranhaPlant1.png");	 
@@ -50,7 +50,7 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"BeetleLeft1.png");	 
     }
     public Sprite getSpinySprite(){
-        return new Sprite(folderPath + File.separator+"SpinyLeft1.png");	 
+        return new Sprite(folderPath + File.separator+"SpinnyLeft1.png");	 
     }
     public Sprite getShellSprite(){
         return new Sprite(folderPath + File.separator+"Shell.png");	 

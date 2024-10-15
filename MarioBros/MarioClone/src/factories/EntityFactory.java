@@ -4,6 +4,11 @@ import platforms.*;
 import platforms.Void;
 import powerUps.*;
 import enemies.*;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
 import character.Character;
 
 public class EntityFactory {
@@ -101,7 +106,19 @@ public class EntityFactory {
 	}
 
 	public Character createCharacter(){
-        Character character = new Character(spriteFactory.getCharacterStillSprite());
+
+		//Preguntar Si se puede hacer de esta manera 
+		HashMap<String,Sprite> marioSprites = new HashMap<String,Sprite>();
+		marioSprites.put("Still",spriteFactory.getCharacterStillSprite());
+		marioSprites.put("Left1",spriteFactory.getCharacterLeft1Sprite());
+		marioSprites.put("Left2", spriteFactory.getCharacterLeft2Sprite());
+		marioSprites.put("Left3",spriteFactory.getCharacterLeft3Sprite());
+		marioSprites.put("Right1",spriteFactory.getCharacterRight1Sprite());
+		marioSprites.put("Right2", spriteFactory.getCharacterRight2Sprite());
+		marioSprites.put("Right3",spriteFactory.getCharacterRight3Sprite());
+		
+		
+        Character character = new Character(spriteFactory.getCharacterStillSprite(), marioSprites);
 		return character;
 	}
 

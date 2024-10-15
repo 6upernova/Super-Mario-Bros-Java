@@ -1,5 +1,7 @@
 package views;
 
+import javax.swing.ImageIcon;
+
 import character.CharacterEntity;
 
 public class CharacterObserver extends GraphicObserver{
@@ -23,6 +25,8 @@ public class CharacterObserver extends GraphicObserver{
             levelScreen.updateScrollRight(observedCharacter);
         }
     }
+
+
     
 
 }
