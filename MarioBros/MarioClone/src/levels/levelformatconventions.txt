@@ -7,7 +7,7 @@ int type, int position in x, int position in y
 
 type is represented by int number:
     type        vulues  represents
-            1       character    
+    
     enemies
             2       Goomba
             3       KoopaTroopa

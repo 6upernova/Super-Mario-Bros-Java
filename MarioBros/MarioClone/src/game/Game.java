@@ -73,7 +73,7 @@ public class Game {
     	}
     }*/
     
-    public void setObserversPowerUp(List<PowerUp> powerUpList) {
+    protected void setObserversPowerUp(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList) {
     		Observer powerUpObserver= viewController.registerEntity(powerUp);
     		powerUp.registerObserver(powerUpObserver);
