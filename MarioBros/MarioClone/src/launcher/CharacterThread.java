@@ -60,21 +60,20 @@ public class CharacterThread extends Thread {
         		}
         	}*/
         	if(keyboard.getPlayerDirection()=="none")
-        		character.setSprite(spriteFactory.getCharacterStillSprite());
+        		character.stayStill("Still");
         	
         	else if(keyboard.getPlayerDirection() == "right"){
-        		character.moveRight();
+        		
 				maximumX = character.getX() > maximumX ? character.getX() : maximumX;
-				if(frameCount%3==0) {
+				character.moveRight("Right"+spriteNumber);
+				if(frameCount%4==0) {
 					spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-					character.setSprite(spriteFactory.getCharacterRightSprite(spriteNumber));
 				}
         	}
         	else if(keyboard.getPlayerDirection() == "left" && character.getX() > maximumX - ViewConstants.LEFT_CHARACTER_SPACE){
-        			character.moveLeft();
-					if(frameCount%3==0) {
+					character.moveLeft("Left"+spriteNumber);
+					if(frameCount%4==0) {
 						spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-						character.setSprite(spriteFactory.getCharacterLeftSprite(spriteNumber));
 					}
         	}
             try {
