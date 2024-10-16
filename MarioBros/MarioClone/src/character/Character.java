@@ -29,9 +29,7 @@ public class Character extends Entity implements CharacterEntity {
 	public void moveLeft(){
 		float worldX = getX();
 	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
-		
 		observer.update();
-		
 	}
 	private float round2Digits(float number){
 		return Math.round(number * 100.0) / 100.0f;

@@ -12,6 +12,6 @@ public class ViewConstants {
 
 	public static final float CHARACTER_SPEED = 20/ 100.0f;
 
-	public static final int LEFT_CHARACTER_SPACE = 100;
+	public static final int LEFT_CHARACTER_SPACE = 2;
 
 }

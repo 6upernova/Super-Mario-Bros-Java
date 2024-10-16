@@ -5,6 +5,7 @@ import character.Keyboard;
 import factories.Custom;
 import factories.Original;
 import factories.SpriteFactory;
+import views.ViewConstants;
 
 public class CharacterThread extends Thread {
 	
@@ -24,6 +25,7 @@ public class CharacterThread extends Thread {
     }
     
     public void run(){
+		float maximumX = character.getX();
     	while(true){
         	frameCount++;
 			System.out.println(character.getX());
@@ -62,8 +64,9 @@ public class CharacterThread extends Thread {
         	
         	if(keyboard.getPlayerDirection() == "right"){
         		character.moveRight();
+				maximumX = character.getX() > maximumX ? character.getX() : maximumX;
         	}
-        	else if(keyboard.getPlayerDirection() == "left" && character.getX()>0){
+        	else if(keyboard.getPlayerDirection() == "left" && character.getX() > maximumX - ViewConstants.LEFT_CHARACTER_SPACE){
         			character.moveLeft();
         	}
             try {
