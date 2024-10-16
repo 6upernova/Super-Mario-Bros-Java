@@ -26,6 +26,7 @@ public class CharacterThread extends Thread {
     public void run(){
     	while(true){
         	frameCount++;
+			System.out.println(character.getX());
         	if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
         		if(frameCount%3==0) {
         			switch(spriteNumber) {
