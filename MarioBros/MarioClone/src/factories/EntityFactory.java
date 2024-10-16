@@ -98,8 +98,8 @@ public class EntityFactory {
 						  break;
 		                 }
 		         case 25:{ 
-		        	       platform= newFlag(worldX,worldY);
-						   break;
+		        	    	platform= newFlag(worldX,worldY);
+							break;
 	                      }
 		  }
 			return platform;
