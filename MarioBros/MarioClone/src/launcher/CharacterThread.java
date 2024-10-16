@@ -29,7 +29,7 @@ public class CharacterThread extends Thread {
     	while(true){
         	frameCount++;
 			System.out.println(character.getX());
-        	if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
+        	/*if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
         		if(frameCount%3==0) {
         			switch(spriteNumber) {
         			case 1: 
@@ -58,16 +58,24 @@ public class CharacterThread extends Thread {
         				break;
         			}
         		}
-        	}
-        	else if(keyboard.getPlayerDirection()=="none")
+        	}*/
+        	if(keyboard.getPlayerDirection()=="none")
         		character.setSprite(spriteFactory.getCharacterStillSprite());
         	
-        	if(keyboard.getPlayerDirection() == "right"){
+        	else if(keyboard.getPlayerDirection() == "right"){
         		character.moveRight();
 				maximumX = character.getX() > maximumX ? character.getX() : maximumX;
+				if(frameCount%3==0) {
+					spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+					character.setSprite(spriteFactory.getCharacterRightSprite(spriteNumber));
+				}
         	}
         	else if(keyboard.getPlayerDirection() == "left" && character.getX() > maximumX - ViewConstants.LEFT_CHARACTER_SPACE){
         			character.moveLeft();
+					if(frameCount%3==0) {
+						spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+						character.setSprite(spriteFactory.getCharacterLeftSprite(spriteNumber));
+					}
         	}
             try {
                 Thread.sleep(16);

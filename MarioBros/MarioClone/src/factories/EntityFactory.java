@@ -110,12 +110,12 @@ public class EntityFactory {
 		//Preguntar Si se puede hacer de esta manera 
 		HashMap<String,Sprite> marioSprites = new HashMap<String,Sprite>();
 		marioSprites.put("Still",spriteFactory.getCharacterStillSprite());
-		marioSprites.put("Left1",spriteFactory.getCharacterLeft1Sprite());
-		marioSprites.put("Left2", spriteFactory.getCharacterLeft2Sprite());
-		marioSprites.put("Left3",spriteFactory.getCharacterLeft3Sprite());
-		marioSprites.put("Right1",spriteFactory.getCharacterRight1Sprite());
-		marioSprites.put("Right2", spriteFactory.getCharacterRight2Sprite());
-		marioSprites.put("Right3",spriteFactory.getCharacterRight3Sprite());
+		marioSprites.put("Left1",spriteFactory.getCharacterLeftSprite(1));
+		marioSprites.put("Left2", spriteFactory.getCharacterLeftSprite(2));
+		marioSprites.put("Left3",spriteFactory.getCharacterLeftSprite(3));
+		marioSprites.put("Right1",spriteFactory.getCharacterRightSprite(1));
+		marioSprites.put("Right2", spriteFactory.getCharacterRightSprite(2));
+		marioSprites.put("Right3",spriteFactory.getCharacterRightSprite(3));
 		
 		
         Character character = new Character(spriteFactory.getCharacterStillSprite(), marioSprites);
