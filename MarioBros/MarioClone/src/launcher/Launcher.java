@@ -8,8 +8,6 @@ public class Launcher {
         Game game = new Game(1);
         ViewController viewController = new ViewController(game);
         game.setViewController(viewController);
-
-
         //Esto va en clase game
         game.start();
         
