@@ -1,23 +1,27 @@
 package views;
 
 import java.awt.Image;
-import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import character.Character;
-
 public class GraphicTools {
 
-    // Relative position methods
-    public static int transformX(int x, JLabel observer){
-        return x ;
+    //Screen position methods
+    public static int getScreenPositionX(float worldX){
+        return Math.round(worldX *  ViewConstants.CELL_SIZE);
     }
 
-    public static int transformY(int y , JLabel observer ){
-        return ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y)    ;
+    public static int getScreenPositionY(float worldY){
+        return Math.round(ViewConstants.PANEL_HEIGHT - (85 + worldY * ViewConstants.CELL_SIZE));
+    }
+
+    // Relative position methods
+    public static int transformX(float x, JLabel observer){
+        return (int) x * ViewConstants.CELL_SIZE ;
+    }
+
+    public static int transformY(float y , JLabel observer ){
+        return (int) (ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y * ViewConstants.CELL_SIZE))    ;
     }
 
 

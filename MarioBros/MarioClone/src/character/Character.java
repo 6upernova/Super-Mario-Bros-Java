@@ -1,8 +1,6 @@
 package character;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-
 import factories.Sprite;
 import game.Entity;
 import views.ViewConstants;
@@ -20,7 +18,7 @@ public class Character extends Entity implements CharacterEntity {
 	
 	
 	public Character(Sprite sprite, HashMap<String,Sprite> spritesList) {
-        super( sprite ,100,0);
+        super( sprite ,3,1);
 		this.spritesList = spritesList;
 		score=0;
 		lives=3;
@@ -29,16 +27,17 @@ public class Character extends Entity implements CharacterEntity {
 
 	
 	public void moveLeft(){
-		int worldX = getX();
-	    setX(worldX - ViewConstants.CHARACTER_SPEED);
-		
+		float worldX = getX();
+	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
 		observer.update();
-		
+	}
+	private float round2Digits(float number){
+		return Math.round(number * 100.0) / 100.0f;
 	}
 	
 	public void moveRight(){
-        int worldX = getX();
-	    setX(worldX + ViewConstants.CHARACTER_SPEED);
+        float worldX = getX();
+	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
 		observer.update();
 		
 	}

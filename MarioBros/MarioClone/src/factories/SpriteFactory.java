@@ -12,7 +12,10 @@ public abstract class SpriteFactory {
     public Sprite getCharacterStillSprite(){
         return new Sprite(folderPath + File.separator+"CharacterStill.png");
     }
-    public Sprite getCharacterRight1Sprite() {
+    public Sprite getCharacterRightSprite(int frame) {
+    	return new Sprite(folderPath + File.separator+"CharacterRight"+ frame + ".png");
+    }
+    /*public Sprite getCharacterRight1Sprite() {
     	return new Sprite(folderPath + File.separator+"CharacterRight1.png");
     }
     public Sprite getCharacterRight2Sprite() {
@@ -20,8 +23,11 @@ public abstract class SpriteFactory {
     }
     public Sprite getCharacterRight3Sprite() {
     	return new Sprite(folderPath + File.separator+"CharacterRight3.png");
+    }*/
+    public Sprite getCharacterLeftSprite(int frame) {
+    	return new Sprite(folderPath + File.separator+"CharacterLeft"+ frame + ".png");
     }
-    public Sprite getCharacterLeft1Sprite() {
+    /*public Sprite getCharacterLeft1Sprite() {
     	return new Sprite(folderPath + File.separator+"CharacterLeft1.png");
     }
     public Sprite getCharacterLeft2Sprite() {
@@ -29,7 +35,7 @@ public abstract class SpriteFactory {
     }
     public Sprite getCharacterLeft3Sprite() {
     	return new Sprite(folderPath + File.separator+"CharacterLeft3.png");
-    }
+    }*/
     public Sprite getBackgroundSprite(int number){
         return new Sprite(folderPath + File.separator+"Character"+number+".png");	 
     }
