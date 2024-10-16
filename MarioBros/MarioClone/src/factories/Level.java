@@ -17,13 +17,13 @@ public class Level {
     protected boolean paused;
 
     public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps, Character character){
-        remainingTime = 400;
-        platformList = platforms;
-        enemyList = enemies;
-        powerUpList = powerUps;
+        this.remainingTime = 400;
+        this.platformList = platforms;
+        this.enemyList = enemies;
+        this.powerUpList = powerUps;
         this.character = character;
-        running = false;
-        paused = true;
+        this.running = false;
+        this.paused = true;
     }
 
     public void start(){
