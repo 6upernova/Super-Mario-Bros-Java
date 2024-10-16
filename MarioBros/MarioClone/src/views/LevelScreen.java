@@ -81,7 +81,7 @@ public class LevelScreen extends JPanel {
 
     public void updateScrollRight(CharacterEntity character){
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        horizontalBar.setValue(horizontalBar.getValue()+ ViewConstants.CHARACTER_SPEED);
+        horizontalBar.setValue(GraphicTools.getScreenPositionX(character.getX()) - ViewConstants.LEFT_CHARACTER_SPACE);
 
     }
 
