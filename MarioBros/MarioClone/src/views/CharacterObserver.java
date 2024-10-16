@@ -1,7 +1,5 @@
 package views;
 
-import javax.swing.ImageIcon;
-
 import character.CharacterEntity;
 
 public class CharacterObserver extends GraphicObserver{
@@ -19,9 +17,9 @@ public class CharacterObserver extends GraphicObserver{
     
     public void update() {
         //hacer metodos privados para las comparaciones
-        if(observedCharacter.getX() >= levelScreen.getViewportX())
+        if(GraphicTools.getScreenPositionX(observedCharacter.getX()) >= levelScreen.getScrollbarXPos())
             super.update();
-        if(observedCharacter.getX()-levelScreen.getViewportX() >= ViewConstants.LEFT_CHARACTER_SPACE){
+        if(GraphicTools.getScreenPositionX(observedCharacter.getX())-levelScreen.getScrollbarXPos() >= ViewConstants.LEFT_CHARACTER_SPACE){
             levelScreen.updateScrollRight(observedCharacter);
         }
     }

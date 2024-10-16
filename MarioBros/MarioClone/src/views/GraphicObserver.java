@@ -33,8 +33,8 @@ public abstract class GraphicObserver extends JLabel implements Observer {
     }
 
     protected void updatePositionSize(){
-        int x = GraphicTools.transformX(observedEntity.getX(),this);
-        int y = GraphicTools.transformY(observedEntity.getY(),this);
+        int x = GraphicTools.getScreenPositionX(observedEntity.getX());
+        int y = GraphicTools.getScreenPositionY(observedEntity.getY());
         int width = this.getIcon().getIconWidth();
         int height = this.getIcon().getIconHeight();
         this.setBounds(x, y, width, height);

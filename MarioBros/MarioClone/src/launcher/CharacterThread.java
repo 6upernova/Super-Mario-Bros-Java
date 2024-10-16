@@ -5,6 +5,7 @@ import character.Keyboard;
 import factories.Custom;
 import factories.Original;
 import factories.SpriteFactory;
+import views.ViewConstants;
 
 public class CharacterThread extends Thread {
 	
@@ -24,9 +25,11 @@ public class CharacterThread extends Thread {
     }
     
     public void run(){
+		float maximumX = character.getX();
     	while(true){
         	frameCount++;
-        	if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
+			System.out.println(character.getX());
+        	/*if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
         		if(frameCount%3==0) {
         			switch(spriteNumber) {
         			case 1: 
@@ -55,15 +58,23 @@ public class CharacterThread extends Thread {
         				break;
         			}
         		}
-        	}
-        	else if(keyboard.getPlayerDirection()=="none")
-        		character.setSprite(spriteFactory.getCharacterStillSprite());
+        	}*/
+        	if(keyboard.getPlayerDirection()=="none")
+        		character.stayStill("Still");
         	
-        	if(keyboard.getPlayerDirection() == "right"){
-        		character.moveRight();
+        	else if(keyboard.getPlayerDirection() == "right"){
+        		
+				maximumX = character.getX() > maximumX ? character.getX() : maximumX;
+				character.moveRight("Right"+spriteNumber);
+				if(frameCount%4==0) {
+					spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+				}
         	}
-        	else if(keyboard.getPlayerDirection() == "left" && character.getX()>0){
-        			character.moveLeft();
+        	else if(keyboard.getPlayerDirection() == "left" && character.getX() > maximumX - ViewConstants.LEFT_CHARACTER_SPACE){
+					character.moveLeft("Left"+spriteNumber);
+					if(frameCount%4==0) {
+						spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+					}
         	}
             try {
                 Thread.sleep(16);

@@ -1,8 +1,6 @@
 package character;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-
 import factories.Sprite;
 import game.Entity;
 import views.ViewConstants;
@@ -15,32 +13,42 @@ public class Character extends Entity implements CharacterEntity {
 	protected CharacterState state;
 
 	//Preguntar si lo dejamos en el CharacterThread o si nos la rebuscamos para ponerlo en el character 
-	HashMap<String, Sprite> spritesList; 
+	HashMap<String, Sprite> sprites; 
 
 	
 	
-	public Character(Sprite sprite, HashMap<String,Sprite> spritesList) {
-        super( sprite ,100,0);
-		this.spritesList = spritesList;
+	public Character(Sprite sprite, HashMap<String,Sprite> sprites) {
+        super( sprite ,3,1);
+		this.sprites = sprites;
 		score=0;
 		lives=3;
         invincible= false;
 	}
 
 	
-	public void moveLeft(){
-		int worldX = getX();
-	    setX(worldX - ViewConstants.CHARACTER_SPEED);
-		
+	public void moveLeft(String key){
+		float worldX = getX();
+	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
+		setSprite(sprites.get(key));
+
+		observer.update();
+	}
+	private float round2Digits(float number){
+		return Math.round(number * 100.0) / 100.0f;
+	}
+	
+	public void moveRight(String key){
+        float worldX = getX();
+	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
+		setSprite(sprites.get(key));
+
 		observer.update();
 		
 	}
-	
-	public void moveRight(){
-        int worldX = getX();
-	    setX(worldX + ViewConstants.CHARACTER_SPEED);
+
+	public void stayStill(String key){
+		setSprite(sprites.get(key));
 		observer.update();
-		
 	}
 
 

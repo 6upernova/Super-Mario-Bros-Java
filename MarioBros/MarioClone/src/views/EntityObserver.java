@@ -14,8 +14,8 @@ public class EntityObserver extends GraphicObserver{
     protected void updatePositionSize(){
         int width = this.getIcon().getIconWidth();
         int height = this.getIcon().getIconHeight();
-        int x = GraphicTools.transformX(observedEntity.getX()*width,this);
-        int y = GraphicTools.transformY(observedEntity.getY()*height,this);
+        int x = GraphicTools.transformX(observedEntity.getX(),this);
+        int y = GraphicTools.transformY(observedEntity.getY(),this);
         
         this.setBounds(x, y, width, height);
     }
