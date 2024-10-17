@@ -1,6 +1,7 @@
 package platforms;
 
 import factories.Sprite;
+import game.Visitor;
 
 public class Block extends Platform{
 
@@ -8,6 +9,8 @@ public class Block extends Platform{
 		super(sprite, x, y, false);
 	}
 	
-	
+	public void acceptVisit(Visitor visitor) {
+		super.acceptVisit(visitor);
+	}
 	
 }

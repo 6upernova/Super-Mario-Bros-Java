@@ -1,6 +1,7 @@
 package platforms;
 
 import factories.Sprite;
+import game.Visitor;
 
 public class Pipe extends Platform{
 
@@ -10,4 +11,8 @@ public class Pipe extends Platform{
 		super(sprite, x, y, isBreakeable);
 	}
 
+	public void acceptVisit(Visitor visitor) {
+		super.acceptVisit(visitor);
+	}
+	
 }

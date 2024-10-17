@@ -3,6 +3,7 @@ package factories;
 import platforms.*;
 import platforms.Void;
 import powerUps.*;
+import views.ViewConstants;
 import enemies.*;
 
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class EntityFactory {
 		}
 		else spriteFactory= new Original(mode);
 	}
+	
+	
 
 	public Enemy newEnemy(int type, int worldX, int worldY) {
 	  Enemy enemy=null;
@@ -116,9 +119,7 @@ public class EntityFactory {
 		marioSprites.put("Right1",spriteFactory.getCharacterRightSprite(1));
 		marioSprites.put("Right2", spriteFactory.getCharacterRightSprite(2));
 		marioSprites.put("Right3",spriteFactory.getCharacterRightSprite(3));
-		
-		
-        Character character = new Character(spriteFactory.getCharacterStillSprite(), marioSprites);
+        Character character = new Character(marioSprites.get("Still") , marioSprites);
 		return character;
 	}
 
