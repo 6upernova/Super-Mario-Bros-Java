@@ -74,7 +74,6 @@ public class LevelScreen extends JPanel {
 
     //Observer operation
 
-<<<<<<< HEAD
     public void updateScrollRight(CharacterEntity character) {
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
         int currentScrollPos = horizontalBar.getValue();
@@ -83,12 +82,6 @@ public class LevelScreen extends JPanel {
         if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPos() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
             int smoothScrollPos = (int) (currentScrollPos + 0.1 * (targetScrollPos - currentScrollPos));
             horizontalBar.setValue(smoothScrollPos);
-=======
-    public void updateScrollRight(CharacterEntity character){
-        if(GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPos() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE){
-            JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-            horizontalBar.setValue(GraphicTools.getScreenPositionX(character.getX()- ViewConstants.LEFT_CHARACTER_SPACE));
->>>>>>> 8c17c93968f713b2fedf58b18d8dcf015cd9b00c
         }
     }
 
