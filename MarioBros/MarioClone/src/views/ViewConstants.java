@@ -16,4 +16,5 @@ public class ViewConstants {
 
 	public static final int LEFT_CHARACTER_SPACE = 4;
 
+
 }

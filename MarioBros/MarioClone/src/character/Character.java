@@ -39,6 +39,9 @@ public class Character extends Entity implements CharacterEntity {
 		float worldX = getX();
 	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
+
+	    setX(worldX - ViewConstants.CHARACTER_SPEED);	
+
 		observer.update();
 		
 	}
@@ -47,6 +50,8 @@ public class Character extends Entity implements CharacterEntity {
         float worldX = getX();
 	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
+	    setX(worldX + ViewConstants.CHARACTER_SPEED);
+
 		observer.update();
 		
 	}
@@ -97,6 +102,7 @@ public class Character extends Entity implements CharacterEntity {
 		return invincible;
 	}
 
+
 	public float getSpeed() {
 		return ViewConstants.CHARACTER_SPEED;
 	}
@@ -106,6 +112,7 @@ public class Character extends Entity implements CharacterEntity {
 		super.acceptVisit(visitor);
 	}
 	
+
 	//Visits
 	public void visit(Star star) {
 		int points= star.getPoints();
@@ -173,4 +180,5 @@ public class Character extends Entity implements CharacterEntity {
     	subtractScore(15);
         dead();
     }
+
 }
