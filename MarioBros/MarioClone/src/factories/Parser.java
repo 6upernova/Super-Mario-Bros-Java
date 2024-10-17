@@ -17,19 +17,10 @@ public class Parser{
     
     private void getLevelContent(){        
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {            
-            Vector<Integer> numbersTrio;
             String currentRow = reader.readLine();
-            int cycle = 1;
-            while (currentRow != null) {         
-                numbersTrio = new Vector<Integer>();
-                cycle = 1;
+            while (currentRow != null) {   
                 String[] curretRowReading = currentRow.split(","); 
-                for (String element : curretRowReading) {                    
-                    Integer number = Integer.parseInt(element);
-                    addInListByCycle(cycle,number,numbersTrio);
-                    cycle++; 
-                }  
-                levelContent.addLast(numbersTrio);
+                traduceAndAdd(curretRowReading);  
                 currentRow = reader.readLine();
             }
         } catch (IOException e) {
@@ -38,6 +29,16 @@ public class Parser{
         //printContent(); 
     }
     
+    private void traduceAndAdd(String[] curretRowReading){
+        int cycle = 1;
+        Vector<Integer> numbersTrio = new Vector<Integer>();
+        for (String element : curretRowReading) {                    
+            Integer number = Integer.parseInt(element);
+            addInListByCycle(cycle,number,numbersTrio);
+            cycle++; 
+        } 
+        levelContent.addLast(numbersTrio);
+    }
     private void addInListByCycle(int cycle, Integer number, Vector<Integer> numbersTrio) {
         if(cycle == 1) 
         	numbersTrio.setType(number);
