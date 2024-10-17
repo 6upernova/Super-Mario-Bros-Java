@@ -25,65 +25,47 @@ public class CharacterThread extends Thread {
     }
     
     public void run(){
-		float maximumX = character.getX();
+    	float maximumX=character.getX();
+		float characterLeftLimit;
+    	boolean characterInEnd;
     	while(true){
-        	frameCount++;
-			System.out.println(character.getX());
-        	/*if(keyboard.getPlayerDirection() == "right" || keyboard.getPlayerDirection() == "left") {
-        		if(frameCount%3==0) {
-        			switch(spriteNumber) {
-        			case 1: 
-        				spriteNumber=2;
-        				if(keyboard.getPlayerDirection()=="right") {
-            				character.setSprite(spriteFactory.getCharacterRight2Sprite());
-        				}
-        				else
-        					character.setSprite(spriteFactory.getCharacterLeft2Sprite());
-        				break;
-        			case 2:
-        				spriteNumber=3;
-        				if(keyboard.getPlayerDirection()=="right") {
-            				character.setSprite(spriteFactory.getCharacterRight3Sprite());
-        				}
-        				else
-        					character.setSprite(spriteFactory.getCharacterLeft3Sprite());
-        				break;
-        			case 3:
-        				spriteNumber=1;
-        				if(keyboard.getPlayerDirection()=="right") {
-            				character.setSprite(spriteFactory.getCharacterRight1Sprite());
-        				}
-        				else
-        					character.setSprite(spriteFactory.getCharacterLeft1Sprite());
-        				break;
-        			}
-        		}
-        	}*/
-        	if(keyboard.getPlayerDirection()=="none")
-        		character.stayStill("Still");
-        	
-        	else if(keyboard.getPlayerDirection() == "right"){
-        		
-				maximumX = character.getX() > maximumX ? character.getX() : maximumX;
-				character.moveRight("Right"+spriteNumber);
-				if(frameCount%4==0) {
-					spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-				}
-        	}
-        	else if(keyboard.getPlayerDirection() == "left" && character.getX() > maximumX - ViewConstants.LEFT_CHARACTER_SPACE){
-					character.moveLeft("Left"+spriteNumber);
-					if(frameCount%4==0) {
-						spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-					}
-        	}
+            characterInEnd=characterInEnd(character.getX());
+            if(!characterInEnd)
+                characterLeftLimit= maximumX - ViewConstants.LEFT_CHARACTER_SPACE;
+            else 
+                characterLeftLimit=(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12;
+            frameCount++;
+            System.out.println(character.getX()+","+ (ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12);
+            if(keyboard.getPlayerDirection()=="none")
+                character.stayStill("Still");
+            else if(keyboard.getPlayerDirection() == "right"){
+
+                maximumX = character.getX() > maximumX ? character.getX() : maximumX;
+                character.moveRight("Right"+spriteNumber);
+                if(frameCount%4==0) 
+                    spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+            }
+            else if(keyboard.getPlayerDirection() == "left" && character.getX() > characterLeftLimit ){
+                        character.moveLeft("Left"+spriteNumber);
+                        if(frameCount%4==0) {
+                            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+                        }
+                    }
+
+
             try {
                 Thread.sleep(16);
             } 
             catch (InterruptedException e) { 
                 e.printStackTrace();
             }
-
         }
+    }
+    
+    private boolean characterInEnd(float characterXPosition) {
+    	if(characterXPosition>(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12)
+    		return true;
+    	return false;
     }
 }
 

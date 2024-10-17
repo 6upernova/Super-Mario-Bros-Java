@@ -18,7 +18,7 @@ public class Character extends Entity implements CharacterEntity {
 	
 	
 	public Character(Sprite sprite, HashMap<String,Sprite> sprites) {
-        super( sprite ,3,1);
+        super( sprite ,5,1);
 		this.sprites = sprites;
 		score=0;
 		lives=3;
@@ -30,7 +30,6 @@ public class Character extends Entity implements CharacterEntity {
 		float worldX = getX();
 	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
-
 		observer.update();
 	}
 	private float round2Digits(float number){
@@ -41,7 +40,6 @@ public class Character extends Entity implements CharacterEntity {
         float worldX = getX();
 	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
-
 		observer.update();
 		
 	}
@@ -160,10 +158,11 @@ public class Character extends Entity implements CharacterEntity {
 
 
 	@Override
-	public int getSpeed() {
+	public float getSpeed() {
 		return ViewConstants.CHARACTER_SPEED;
 	}
 
 
+	
 	
 }

@@ -2,8 +2,6 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -74,14 +72,9 @@ public class LevelScreen extends JPanel {
         return backgroundIcon;
     }
 
-   
-    
-
     //Observer operation
 
     public void updateScrollRight(CharacterEntity character){
-        System.out.println(GraphicTools.getScreenPositionX(character.getX()));
-        System.out.println(getScrollbarXPos());
         if(GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPos() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE){
             JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
             horizontalBar.setValue(GraphicTools.getScreenPositionX(character.getX()- ViewConstants.LEFT_CHARACTER_SPACE));
