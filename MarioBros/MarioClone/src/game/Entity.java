@@ -43,5 +43,9 @@ public abstract class Entity implements LogicalEntity {
     public float getY(){
         return y;
     }
+    
+    public void acceptVisit(Visitor visitor) {
+    	visitor.visit(this);
+    }
 
 }

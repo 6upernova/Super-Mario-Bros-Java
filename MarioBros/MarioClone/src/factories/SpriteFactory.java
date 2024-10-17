@@ -1,6 +1,7 @@
 package factories;
 
 import java.io.File;
+import java.util.HashMap;
 
 public abstract class SpriteFactory {
 	
@@ -9,16 +10,34 @@ public abstract class SpriteFactory {
     protected SpriteFactory(String path){
         this.folderPath = path;
     }
-
+    
+    public HashMap<String,Sprite> getSpriteMapCharacter(){
+    	HashMap<String,Sprite> spriteMapCharacter= new HashMap<String, Sprite>(14);
+    	//Asignations sprites Still
+    	spriteMapCharacter.put("Still", getCharacterStillSprite());
+    	int frame=1;
+    	while(frame!=3) {
+    		spriteMapCharacter.put("Right"+frame, getCharacterRightSprite(frame));
+    		spriteMapCharacter.put("Left"+frame, getCharacterLeftSprite(frame));
+    		frame++;
+    	}
+    	return spriteMapCharacter;
+    }
+    
+    public HashMap<String,Sprite> getSpriteMapEnemy(){
+    	return null;
+    }
     
     public Sprite getCharacterStillSprite(){
-        return new Sprite(folderPath + File.separator+"CharacterStill.png");
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterStill.png");
     }
-    public Sprite getCharacterRightSprite(int frame) {
-    	return new Sprite(folderPath + File.separator+"CharacterRight"+ frame + ".png");
+    
+    private Sprite getCharacterRightSprite(int frame) {
+    	return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterRight"+ frame + ".png");
     }
-    public Sprite getCharacterLeftSprite(int frame) {
-    	return new Sprite(folderPath + File.separator+"CharacterLeft"+ frame + ".png");
+    
+    private Sprite getCharacterLeftSprite(int frame) {
+    	return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterLeft"+ frame + ".png");
     }
     
     public Sprite getBackgroundSprite(int number){
@@ -26,19 +45,19 @@ public abstract class SpriteFactory {
     }
     //ENEMIES SPRITES
     public Sprite getGoombaSprite(){
-        return new Sprite(folderPath + File.separator+"GoombaLeft.png");	 
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"GoombaLeft.png");	 
     }
     public Sprite getKoopaTroopaSprite(){
-        return new Sprite(folderPath + File.separator+"KoopaTroopaLeft1.png");	 
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaTroopaLeft1.png");	 
     }
     public Sprite getPiranhaPlantSprite(){
-        return new Sprite(folderPath + File.separator+"PiranhaPlant1.png");	 
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"PiranhaPlant1.png");	 
     }    
     public Sprite getLakituSprite(){
-        return new Sprite(folderPath + File.separator+"LakituLeft.png");	 
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"LakituLeft.png");	 
     }
     public Sprite getBuzzyBeetleSprite(){
-        return new Sprite(folderPath + File.separator+"BeetleLeft1.png");	 
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleLeft1.png");	 
     }
     public Sprite getSpinySprite(){
         return new Sprite(folderPath + File.separator+"SpinnyLeft1.png");	 
@@ -48,44 +67,44 @@ public abstract class SpriteFactory {
     }
     //POWERUPS SPRITES    
     public Sprite getSuperMushroomSprite(){
-        return new Sprite(folderPath + File.separator+"SuperMushroom.png");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"SuperMushroom.png");	 
     }
     public Sprite getGreenMushroomSprite(){
-        return new Sprite(folderPath + File.separator+"GreenMushroom.png");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"GreenMushroom.png");	 
     }
     public Sprite getFireFlowerSprite(){
-        return new Sprite(folderPath + File.separator+"FireFlower.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"FireFlower.gif");	 
     }
     public Sprite getStarSprite(){
-        return new Sprite(folderPath + File.separator+"Star.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Star.gif");	 
     }    
     public Sprite getCoinSprite(){
-        return new Sprite(folderPath + File.separator+"Coin.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Coin.gif");	 
     }
     //PROJETILE
     public Sprite getFireballSprite(){
-        return new Sprite(folderPath + File.separator+"Fireball.png");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Fireball.png");	 
     }
     public Sprite getSpinyEggSprite(){
         return new Sprite(folderPath + File.separator+"SpinyEgg.gif");	 
     }
     //PLATFLORMS
     public Sprite getBrickSprite(){
-        return new Sprite(folderPath + File.separator+"BrickBlock.png");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"BrickBlock.png");	 
     }
     public Sprite getQuestionBlockSprite(){
-        return new Sprite(folderPath + File.separator+"QuestionBlock.gif");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"QuestionBlock.gif");	 
     }
     public Sprite getBlockSprite(){
-        return new Sprite(folderPath + File.separator+"SolidBlock.png");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"SolidBlock.png");	 
     }
     public Sprite getPipeSprite(){
-        return new Sprite(folderPath + File.separator+"Pipe.png");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Pipe.png");	 
     }
     public Sprite getFlagSprite(){
-        return new Sprite(folderPath + File.separator+"Flag.png");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Flag.png");	 
     }
     public Sprite getVoidSprite(){
-        return new Sprite(folderPath + File.separator+"Void.png");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Void.png");	 
     }
 }

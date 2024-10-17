@@ -14,6 +14,14 @@ public class ViewConstants {
 	
 	public static final int BACKGROUND_WIDTH=2304;
 
+<<<<<<< Updated upstream
 	public static final int LEFT_CHARACTER_SPACE = 4;
+=======
+	public static final int LEFT_CHARACTER_SPACE = 2;
+	
+	public static final int INICIT_POSITION_X_CHARACTER=60;
+
+	public static final int INICIT_POSITION_Y_CHARACTER=60;
+>>>>>>> Stashed changes
 
 }

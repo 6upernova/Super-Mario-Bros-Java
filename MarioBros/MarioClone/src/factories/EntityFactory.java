@@ -3,6 +3,7 @@ package factories;
 import platforms.*;
 import platforms.Void;
 import powerUps.*;
+import views.ViewConstants;
 import enemies.*;
 
 import java.util.HashMap;
@@ -20,6 +21,11 @@ public class EntityFactory {
 		   spriteFactory= new Custom(mode);
 		}
 		else spriteFactory= new Original(mode);
+	}
+	
+	public Character newCharacter(int worldX, int worldY) {
+		Character character= new Character(spriteFactory.getCharacterStillSprite(), spriteFactory.getSpriteMapCharacter());
+		return character;
 	}
 
 	public Enemy newEnemy(int type, int worldX, int worldY) {
@@ -108,17 +114,9 @@ public class EntityFactory {
 	public Character createCharacter(){
 
 		//Preguntar Si se puede hacer de esta manera 
-		HashMap<String,Sprite> marioSprites = new HashMap<String,Sprite>();
-		marioSprites.put("Still",spriteFactory.getCharacterStillSprite());
-		marioSprites.put("Left1",spriteFactory.getCharacterLeftSprite(1));
-		marioSprites.put("Left2", spriteFactory.getCharacterLeftSprite(2));
-		marioSprites.put("Left3",spriteFactory.getCharacterLeftSprite(3));
-		marioSprites.put("Right1",spriteFactory.getCharacterRightSprite(1));
-		marioSprites.put("Right2", spriteFactory.getCharacterRightSprite(2));
-		marioSprites.put("Right3",spriteFactory.getCharacterRightSprite(3));
+		HashMap<String,Sprite> marioSprites = spriteFactory.getSpriteMapCharacter();
 		
-		
-        Character character = new Character(spriteFactory.getCharacterStillSprite(), marioSprites);
+        Character character = new Character(marioSprites.get("Still") , marioSprites);
 		return character;
 	}
 

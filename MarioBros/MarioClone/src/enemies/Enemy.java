@@ -24,4 +24,8 @@ public abstract class Enemy extends Entity{
 	public Observer getObserver() {
 		return observer;
 	}
+	
+	public void dead() {
+		
+	}
 }

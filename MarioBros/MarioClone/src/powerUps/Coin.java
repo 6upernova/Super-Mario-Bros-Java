@@ -9,5 +9,9 @@ public class Coin extends PowerUp{
 	public Coin(Sprite sprite, int x, int y) {
 		super(sprite, x, y, points);
 	}
+	
+	public int getPoints() {
+		return points;
+	}
 
 }

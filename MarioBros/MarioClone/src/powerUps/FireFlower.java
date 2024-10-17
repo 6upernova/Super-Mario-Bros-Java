@@ -10,4 +10,7 @@ public class FireFlower extends PowerUp{
 		super(sprite, x, y, points);
 	}
 	
+	public int getPoints() {
+		return points;
+	}
 }
