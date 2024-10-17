@@ -1,13 +1,11 @@
 package powerUps;
-
 import factories.Sprite;
 
 public class GreenMushroom extends PowerUp{
-
-	static final private int points=100;
+	static final private int points = 100;
 			
-	public GreenMushroom(Sprite sprite, int x, int y) {
-		super(sprite, x, y, points);
+	public GreenMushroom(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY, points);
 	}
 	
 	public int getPoints() {

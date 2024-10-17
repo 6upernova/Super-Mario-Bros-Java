@@ -1,5 +1,4 @@
 package enemies;
-
 import factories.Sprite;
 
 public class Lakitu extends Enemy{
@@ -7,8 +6,8 @@ public class Lakitu extends Enemy{
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=0;
 	
-	public Lakitu(Sprite sprite, int x, int y) {
-		super(sprite, x, y, pointsOnDeath, pointsOnKill);
+	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 	}
 
 	public int getPointsOnDeath() {

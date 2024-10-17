@@ -1,6 +1,5 @@
 package factories;
 public class Sprite {	
-	
 	protected String skinPath;
 
 	public Sprite (String skinPath) {

@@ -1,19 +1,17 @@
 package game;
-
 import factories.Sprite;
 import views.Observer;
 
 public abstract class Entity implements LogicalEntity {
-
-    protected float x;
-    protected float y;
+    protected float positionInX;
+    protected float positionInY;
     protected Sprite sprite;
     protected Observer observer;
 
-    public Entity(Sprite sprite, float x, float y){
+    public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;
-        this.x = x;
-        this.y = y;
+        this.positionInX = positionInX;
+        this.positionInY = positionInY;
     }
 
     public Sprite getSprite(){
@@ -28,24 +26,23 @@ public abstract class Entity implements LogicalEntity {
         this.observer = observer;
     }
 
-    public void setX(float x){
-        this.x = x;
+    public void setX(float positionInX){
+        this.positionInX = positionInX;
     }
 
-    public void setY(float y){
-        this.y = y;
+    public void setY(float positionInY){
+        this.positionInY = positionInY;
     }
 
     public float getX(){
-        return x;
+        return positionInX;
     }
 
     public float getY(){
-        return y;
+        return positionInY;
     }
     
     public void acceptVisit(Visitor visitor) {
     	visitor.visit(this);
     }
-
 }

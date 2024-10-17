@@ -1,5 +1,4 @@
 package game;
-
 import factories.Sprite;
 
 public interface LogicalEntity extends Element {

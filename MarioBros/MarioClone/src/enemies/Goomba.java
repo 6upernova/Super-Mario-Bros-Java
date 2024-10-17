@@ -1,5 +1,4 @@
 package enemies;
-
 import factories.Sprite;
 
 public class Goomba extends Enemy{
@@ -7,8 +6,8 @@ public class Goomba extends Enemy{
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=-30;
 	
-	public Goomba(Sprite sprite, int x, int y) {
-		super(sprite, x, y,pointsOnDeath,pointsOnKill);
+	public Goomba(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 	}
 
 	public int getPointsOnDeath() {

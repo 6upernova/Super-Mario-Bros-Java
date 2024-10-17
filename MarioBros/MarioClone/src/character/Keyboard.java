@@ -24,6 +24,7 @@ public class Keyboard extends java.awt.event.KeyAdapter {
                 break;
             case KeyEvent.VK_A:
                 playerDirection = "none";
+                break;
         }
     }
     public String getPlayerDirection() {

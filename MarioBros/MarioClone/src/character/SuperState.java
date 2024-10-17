@@ -9,7 +9,7 @@ public class SuperState implements CharacterState{
 	}
 
 	public void damaged(Character mario) {
-		CharacterState newState= new NormalState();
+		CharacterState newState = new NormalState();
 		//mario.changeState(newState);
 	}
 

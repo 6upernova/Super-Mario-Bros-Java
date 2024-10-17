@@ -7,9 +7,9 @@ public abstract class Platform extends Entity{
 
 	protected boolean isBreakeable;
 	
-	public Platform(Sprite sprite, int x, int y, boolean isBreakeable) {
-		super(sprite, x, y);
-		this.isBreakeable=isBreakeable;
+	public Platform(Sprite sprite, int positionInX, int positionInY, boolean isBreakeable) {
+		super(sprite, positionInX, positionInY);
+		this.isBreakeable = isBreakeable;
 	}
 	
 	public boolean isBreakeable() {

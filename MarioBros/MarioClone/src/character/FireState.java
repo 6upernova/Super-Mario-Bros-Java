@@ -9,7 +9,7 @@ public class FireState extends SuperState{
 	protected int numberFireBall;
 	
 	public FireState() {
-		fireBall= new FireBall();
+		this.fireBall= new FireBall();
 	}
 
 	public String getName() {
@@ -21,18 +21,18 @@ public class FireState extends SuperState{
 	}
 	
 	public boolean execute() {
-		boolean toReturn =throwFireBall();
+		boolean toReturn = throwFireBall();
 		return toReturn;
 	}
 	
 	public boolean  throwFireBall() {
-		boolean toReturn= true;
-		if( numberFireBall > 1) {
+		boolean canTrhowFireBall = numberFireBall > 1;
+		if(canTrhowFireBall) {
 		   subtractFireBallsThrowers();
 		   fireBall.animation();
 		}
-		else toReturn= false;
-		return toReturn;
+		else canTrhowFireBall = false;
+		return canTrhowFireBall;
 	}
 	//Las bolas de fuego son infinitas?
 	public void addFireBallsThrowers() {

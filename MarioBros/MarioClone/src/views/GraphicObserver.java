@@ -2,14 +2,11 @@ package views;
 
 import java.awt.Image;
 import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import game.LogicalEntity;
 
 public abstract class GraphicObserver extends JLabel implements Observer {
-    
     protected LogicalEntity observedEntity;
 
     GraphicObserver( LogicalEntity observedEntity){

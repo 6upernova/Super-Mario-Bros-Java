@@ -1,5 +1,4 @@
 package enemies;
-
 import factories.Sprite;
 
 public class KoopaTroopa extends Enemy{
@@ -8,8 +7,8 @@ public class KoopaTroopa extends Enemy{
 	static final private int pointsOnKill=-45;
 	
 	
-	public KoopaTroopa(Sprite sprite, int x, int y) {
-		super(sprite, x, y, pointsOnDeath, pointsOnKill);
+	public KoopaTroopa(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 	}
 
 	public int getPointsOnDeath() {

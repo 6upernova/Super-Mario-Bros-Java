@@ -4,9 +4,9 @@ import factories.Sprite;
 import game.Visitor;
 
 public class Brick extends Platform{
-
-	public Brick(Sprite sprite, int x, int y) {
-		super(sprite, x, y, true);
+	static final private boolean isBreakeable = true;
+	public Brick(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY, isBreakeable);
 	}
 
 	public void brakeBrick() {

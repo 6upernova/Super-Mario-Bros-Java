@@ -10,19 +10,17 @@ public class Parser{
     protected String path;    
 
     public Parser(int numberLevel){
-        this.path = ("src"+File.separator + "levels" + File.separator + "level1.txt");
-        levelContent = new LinkedList<Vector<Integer>>();
-        levelContent = getLevelContent();
-        //printContent();
+        this.path = ("src"+File.separator + "levels" + File.separator + "level"+numberLevel+".txt");
+        this.levelContent = new LinkedList<>();
+        getLevelContent();
     }
     
-    private LinkedList<Vector<Integer>> getLevelContent(){        
-        LinkedList<Vector<Integer>> levelContent = new LinkedList<>();
+    private void getLevelContent(){        
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {            
             Vector<Integer> numbersTrio;
-            String currentRow;
+            String currentRow = reader.readLine();
             int cycle = 1;
-            while ((currentRow = reader.readLine()) != null) {         
+            while (currentRow != null) {         
                 numbersTrio = new Vector<Integer>();
                 cycle = 1;
                 String[] curretRowReading = currentRow.split(","); 
@@ -32,26 +30,25 @@ public class Parser{
                     cycle++; 
                 }  
                 levelContent.addLast(numbersTrio);
+                currentRow = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }      
         //printContent(); 
-        return levelContent;
     }
     
     private void addInListByCycle(int cycle, Integer number, Vector<Integer> numbersTrio) {
         if(cycle == 1) 
-        	numbersTrio.setRepresentation(number);
+        	numbersTrio.setType(number);
         if(cycle == 2) 
         	numbersTrio.setX(number);
         if(cycle == 3) 
         	numbersTrio.setY(number);
     }
    
-    
     public int getType(){
-        int type= levelContent.peekFirst().getRepresentacion();
+        int type= levelContent.peekFirst().getType();
         checkRemove();
         return type;
     }
@@ -73,7 +70,7 @@ public class Parser{
             levelContent.removeFirst();
     }
 
-     public boolean hasToRead(){
+    public boolean hasToRead(){
         return !levelContent.isEmpty();
     }
     /*
@@ -93,7 +90,5 @@ public class Parser{
         System.out.println(x+" "+y+" "+z);
         System.out.println("------------------");
         p.printContent();    
-    }  
-     */
-         
+    }   */         
 }

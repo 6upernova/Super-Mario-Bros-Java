@@ -2,24 +2,24 @@ package factories;
 public class Vector<E> {
     protected E positionX;
     protected E positionY;
-    protected E representacion;
+    protected E type;
 
     public Vector(){
         this.positionX = null;
         this.positionY = null;
-        this.representacion = null;
+        this.type = null;
     }
     public boolean isEmpty(){
-        return positionX == null && positionY == null && representacion == null;
+        return positionX == null && positionY == null && type == null;
     }
     public void setX(E position){
         this.positionX = position;
     }
     public void setY(E position){
-    this.positionY = position;
+        this.positionY = position;
     }
-    public void setRepresentation(E representationn){
-        this.representacion = representationn;
+    public void setType(E type){
+        this.type = type;
     }
     public E getPositionX(){
         E posX = positionX;
@@ -31,13 +31,13 @@ public class Vector<E> {
         positionY = null;
         return posY;
     }
-    public E getRepresentacion(){
-        E representation = representacion;
-        representacion = null;
-        return representation;
+    public E getType(){
+        E typee = type;
+        type = null;
+        return typee;
     }
-    public void printVector() {
-        System.out.println(representacion+","+positionX+","+positionY);
+    protected void printVector() {
+        System.out.println(type+","+positionX+","+positionY);
     }
 
 

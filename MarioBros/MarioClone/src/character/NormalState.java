@@ -3,7 +3,7 @@ package character;
 public class NormalState implements CharacterState{
 
 	
-	protected final String name= "Normal";
+	protected final String name = "Normal";
 
 	public String getName() {
 		return name;

@@ -22,16 +22,16 @@ public class Character extends Entity implements CharacterEntity {
 	protected boolean invincible;
 	protected CharacterState actuallyState;
 	//Preguntar si lo dejamos en el CharacterThread o si nos la rebuscamos para ponerlo en el character 
-	HashMap<String, Sprite> sprites; 
+	protected HashMap<String, Sprite> sprites; 
 
 	
 	
 	public Character(Sprite sprite, HashMap<String,Sprite> sprites) {
         super( sprite ,5,1);
 		this.sprites = sprites;
-		score=0;
-		lives=3;
-        invincible= false;
+		this.score=0;
+		this.lives=3;
+        this.invincible= false;
 	}
 
 	
@@ -39,11 +39,8 @@ public class Character extends Entity implements CharacterEntity {
 		float worldX = getX();
 	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
-
 	    setX(worldX - ViewConstants.CHARACTER_SPEED);	
-
 		observer.update();
-		
 	}
 	
 	public void moveRight(String key){
@@ -51,9 +48,7 @@ public class Character extends Entity implements CharacterEntity {
 	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
 	    setX(worldX + ViewConstants.CHARACTER_SPEED);
-
 		observer.update();
-		
 	}
 
 	private float round2Digits(float number){
@@ -87,11 +82,11 @@ public class Character extends Entity implements CharacterEntity {
 	}
 	
 	public void addScore(int number){
-		score += number;
+		score = score + number;
 	}
 	
 	public void subtractScore(int number){
-			score -= number;
+			score = score - number;
 	}
 	
 	public int getLives() {
@@ -117,19 +112,19 @@ public class Character extends Entity implements CharacterEntity {
 	public void visit(Star star) {
 		int points= star.getPoints();
 		if (invincible)
-			points += 15;
+			points = points + 15;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
-		invincible= true;
+		invincible = true;
 	}
 	
 	public void visit(FireFlower flower) {
 		//actuallyState= stateList[2];
 		int points= flower.getPoints();
 		if (actuallyState.getName() == "Super")
-			points += 25;
+			points = points + 25;
 		else if(actuallyState.getName() == "Fire")
-		        points +=45;
+		        points = points + 45;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
 	}
@@ -145,7 +140,7 @@ public class Character extends Entity implements CharacterEntity {
 		//actuallyState= stateList[1];
 		int points= mushroom.getPoints();
 		if (actuallyState.getName() == "Super")
-			points +=-40;
+			points = points + 40;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
 	}
@@ -176,8 +171,12 @@ public class Character extends Entity implements CharacterEntity {
     	buzzyBeetle.dead();
     }
     
-    public void visit(Void voidBlck) {
+    public void visit(Void voidBlock) {
     	subtractScore(15);
+		/*	si todavia tiene vidas	
+				resetea el nivel
+			sino muere 
+		 */
         dead();
     }
 

@@ -1,17 +1,13 @@
 package factories;
-
 import java.io.File;
 import java.util.HashMap;
 
 public abstract class SpriteFactory {
-	
     String folderPath; 
     
     protected SpriteFactory(String path){
         this.folderPath = path;
     }
-    
-    
     
     public HashMap<String,Sprite> getSpriteMapEnemy(){
     	return null;

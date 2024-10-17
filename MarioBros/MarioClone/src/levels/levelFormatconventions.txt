@@ -29,6 +29,7 @@ type is represented by int number:
             22      QuestionBlock
             23      Pipe
             24      Void
+            25      Flag
     projetiles
             30      Fireball
             31      SpinyEgg

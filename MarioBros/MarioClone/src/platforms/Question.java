@@ -5,10 +5,10 @@ import game.Visitor;
 
 public class Question extends Platform {
 
-	static final private boolean isBreakeable=false;
+	static final private boolean isBreakeable = false;
 	
-	public Question(Sprite sprite, int x, int y) {
-		super(sprite, x, y, isBreakeable);
+	public Question(Sprite sprite, int positionInX, int positionInY) {
+		super(sprite, positionInX, positionInY, isBreakeable);
 	}
 
 	public void acceptVisit(Visitor visitor) {

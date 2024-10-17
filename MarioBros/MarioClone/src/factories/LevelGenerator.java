@@ -1,5 +1,4 @@
 package factories;
-
 import java.util.LinkedList;
 import java.util.List;
 import platforms.Platform;
@@ -8,13 +7,12 @@ import enemies.Enemy;
 import character.Character;
 
 public class LevelGenerator {
-
     protected EntityFactory entityFactory;
     protected Parser parser;
 
     public LevelGenerator(String mode, int levelNumber) {
-        entityFactory= new EntityFactory(mode);
-        parser= new Parser(levelNumber);
+        this.entityFactory= new EntityFactory(mode);
+        this.parser= new Parser(levelNumber);
     }
 
     public Level createLevel(){
@@ -22,8 +20,8 @@ public class LevelGenerator {
         int worldX=0;
         int worldY=0;
         List<Platform> platformList = new LinkedList<Platform>();
-        List<Enemy> enemyList = new LinkedList<Enemy>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
+        List<Enemy> enemyList = new LinkedList<Enemy>();
         Character character = entityFactory.createCharacter();
         //LEE CADA LINEA DEL TXT Y LO PASA A UN A CREATE, DESPUES CON ESO LO AÑADE
         while(parser.hasToRead()) {
@@ -41,10 +39,8 @@ public class LevelGenerator {
                     else    if( type>19 && type<=25) { 
                     	        Platform platform= entityFactory.newPlatform(type, worldX, worldY);
                                 platformList.add(platform);
-                            }
-            
-        }
-        
+                            }            
+        }        
         return new Level(platformList, enemyList, powerUpList, character);
     }
 
@@ -54,6 +50,5 @@ public class LevelGenerator {
         Level level1 = l.createLevel();
     }
      * 
-     */
-    
+     */  
 }
