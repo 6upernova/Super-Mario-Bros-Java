@@ -10,7 +10,8 @@ public class ViewConstants {
 
 	public static final int CELL_SIZE = 43;
 
-	public static final float CHARACTER_SPEED = 15/ 100.0f;
+	public static final float CHARACTER_SPEED = 25/ 100.0f;
+	public static final float CHARACTER_JUMP = 20/100.0f;
 	
 	public static final int BACKGROUND_WIDTH=2304;
 

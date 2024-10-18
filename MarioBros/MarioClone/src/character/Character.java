@@ -1,18 +1,11 @@
 package character;
 
 import java.util.HashMap;
-import enemies.BuzzyBeetle;
-import enemies.Goomba;
-import enemies.KoopaTroopa;
-import enemies.Lakitu;
+import enemies.*;
 import factories.Sprite;
 import game.Entity;
 import game.Visitor;
-import powerUps.Coin;
-import powerUps.FireFlower;
-import powerUps.GreenMushroom;
-import powerUps.Star;
-import powerUps.SuperMushroom;
+import powerUps.*;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity {
@@ -27,7 +20,7 @@ public class Character extends Entity implements CharacterEntity {
 	
 	
 	public Character(Sprite sprite, HashMap<String,Sprite> sprites) {
-        super( sprite ,5,1);
+        super(sprite ,5,1);
 		this.sprites = sprites;
 		this.score=0;
 		this.lives=3;
@@ -38,8 +31,7 @@ public class Character extends Entity implements CharacterEntity {
 	public void moveLeft(String key){
 		float worldX = getX();
 	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
-		setSprite(sprites.get(key));
-	    setX(worldX - ViewConstants.CHARACTER_SPEED);	
+		setSprite(sprites.get(key));	
 		observer.update();
 	}
 	
@@ -47,10 +39,16 @@ public class Character extends Entity implements CharacterEntity {
         float worldX = getX();
 	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
 		setSprite(sprites.get(key));
-	    setX(worldX + ViewConstants.CHARACTER_SPEED);
 		observer.update();
 	}
 
+	public void jump(String key){
+		float worldY=getY();
+		setY(round2Digits(worldY + ViewConstants.CHARACTER_JUMP));
+		setSprite(sprites.get(key));
+		observer.update();
+	}
+	
 	private float round2Digits(float number){
 		return Math.round(number * 100.0) / 100.0f;
 	}
@@ -60,9 +58,7 @@ public class Character extends Entity implements CharacterEntity {
 		observer.update();
 	}
 
-	public void jump(){
-		//no es necesario por el momento
-	}
+	
 	
 	public void dead(){
 		lives--;
@@ -150,7 +146,7 @@ public class Character extends Entity implements CharacterEntity {
     	addScore( coin.getPoints() );
 		//hacer que desaparezca de la pantalla
     }
-    
+   /* 
     public void visit(Goomba goomba) {
     	addScore(goomba.getPointsOnDeath());
     	goomba.dead();
@@ -170,7 +166,7 @@ public class Character extends Entity implements CharacterEntity {
     	addScore(buzzyBeetle.getPointsOnDeath());
     	buzzyBeetle.dead();
     }
-    
+    */
     public void visit(Void voidBlock) {
     	subtractScore(15);
 		/*	si todavia tiene vidas	

@@ -2,11 +2,8 @@ package factories;
 import platforms.*;
 import platforms.Void;
 import powerUps.*;
-import views.ViewConstants;
 import enemies.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 import character.Character;
 
 public class EntityFactory {

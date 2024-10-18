@@ -2,20 +2,16 @@ package launcher;
 
 import character.Character;
 import character.Keyboard;
-import factories.Custom;
-import factories.Original;
-import factories.SpriteFactory;
 import views.ViewConstants;
 
 public class CharacterThread extends Thread {
 	
     protected Keyboard keyboard;
     protected Character character;
-    protected SpriteFactory spriteFactory;
     private int frameCount=0;
     private int spriteNumber=1;
 
-    public CharacterThread(Keyboard keyboard, Character character, String mode){
+    public CharacterThread(Keyboard keyboard, Character character){
         this.keyboard = keyboard;
         this.character = character;
     }
@@ -23,23 +19,23 @@ public class CharacterThread extends Thread {
     public void run(){
     	float maximumX = character.getX();
 		float characterLeftLimit;
+		float maximumXFraction;
     	boolean characterInEnd;
+    	
         String direction;
     	while(true){
+    		maximumXFraction=maximumX-(int)maximumX;
             direction = keyboard.getPlayerDirection();
             characterInEnd=characterInEnd(character.getX());
             if(!characterInEnd) 
-                characterLeftLimit= maximumX - ViewConstants.LEFT_CHARACTER_SPACE;
+                characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE-maximumXFraction);
             else 
                 characterLeftLimit=(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12;
             frameCount++;
-            System.out.println(character.getX()+","+ (ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12);
-
+            System.out.println(maximumX+","+ (ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12);
             if(direction.equals("none"))
                 character.stayStill("Still");
-
             else if(direction.equals( "right")){
-
                 maximumX = character.getX() > maximumX ? character.getX() : maximumX;
                 character.moveRight("Right"+spriteNumber);
                 if(frameCount%4==0) 
@@ -48,11 +44,8 @@ public class CharacterThread extends Thread {
             else if(direction.equals("left") && character.getX() > characterLeftLimit ){
                 character.moveLeft("Left"+spriteNumber);
                 if(frameCount%4==0) 
-                    spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-                        
+                    spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;         
             }
-
-
             try {
                 Thread.sleep(16);
             } 

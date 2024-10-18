@@ -76,16 +76,16 @@ public class LevelScreen extends JPanel {
 
     public void updateScrollRight(CharacterEntity character) {
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        int currentScrollPos = horizontalBar.getValue();
-        int targetScrollPos = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);
+        int currentScrollPosition = horizontalBar.getValue();
+        int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);
         
-        if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPos() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
-            int smoothScrollPos = (int) (currentScrollPos + 0.1 * (targetScrollPos - currentScrollPos));
-            horizontalBar.setValue(smoothScrollPos);
+        if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPosition() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
+            int smoothScrollPosition = (int) (currentScrollPosition + 0.1 * (targetScrollPosition - currentScrollPosition));
+            horizontalBar.setValue(smoothScrollPosition);
         }
     }
 
-    public int getScrollbarXPos(){
+    public int getScrollbarXPosition(){
         return scrollPanel.getHorizontalScrollBar().getValue();
     }
 
@@ -95,14 +95,12 @@ public class LevelScreen extends JPanel {
     public Observer drawEntityCharacter( CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
-        
         return characterObserver;
     }
 
     public Observer drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
         backgroundImageLabel.add(entityObserver);
-
         return entityObserver;
         
     }

@@ -42,7 +42,7 @@ public class Game {
     public void start(){
         currentLevel= levelGenerator.createLevel();
         setObservers();
-        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter(),"original");
+        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter());
         thread.start();
         viewController.showLevelScreen();
     }
