@@ -15,10 +15,13 @@ public class Character extends Entity implements CharacterEntity {
 	protected boolean invincible;
 	protected CharacterState actualState;
 	protected HashMap<String, Sprite> sprites;
+
 	
-	//Gravity and jump
+	
+	//Gravity And movementd
 	protected boolean isInAir;
 	protected float verticalSpeed;
+	protected float horizontalSpeed;
 
 	
 	
@@ -30,20 +33,23 @@ public class Character extends Entity implements CharacterEntity {
         this.invincible= false;
 		this.isInAir = false;
 		this.verticalSpeed = 0;
+		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 	}
 
 	
 	public void moveLeft(String key){
 		float worldX = getX();
-	    setX(round2Digits(worldX - ViewConstants.CHARACTER_SPEED));
-		setSprite(sprites.get(key));	
+	    setX(round2Digits(worldX - horizontalSpeed));
+		if(!isInAir())
+			setSprite(sprites.get(key));	
 		observer.update();
 	}
 	
 	public void moveRight(String key){
         float worldX = getX();
-	    setX(round2Digits(worldX + ViewConstants.CHARACTER_SPEED));
-		setSprite(sprites.get(key));
+	    setX(round2Digits(worldX + horizontalSpeed));
+		if(!isInAir())
+			setSprite(sprites.get(key));
 		observer.update();
 	}
 	
@@ -57,21 +63,29 @@ public class Character extends Entity implements CharacterEntity {
 			
 			if (isOnSolid()) {
 				isInAir = false;
-				verticalSpeed = 0; 
+				verticalSpeed = 0;
+				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
 			}
 		}
 	}
 	
-	public void jump(){
-		if(!isInAir && isOnSolid()){
+	public void jump(String key){
+		if(!isInAir() && isOnSolid()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
+			horizontalSpeed -= 0.1f;
         	isInAir = true;
+			setSprite(sprites.get(key));
         	observer.update();
 		}
 	}
 
-	private boolean isOnSolid(){
+	public void stayStill(String key){
+		if(!isInAir())
+			setSprite(sprites.get(key));
+		observer.update();
+	}
 
+	private boolean isOnSolid(){
 		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
 		return getY() <= 1;
 
@@ -88,10 +102,7 @@ public class Character extends Entity implements CharacterEntity {
 		return Math.round(number * 100.0) / 100.0f;
 	}
 
-	public void stayStill(String key){
-		setSprite(sprites.get(key));
-		observer.update();
-	}
+	
 
 	
 	

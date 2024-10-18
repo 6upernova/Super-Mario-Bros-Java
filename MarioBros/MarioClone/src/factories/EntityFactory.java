@@ -81,6 +81,8 @@ public class EntityFactory {
 		marioSprites.put("Right1",spriteFactory.getCharacterRightSprite(1));
 		marioSprites.put("Right2", spriteFactory.getCharacterRightSprite(2));
 		marioSprites.put("Right3",spriteFactory.getCharacterRightSprite(3));
+		marioSprites.put("JumpingRight",spriteFactory.getCharacterJumpingSprite("Right"));
+		marioSprites.put("JumpingLeft",spriteFactory.getCharacterJumpingSprite("Left"));
         Character character = new Character(marioSprites.get("StillRight") , marioSprites);
 		return character;
 	}

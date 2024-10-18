@@ -24,6 +24,10 @@ public abstract class SpriteFactory {
     public Sprite getCharacterLeftSprite(int frame) {
     	return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterLeft"+ frame + ".png");
     }
+
+    public Sprite getCharacterJumpingSprite(String direction){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterJumping" + direction + ".png");
+    }
     
     public Sprite getBackgroundSprite(int number){
         return new Sprite(folderPath + File.separator+"Character"+number+".png");	 
