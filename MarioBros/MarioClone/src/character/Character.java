@@ -4,6 +4,7 @@ import java.util.HashMap;
 import enemies.*;
 import factories.Sprite;
 import game.Entity;
+import game.HitBox;
 import game.Visitor;
 import powerUps.*;
 import views.ViewConstants;
@@ -175,5 +176,12 @@ public class Character extends Entity implements CharacterEntity {
 		 */
         dead();
     }
+
+
+	@Override
+	public HitBox getHitBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

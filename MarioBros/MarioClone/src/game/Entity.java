@@ -7,6 +7,7 @@ public abstract class Entity implements LogicalEntity {
     protected float positionInY;
     protected Sprite sprite;
     protected Observer observer;
+    protected HitBox hitBox;
 
     public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;

@@ -19,9 +19,6 @@ public class CharacterObserver extends GraphicObserver{
         //hacer metodos privados para las comparaciones
         levelScreen.updateScrollRight(observedCharacter);
         super.update();
-        
-            
-        
     }
 
 

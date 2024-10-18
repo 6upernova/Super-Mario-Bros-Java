@@ -8,44 +8,25 @@ public class CharacterThread extends Thread {
 	
     protected Keyboard keyboard;
     protected Character character;
-    private int frameCount=0;
-    private int spriteNumber=1;
+    private int frameCount;
+    private int spriteNumber;
+    private float maximumX;
 
     public CharacterThread(Keyboard keyboard, Character character){
         this.keyboard = keyboard;
         this.character = character;
+        this.frameCount = 0;
+        this.spriteNumber = 1;
+        this.maximumX = character.getX();
     }
     
     public void run(){
-    	float maximumX = character.getX();
-		float characterLeftLimit;
-		float maximumXFraction;
-    	boolean characterInEnd;
-    	
         String direction;
     	while(true){
-    		maximumXFraction=maximumX-(int)maximumX;
             direction = keyboard.getPlayerDirection();
-            characterInEnd=characterInEnd(character.getX());
-            if(!characterInEnd) 
-                characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE-maximumXFraction);
-            else 
-                characterLeftLimit=(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12;
             frameCount++;
             System.out.println(maximumX+","+ (ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12);
-            if(direction.equals("none"))
-                character.stayStill("Still");
-            else if(direction.equals( "right")){
-                maximumX = character.getX() > maximumX ? character.getX() : maximumX;
-                character.moveRight("Right"+spriteNumber);
-                if(frameCount%4==0) 
-                    spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-            }
-            else if(direction.equals("left") && character.getX() > characterLeftLimit ){
-                character.moveLeft("Left"+spriteNumber);
-                if(frameCount%4==0) 
-                    spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;         
-            }
+            moveCharacter(direction,maximumX);
             try {
                 Thread.sleep(16);
             } 
@@ -55,6 +36,43 @@ public class CharacterThread extends Thread {
         }
     }
     
+    private void moveCharacter (String direction, float maximumX) {
+    	switch(direction) {
+    		case "none":
+    			character.stayStill("Still");
+    			break;
+    		case "right":
+    			moveRight(maximumX);
+                break;
+    		case "left":
+    			moveLeft(maximumX);
+    			break;
+    	}
+    }
+
+	private void moveRight(float maximumX) {
+		maximumX = character.getX() > maximumX ? character.getX() : maximumX;
+        character.moveRight("Right"+spriteNumber);
+        if(frameCount%4==0) 
+            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+	}
+		
+	private void moveLeft(float maximumX) {
+		float characterLeftLimit;
+    	boolean characterInEnd;
+		float maximumXFraction=maximumX-(int)maximumX;
+		
+		characterInEnd=characterInEnd(character.getX());
+        if(!characterInEnd) 
+            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE - maximumXFraction);
+        else 
+            characterLeftLimit=(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12;
+		if(character.getX()>characterLeftLimit) {
+            character.moveLeft("Left"+spriteNumber);
+            if(frameCount%4==0) 
+            	spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+		}
+	}
     private boolean characterInEnd(float characterXPosition) {
     	if(characterXPosition>(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12)
     		return true;
