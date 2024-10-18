@@ -4,7 +4,6 @@ import java.util.HashMap;
 import enemies.*;
 import factories.Sprite;
 import game.Entity;
-import game.HitBox;
 import game.Visitor;
 import powerUps.*;
 import views.ViewConstants;
@@ -14,7 +13,7 @@ public class Character extends Entity implements CharacterEntity {
 	protected int lives;
 	protected int score;
 	protected boolean invincible;
-	protected CharacterState actuallyState;
+	protected CharacterState actualState;
 	//Preguntar si lo dejamos en el CharacterThread o si nos la rebuscamos para ponerlo en el character 
 	protected HashMap<String, Sprite> sprites; 
 
@@ -42,11 +41,18 @@ public class Character extends Entity implements CharacterEntity {
 		setSprite(sprites.get(key));
 		observer.update();
 	}
-
-	public void jump(String key){
+	
+	public void applyGravity() {
+		float worldY=getY();
+		if(worldY>1)
+			setY(round2Digits(worldY - ViewConstants.WORLD_GRAVITY));
+		observer.update();
+	}
+	
+	public void jump(){
 		float worldY=getY();
 		setY(round2Digits(worldY + ViewConstants.CHARACTER_JUMP));
-		setSprite(sprites.get(key));
+		//setSprite(sprites.get(key));
 		observer.update();
 	}
 	
@@ -118,9 +124,9 @@ public class Character extends Entity implements CharacterEntity {
 	public void visit(FireFlower flower) {
 		//actuallyState= stateList[2];
 		int points= flower.getPoints();
-		if (actuallyState.getName() == "Super")
+		if (actualState.getName() == "Super")
 			points = points + 25;
-		else if(actuallyState.getName() == "Fire")
+		else if(actualState.getName() == "Fire")
 		        points = points + 45;
 		addScore( points );
 		//hacer que desaparezca de la pantalla
@@ -134,9 +140,9 @@ public class Character extends Entity implements CharacterEntity {
 	
 	
 	public void visit(SuperMushroom mushroom) {
-		//actuallyState= stateList[1];
+		//actualState= stateList[1];
 		int points= mushroom.getPoints();
-		if (actuallyState.getName() == "Super")
+		if (actualState.getName() == "Super")
 			points = points + 40;
 		addScore( points );
 		//hacer que desaparezca de la pantalla

@@ -29,7 +29,6 @@ public class LevelScreen extends JPanel {
     //Constructor operations
 
     protected void setBackgroundAndScroll() {
-        
         configureBackgroundLabel();
         configureContentPanel();
         configureScrollLabel();

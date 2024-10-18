@@ -4,66 +4,74 @@ import java.awt.event.KeyEvent;
 
 public class Keyboard extends java.awt.event.KeyAdapter {
 
-    private String playerDirection;
+    private String playerHorizontalDirection, playerVerticalDirection;
     private String previousDirection;
     private boolean jumping;
-    private boolean pressingKey;
+    private boolean keyIsPressed;
     
     public Keyboard(){
-        playerDirection="None";
+        playerHorizontalDirection="None";
+        playerVerticalDirection="None";
         previousDirection="Right";
         jumping = false;
-        pressingKey = false;
+        keyIsPressed = false;
     }
-    
-    public void keyTyped(KeyEvent typedKey) {
-    	if (typedKey.getKeyCode()==KeyEvent.VK_W) {
-    		jumping=true;
-    	}
-    }
-    
-    
+     
     public void keyPressed(KeyEvent pressedKey) {
-        if(!pressingKey){
+    	if (pressedKey.getKeyCode() == KeyEvent.VK_W) {
+            if (!jumping) { // Asegurarse de que solo salte una vez
+                jumping = true;
+                playerVerticalDirection = "Up";
+            }
+        }
+        if(!keyIsPressed){
             switch(pressedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
-                    pressingKey = true;
-                    playerDirection="Right";
+                    keyIsPressed = true;
+                    playerHorizontalDirection="Right";
                     break;
                 case KeyEvent.VK_A:
-                    pressingKey = true;
-                    playerDirection="Left";
+                	keyIsPressed = true;
+                    playerHorizontalDirection="Left";
                     break;
             }
         }
     }
 
     public void keyReleased(KeyEvent releasedKey) {
-        if(pressingKey){
+        if(releasedKey.getKeyCode()==KeyEvent.VK_W) {
+        	if(playerVerticalDirection.equals("Up") || playerVerticalDirection.equals("None"))
+        		jumping=false;
+        		playerVerticalDirection="Down";
+        }
+    	if(keyIsPressed){
             switch(releasedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
-                    previousDirection = playerDirection;
-                    playerDirection = "None";
-                    pressingKey = false;
+                    previousDirection = playerHorizontalDirection;
+                    playerHorizontalDirection = "None";
+                    keyIsPressed = false;
                     break;
                 case KeyEvent.VK_A:
-                    previousDirection = playerDirection;
-                    playerDirection = "None";
-                    pressingKey = false;
+                    previousDirection = playerHorizontalDirection;
+                    playerHorizontalDirection = "None";
+                    keyIsPressed = false;
                     break;
             }
         }
     }
     
-    public String getPlayerDirection() {
-        return playerDirection;
+    public String getPlayerHorizontalDirection() {
+        return playerHorizontalDirection;
     }
 
+    public String getPlayerVerticalDirection() {
+    	return playerVerticalDirection;
+    }
     public String getPreviousDirection() {
         return previousDirection;
     }
     
-    public boolean isJumping() {
+    public boolean isCharacterJumping() {
     	return jumping;
     }
 }

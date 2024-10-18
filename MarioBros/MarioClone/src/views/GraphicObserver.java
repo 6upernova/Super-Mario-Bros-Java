@@ -1,7 +1,5 @@
 package views;
 
-import java.awt.Image;
-import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import game.LogicalEntity;
@@ -23,7 +21,6 @@ public abstract class GraphicObserver extends JLabel implements Observer {
 
     protected void updateSprite(){
         String path = observedEntity.getSprite().getSkinPath();
-        
         ImageIcon icon = new ImageIcon(getClass().getResource(path));
         icon = GraphicTools.scaleImage(icon.getIconHeight(),ViewConstants.CELL_SIZE, icon);
         this.setIcon(icon);
@@ -37,5 +34,4 @@ public abstract class GraphicObserver extends JLabel implements Observer {
         this.setBounds(x, y, width, height);
     }
 
-    
 }
