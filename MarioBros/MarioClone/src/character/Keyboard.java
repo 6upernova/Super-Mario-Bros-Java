@@ -17,13 +17,22 @@ public class Keyboard extends java.awt.event.KeyAdapter {
         keyIsPressed = false;
     }
      
+    public void keyTyped(KeyEvent typedKey) {
+    	if (typedKey.getKeyChar()=='w') {
+    		if(!jumping) {
+    			jumping=true;
+    			playerVerticalDirection="Up";
+    		}
+    	}
+    }
+    
     public void keyPressed(KeyEvent pressedKey) {
-    	if (pressedKey.getKeyCode() == KeyEvent.VK_W) {
+    	/*if (pressedKey.getKeyCode() == KeyEvent.VK_W) {
             if (!jumping) { // Asegurarse de que solo salte una vez
                 jumping = true;
                 playerVerticalDirection = "Up";
             }
-        }
+        }*/
         if(!keyIsPressed){
             switch(pressedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
@@ -39,11 +48,11 @@ public class Keyboard extends java.awt.event.KeyAdapter {
     }
 
     public void keyReleased(KeyEvent releasedKey) {
-        if(releasedKey.getKeyCode()==KeyEvent.VK_W) {
+        /*if(releasedKey.getKeyCode()==KeyEvent.VK_W) {
         	if(playerVerticalDirection.equals("Up") || playerVerticalDirection.equals("None"))
         		jumping=false;
         		playerVerticalDirection="Down";
-        }
+        }*/
     	if(keyIsPressed){
             switch(releasedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
@@ -73,5 +82,8 @@ public class Keyboard extends java.awt.event.KeyAdapter {
     
     public boolean isCharacterJumping() {
     	return jumping;
+    }
+    public void stopJumping() {
+    	jumping=false;
     }
 }
