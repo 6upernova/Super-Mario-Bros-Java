@@ -15,8 +15,4 @@ public abstract class Platform extends Entity{
 	public boolean isBreakeable() {
 		return isBreakeable;
 	}
-	
-	public HitBox getHitBox() {
-		
-	}
 }

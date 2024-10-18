@@ -13,8 +13,8 @@ public abstract class SpriteFactory {
     	return null;
     }
     
-    public Sprite getCharacterStillSprite(){
-        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterStill.png");
+    public Sprite getCharacterStillSprite(String direction){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"CharacterStill"+ direction +".png");
     }
     
     public Sprite getCharacterRightSprite(int frame) {
@@ -78,7 +78,7 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"BrickBlock.png");	 
     }
     public Sprite getQuestionBlockSprite(){
-        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"QuestionBlock.gif");	 
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"QuestionBlock.png");	 
     }
     public Sprite getBlockSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"SolidBlock.png");	 

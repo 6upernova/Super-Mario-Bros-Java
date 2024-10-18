@@ -178,10 +178,5 @@ public class Character extends Entity implements CharacterEntity {
     }
 
 
-	@Override
-	public HitBox getHitBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

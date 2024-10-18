@@ -38,13 +38,13 @@ public class CharacterThread extends Thread {
     
     private void moveCharacter (String direction, float maximumX) {
     	switch(direction) {
-    		case "none":
-    			character.stayStill("Still");
+    		case "None":
+    			character.stayStill("Still" + keyboard.getPreviousDirection());
     			break;
-    		case "right":
+    		case "Right":
     			moveRight(maximumX);
                 break;
-    		case "left":
+    		case "Left":
     			moveLeft(maximumX);
     			break;
     	}
