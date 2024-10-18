@@ -10,7 +10,7 @@ public class CharacterThread extends Thread {
     protected Character character;
     private int frameCount;
     private int spriteNumber;
-    private float maximumX;
+    private float maximumX, maximumY;
 
     public CharacterThread(Keyboard keyboard, Character character){
         this.keyboard = keyboard;
@@ -18,6 +18,7 @@ public class CharacterThread extends Thread {
         this.frameCount = 0;
         this.spriteNumber = 1;
         this.maximumX = character.getX();
+        this.maximumY = character.getY();
     }
     
     public void run(){
@@ -43,7 +44,7 @@ public class CharacterThread extends Thread {
         switch (verticalDirection) {
             case "Up":
                 if(!character.isInAir())
-                    moveUp(); 
+                    character.jump();; 
                 break;
         }
         // Mantén la lógica para el movimiento horizonta
@@ -70,10 +71,10 @@ public class CharacterThread extends Thread {
 	private void moveLeft() {
 		float characterLeftLimit;
     	boolean characterInEnd;
-		float maximumXFraction=maximumX-(int)maximumX;
+		//float maximumXFraction=maximumX-(int)maximumX;
 		characterInEnd=characterInEnd(character.getX());
         if(!characterInEnd) 
-            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE - maximumXFraction);
+            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
         else 
             characterLeftLimit=(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12;
         
@@ -82,10 +83,6 @@ public class CharacterThread extends Thread {
             if(frameCount%4==0) 
             	spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
 		}
-	}
-	
-	private void moveUp() {
-		character.jump();
 	}
 	
     private boolean characterInEnd(float characterXPosition) {

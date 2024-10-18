@@ -13,13 +13,14 @@ public class Keyboard extends java.awt.event.KeyAdapter {
         playerHorizontalDirection="None";
         playerVerticalDirection="None";
         previousDirection="Right";
+        jumping = false;
         keyIsPressed = false;
     }
      
     public void keyPressed(KeyEvent pressedKey) {
-    	if (pressedKey.getKeyCode() == KeyEvent.VK_W) {
+    	if (pressedKey.getKeyCode() == KeyEvent.VK_W) 
                 playerVerticalDirection = "Up";
-        }
+    
         if(!keyIsPressed){
             switch(pressedKey.getKeyCode()) {
                 case KeyEvent.VK_D:
@@ -37,7 +38,6 @@ public class Keyboard extends java.awt.event.KeyAdapter {
     public void keyReleased(KeyEvent releasedKey) {
         if(releasedKey.getKeyCode()==KeyEvent.VK_W) {
         	if(playerVerticalDirection.equals("Up") || playerVerticalDirection.equals("None"))
-        		jumping=false;
         		playerVerticalDirection="Down";
         }
     	if(keyIsPressed){
@@ -67,4 +67,7 @@ public class Keyboard extends java.awt.event.KeyAdapter {
         return previousDirection;
     }
     
+    public boolean isCharacterJumping() {
+    	return jumping;
+    }
 }
