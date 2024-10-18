@@ -1,6 +1,7 @@
 package game;
 import factories.Sprite;
 import views.Observer;
+import java.awt.Rectangle;
 
 public abstract class Entity implements LogicalEntity {
     protected float positionInX;

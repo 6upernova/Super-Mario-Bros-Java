@@ -27,7 +27,7 @@ public class CharacterThread extends Thread {
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
-            System.out.println(maximumX+","+ (ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12);
+            System.out.println(maximumX+","+ ","+ character.getY() );
             moveCharacter(horizontalDirection, verticalDirection);
             try {
                 Thread.sleep(16);
@@ -39,15 +39,11 @@ public class CharacterThread extends Thread {
     }
     
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
-        if (!keyboard.isCharacterJumping()) {
-            character.applyGravity();  // Aplica la gravedad cuando no esté saltando
-        }
+        character.applyGravity();
         switch (verticalDirection) {
             case "Up":
-                moveUp(); // Mario sube
-                break;
-            case "Down":
-                character.applyGravity(); // Mario baja cuando no está en el aire
+                if(!character.isInAir())
+                    moveUp(); 
                 break;
         }
         // Mantén la lógica para el movimiento horizonta

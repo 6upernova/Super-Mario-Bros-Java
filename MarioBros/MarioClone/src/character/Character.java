@@ -14,8 +14,11 @@ public class Character extends Entity implements CharacterEntity {
 	protected int score;
 	protected boolean invincible;
 	protected CharacterState actualState;
-	//Preguntar si lo dejamos en el CharacterThread o si nos la rebuscamos para ponerlo en el character 
-	protected HashMap<String, Sprite> sprites; 
+	protected HashMap<String, Sprite> sprites;
+	
+	//Gravity and jump
+	protected boolean isInAir;
+	protected float verticalSpeed;
 
 	
 	
@@ -25,6 +28,8 @@ public class Character extends Entity implements CharacterEntity {
 		this.score=0;
 		this.lives=3;
         this.invincible= false;
+		this.isInAir = false;
+		this.verticalSpeed = 0;
 	}
 
 	
@@ -43,18 +48,41 @@ public class Character extends Entity implements CharacterEntity {
 	}
 	
 	public void applyGravity() {
-		float worldY=getY();
-		if(worldY>1)
-			setY(round2Digits(worldY - ViewConstants.WORLD_GRAVITY));
-		observer.update();
+		if (isInAir) {
+			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
+			float worldY = getY();
+			setY(worldY + verticalSpeed); 
+			observer.update();
+			
+			
+			if (isOnSolid()) {
+				isInAir = false;
+				verticalSpeed = 0; 
+			}
+		}
 	}
 	
 	public void jump(){
-		float worldY=getY();
-		setY(round2Digits(worldY + ViewConstants.CHARACTER_JUMP));
-		//setSprite(sprites.get(key));
-		observer.update();
+		if(!isInAir && isOnSolid()){
+			verticalSpeed = ViewConstants.CHARACTER_JUMP;
+        	isInAir = true;
+        	observer.update();
+		}
 	}
+
+	private boolean isOnSolid(){
+
+		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
+		return getY() <= 1;
+
+	}
+
+	public boolean isInAir(){
+		return isInAir;
+	}
+
+
+
 	
 	private float round2Digits(float number){
 		return Math.round(number * 100.0) / 100.0f;
