@@ -58,7 +58,7 @@ public class Character extends Entity implements CharacterEntity {
 			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
 			float worldY = getY();
 			setY(worldY + verticalSpeed); 
-			observer.update();
+			
 			
 			
 			if (isOnSolid()) {
