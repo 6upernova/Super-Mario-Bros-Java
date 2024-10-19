@@ -38,7 +38,6 @@ public class CharacterThread extends Thread {
             }
         }
     }
-    
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
         character.applyGravity();
         switch (verticalDirection) {
@@ -92,5 +91,5 @@ public class CharacterThread extends Thread {
     		return true;
     	return false;
     }
+ 
 }
-

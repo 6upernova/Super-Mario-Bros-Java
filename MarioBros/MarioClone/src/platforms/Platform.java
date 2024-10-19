@@ -2,8 +2,9 @@ package platforms;
 
 import factories.Sprite;
 import game.Entity;
+import game.VisitedElement;
 
-public abstract class Platform extends Entity{
+public abstract class Platform extends Entity implements VisitedElement{
 
 	protected boolean isBreakeable;
 	
@@ -15,4 +16,5 @@ public abstract class Platform extends Entity{
 	public boolean isBreakeable() {
 		return isBreakeable;
 	}
+	
 }

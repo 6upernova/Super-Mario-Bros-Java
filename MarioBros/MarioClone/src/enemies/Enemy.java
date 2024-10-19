@@ -1,9 +1,10 @@
 package enemies;
 import factories.Sprite;
 import game.Entity;
+import game.VisitedElement;
 import views.Observer;
 
-public abstract class Enemy extends Entity{
+public abstract class Enemy extends Entity implements VisitedElement{
 	private int pointsOnDeath;
 	private int pointsOnKill;
 	

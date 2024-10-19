@@ -2,12 +2,13 @@ package platforms;
 
 import factories.Sprite;
 import game.Visitor;
+import views.GraphicObserver;
 //Representa vacíos entre bloques por los que puede caer Mario
-public class Void extends Platform{
+public class VoidBlock extends Platform{
 	static final private int pointsOnKill = -15;
 	static final private boolean isBreakeable = false;
 	
-	public Void(Sprite sprite, int positionInX, int positionInY) {
+	public VoidBlock(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, isBreakeable); 
 	}
 
@@ -16,6 +17,9 @@ public class Void extends Platform{
 	}
 	
 	public void acceptVisit(Visitor visitor) {
-		super.acceptVisit(visitor);
+    	visitor.visit(this);
+    }
+	public void setObserver(GraphicObserver observer) {
+		this.observer = observer;
 	}
 }

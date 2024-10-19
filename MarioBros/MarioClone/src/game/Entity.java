@@ -1,5 +1,6 @@
 package game;
 import factories.Sprite;
+import views.GraphicObserver;
 import views.Observer;
 import java.awt.Rectangle;
 
@@ -7,12 +8,23 @@ public abstract class Entity implements LogicalEntity {
     protected float positionInX;
     protected float positionInY;
     protected Sprite sprite;
-    protected Observer observer;
+    protected GraphicObserver observer;
+    protected Rectangle hitbox;
 
     public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;
         this.positionInX = positionInX;
         this.positionInY = positionInY;
+        this.hitbox = new Rectangle((int)positionInX,(int) positionInY, 1, 2);
+    }
+    protected void updateHitboxCoords(){
+        hitbox.setLocation((int) positionInX, (int)positionInY);
+    }
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+    public boolean colision(Entity entity){
+        return hitbox.intersects(entity.getHitbox());
     }
 
     public Sprite getSprite(){
@@ -23,7 +35,7 @@ public abstract class Entity implements LogicalEntity {
         return this.sprite = sprite;
     }
 
-    public void registerObserver(Observer observer){
+    public void registerObserver(GraphicObserver observer){
         this.observer = observer;
     }
 
@@ -43,7 +55,7 @@ public abstract class Entity implements LogicalEntity {
         return positionInY;
     }
     
-    public void acceptVisit(Visitor visitor) {
-    	visitor.visit(this);
+    public GraphicObserver getGraphicObserver(){
+        return observer;
     }
 }

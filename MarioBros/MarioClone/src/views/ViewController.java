@@ -66,16 +66,21 @@ public class ViewController {
 
     // ObserverEntityMethods
 
-    public Observer registerEntity(CharacterEntity character ){
-        Observer characterObserver = levelScreen.drawEntityCharacter(character);
+    public GraphicObserver registerEntity(CharacterEntity character ){
+        GraphicObserver characterObserver = levelScreen.drawEntityCharacter(character);
+        character.setObserver(characterObserver);
         refresh();
         return characterObserver;
 
     }
 
-    public Observer registerEntity(LogicalEntity entity){
-        Observer entityObserver = levelScreen.drawLogicalEntity(entity);
+    public GraphicObserver registerEntity(LogicalEntity entity){
+        GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity);
+        entity.setObserver(entityObserver);
         refresh();
         return entityObserver;
+    }
+    public void removeLogicalEntity(LogicalEntity e) {
+        levelScreen.remove(e.getGraphicObserver());
     }
 }

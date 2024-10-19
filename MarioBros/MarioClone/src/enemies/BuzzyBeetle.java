@@ -1,5 +1,7 @@
 package enemies;
 import factories.Sprite;
+import game.Visitor;
+import views.GraphicObserver;
 
 public class BuzzyBeetle extends Enemy {
 
@@ -16,5 +18,11 @@ public class BuzzyBeetle extends Enemy {
 	
 	public int getPointsOnKill() {
 		return pointsOnKill;
+	}
+	public void acceptVisit(Visitor visitor) {
+    	visitor.visit(this);
+    }
+	public void setObserver(GraphicObserver observer) {
+		this.observer = observer;
 	}
 }

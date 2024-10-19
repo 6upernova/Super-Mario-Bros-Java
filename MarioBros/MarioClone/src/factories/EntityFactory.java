@@ -1,6 +1,6 @@
 package factories;
 import platforms.*;
-import platforms.Void;
+import platforms.VoidBlock;
 import powerUps.*;
 import enemies.*;
 import java.util.HashMap;
@@ -146,7 +146,7 @@ public class EntityFactory {
 	}
 	
 	private Platform newVoid(int worldX, int worldY) {
-		Void gameVoid = new Void(spriteFactory.getVoidSprite(), worldX,worldY);
+		VoidBlock gameVoid = new VoidBlock(spriteFactory.getVoidSprite(), worldX,worldY);
 	    return gameVoid;
 	}
 	

@@ -2,6 +2,7 @@ package platforms;
 
 import factories.Sprite;
 import game.Visitor;
+import views.GraphicObserver;
 
 public class Question extends Platform {
 
@@ -12,6 +13,9 @@ public class Question extends Platform {
 	}
 
 	public void acceptVisit(Visitor visitor) {
-		super.acceptVisit(visitor);
+    	visitor.visit(this);
+    }
+	public void setObserver(GraphicObserver observer) {
+		this.observer = observer;
 	}
 }

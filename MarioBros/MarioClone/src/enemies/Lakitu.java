@@ -1,5 +1,7 @@
 package enemies;
 import factories.Sprite;
+import game.Visitor;
+import views.GraphicObserver;
 
 public class Lakitu extends Enemy{
 
@@ -16,6 +18,15 @@ public class Lakitu extends Enemy{
 	
 	public int getPointsOnKill() {
 		return pointsOnKill;
+	}
+	public void acceptVisit(Visitor visitor) {
+    	visitor.visit(this);
+    }
+	public void setObserver(GraphicObserver observer) {
+		this.observer = observer;
+	}
+	public void setObserver(GraphicObserver observer) {
+		this.observer = observer;
 	}
 	
 }

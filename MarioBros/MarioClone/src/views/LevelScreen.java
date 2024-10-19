@@ -91,27 +91,20 @@ public class LevelScreen extends JPanel {
 
     //View Controller and draw operations
 
-    public Observer drawEntityCharacter( CharacterEntity characterEntity){
+    public GraphicObserver drawEntityCharacter( CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
         return characterObserver;
     }
 
-    public Observer drawLogicalEntity(LogicalEntity entity) {
+    public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
         backgroundImageLabel.add(entityObserver);
         return entityObserver;
         
     }
+    public void remove(GraphicObserver g){
+        backgroundImageLabel.remove(g);
+    }
 
 }   
-    
-
-
-    
-
-    
-
-
-
-

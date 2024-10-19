@@ -6,8 +6,10 @@ import factories.Level;
 import factories.LevelGenerator;
 import factories.SpriteFactory;
 import launcher.CharacterThread;
+import launcher.ColisionThread;
 import platforms.Platform;
 import powerUps.PowerUp;
+import views.GraphicObserver;
 import views.Observer;
 import views.ViewController;
 
@@ -33,7 +35,9 @@ public class Game {
         this.currentLevel = levelGenerator.getLevel(level);
         this.numberLevel = level;
     } */     
-
+    public Level getCurrentLevel(){
+        return currentLevel;
+    }
     //Launcher operation
     public void setViewController(ViewController viewController){
         this.viewController = viewController;
@@ -42,7 +46,7 @@ public class Game {
     public void start(){
         currentLevel= levelGenerator.createLevel();
         setObservers();
-        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), currentLevel.getCharacter());
+        ColisionThread thread = new ColisionThread(viewController.getKeyboard(), this);
         thread.start();
         viewController.showLevelScreen();
     }
@@ -61,28 +65,28 @@ public class Game {
 
 
     protected void setCharacterObserver(Character character){
-        Observer characterObserver = viewController.registerEntity(character);
+        GraphicObserver characterObserver = viewController.registerEntity(character);
         character.registerObserver(characterObserver);
 
     }  
     
     protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-            Observer platformObserver = viewController.registerEntity(platform);
+            GraphicObserver platformObserver = viewController.registerEntity(platform);
     		platform.registerObserver(platformObserver);
     	}
     }
     
    protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		Observer enemyObserver=viewController.registerEntity(enemy);
+    		GraphicObserver enemyObserver=viewController.registerEntity(enemy);
     		enemy.registerObserver(enemyObserver);
     	}
     }
     
     protected void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList) {
-    		Observer powerUpObserver= viewController.registerEntity(powerUp);
+    		GraphicObserver powerUpObserver= viewController.registerEntity(powerUp);
     		powerUp.registerObserver(powerUpObserver);
     	}
     }
@@ -91,6 +95,10 @@ public class Game {
     	numberLevel++;
     	newGame();
     }*/
+    public void removeLogicalEntity(LogicalEntity e) {
+        viewController.removeLogicalEntity(e);
+        System.out.println("borre algo");
+    }
     
     /* public setViewController(ViewController viewController){
          this.viewController = viewController;
