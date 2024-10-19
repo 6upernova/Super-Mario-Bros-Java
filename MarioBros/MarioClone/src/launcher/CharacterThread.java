@@ -44,7 +44,10 @@ public class CharacterThread extends Thread {
         switch (verticalDirection) {
             case "Up":
                 if(!character.isInAir())
-                    character.jump("Jumping" + horizontalDirection );
+                    if(horizontalDirection == "None")
+                        character.jump("Jumping" + keyboard.getPreviousDirection());
+                    else
+                        character.jump("Jumping" + horizontalDirection);
                 break;
         }
     	switch(horizontalDirection) {
