@@ -5,12 +5,10 @@ import enemies.Enemy;
 import factories.Level;
 import factories.LevelGenerator;
 import factories.SpriteFactory;
-import launcher.CharacterThread;
 import launcher.ColisionThread;
 import platforms.Platform;
 import powerUps.PowerUp;
 import views.GraphicObserver;
-import views.Observer;
 import views.ViewController;
 
 public class Game {

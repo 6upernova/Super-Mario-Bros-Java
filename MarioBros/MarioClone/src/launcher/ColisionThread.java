@@ -107,11 +107,14 @@ public class ColisionThread extends Thread {
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
         character.applyGravity();
         switch (verticalDirection) {
-            case "Up":
-                if(!character.isInAir())
-                    character.jump("Jumping" + horizontalDirection );
-                break;
-        }
+        case "Up":
+            if(!character.isInAir())
+                if(horizontalDirection == "None")
+                    character.jump("Jumping" + keyboard.getPreviousDirection());
+                else
+                    character.jump("Jumping" + horizontalDirection);
+            break;
+    }
     	switch(horizontalDirection) {
     		case "None":
     			character.stayStill("Still" + keyboard.getPreviousDirection());
