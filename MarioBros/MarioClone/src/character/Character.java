@@ -18,15 +18,10 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected boolean invincible;
 	protected CharacterState actualState;
 	protected HashMap<String, Sprite> sprites;
-
-	
-
 	//Gravity And movementd
 	protected boolean isInAir;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
-
-	
 	
 	public Character(Sprite sprite, HashMap<String,Sprite> sprites) {
         super(sprite ,5,1);
@@ -37,34 +32,30 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		this.isInAir = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
+		this.actualState = null;
 	}
-
 	
 	public void moveLeft(String key){
-		float worldX = getX();
-	    setX(round2Digits(worldX - horizontalSpeed));
-		if(!isInAir())
-			setSprite(sprites.get(key));	
-		observer.update();
-		updateHitboxCoords();
+			float worldX = getX();
+			setX(round2Digits(worldX - horizontalSpeed));
+			if(!isInAir())
+				setSprite(sprites.get(key));	
+			observer.update();
+			updateHitboxCoords();
 	}
-	
 	public void moveRight(String key){
-        float worldX = getX();
-	    setX(round2Digits(worldX + horizontalSpeed));
-		if(!isInAir())
-			setSprite(sprites.get(key));
-		observer.update();
-		updateHitboxCoords();
+			float worldX = getX();
+			setX(round2Digits(worldX + horizontalSpeed));
+			if(!isInAir())
+				setSprite(sprites.get(key));
+			observer.update();
+			updateHitboxCoords();
 	}
-	
 	public void applyGravity() {
 		if (isInAir) {
 			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
 			float worldY = getY();
 			setY(worldY + verticalSpeed); 
-			
-			
 			
 			if (isOnSolid()) {
 				isInAir = false;
@@ -72,8 +63,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
 			}
 		}
-	}
-	
+	}	
 	public void jump(String key){
 		if(!isInAir() && isOnSolid()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
@@ -101,27 +91,24 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		return isInAir;
 	}
 
-
-
-	
 	private float round2Digits(float number){
 		return Math.round(number * 100.0) / 100.0f;
 	}
-
-	
 	
 	public void dead(){
 		lives--;
 		//animation.dead();
 	}
 	
+    ///////////////////////////////////////////////////
+    protected void changeState(CharacterState state) {
+		this.actualState = state;
+    }
+	
+	
 	public void damaged() {
 	}
-    
-    protected void changeState(int numberOfState) {
-        //actuallyState= stateList[numberOfState];
-    }
-    
+    ///////////////////////////////////////////////////
 	
 	public int getScore() {
 	    return score;
@@ -180,72 +167,126 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		} */
 	//Visits
 	//power ups
-	public void visit(SuperMushroom mushroom) {
-	//actualState= stateList[1];
-	int points= mushroom.getPoints();
-	System.out.println("aumento");
+	public void visit(SuperMushroom mushroom){
+		//actualState= stateList[1];
+		int points= mushroom.getPoints();
+		System.out.println("aumento");
 
-	/*
-	if (actualState.getName() == "Super")
-	points = points + 40;
-	addScore( points );
+		/*
+		if (actualState.getName() == "Super")
+		points = points + 40;
+		addScore( points );
 
-	*/
+		*/
+		//hacer que desaparezca de la pantalla
+	}
+	public void visit(GreenMushroom greenMushroom){
+		System.out.println("old score: "+lives);
+		lives++;
+		addScore( greenMushroom.getPoints());
+		System.out.println("new score: "+lives);
 	//hacer que desaparezca de la pantalla
 	}
-	public void visit(GreenMushroom greenMushroom) {
-	lives++;
-	addScore( greenMushroom.getPoints() );
-	//hacer que desaparezca de la pantalla
-	}
-	public void visit(FireFlower flower) {
-	//actuallyState= stateList[2];
-	int points= flower.getPoints();
-	if (actualState.getName() == "Super")
-	points = points + 25;
-	else if(actualState.getName() == "Fire")
-			points = points + 45;
-	addScore( points );
-	//hacer que desaparezca de la pantalla
-	}
-	public void visit(Star star) {
-	int points= star.getPoints();
-	if (invincible)
-	points = points + 15;
-	addScore( points );
-	//hacer que desaparezca de la pantalla
-	invincible = true;
-	}
-		public void visit(Coin coin) {
-		addScore( coin.getPoints() );
-	//hacer que desaparezca de la pantalla
+	public void visit(FireFlower flower){
+		//actuallyState= stateList[2];
+		int points= flower.getPoints();
+		/*
+		
+		if (actualState.getName() == "Super")
+			points = points + 25;
+		else if(actualState.getName() == "Fire")
+				points = points + 45;
+		 */
+		addScore( points );
+		//hacer que desaparezca de la pantalla
 		}
+	
+	public void visit(Star star){
+		int points= star.getPoints();
+		if (invincible)
+			points = points + 15;
+		addScore( points );
+		//hacer que desaparezca de la pantalla
+		invincible = true;
+	}
+	public void visit(Coin coin){
+		System.out.println("old score: "+score);
+		addScore( coin.getPoints());
+		System.out.println("new score: "+score);
+		//hacer que desaparezca de la pantalla
+	}
 	
 	//platforms
 	public void visit(Block block) {
-		}
+
+	}
 	public void visit(Pipe pipe) {
-		
+		if(hitbox.leftCollision(pipe.getHitbox()) || hitbox.rightCollision(pipe.getHitbox())){
+		}
+		//System.out.println("visita pipe");
 	}
 	public void visit(Flag flag) {
-		}
+		System.out.println("visita a la flag");
+	}
 	public void visit(VoidBlock voidBlock) {
 		subtractScore(15);
-	/*si todavia tiene vidas
-	resetea el nivel
-	sino muere 
-	*/
+		/*si todavia tiene vidas
+		resetea el nivel
+		sino muere 
+		*/
         dead();
     }
 
-	public void visit(Brick voidBlock) {
+	public void visit(Brick brickBlock) {
+		/*
+		
+		if (hitbox.upCollision(brickBlock.getHitbox())) {
+			setVerticalSpeed(0);
+			positionInY = brickBlock.getY() + (float) hitbox.getHeight();
+		}
+		if(hitbox.downCollision(brickBlock.getHitbox())){
+			setVerticalSpeed(0);
+			positionInY = brickBlock.getY() - (float) hitbox.getHeight();
 
+		}
+		if(hitbox.leftCollision(brickBlock.getHitbox())){
+			setHorizontalSpeed(0);
+			positionInX = brickBlock.getX() + (float) brickBlock.getHitbox().getWidth();
+		}
+		if(hitbox.rightCollision(brickBlock.getHitbox())){
+			setHorizontalSpeed(0);
+			positionInX = brickBlock.getX() - (float) brickBlock.getHitbox().getWidth();
+		}
+		observer.update();
+		updateHitboxCoords();
+		*/
 	}
 
 	public void visit(Question voidBlock) {
 
 	}
+
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
+		observer.update();
 	}
+
+	public float getVerticalSpeed() {
+		return verticalSpeed;
+	}
+
+	public void setVerticalSpeed(float verticalSpeed) {
+		this.verticalSpeed = verticalSpeed;
+		observer.update();
+	}
+	
+	public float getHorizontalSpeed() {
+		return horizontalSpeed;
+	}
+
+	public void setHorizontalSpeed(float horizontalSpeed) {
+		this.horizontalSpeed = horizontalSpeed;
+	}
+
+
 }

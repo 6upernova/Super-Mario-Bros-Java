@@ -1,16 +1,14 @@
 package character;
 
-public class NormalState implements CharacterState{
+public class NormalState extends CharacterState{
 
 	
-	protected final String name = "Normal";
-
-	public String getName() {
-		return name;
+	NormalState(Character character) {
+		super(character);
 	}
 
-	public void damaged(Character mario) {
-		//mario.dead();
+	public void damaged(Character character) {
+		//character.dead();
 	}
 	
 }

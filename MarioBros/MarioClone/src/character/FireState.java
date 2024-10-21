@@ -1,46 +1,24 @@
 package character;
-
-import projectile.*;
+import projectile.FireBall;
 
 public class FireState extends SuperState{
-	
-	protected final String name= "Fire";
-	protected Projectile fireBall;
-	protected int numberFireBall;
-	
-	public FireState() {
+	private FireBall fireBall;
+	public FireState(Character character) {
+		super(character);
 		this.fireBall= new FireBall();
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void damaged(Character mario) {
-		super.damaged(mario);
+	public void damaged(Character character) {
+		super.damaged(character);
 	}
 	
 	public boolean execute() {
-		boolean toReturn = throwFireBall();
+		boolean toReturn = true;
+		//completar
 		return toReturn;
 	}
 	
-	public boolean  throwFireBall() {
-		boolean canTrhowFireBall = numberFireBall > 1;
-		if(canTrhowFireBall) {
-		   subtractFireBallsThrowers();
-		   fireBall.animation();
-		}
-		else canTrhowFireBall = false;
-		return canTrhowFireBall;
-	}
-	//Las bolas de fuego son infinitas?
-	public void addFireBallsThrowers() {
-		numberFireBall++;
-	}
-	
-	public void subtractFireBallsThrowers() {
-		numberFireBall--;
+	public void  throwFireBall() {
+		fireBall.animation();
 	}
 
 }

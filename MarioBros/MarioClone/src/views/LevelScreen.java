@@ -1,5 +1,4 @@
 package views;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -7,12 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-
 import character.CharacterEntity;
 import game.LogicalEntity;
 
-public class LevelScreen extends JPanel {
-    
+public class LevelScreen extends JPanel {    
     protected ViewController viewController;
     protected JPanel contentPanel;
     protected JLabel backgroundImageLabel;
@@ -45,15 +42,12 @@ public class LevelScreen extends JPanel {
     }
 
     private void configureContentPanel(){
-
         contentPanel = new JPanel(null); 
         contentPanel.setPreferredSize(new Dimension(backgroundImageLabel.getIcon().getIconWidth(), ViewConstants.PANEL_HEIGHT));
         contentPanel.add(backgroundImageLabel);
     }
 
-
     private void configureScrollLabel(){
-
         scrollPanel = new JScrollPane(contentPanel); 
         scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -61,11 +55,7 @@ public class LevelScreen extends JPanel {
         this.add(scrollPanel, BorderLayout.CENTER);
     }
    
-    
-   
-
     private ImageIcon getBackgroundIcon(String path){
-
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource(path));
         backgroundIcon = GraphicTools.scaleImage(backgroundIcon.getIconHeight(), ViewConstants.PANEL_HEIGHT, backgroundIcon);
         return backgroundIcon;
@@ -90,7 +80,6 @@ public class LevelScreen extends JPanel {
 
 
     //View Controller and draw operations
-
     public GraphicObserver drawEntityCharacter( CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
@@ -100,9 +89,9 @@ public class LevelScreen extends JPanel {
     public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
         backgroundImageLabel.add(entityObserver);
-        return entityObserver;
-        
+        return entityObserver;   
     }
+    
     public void remove(GraphicObserver g){
         backgroundImageLabel.remove(g);
     }

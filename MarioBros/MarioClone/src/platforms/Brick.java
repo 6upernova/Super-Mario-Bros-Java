@@ -5,9 +5,8 @@ import game.Visitor;
 import views.GraphicObserver;
 
 public class Brick extends Platform{
-	static final private boolean isBreakeable = true;
 	public Brick(Sprite sprite, int positionInX, int positionInY) {
-		super(sprite, positionInX, positionInY, isBreakeable);
+		super(sprite, positionInX, positionInY, true);
 	}
 
 	public void brakeBrick() {

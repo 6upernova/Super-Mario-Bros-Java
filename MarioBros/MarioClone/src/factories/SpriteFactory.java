@@ -62,13 +62,13 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"GreenMushroom.png");	 
     }
     public Sprite getFireFlowerSprite(){
-        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"FireFlower.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"FireFlower.png");	 
     }
     public Sprite getStarSprite(){
-        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Star.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Star.png");	 
     }    
     public Sprite getCoinSprite(){
-        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Coin.gif");	 
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Coin.png");	 
     }
     //PROJETILE
     public Sprite getFireballSprite(){

@@ -1,25 +1,19 @@
 package views;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import character.CharacterEntity;
 import character.Keyboard;
 import game.Game;
 import game.LogicalEntity;
 
-public class ViewController {
-   
+public class ViewController {   
     protected JFrame window;
     protected LevelScreen levelScreen;
     //protected GameOverScreen gameOverScreen;
     //protected RankingScreen rankingScreen;
     //protected MenuScreen menuScreen;
-
     protected Keyboard keyboardInputs;
-
     protected Game game;
-
 
     public ViewController(Game game){
         this.game = game;
@@ -30,10 +24,7 @@ public class ViewController {
     }
     public ViewController(){
         levelScreen = new LevelScreen(this);
-        configureWindow();
-        
-        
-        
+        configureWindow();        
     }
 
     public void configureWindow (){
@@ -52,8 +43,6 @@ public class ViewController {
         refresh();
     }
     //To do resto de screens
-    
-    
 
     public void refresh(){
         window.revalidate();
@@ -80,6 +69,7 @@ public class ViewController {
         refresh();
         return entityObserver;
     }
+    
     public void removeLogicalEntity(LogicalEntity e) {
         levelScreen.remove(e.getGraphicObserver());
     }

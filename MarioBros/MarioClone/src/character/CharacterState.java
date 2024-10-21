@@ -1,7 +1,8 @@
 package character;
-
-public interface CharacterState {
-	public String getName();
-	public void damaged(Character character);
+public abstract class CharacterState {
+    protected Character character;
+    CharacterState(Character character) {
+        this.character = character;
+    }
+    public void damaged(){}    
 }
-

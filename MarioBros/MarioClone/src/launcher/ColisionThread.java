@@ -1,5 +1,7 @@
 package launcher;
 import java.util.List;
+
+import factories.BoundingBox;
 import factories.Level;
 import game.Game;
 import enemies.Enemy;
@@ -45,19 +47,14 @@ public class ColisionThread extends Thread {
             frameCount++;
             //System.out.println(maximumX+","+ ","+ character.getY() );
             moveCharacter(horizontalDirection, verticalDirection);
-
-
+            if(platformsColitions())
+            
             if(enemiesColitions())
                 System.out.println("colision con enemigo");
                 
             if(powerUpsColitions())
-            System.out.println("colision con power");
-
-            /*
-            if(platformsColitions())
-                System.out.println("colision con bloque"); */
-
-
+                System.out.println("colision con power");
+            
             try {
                 Thread.sleep(10);
             } 
@@ -81,25 +78,48 @@ public class ColisionThread extends Thread {
     public boolean powerUpsColitions(){
         boolean colition = false;
         for(PowerUp e: powerUps){
-            colition = character.getHitbox().intersects(e.getHitbox());
-            System.out.println(colition);
+            colition = character.colision(e);
+            //System.out.println(colition);
             if (colition) {
                     e.acceptVisit(character);   
                     game.removeLogicalEntity(e);  
-                    powerUps.remove(e);        
+                    powerUps.remove(e);   
                 break;
             }
         }
         return colition;
     }
+   
     public boolean platformsColitions(){
         boolean colition = false;
+        BoundingBox characterBox = character.getHitbox();
         for(Platform e: platforms){
-            colition = character.getHitbox().intersects(e.getHitbox());
-            if (colition) {
+            colition = characterBox.collision(e.getHitbox());
+            if (colition) {  
+                if(e.isBreakeable()){
+                    //System.out.println("es rompible");
+                    if(characterBox.upCollision(e.getHitbox())){
+                        e.acceptVisit(character);
+                        //System.out.println("colisiona la cabeza");
+                        
+                    }
+                    else if(characterBox.downCollision(e.getHitbox())){
+                        e.acceptVisit(character);
+                        //System.out.println("deberia estar arriba");
+                                        
+                    }
+                    else if(characterBox.leftCollision(e.getHitbox())){
+                        e.acceptVisit(character);
+                        
+                    }
+                    else if(characterBox.rightCollision(e.getHitbox())){
+                        e.acceptVisit(character);
+                        
+                    }
+                    
+                }
                 break;
             }
-
         }
         return colition;
     }
@@ -133,7 +153,7 @@ public class ColisionThread extends Thread {
         character.moveRight("Right"+spriteNumber);
         if(frameCount%4==0) 
             spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-	}
+    }
 		
 	private void moveLeft() {
 		float characterLeftLimit;
@@ -153,8 +173,9 @@ public class ColisionThread extends Thread {
 	}
 	
     private boolean characterInEnd(float characterXPosition) {
+        boolean inEnd = false;
     	if(characterXPosition>(ViewConstants.BACKGROUND_WIDTH-ViewConstants.WIN_WIDTH)/12)
-    		return true;
-    	return false;
+    		inEnd = true;
+    	return inEnd;
     }
 }

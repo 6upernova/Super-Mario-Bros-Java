@@ -3,7 +3,7 @@ import game.LogicalEntity;
 
 @SuppressWarnings("serial")
 public class EntityObserver extends GraphicObserver{
-    public EntityObserver(LogicalEntity observedEntity ){
+    public EntityObserver(LogicalEntity observedEntity){
         super(observedEntity);
         update();
     }

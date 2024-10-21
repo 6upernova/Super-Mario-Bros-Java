@@ -18,8 +18,8 @@ type is represented by int number:
             8       Shell
 
     power ups
-            10       Mushroom
-            11       FireFlower
+            10      Mushroom
+            11      FireFlower
             12      Star
             13      GreenMushroom
             14      Coin

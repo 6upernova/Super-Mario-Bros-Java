@@ -1,16 +1,9 @@
 package character;
-
-public class SuperState implements CharacterState{
-	
-	protected final String name= "Super";
-
-	public String getName() {
-		return name;
+public class SuperState extends CharacterState{	
+	SuperState(Character character) {
+		super(character);
 	}
-
-	public void damaged(Character mario) {
-		CharacterState newState = new NormalState();
-		//mario.changeState(newState);
+	public void damaged(Character character) {
+		character.changeState(new NormalState(character));
 	}
-
 }

@@ -1,26 +1,25 @@
 package game;
+import factories.BoundingBox;
 import factories.Sprite;
 import views.GraphicObserver;
-import views.Observer;
-import java.awt.Rectangle;
 
 public abstract class Entity implements LogicalEntity {
     protected float positionInX;
     protected float positionInY;
     protected Sprite sprite;
     protected GraphicObserver observer;
-    protected Rectangle hitbox;
+    protected BoundingBox hitbox;
 
     public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;
         this.positionInX = positionInX;
         this.positionInY = positionInY;
-        this.hitbox = new Rectangle((int)positionInX,(int) positionInY, 1, 2);
+        this.hitbox = new BoundingBox((int)positionInX,(int) positionInY, 1, 2);
     }
     protected void updateHitboxCoords(){
         hitbox.setLocation((int) positionInX, (int)positionInY);
     }
-    public Rectangle getHitbox(){
+    public BoundingBox getHitbox(){
         return hitbox;
     }
     public boolean colision(Entity entity){
