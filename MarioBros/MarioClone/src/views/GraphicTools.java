@@ -28,6 +28,14 @@ public class GraphicTools {
 
     //Scaling methods
 
+    public static ImageIcon scalePlatformImage(ImageIcon imageIcon) {
+    	Image image=imageIcon.getImage();
+    	int width= imageIcon.getIconWidth();
+    	int height=imageIcon.getIconHeight();
+    	image=image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+    	return new ImageIcon(image);
+    }
+    
     public static ImageIcon scaleImage(float origin, float destination, ImageIcon imageIcon){
         float scale = calculateScale(origin, destination);
         Image image = imageIcon.getImage();
