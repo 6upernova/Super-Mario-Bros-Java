@@ -25,7 +25,18 @@ public abstract class Entity implements LogicalEntity {
     public boolean colision(Entity entity){
         return hitbox.intersects(entity.getHitbox());
     }
-
+    public boolean leftCollision(Entity entity){
+        return hitbox.leftCollision(entity.getHitbox());
+    }
+    public boolean rightCollision(Entity entity){
+        return hitbox.rightCollision(entity.getHitbox());
+    }
+    public boolean upCollision(Entity entity){
+        return hitbox.upCollision(entity.getHitbox());
+    }
+    public boolean downCollision(Entity entity){
+        return hitbox.downCollision(entity.getHitbox());
+    }
     public Sprite getSprite(){
         return sprite;
     }

@@ -1,4 +1,7 @@
 package character;
+import java.util.HashMap;
+
+import factories.Sprite;
 import projectile.FireBall;
 
 public class FireState extends SuperState{
@@ -19,6 +22,15 @@ public class FireState extends SuperState{
 	
 	public void  throwFireBall() {
 		fireBall.animation();
+	}
+
+	public HashMap<String, Sprite>  getSprites() {
+		HashMap<String, Sprite> sprites;
+		if(character.isInvincible()){
+			sprites = character.getFireInvencibleSprites();
+		}
+		else sprites = character.getFireSprites();
+		return sprites;
 	}
 
 }

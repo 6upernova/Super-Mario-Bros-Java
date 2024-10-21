@@ -55,7 +55,7 @@ public class ViewController {
 
     // ObserverEntityMethods
 
-    public GraphicObserver registerEntity(CharacterEntity character ){
+    public GraphicObserver registerEntity(CharacterEntity character){
         GraphicObserver characterObserver = levelScreen.drawEntityCharacter(character);
         character.setObserver(characterObserver);
         refresh();

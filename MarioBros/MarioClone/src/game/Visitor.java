@@ -1,5 +1,4 @@
 package game;
-
 import enemies.BuzzyBeetle;
 import enemies.Goomba;
 import enemies.KoopaTroopa;

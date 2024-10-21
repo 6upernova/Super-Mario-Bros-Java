@@ -80,7 +80,7 @@ public class LevelScreen extends JPanel {
 
 
     //View Controller and draw operations
-    public GraphicObserver drawEntityCharacter( CharacterEntity characterEntity){
+    public GraphicObserver drawEntityCharacter(CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
         return characterObserver;
@@ -96,4 +96,5 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.remove(g);
     }
 
+    
 }   

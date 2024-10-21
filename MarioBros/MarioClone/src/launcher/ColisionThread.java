@@ -17,7 +17,6 @@ public class ColisionThread extends Thread {
     protected List<Platform> platforms;
     protected List<PowerUp> powerUps;
     protected Character character;
-
     protected Keyboard keyboard;
     private int frameCount;
     private int spriteNumber;
@@ -41,6 +40,7 @@ public class ColisionThread extends Thread {
     public void run(){
         String horizontalDirection;
         String verticalDirection;
+        int counter = 0;
     	while(true){
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
@@ -49,11 +49,22 @@ public class ColisionThread extends Thread {
             moveCharacter(horizontalDirection, verticalDirection);
             if(platformsColitions())
             
-            if(enemiesColitions())
+            if(enemiesColitions()){
                 System.out.println("colision con enemigo");
-                
+            }
             if(powerUpsColitions())
                 System.out.println("colision con power");
+            
+            if(character.isInvincible()){
+                if(counter > 5000){
+                    //EL INVENCIBLE DURA 5seg
+                    character.endInvencible();
+                    counter = 0;
+                }
+                else{
+                    counter += 10;
+                }
+            }
             
             try {
                 Thread.sleep(10);
@@ -67,9 +78,18 @@ public class ColisionThread extends Thread {
     public boolean enemiesColitions(){
         boolean colition = false;
         for(Enemy e: enemies){
-            colition = character.getHitbox().intersects(e.getHitbox());
+            colition = character.colision(e);
+            System.out.println(colition);
             if (colition) {
-                character.stayStill("Still"+keyboard.getPreviousDirection());
+                e.acceptVisit(character);
+                System.out.println(character.leftCollision(e) || character.rightCollision(e));
+                if(character.leftCollision(e) || character.rightCollision(e) && !character.isInvincible()){
+                    game.resetLevel();
+                    System.out.println("deberia resetear");
+                    break;
+                }
+                if(character.downCollision(e))
+                    enemies.remove(e);
                 break;
             }
         }

@@ -42,7 +42,7 @@ public class Game {
     }
 
     public void start(){
-        currentLevel= levelGenerator.createLevel();
+        currentLevel = levelGenerator.createLevel();
         setObservers();
         ColisionThread thread = new ColisionThread(viewController.getKeyboard(), this);
         thread.start();
@@ -96,6 +96,9 @@ public class Game {
     public void removeLogicalEntity(LogicalEntity e) {
         viewController.removeLogicalEntity(e);
         System.out.println("borre algo");
+    }
+    public void resetLevel() {
+        start();
     }
     
     /* public setViewController(ViewController viewController){
