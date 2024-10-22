@@ -8,34 +8,34 @@ public abstract class Entity implements LogicalEntity {
     protected float positionInY;
     protected Sprite sprite;
     protected GraphicObserver observer;
-    protected BoundingBox hitbox;
+    protected BoundingBox boundingBox;
 
     public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;
         this.positionInX = positionInX;
         this.positionInY = positionInY;
-        this.hitbox = new BoundingBox((int)positionInX,(int) positionInY, 1, 2);
+        this.boundingBox = new BoundingBox((int)positionInX,(int) positionInY, 1, 2);
     }
-    protected void updateHitboxCoords(){
-        hitbox.setLocation((int) positionInX, (int)positionInY);
+    protected void updateBoundingBoxCoords(){
+        boundingBox.setLocation((int) positionInX, (int)positionInY);
     }
-    public BoundingBox getHitbox(){
-        return hitbox;
+    public BoundingBox getBoundingBox(){
+        return boundingBox;
     }
     public boolean colision(Entity entity){
-        return hitbox.intersects(entity.getHitbox());
+        return boundingBox.intersects(entity.getBoundingBox());
     }
     public boolean leftCollision(Entity entity){
-        return hitbox.leftCollision(entity.getHitbox());
+        return boundingBox.leftCollision(entity.getBoundingBox());
     }
     public boolean rightCollision(Entity entity){
-        return hitbox.rightCollision(entity.getHitbox());
+        return boundingBox.rightCollision(entity.getBoundingBox());
     }
     public boolean upCollision(Entity entity){
-        return hitbox.upCollision(entity.getHitbox());
+        return boundingBox.upCollision(entity.getBoundingBox());
     }
     public boolean downCollision(Entity entity){
-        return hitbox.downCollision(entity.getHitbox());
+        return boundingBox.downCollision(entity.getBoundingBox());
     }
     public Sprite getSprite(){
         return sprite;

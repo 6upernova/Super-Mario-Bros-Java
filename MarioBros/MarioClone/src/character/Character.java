@@ -43,7 +43,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setX(round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
 				setSprite(actualState.getSprites().get(key));	
-			updateHitboxCoords();
+			updateBoundingBoxCoords();
 			observer.update();
 	}
 	public void moveRight(String key){
@@ -51,7 +51,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setX(round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
 				setSprite(actualState.getSprites().get(key));
-			updateHitboxCoords();
+			updateBoundingBoxCoords();
 			observer.update();
 	}
 	public void applyGravity() {
@@ -68,13 +68,14 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		}
 	}	
 	public void jump(String key){
-		if(!isInAir() && isOnSolid()){
+		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
         	isInAir = true;
 			setSprite(actualState.getSprites().get(key));
+			updateBoundingBoxCoords();
         	observer.update();
 		}
-		updateHitboxCoords();
+		
 	}
 
 	public void stayStill(String key){
@@ -85,7 +86,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	private boolean isOnSolid(){
 		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
-		return getY() <= 2;
+		return getY() <= 1;
 	}
 
 	public boolean isInAir(){
@@ -207,9 +208,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		actualState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
-		//setY(positionInY+1);
-		updateHitboxToBig();
-		System.out.println(isOnSolid());
+		setY(positionInY+1);
+		updateBoundingBoxToBig();
+		//System.out.println(isOnSolid());
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
@@ -224,8 +225,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		int points= flower.getPoints();
 		this.actualState = new FireState(this);
 		addScore(points);
-		updateHitboxToBig();
-		System.out.println(isOnSolid());
+		updateBoundingBoxToBig();
+		//System.out.println(isOnSolid());
 		observer.update();
 	}
 	public void visit(Star star){
@@ -242,15 +243,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		System.out.println("new score: "+score);
 		//hacer que desaparezca de la pantalla
 	}
-	private void updateHitboxToBig(){
-		hitbox.height = 2 * hitbox.height;	
+	private void updateBoundingBoxToBig(){
+		boundingBox.height = 2 * boundingBox.height;	
 	}
 	//platforms
 	public void visit(Block block) {
 
 	}
 	public void visit(Pipe pipe) {
-		if(hitbox.leftCollision(pipe.getHitbox()) || hitbox.rightCollision(pipe.getHitbox())){
+		if(boundingBox.leftCollision(pipe.getBoundingBox()) || boundingBox.rightCollision(pipe.getBoundingBox())){
 		}
 		//System.out.println("visita pipe");
 	}
@@ -268,25 +269,25 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	public void visit(Brick brickBlock) {
 		/*
 		
-		if (hitbox.upCollision(brickBlock.getHitbox())) {
+		if (boundingBox.upCollision(brickBlock.getBoundingBox())) {
 			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() + (float) hitbox.getHeight();
+			positionInY = brickBlock.getY() + (float) boundingBox.getHeight();
 		}
-		if(hitbox.downCollision(brickBlock.getHitbox())){
+		if(boundingBox.downCollision(brickBlock.getBoundingBox())){
 			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() - (float) hitbox.getHeight();
+			positionInY = brickBlock.getY() - (float) boundingBox.getHeight();
 
 		}
-		if(hitbox.leftCollision(brickBlock.getHitbox())){
+		if(boundingBox.leftCollision(brickBlock.getBoundingBox())){
 			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() + (float) brickBlock.getHitbox().getWidth();
+			positionInX = brickBlock.getX() + (float) brickBlock.getBoundingBox().getWidth();
 		}
-		if(hitbox.rightCollision(brickBlock.getHitbox())){
+		if(boundingBox.rightCollision(brickBlock.getBoundingBox())){
 			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() - (float) brickBlock.getHitbox().getWidth();
+			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
 		}
 		observer.update();
-		updateHitboxCoords();
+		updateBoundingBoxCoords();
 		*/
 	}
 	public void visit(Question voidBlock) {
