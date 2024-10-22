@@ -6,7 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+
+import HitboxDebug.HitboxPanel;
 import character.CharacterEntity;
+import game.BoundingBox;
 import game.LogicalEntity;
 
 public class LevelScreen extends JPanel {    
@@ -86,6 +89,8 @@ public class LevelScreen extends JPanel {
         return characterObserver;
     }
 
+   
+
     public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
         backgroundImageLabel.add(entityObserver);
@@ -96,5 +101,13 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.remove(g);
     }
 
+    public void drawHitbox(LogicalEntity entity) {
+        BoundingBox hitbox = entity.getBoundingBox();
+        HitboxPanel hitboxPanel = new HitboxPanel(hitbox);
+        
+        backgroundImageLabel.add(hitboxPanel);
+        backgroundImageLabel.repaint();
+        
+    }
     
 }   

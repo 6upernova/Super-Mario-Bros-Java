@@ -2,8 +2,8 @@ package launcher;
 import java.util.Iterator;
 import java.util.List;
 
-import factories.BoundingBox;
 import factories.Level;
+import game.BoundingBox;
 import game.Game;
 import enemies.Enemy;
 import powerUps.*;
@@ -12,7 +12,7 @@ import platforms.*;
 import character.Character;
 import character.Keyboard;
 
-public class ColisionThread extends Thread {
+public class CharacterThread extends Thread {
     protected Level level;
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
@@ -24,7 +24,7 @@ public class ColisionThread extends Thread {
     private float maximumX;
     private Game game;
 
-    public ColisionThread(Keyboard keyboard, Game game){
+    public CharacterThread(Keyboard keyboard, Game game){
         this.game = game;
         this.level = game.getCurrentLevel();
         this.enemies = level.getEnemies();
@@ -38,17 +38,22 @@ public class ColisionThread extends Thread {
         this.maximumX = character.getX();
         this.game = game;
     }
+    
     public void run(){
         String horizontalDirection;
         String verticalDirection;
         int counter = 0;
     	while(true){
+
+
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
             //System.out.println(maximumX+","+ ","+ character.getY() );
             moveCharacter(horizontalDirection, verticalDirection);
-            if(platformsColitions())
+            if(platformsColitions()){
+
+            }
             
             if(enemiesColitions()){
                 System.out.println("colision con enemigo");
@@ -153,7 +158,8 @@ public class ColisionThread extends Thread {
         }
         return colition;
     }
-    //////////////////////////////////////////////////////////////////////////////////////////
+
+
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
         character.applyGravity();
         switch (verticalDirection) {

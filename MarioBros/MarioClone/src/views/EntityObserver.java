@@ -1,12 +1,13 @@
 package views;
+import game.BoundingBox;
 import game.LogicalEntity;
 
-@SuppressWarnings("serial")
 public class EntityObserver extends GraphicObserver{
     public EntityObserver(LogicalEntity observedEntity){
         super(observedEntity);
         update();
     }
+
     protected void updatePositionSize(){
         int width = this.getIcon().getIconWidth();
         int height = this.getIcon().getIconHeight();
@@ -14,4 +15,6 @@ public class EntityObserver extends GraphicObserver{
         int y = GraphicTools.transformY(observedEntity.getY(),this);        
         this.setBounds(x, y, width, height);
     }
+
+    
 }
