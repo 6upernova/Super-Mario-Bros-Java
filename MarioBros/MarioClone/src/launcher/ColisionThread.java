@@ -1,4 +1,5 @@
 package launcher;
+import java.util.Iterator;
 import java.util.List;
 
 import factories.BoundingBox;
@@ -77,34 +78,43 @@ public class ColisionThread extends Thread {
 
     public boolean enemiesColitions(){
         boolean colition = false;
-        for(Enemy e: enemies){
+        Iterator<Enemy> enemiesIt = enemies.iterator();
+        Enemy e;
+        boolean endIteration = false;
+        while(enemiesIt.hasNext() && !endIteration){
+            e = enemiesIt.next();
             colition = character.colision(e);
-            System.out.println(colition);
             if (colition) {
-                e.acceptVisit(character);
-                System.out.println(character.leftCollision(e) || character.rightCollision(e));
+                /*
                 if(character.leftCollision(e) || character.rightCollision(e) && !character.isInvincible()){
+                    character.dead();
                     game.resetLevel();
-                    System.out.println("deberia resetear");
-                    break;
+                    endIteration = true;
                 }
-                if(character.downCollision(e))
-                    enemies.remove(e);
-                break;
+                 */
+                //if(character.downCollision(e)){
+                    //e.acceptVisit(character);
+                game.removeLogicalEntity(e);
+                enemies.remove(e);                    
+                endIteration = true;
             }
         }
         return colition;
     }
     public boolean powerUpsColitions(){
         boolean colition = false;
-        for(PowerUp e: powerUps){
+        Iterator<PowerUp> it = powerUps.iterator();
+        PowerUp e;
+        boolean endIteration = false;
+        while (it.hasNext() && !endIteration) {
+            e = it.next();
             colition = character.colision(e);
             //System.out.println(colition);
             if (colition) {
-                    e.acceptVisit(character);   
-                    game.removeLogicalEntity(e);  
-                    powerUps.remove(e);   
-                break;
+                e.acceptVisit(character);   
+                game.removeLogicalEntity(e);  
+                powerUps.remove(e);   
+                endIteration = true;
             }
         }
         return colition;
@@ -112,33 +122,33 @@ public class ColisionThread extends Thread {
    
     public boolean platformsColitions(){
         boolean colition = false;
+        boolean endIteration = false;
+        Iterator<Platform> it = platforms.iterator();
         BoundingBox characterBox = character.getHitbox();
-        for(Platform e: platforms){
-            colition = characterBox.collision(e.getHitbox());
-            if (colition) {  
-                if(e.isBreakeable()){
+        Platform p;
+        while (it.hasNext() && !endIteration){  
+            p = it.next();
+            colition = characterBox.collision(p.getHitbox());
+            if(colition){
+                if(p.isBreakeable()){
                     //System.out.println("es rompible");
-                    if(characterBox.upCollision(e.getHitbox())){
-                        e.acceptVisit(character);
+                    if(characterBox.upCollision(p.getHitbox())){
+                        p.acceptVisit(character);
                         //System.out.println("colisiona la cabeza");
                         
                     }
-                    else if(characterBox.downCollision(e.getHitbox())){
-                        e.acceptVisit(character);
-                        //System.out.println("deberia estar arriba");
-                                        
-                    }
-                    else if(characterBox.leftCollision(e.getHitbox())){
-                        e.acceptVisit(character);
-                        
-                    }
-                    else if(characterBox.rightCollision(e.getHitbox())){
-                        e.acceptVisit(character);
-                        
-                    }
-                    
+                    else if(characterBox.downCollision(p.getHitbox())){
+                            p.acceptVisit(character);
+                            //System.out.println("deberia estar arriba");                        
+                            }
+                    else if(characterBox.leftCollision(p.getHitbox())){
+                            p.acceptVisit(character);
+                            }
+                    else if(characterBox.rightCollision(p.getHitbox())){
+                            p.acceptVisit(character);                    
+                            }      
+                    endIteration = true;          
                 }
-                break;
             }
         }
         return colition;

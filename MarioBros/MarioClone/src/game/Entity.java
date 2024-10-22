@@ -23,7 +23,7 @@ public abstract class Entity implements LogicalEntity {
         return hitbox;
     }
     public boolean colision(Entity entity){
-        return hitbox.intersects(entity.getHitbox());
+        return hitbox.collision(entity.getHitbox());
     }
     public boolean leftCollision(Entity entity){
         return hitbox.leftCollision(entity.getHitbox());
