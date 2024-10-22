@@ -12,7 +12,7 @@ import platforms.*;
 import character.Character;
 import character.Keyboard;
 
-public class ColisionThread extends Thread {
+public class CharacterThread extends Thread {
     protected Level level;
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
@@ -24,7 +24,7 @@ public class ColisionThread extends Thread {
     private float maximumX;
     private Game game;
 
-    public ColisionThread(Keyboard keyboard, Game game){
+    public CharacterThread(Keyboard keyboard, Game game){
         this.game = game;
         this.level = game.getCurrentLevel();
         this.enemies = level.getEnemies();
@@ -51,7 +51,7 @@ public class ColisionThread extends Thread {
             if(platformsColitions())
             
             if(enemiesColitions()){
-                System.out.println("colision con enemigo");
+                
             }
             if(powerUpsColitions())
                 System.out.println("colision con power");
@@ -94,6 +94,7 @@ public class ColisionThread extends Thread {
                  */
                 //if(character.downCollision(e)){
                     //e.acceptVisit(character);
+            	System.out.println("colision con enemigo");
                 game.removeLogicalEntity(e);
                 enemies.remove(e);                    
                 endIteration = true;
@@ -131,6 +132,7 @@ public class ColisionThread extends Thread {
             p = it.next();
             colition = characterBox.collision(p.getBoundingBox());
             if(colition){
+            	System.out.println("Colision con plataforma");
                 if(p.isBreakeable()){
                     //System.out.println("es rompible");
                     if(characterBox.upCollision(p.getBoundingBox())) {

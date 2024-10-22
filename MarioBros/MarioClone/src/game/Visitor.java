@@ -28,8 +28,8 @@ public interface Visitor{
 	public void visit(Pipe pipe) ;
 	public void visit(Flag flag);
 	public void visit(VoidBlock voidBlock);
-	public void visit(Brick voidBlock);
-	public void visit(Question voidBlock);
+	public void visit(Brick brickBlock);
+	public void visit(Question questionBlock);
 	//en
 	public void visit(Goomba goomba);
     public void visit(KoopaTroopa koopaTroopa) ;

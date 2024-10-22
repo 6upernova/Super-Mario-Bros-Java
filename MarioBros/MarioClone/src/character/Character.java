@@ -1,7 +1,6 @@
 package character;
 import java.util.HashMap;
 import enemies.*;
-import factories.BoundingBox;
 import factories.Sprite;
 import game.Entity;
 import game.Visitor;
