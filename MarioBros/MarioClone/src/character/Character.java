@@ -214,7 +214,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
-		setY(positionInY+1);
+		//setY(positionInY+1);
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
 		observer.update();
