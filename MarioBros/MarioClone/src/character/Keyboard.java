@@ -20,7 +20,6 @@ public class Keyboard extends java.awt.event.KeyAdapter {
     public void keyPressed(KeyEvent pressedKey) {
     	if (pressedKey.getKeyCode() == KeyEvent.VK_W) 
                 playerVerticalDirection = "Up";
-    
         if(!keyIsPressed){
             switch(pressedKey.getKeyCode()) {
                 case KeyEvent.VK_D:

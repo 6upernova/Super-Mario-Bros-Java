@@ -14,7 +14,7 @@ public class ViewConstants {
 	public static final float CHARACTER_JUMP = 40/100.0f;
 	public static final float WORLD_GRAVITY = 2/100.0f;
 	
-	public static final int BACKGROUND_WIDTH=2304;
+	public static final int MAP_CELLS=143;
 
 	public static final int LEFT_CHARACTER_SPACE = 4;
 
