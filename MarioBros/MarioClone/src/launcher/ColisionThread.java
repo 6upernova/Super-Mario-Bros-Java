@@ -186,26 +186,21 @@ public class ColisionThread extends Thread {
     }
 		
 	private void moveLeft() {
-		float characterLeftLimit;
-    	boolean characterInEnd;
-		//float maximumXFraction=maximumX-(int)maximumX;
-		characterInEnd=characterInEnd(character.getX());
-        if(!characterInEnd) 
-            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
-        else 
-            characterLeftLimit=(ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH)/12;
-        
-		if(character.getX()>characterLeftLimit) {
+        float characterLeftLimit=characterInMapEnd(character.getX());
+        if(character.getX()>characterLeftLimit) {
             character.moveLeft("Left"+spriteNumber);
             if(frameCount%4==0) 
-            	spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
-		}
-	}
-	
-    private boolean characterInEnd(float characterXPosition) {
-        boolean inEnd = false;
-    	if(characterXPosition>(ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH)/12)
-    		inEnd = true;
-    	return inEnd;
+                spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+        }
+    }
+
+    private float characterInMapEnd(float characterXPosition) {
+        float characterLeftLimit=0;
+        float mapEnd=ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH/ViewConstants.CELL_SIZE;
+        if(characterXPosition>(mapEnd))
+            characterLeftLimit=(mapEnd);
+        else
+            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
+        return characterLeftLimit;
     }
 }

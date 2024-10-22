@@ -66,6 +66,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
 			}
 		}
+		observer.update();
 	}	
 	public void jump(String key){
 		if(!isInAir()){
