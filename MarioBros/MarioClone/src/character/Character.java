@@ -15,7 +15,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected int lives;
 	protected int score;
 	protected boolean invincible;
-	protected CharacterState actualState;
+	protected CharacterState characterState;
+	protected String actualState; //Variable de uso provisional (eliminar cuando esten las colisiones)
 	protected HashMap<String, Sprite> sprites;
 	protected HashMap<String, Sprite> superSprites;
 	protected HashMap<String, Sprite> fireSprites;
@@ -29,20 +30,21 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	
 	public Character(Sprite sprite) {
         super(sprite ,5,1);
-		this.score=0;
-		this.lives=3;
-        this.invincible= false;
+        this.actualState = "Normal";
+		this.score = 0;
+		this.lives = 3;
+        this.invincible = false;
 		this.isInAir = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
-		this.actualState = new NormalState(this);
+		this.characterState = new NormalState(this);
 	}
 	
 	public void moveLeft(String key){
 			float worldX = getX();
 			setX(round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
-				setSprite(actualState.getSprites().get(key));	
+				setSprite(characterState.getSprites().get(key));	
 			updateBoundingBoxCoords();
 			observer.update();
 	}
@@ -50,7 +52,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			float worldX = getX();
 			setX(round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
-				setSprite(actualState.getSprites().get(key));
+				setSprite(characterState.getSprites().get(key));
 			updateBoundingBoxCoords();
 			observer.update();
 	}
@@ -72,7 +74,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
         	isInAir = true;
-			setSprite(actualState.getSprites().get(key));
+			setSprite(characterState.getSprites().get(key));
 			updateBoundingBoxCoords();
         	observer.update();
 		}
@@ -81,13 +83,16 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	public void stayStill(String key){
 		if(!isInAir())
-			setSprite(actualState.getSprites().get(key));
+			setSprite(characterState.getSprites().get(key));
 		observer.update();
 	}
 
 	private boolean isOnSolid(){
 		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
-		return getY() <= 1;
+		if(actualState=="Normal"||actualState=="Invincible")
+			return getY()<=1;
+		else
+			return getY()<=2;
 	}
 
 	public boolean isInAir(){
@@ -105,7 +110,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	
 	///////////////////////////////////////////////////
     protected void changeState(CharacterState state) {
-		this.actualState = state;
+		this.characterState = state;
     }
 	
 	public void damaged() {
@@ -144,7 +149,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     public void visit(Goomba goomba) {
 		if(leftCollision(goomba) || rightCollision(goomba)){
 			System.out.println("colision de costado");
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(goomba)){
 			addScore(goomba.getPointsOnDeath());
@@ -153,7 +158,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     }    
     public void visit(KoopaTroopa koopaTroopa) {
 		if(leftCollision(koopaTroopa) || rightCollision(koopaTroopa)){
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(koopaTroopa)){
 			addScore(koopaTroopa.getPointsOnDeath());
@@ -162,7 +167,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     }    
     public void visit(PiranhaPlant piranhaPlant) {
 		if(leftCollision(piranhaPlant) || rightCollision(piranhaPlant)){
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(piranhaPlant)){
 			addScore(piranhaPlant.getPointsOnDeath());
@@ -171,7 +176,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     }
     public void visit(Lakitu lakitu) {
 		if(leftCollision(lakitu) || rightCollision(lakitu)){
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(lakitu)){
 			addScore(lakitu.getPointsOnDeath());
@@ -180,7 +185,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
 		if(leftCollision(buzzyBeetle) || rightCollision(buzzyBeetle)){
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(buzzyBeetle)){
 			addScore(buzzyBeetle.getPointsOnDeath());
@@ -189,7 +194,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     }
 	public void visit(Spiny spiny) {
 		if(leftCollision(spiny) || rightCollision(spiny)){
-			actualState.damaged();
+			characterState.damaged();
 		}		
 		if(downCollision(spiny)){
 			addScore(spiny.getPointsOnDeath());
@@ -204,9 +209,10 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	//Visits
 	//power ups
 	public void visit(SuperMushroom mushroom){
+		actualState="Super";
 		int points= mushroom.getPoints();
 		System.out.println("aumento");
-		actualState = new SuperState(this);
+		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
 		setY(positionInY+1);
@@ -223,8 +229,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	//hacer que desaparezca de la pantalla
 	}
 	public void visit(FireFlower flower){
+		actualState="Fire";
 		int points= flower.getPoints();
-		this.actualState = new FireState(this);
+		this.characterState = new FireState(this);
 		addScore(points);
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
@@ -234,7 +241,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		if (invincible) {
 			addScore(35);
 		}
-		else addScore(actualState.getStarPoints());
+		else addScore(characterState.getStarPoints());
 		invincible = true;
 		observer.update();
 	}
