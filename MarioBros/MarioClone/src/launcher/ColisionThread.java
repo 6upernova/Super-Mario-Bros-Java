@@ -124,6 +124,7 @@ public class ColisionThread extends Thread {
         boolean colition = false;
         boolean endIteration = false;
         Iterator<Platform> it = platforms.iterator();
+
         BoundingBox characterBox = character.getBoundingBox();
         Platform p;
         while (it.hasNext() && !endIteration){  
@@ -132,10 +133,9 @@ public class ColisionThread extends Thread {
             if(colition){
                 if(p.isBreakeable()){
                     //System.out.println("es rompible");
-                    if(characterBox.upCollision(p.getBoundingBox())){
+                    if(characterBox.upCollision(p.getBoundingBox())) {
                         p.acceptVisit(character);
-                        //System.out.println("colisiona la cabeza");
-                        
+                        //System.out.println("colisiona la cabeza"); 
                     }
                     else if(characterBox.downCollision(p.getBoundingBox())){
                             p.acceptVisit(character);
