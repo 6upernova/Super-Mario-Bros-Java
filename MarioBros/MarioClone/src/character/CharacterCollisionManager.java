@@ -9,21 +9,21 @@ import platforms.Platform;
 import powerUps.PowerUp;
 
 
-public class CharacterCollitionManager{
+public class CharacterCollisionManager{
 
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
     protected List<PowerUp> powerUps;
     private Game game;
 	
-	public CharacterCollitionManager(Game game) {
+	public CharacterCollisionManager(Game game) {
 		this.game = game;
 		this.enemies = game.getCurrentLevel().getEnemies();
         this.platforms = game.getCurrentLevel().getPlatforms();
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}
 	
-	public boolean enemiesColitions(Character character){
+	public boolean enemiesCollisions(Character character){
         boolean colition = false;
         for(Enemy enemy: enemies){
             colition = character.colision(enemy);
@@ -44,7 +44,7 @@ public class CharacterCollitionManager{
         return colition;
     }
 	
-	public boolean powerUpsColitions(Character character){
+	public boolean powerUpsCollisions(Character character){
         boolean colition = false;
         for(PowerUp e: powerUps){
             colition = character.colision(e);
@@ -59,7 +59,7 @@ public class CharacterCollitionManager{
         return colition;
     }
 	
-	public boolean platformsColitions(Character character){
+	public boolean platformsCollisions(Character character){
         boolean colition = false;
         BoundingBox characterBox = character.getBoundingBox();
         for(Platform e: platforms){

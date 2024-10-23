@@ -29,11 +29,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected float horizontalSpeed;
 	
 	public Character(Sprite sprite) {
-<<<<<<< HEAD
         super(sprite ,5,0);
-=======
-        super(sprite ,120,1);
->>>>>>> master
         this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
@@ -67,13 +63,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			}
 			else{
 				setY(worldY + verticalSpeed); 
-			}
-			
-			
-			if (isOnSolid()) {
-				isInAir = false;
-				verticalSpeed = 0;
-				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
+				observer.update();
+				
 			}
 		}
 		
@@ -85,7 +76,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setSprite(characterState.getSprites().get(key));
         	observer.update();
 		}
-		
+		else
+			isInAir=false;
 	}
 
 	public void stayStill(String key){
@@ -219,10 +211,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
-<<<<<<< HEAD
-=======
-		//setY(positionInY+1);
->>>>>>> master
+
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
 		observer.update();
@@ -269,7 +258,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	//platforms
 	public void visit(Block block) {
-
+		isInAir = false;
+		verticalSpeed = 0;
+		horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
 	}
 	public void visit(Pipe pipe) {
 		if(boundingBox.leftCollision(pipe.getBoundingBox()) || boundingBox.rightCollision(pipe.getBoundingBox())){
@@ -288,27 +279,21 @@ public class Character extends Entity implements CharacterEntity,Visitor {
         dead();
     }
 	public void visit(Brick brickBlock) {
-		/*
 		
-		if (boundingBox.upCollision(brickBlock.getBoundingBox())) {
-			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() + (float) boundingBox.getHeight();
+		if (boundingBox.downCollision(brickBlock.getBoundingBox())) {
+			positionInY = brickBlock.getY()+1;
 		}
 		if(boundingBox.downCollision(brickBlock.getBoundingBox())){
-			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() - (float) boundingBox.getHeight();
-
+			//positionInY = brickBlock.getY() - 1;
 		}
 		if(boundingBox.leftCollision(brickBlock.getBoundingBox())){
-			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() + (float) brickBlock.getBoundingBox().getWidth();
+			positionInX = brickBlock.getX() + 1;
 		}
 		if(boundingBox.rightCollision(brickBlock.getBoundingBox())){
-			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
+			positionInX = brickBlock.getX() - 1;
 		}
 		observer.update();
-		*/
+		
 	}
 	public void visit(Question voidBlock) {
 
