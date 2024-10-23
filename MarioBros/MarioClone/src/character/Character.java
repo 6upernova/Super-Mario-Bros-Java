@@ -58,14 +58,14 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		if (isInAir) {
 			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
 			float worldY = getY();
-			if(worldY + verticalSpeed <= 0){
+			/*if(worldY + verticalSpeed <= 0){
 				setY(0);
-			}
-			else{
+			}*/
+			//else{
 				setY(worldY + verticalSpeed); 
 				observer.update();
 				
-			}
+			//}
 		}
 		
 	}	
@@ -91,6 +91,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	public boolean isInAir(){
 		return isInAir;
+	}
+	public void setIsInAir(boolean isInAir){
+		this.isInAir = isInAir;
 	}
 
 	private float round2Digits(float number){
@@ -255,13 +258,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	}
 
 	//platforms
-	public void visit(Block block) {
-		
-	}
 	public void visit(Pipe pipe) {
-		if(boundingBox.leftCollision(pipe.getBoundingBox()) || boundingBox.rightCollision(pipe.getBoundingBox())){
-		}
-		//System.out.println("visita pipe");
+		
 	}
 	public void visit(Flag flag) {
 		System.out.println("visita a la flag");
@@ -274,25 +272,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		*/
         dead();
     }
-	public void visit(Brick brickBlock) {
-		/*
-		if (boundingBox.downCollision(brickBlock.getBoundingBox())) {
-			positionInY = brickBlock.getY()+1;
-		}
-		if(boundingBox.downCollision(brickBlock.getBoundingBox())){
-			//positionInY = brickBlock.getY() - 1;
-		}
-		if(boundingBox.leftCollision(brickBlock.getBoundingBox())){
-			positionInX = brickBlock.getX() + 1;
-		}
-		if(boundingBox.rightCollision(brickBlock.getBoundingBox())){
-			positionInX = brickBlock.getX() - 1;
-		}
-		observer.update();
-		*/
+	public void visit(Block block) {
+		
 	}
-	public void visit(Question voidBlock) {
 
+	public void visit(Brick brickBlock) {
+		
+	}
+	public void visit(Question questionBlock) {
+		
 	}
 	public void visit(Mast mast) {
 

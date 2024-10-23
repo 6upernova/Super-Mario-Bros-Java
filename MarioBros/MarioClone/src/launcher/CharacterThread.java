@@ -16,13 +16,13 @@ import character.Keyboard;
 public class CharacterThread extends Thread {
     protected Character character;
     protected Keyboard keyboard;
-    private CharacterCollisionManager ccm;
+    private CharacterCollisionManager characterCollisionManager;
     private int frameCount;
     private int spriteNumber;
     private float maximumX;
 
     public CharacterThread(Keyboard keyboard, Game game){
-        this.ccm = new CharacterCollisionManager(game);
+        this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
         this.keyboard = keyboard;
         this.frameCount = 0;
@@ -40,14 +40,11 @@ public class CharacterThread extends Thread {
             frameCount++;
             //System.out.println(maximumX+","+ ","+ character.getY() );
             moveCharacter(horizontalDirection, verticalDirection);
-            if(ccm.platformsCollisions(character)){
-
-            }
-            
-            if(ccm.enemiesCollisions(character)){
+            characterCollisionManager.platformsCollisions(character);
+            if(characterCollisionManager.enemiesCollisions(character)){
                 
             }
-            if(ccm.powerUpsCollisions(character))
+            if(characterCollisionManager.powerUpsCollisions(character))
                 System.out.println("colision con power");
             
             if(character.isInvincible()){

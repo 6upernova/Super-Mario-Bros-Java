@@ -26,16 +26,16 @@ public abstract class Entity implements LogicalEntity {
         return boundingBox.intersects(entity.getBoundingBox());
     }
     public boolean leftCollision(Entity entity){
-        return boundingBox.leftCollision(entity.getBoundingBox());
+        return boundingBox.leftCollision(entity.getBoundingBox().getBoundsRight());
     }
     public boolean rightCollision(Entity entity){
-        return boundingBox.rightCollision(entity.getBoundingBox());
+        return boundingBox.rightCollision(entity.getBoundingBox().getBoundsLeft());
     }
     public boolean upCollision(Entity entity){
-        return boundingBox.upCollision(entity.getBoundingBox());
+        return boundingBox.upCollision(entity.getBoundingBox().getBoundsBottom());
     }
     public boolean downCollision(Entity entity){
-        return boundingBox.downCollision(entity.getBoundingBox());
+        return boundingBox.downCollision(entity.getBoundingBox().getBoundsTop());
     }
     public Sprite getSprite(){
         return sprite;

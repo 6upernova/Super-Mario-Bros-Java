@@ -27,24 +27,24 @@ public class CharacterCollisionManager{
 	public boolean enemiesCollisions(Character character){
         boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
-        Enemy e;
+        Enemy enemy;
         boolean endIteration = false;
         while(enemiesIt.hasNext() && !endIteration){
-            e = enemiesIt.next();
-            collision = character.colision(e);
+            enemy = enemiesIt.next();
+            collision = character.colision(enemy);
             if (collision) {
                 /*
-                if(character.leftCollision(e) || character.rightCollision(e) && !character.isInvincible()){
+                if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
                     character.dead();
                     game.resetLevel();
                     endIteration = true;
                 }
                  */
-                //if(character.downCollision(e)){
-                    //e.acceptVisit(character);
+                //if(character.downCollision(enemy)){
+                    //enemy.acceptVisit(character);
             	System.out.println("colision con enemigo");
-                game.removeLogicalEntity(e);
-                enemies.remove(e);                    
+                game.removeLogicalEntity(enemy);
+                enemies.remove(enemy);                    
                 endIteration = true;
             }
         }
@@ -54,16 +54,16 @@ public class CharacterCollisionManager{
 	public boolean powerUpsCollisions(Character character){
         boolean collision = false;
         Iterator<PowerUp> it = powerUps.iterator();
-        PowerUp e;
+        PowerUp powerUp;
         boolean endIteration = false;
         while (it.hasNext() && !endIteration) {
-            e = it.next();
-            collision = character.colision(e);
+            powerUp = it.next();
+            collision = character.colision(powerUp);
             //System.out.println(collision);
             if (collision) {
-                e.acceptVisit(character);   
-                game.removeLogicalEntity(e);  
-                powerUps.remove(e);   
+                powerUp.acceptVisit(character);   
+                game.removeLogicalEntity(powerUp);  
+                powerUps.remove(powerUp);   
                 endIteration = true;
             }
         }
@@ -76,48 +76,29 @@ public class CharacterCollisionManager{
 	        Iterator<Platform> it = platforms.iterator();
 
 	        BoundingBox characterBox = character.getBoundingBox();
-	        Platform p;
+	        Platform platform;
 	        while (it.hasNext() && !endIteration){  
-	            p = it.next();
-	            collision = characterBox.collision(p.getBoundingBox());
+	            platform = it.next();
+	            collision = characterBox.collision(platform.getBoundingBox());
 	            if(collision){
-	            	System.out.println("Colision con plataforma");
-	                if(p.isBreakeable()){
-	                    //System.out.println("es rompible");
-	                    if(characterBox.upCollision(p.getBoundingBox())) {
-	                        p.acceptVisit(character);
-	                        //System.out.println("colisiona la cabeza"); 
-	                    }
-	                    else if(characterBox.downCollision(p.getBoundingBox())){
-	                            p.acceptVisit(character);
-	                            //System.out.println("deberia estar arriba");                        
-	                            }
-	                    else if(characterBox.leftCollision(p.getBoundingBox())){
-	                            p.acceptVisit(character);
-	                            }
-	                    else if(characterBox.rightCollision(p.getBoundingBox())){
-	                            p.acceptVisit(character);                    
-	                            }      
-	                    endIteration = true;          
-	                }
-	            }
+                    if(character.downCollision(platform)) {
+                        character.setIsInAir(false);
+                        character.setY(platform.getY()+1);
+                    }
+                    else if(character.leftCollision(platform)){
+                        character.setX(platform.getX() + 1);
+                    }
+                    else if(character.upCollision(platform)){
+                        System.out.println(Math.round(character.getY()));
+                        character.setY(Math.round(character.getY()));
+                        character.setIsInAir(true);
+                    }
+                    else if(character.rightCollision(platform)){
+                        character.setX(platform.getX() - 1);
+                    }
+                    platform.acceptVisit(character);
+                }
 	        }
 	        return collision;
 	    }
-	
-	public boolean platformsDownCollisions(Character character) {
-        boolean collision = false;
-        BoundingBox characterBox = character.getBoundingBox();
-        for(Platform e: platforms){
-            collision = characterBox.collision(e.getBoundingBox());
-            if (collision)
-                if(e.isBreakeable())
-                    //System.out.println("es rompible");
-                    if(characterBox.downCollision(e.getBoundingBox())){
-                        e.acceptVisit(character);
-                        System.out.println("colisiona la cabeza"); 
-                    }
-        }
-        return collision;
-    } 
 }
