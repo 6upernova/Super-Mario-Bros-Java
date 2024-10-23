@@ -76,8 +76,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setSprite(characterState.getSprites().get(key));
         	observer.update();
 		}
-		else
-			isInAir=false;
 	}
 
 	public void stayStill(String key){
@@ -258,9 +256,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	//platforms
 	public void visit(Block block) {
-		isInAir = false;
-		verticalSpeed = 0;
-		horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
+		
 	}
 	public void visit(Pipe pipe) {
 		if(boundingBox.leftCollision(pipe.getBoundingBox()) || boundingBox.rightCollision(pipe.getBoundingBox())){
@@ -279,7 +275,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
         dead();
     }
 	public void visit(Brick brickBlock) {
-		
+		/*
 		if (boundingBox.downCollision(brickBlock.getBoundingBox())) {
 			positionInY = brickBlock.getY()+1;
 		}
@@ -293,7 +289,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			positionInX = brickBlock.getX() - 1;
 		}
 		observer.update();
-		
+		*/
 	}
 	public void visit(Question voidBlock) {
 
