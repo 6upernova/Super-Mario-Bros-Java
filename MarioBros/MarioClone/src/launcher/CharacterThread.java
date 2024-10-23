@@ -56,7 +56,7 @@ public class CharacterThread extends Thread {
             }
             
             if(enemiesColitions()){
-                System.out.println("colision con enemigo");
+                
             }
             if(powerUpsColitions())
                 System.out.println("colision con power");
@@ -99,6 +99,7 @@ public class CharacterThread extends Thread {
                  */
                 //if(character.downCollision(e)){
                     //e.acceptVisit(character);
+            	System.out.println("colision con enemigo");
                 game.removeLogicalEntity(e);
                 enemies.remove(e);                    
                 endIteration = true;
@@ -136,6 +137,7 @@ public class CharacterThread extends Thread {
             p = it.next();
             colition = characterBox.collision(p.getBoundingBox());
             if(colition){
+            	System.out.println("Colision con plataforma");
                 if(p.isBreakeable()){
                     //System.out.println("es rompible");
                     if(characterBox.upCollision(p.getBoundingBox())) {

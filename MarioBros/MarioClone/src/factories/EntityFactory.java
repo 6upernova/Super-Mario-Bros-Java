@@ -1,6 +1,5 @@
 package factories;
 import platforms.*;
-import platforms.VoidBlock;
 import powerUps.*;
 import enemies.*;
 import java.util.HashMap;
@@ -65,10 +64,16 @@ public class EntityFactory {
 		    case 24:  	platform = newVoid(worldX,worldY);
 						break;
 		    case 25:	platform = newFlag(worldX,worldY);
-						break;               
+						break;         
+			case 26:	platform = newMast(worldX,worldY);
+						break;  
+			case 27:	platform = newMastEnd(worldX,worldY);
+						break;    
 		}
 		return platform;
 	}
+
+	
 
 	public Character createCharacter(){
 		//Preguntar Si se puede hacer de esta manera 
@@ -255,4 +260,13 @@ public class EntityFactory {
 		Block block = new Block(spriteFactory.getBlockSprite(),worldX,worldY);
 	    return block;
 	}
+	private Platform newMast(int worldX, int worldY) {
+		Mast mast = new Mast(spriteFactory.getMastSprite(),worldX,worldY);
+	    return mast;
+	}
+	private Platform newMastEnd(int worldX, int worldY) {
+		MastEnd mast = new MastEnd(spriteFactory.getMastEndSprite(),worldX,worldY);
+	    return mast;
+	}
+
 }

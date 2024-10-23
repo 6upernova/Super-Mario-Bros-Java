@@ -177,4 +177,10 @@ public abstract class SpriteFactory {
     public Sprite getVoidSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Void.png");	 
     }
+    public Sprite getMastSprite() {
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Mast.png");
+    }
+    public Sprite getMastEndSprite() {
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"MastEnd.png");
+    }
 }

@@ -29,7 +29,11 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected float horizontalSpeed;
 	
 	public Character(Sprite sprite) {
+<<<<<<< HEAD
         super(sprite ,5,0);
+=======
+        super(sprite ,120,1);
+>>>>>>> master
         this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
@@ -215,6 +219,10 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
+<<<<<<< HEAD
+=======
+		//setY(positionInY+1);
+>>>>>>> master
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
 		observer.update();
@@ -300,10 +308,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
 		}
 		observer.update();
-		updateBoundingBoxCoords();
 		*/
 	}
 	public void visit(Question voidBlock) {
+
+	}
+	public void visit(Mast mast) {
+
+	}
+	public void visit(MastEnd mast) {
 
 	}
 
