@@ -1,21 +1,7 @@
 package game;
-import enemies.BuzzyBeetle;
-import enemies.Goomba;
-import enemies.KoopaTroopa;
-import enemies.Lakitu;
-import enemies.PiranhaPlant;
-import enemies.Spiny;
-import platforms.Block;
-import platforms.Brick;
-import platforms.Flag;
-import platforms.Pipe;
-import platforms.Question;
-import platforms.VoidBlock;
-import powerUps.Coin;
-import powerUps.FireFlower;
-import powerUps.GreenMushroom;
-import powerUps.Star;
-import powerUps.SuperMushroom;
+import enemies.*;
+import powerUps.*;
+import platforms.*;
 
 public interface Visitor{
 	public void visit(SuperMushroom mushroom);
@@ -30,6 +16,8 @@ public interface Visitor{
 	public void visit(VoidBlock voidBlock);
 	public void visit(Brick brickBlock);
 	public void visit(Question questionBlock);
+	public void visit(Mast mast);
+	public void visit(MastEnd mast);
 	//en
 	public void visit(Goomba goomba);
     public void visit(KoopaTroopa koopaTroopa) ;

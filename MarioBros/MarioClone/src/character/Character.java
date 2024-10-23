@@ -28,7 +28,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected float horizontalSpeed;
 	
 	public Character(Sprite sprite) {
-        super(sprite ,5,1);
+        super(sprite ,120,1);
         this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
@@ -294,10 +294,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
 		}
 		observer.update();
-		updateBoundingBoxCoords();
 		*/
 	}
 	public void visit(Question voidBlock) {
+
+	}
+	public void visit(Mast mast) {
+
+	}
+	public void visit(MastEnd mast) {
 
 	}
 
