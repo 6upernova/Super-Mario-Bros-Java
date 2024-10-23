@@ -8,6 +8,7 @@ import game.Visitor;
 import platforms.*;
 import powerUps.*;
 import views.GraphicObserver;
+import views.GraphicTools;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity,Visitor {
@@ -42,14 +43,14 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	
 	public void moveLeft(String key){
 			float worldX = getX();
-			setX(round2Digits(worldX - horizontalSpeed));
+			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));	
 			observer.update();
 	}
 	public void moveRight(String key){
 			float worldX = getX();
-			setX(round2Digits(worldX + horizontalSpeed));
+			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));
 			observer.update();
@@ -94,10 +95,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	}
 	public void setIsInAir(boolean isInAir){
 		this.isInAir = isInAir;
-	}
-
-	private float round2Digits(float number){
-		return Math.round(number * 100.0) / 100.0f;
 	}
 	
 	public void dead(){
@@ -259,7 +256,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	//platforms
 	public void visit(Pipe pipe) {
-		
+		isInAir = false;
+		System.out.println(positionInY);
 	}
 	public void visit(Flag flag) {
 		System.out.println("visita a la flag");

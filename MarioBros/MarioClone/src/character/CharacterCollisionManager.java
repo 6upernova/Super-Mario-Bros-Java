@@ -82,19 +82,22 @@ public class CharacterCollisionManager{
 	            collision = characterBox.collision(platform.getBoundingBox());
 	            if(collision){
                     if(character.downCollision(platform)) {
+                        if(platform.getX() == 30 && platform.getY() == 0){
+                            System.out.println("Altura en bloques: ");
+                        }
                         character.setIsInAir(false);
-                        character.setY(platform.getY()+1);
+                        character.setY(platform.getY() + platform.getHeight());
                     }
                     else if(character.leftCollision(platform)){
                         character.setX(platform.getX() + 1);
                     }
                     else if(character.upCollision(platform)){
-                        System.out.println(Math.round(character.getY()));
+                        character.setVerticalSpeed(0);
                         character.setY(Math.round(character.getY()));
                         character.setIsInAir(true);
                     }
                     else if(character.rightCollision(platform)){
-                        character.setX(platform.getX() - 1);
+                        character.setX(platform.getX() - platform.getHeight());
                     }
                     platform.acceptVisit(character);
                 }

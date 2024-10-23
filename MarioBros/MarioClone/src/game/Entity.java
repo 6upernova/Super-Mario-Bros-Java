@@ -2,6 +2,7 @@ package game;
 import factories.Sprite;
 import views.GraphicObserver;
 import views.GraphicTools;
+import views.ViewConstants;
 
 public abstract class Entity implements LogicalEntity {
     protected float positionInX;
@@ -63,6 +64,10 @@ public abstract class Entity implements LogicalEntity {
 
     public float getY(){
         return positionInY;
+    }
+
+    public float getHeight(){
+        return GraphicTools.round2Digits(observer.getHeight() / (float) ViewConstants.CELL_SIZE);
     }
     
     public GraphicObserver getGraphicObserver(){

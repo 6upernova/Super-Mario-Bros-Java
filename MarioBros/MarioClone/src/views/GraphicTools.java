@@ -49,5 +49,8 @@ public class GraphicTools {
         return destination / origin;
     }
 
+	public static float round2Digits(float number){
+		return Math.round(number * 100.0) / 100.0f;
+	}
     
 }
