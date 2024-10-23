@@ -1,22 +1,29 @@
 package views;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import game.BoundingBox;
 import game.LogicalEntity;
 
 public abstract class GraphicObserver extends JLabel implements Observer {
     protected LogicalEntity observedEntity;
 
-    GraphicObserver( LogicalEntity observedEntity){
+    GraphicObserver(LogicalEntity observedEntity){
         super();
         this.observedEntity = observedEntity;
+        
 
     }
 
     public void update(){
         updateSprite();
         updatePositionSize();
-
+        setEntityBoundingBox(this, observedEntity);
     }
 
     protected void updateSprite(){
@@ -27,11 +34,17 @@ public abstract class GraphicObserver extends JLabel implements Observer {
     }
 
     protected void updatePositionSize(){
-        int x = GraphicTools.getScreenPositionX(observedEntity.getX());
-        int y = GraphicTools.getScreenPositionY(observedEntity.getY());
+        int x = GraphicTools.transformX(observedEntity.getX(),this);
+        int y = GraphicTools.transformY(observedEntity.getY(),this);
         int width = this.getIcon().getIconWidth();
         int height = this.getIcon().getIconHeight();
         this.setBounds(x, y, width, height);
     }
 
+    protected void setEntityBoundingBox(GraphicObserver entityObserver, LogicalEntity entity  ){
+        int screenX = GraphicTools.transformX(entity.getX(), entityObserver);
+        int screenY = GraphicTools.transformY(entity.getY(), entityObserver);
+        BoundingBox hitBox = new BoundingBox(screenX, screenY, entityObserver.getWidth(), entityObserver.getHeight());
+        entity.setBoundingBox(hitBox);
+    }
 }

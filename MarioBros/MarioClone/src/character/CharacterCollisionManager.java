@@ -3,7 +3,7 @@ package character;
 import java.util.List;
 
 import enemies.Enemy;
-import factories.BoundingBox;
+import game.BoundingBox;
 import game.Game;
 import platforms.Platform;
 import powerUps.PowerUp;

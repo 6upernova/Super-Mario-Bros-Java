@@ -1,8 +1,8 @@
 package character;
 import java.util.HashMap;
 import enemies.*;
-import factories.BoundingBox;
 import factories.Sprite;
+import game.BoundingBox;
 import game.Entity;
 import game.Visitor;
 import platforms.*;
@@ -29,7 +29,11 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected float horizontalSpeed;
 	
 	public Character(Sprite sprite) {
-        super(sprite ,5,1);
+<<<<<<< HEAD
+        super(sprite ,5,0);
+=======
+        super(sprite ,120,1);
+>>>>>>> master
         this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
@@ -45,7 +49,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setX(round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));	
-			updateBoundingBoxCoords();
 			observer.update();
 	}
 	public void moveRight(String key){
@@ -53,14 +56,19 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setX(round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));
-			updateBoundingBoxCoords();
 			observer.update();
 	}
 	public void applyGravity() {
 		if (isInAir) {
 			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
 			float worldY = getY();
-			setY(worldY + verticalSpeed); 
+			if(worldY + verticalSpeed <= 0){
+				setY(0);
+			}
+			else{
+				setY(worldY + verticalSpeed); 
+			}
+			
 			
 			if (isOnSolid()) {
 				isInAir = false;
@@ -68,14 +76,13 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
 			}
 		}
-		observer.update();
+		
 	}	
 	public void jump(String key){
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
         	isInAir = true;
 			setSprite(characterState.getSprites().get(key));
-			updateBoundingBoxCoords();
         	observer.update();
 		}
 		
@@ -89,10 +96,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 
 	private boolean isOnSolid(){
 		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
-		if(actualState=="Normal"||actualState=="Invincible")
-			return getY()<=1;
-		else
-			return getY()<=2;
+		return getY()<=0;
 	}
 
 	public boolean isInAir(){
@@ -215,12 +219,16 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
-		setY(positionInY+1);
+<<<<<<< HEAD
+=======
+		//setY(positionInY+1);
+>>>>>>> master
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
+
 	public void visit(GreenMushroom greenMushroom){
 		System.out.println("old score: "+lives);
 		lives++;
@@ -228,6 +236,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		System.out.println("new score: "+lives);
 	//hacer que desaparezca de la pantalla
 	}
+
 	public void visit(FireFlower flower){
 		actualState="Fire";
 		int points= flower.getPoints();
@@ -245,15 +254,19 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		invincible = true;
 		observer.update();
 	}
+
 	public void visit(Coin coin){
 		System.out.println("old score: "+score);
 		addScore( coin.getPoints());
 		System.out.println("new score: "+score);
 		//hacer que desaparezca de la pantalla
 	}
+
 	private void updateBoundingBoxToBig(){
+		//Set nuevo x,y acorde
 		boundingBox.height = 2 * boundingBox.height;	
 	}
+
 	//platforms
 	public void visit(Block block) {
 
@@ -295,10 +308,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
 		}
 		observer.update();
-		updateBoundingBoxCoords();
 		*/
 	}
 	public void visit(Question voidBlock) {
+
+	}
+	public void visit(Mast mast) {
+
+	}
+	public void visit(MastEnd mast) {
 
 	}
 

@@ -1,7 +1,7 @@
 package game;
-import factories.BoundingBox;
 import factories.Sprite;
 import views.GraphicObserver;
+import views.GraphicTools;
 
 public abstract class Entity implements LogicalEntity {
     protected float positionInX;
@@ -13,11 +13,11 @@ public abstract class Entity implements LogicalEntity {
     public Entity(Sprite sprite, float positionInX, float positionInY){
         this.sprite = sprite;
         this.positionInX = positionInX;
-        this.positionInY = positionInY;
-        this.boundingBox = new BoundingBox((int)positionInX,(int) positionInY, 1, 2);
+        this.positionInY =positionInY;
     }
-    protected void updateBoundingBoxCoords(){
-        boundingBox.setLocation((int) positionInX, (int)positionInY);
+
+    public void setBoundingBox(BoundingBox hitbox){
+        this.boundingBox = hitbox;
     }
     public BoundingBox getBoundingBox(){
         return boundingBox;

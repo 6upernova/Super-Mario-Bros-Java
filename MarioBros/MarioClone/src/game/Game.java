@@ -5,7 +5,7 @@ import enemies.Enemy;
 import factories.Level;
 import factories.LevelGenerator;
 import factories.SpriteFactory;
-import launcher.ColisionThread;
+import launcher.CharacterThread;
 import platforms.Platform;
 import powerUps.PowerUp;
 import views.GraphicObserver;
@@ -44,7 +44,7 @@ public class Game {
     public void start(){
         currentLevel = levelGenerator.createLevel();
         setObservers();
-        ColisionThread thread = new ColisionThread(viewController.getKeyboard(), this);
+        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
         viewController.showLevelScreen();
     }

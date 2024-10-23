@@ -17,11 +17,11 @@ public class GraphicTools {
 
     // Relative position methods
     public static int transformX(float x, JLabel observer){
-        return (int) x * ViewConstants.CELL_SIZE ;
+        return Math.round( x * ViewConstants.CELL_SIZE );
     }
 
     public static int transformY(float y , JLabel observer ){
-        return (int) (ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y * ViewConstants.CELL_SIZE))    ;
+        return Math.round((ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y * ViewConstants.CELL_SIZE)));
     }
 
 

@@ -16,9 +16,11 @@ public class CharacterObserver extends GraphicObserver{
 
     
     public void update() {
-        //hacer metodos privados para las comparaciones
-        levelScreen.updateScrollRight(observedCharacter);
         super.update();
+        int x = GraphicTools.transformX(observedEntity.getX(),this);
+        int y = GraphicTools.transformY(observedEntity.getY(),this);
+        levelScreen.updateScrollRight(observedCharacter);
+        observedCharacter.getBoundingBox().updateBoundingBoxCoords(x, y);
     }
 
 
