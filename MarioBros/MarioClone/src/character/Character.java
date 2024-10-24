@@ -3,14 +3,14 @@ import java.util.HashMap;
 import enemies.*;
 import factories.Sprite;
 import game.Entity;
-import game.Visitor;
+import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
 import views.GraphicObserver;
 import views.GraphicTools;
 import views.ViewConstants;
 
-public class Character extends Entity implements CharacterEntity,Visitor {
+public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	
 	protected int lives;
 	protected int score;

@@ -1,7 +1,7 @@
 package platforms;
 
 import factories.Sprite;
-import game.Visitor;
+import game.CharacterVisitor;
 import views.GraphicObserver;
 
 public class Mast extends Platform{
@@ -11,7 +11,7 @@ public class Mast extends Platform{
 		super(sprite, positionInX, positionInY, isBreakeable);
 	}
 
-	public void acceptVisit(Visitor visitor) {
+	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
 	public void setObserver(GraphicObserver observer) {

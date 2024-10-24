@@ -23,7 +23,4 @@ public class CharacterObserver extends GraphicObserver{
         observedCharacter.getBoundingBox().updateBoundingBoxCoords(x, y);
     }
 
-
-    
-
 }

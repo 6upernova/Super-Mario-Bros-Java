@@ -1,26 +1,22 @@
 package views;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import enemies.EnemyEntity;
 import game.BoundingBox;
 import game.LogicalEntity;
 
 public abstract class GraphicObserver extends JLabel implements Observer {
-    protected LogicalEntity observedEntity;
+   
+	protected LogicalEntity observedEntity;
 
-    GraphicObserver(LogicalEntity observedEntity){
+    public GraphicObserver(LogicalEntity observedEntity){
         super();
         this.observedEntity = observedEntity;
-        
-
     }
 
-    public void update(){
+	public void update(){
         updateSprite();
         updatePositionSize();
         setEntityBoundingBox(this, observedEntity);

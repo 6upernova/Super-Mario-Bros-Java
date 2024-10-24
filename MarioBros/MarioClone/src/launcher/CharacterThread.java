@@ -1,9 +1,8 @@
 package launcher;
+
 import java.util.HashMap;
 import java.util.List;
-
 import game.Game;
-
 import views.GraphicTools;
 import views.ViewConstants;
 import platforms.*;

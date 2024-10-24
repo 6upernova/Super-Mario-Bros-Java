@@ -3,7 +3,7 @@ import enemies.*;
 import powerUps.*;
 import platforms.*;
 
-public interface Visitor{
+public interface CharacterVisitor{
 	public void visit(SuperMushroom mushroom);
 	public void visit(GreenMushroom greenMushroom) ;
 	public void visit(FireFlower flower);
@@ -12,10 +12,10 @@ public interface Visitor{
 	//platforms
 	public void visit(Block block); 
 	public void visit(Pipe pipe) ;
-	public void visit(Flag flag);
 	public void visit(VoidBlock voidBlock);
 	public void visit(Brick brickBlock);
 	public void visit(Question questionBlock);
+	public void visit(Flag flag);
 	public void visit(Mast mast);
 	public void visit(MastEnd mast);
 	//en

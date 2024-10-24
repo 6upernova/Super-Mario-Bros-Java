@@ -1,4 +1,5 @@
 package game;
+
 public interface VisitedElement {
-	public void acceptVisit(Visitor visitor);
+	public void acceptVisit(CharacterVisitor visitor);
 }
