@@ -10,7 +10,7 @@ public abstract class CharacterState {
     CharacterState(Character character) {
         this.character = character;
     }
-    public void damaged(){}
+    public abstract void damaged();
 
     public HashMap<String, Sprite> getSprites() {
 		return character.getNormalSprites();

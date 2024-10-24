@@ -2,7 +2,6 @@ package character;
 import java.util.HashMap;
 import enemies.*;
 import factories.Sprite;
-import game.BoundingBox;
 import game.Entity;
 import game.Visitor;
 import platforms.*;
@@ -106,8 +105,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     protected void changeState(CharacterState state) {
 		this.characterState = state;
     }
-	
+
 	public void damaged() {
+		characterState.damaged();
 	}
     ///////////////////////////////////////////////////
 	

@@ -33,6 +33,10 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
+                if(character.leftCollision(enemy) || character.rightCollision(enemy)){
+                    System.out.println("colision de costado");
+                    character.damaged();
+                }	
                 /*
                 if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
                     character.dead();
