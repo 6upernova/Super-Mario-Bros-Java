@@ -33,6 +33,10 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
+                if(character.leftCollision(enemy) || character.rightCollision(enemy)){
+                    System.out.println("colision de costado");
+                    character.damaged();
+                }	
                 /*
                 if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
                     character.dead();
@@ -70,38 +74,35 @@ public class CharacterCollisionManager{
         return collision;
     }
 	
-	 public boolean platformsCollisions(Character character){
-	        boolean collision = false;
-	        boolean endIteration = false;
-	        Iterator<Platform> it = platforms.iterator();
+	public boolean platformsCollisions(Character character){
+	    boolean collision = false;
+	    boolean endIteration = false;
+	    Iterator<Platform> it = platforms.iterator();
 
-	        BoundingBox characterBox = character.getBoundingBox();
-	        Platform platform;
-	        while (it.hasNext() && !endIteration){  
-	            platform = it.next();
-	            collision = characterBox.collision(platform.getBoundingBox());
-	            if(collision){
-                    if(character.downCollision(platform)) {
-                        if(platform.getX() == 30 && platform.getY() == 0){
-                            System.out.println("Altura en bloques: ");
-                        }
-                        character.setIsInAir(false);
-                        character.setY(platform.getY() + platform.getHeight());
-                    }
-                    else if(character.leftCollision(platform)){
-                        character.setX(platform.getX() + 1);
-                    }
-                    else if(character.upCollision(platform)){
-                        character.setVerticalSpeed(0);
-                        character.setY(Math.round(character.getY()));
-                        character.setIsInAir(true);
-                    }
-                    else if(character.rightCollision(platform)){
-                        character.setX(platform.getX() - platform.getHeight());
-                    }
-                    platform.acceptVisit(character);
+	    BoundingBox characterBox = character.getBoundingBox();
+	    Platform platform;
+	    while (it.hasNext() && !endIteration){
+	        platform = it.next();
+	        collision = characterBox.collision(platform.getBoundingBox());               
+	        if(collision){
+                if(character.downCollision(platform)) {
+                    character.setIsInAir(false);
+                    character.setY(platform.getY() + platform.getHeight());
                 }
-	        }
-	        return collision;
+                else if(character.leftCollision(platform)){
+                    character.setX(platform.getX() + platform.getWidth());
+                }
+                else if(character.upCollision(platform)){
+                    character.setVerticalSpeed(0);
+                    character.setY(Math.round(character.getY()));
+                    character.setIsInAir(true);
+                }
+                else if(character.rightCollision(platform)){
+                    character.setX(Math.round(character.getX()));
+                }
+                platform.acceptVisit(character);
+            }
 	    }
+	    return collision;
+	}
 }
