@@ -1,14 +1,7 @@
 package launcher;
-import java.util.Iterator;
-import java.util.List;
-
-import factories.Level;
-import game.BoundingBox;
 import game.Game;
-import enemies.Enemy;
-import powerUps.*;
+import game.SoundReproducer;
 import views.ViewConstants;
-import platforms.*;
 import character.Character;
 import character.CharacterCollisionManager;
 import character.Keyboard;
@@ -20,7 +13,6 @@ public class CharacterThread extends Thread {
     private int frameCount;
     private int spriteNumber;
     private float maximumX;
-
     public CharacterThread(Keyboard keyboard, Game game){
         this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
@@ -39,25 +31,40 @@ public class CharacterThread extends Thread {
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
             //System.out.println(maximumX+","+ ","+ character.getY() );
-            moveCharacter(horizontalDirection, verticalDirection);
-            characterCollisionManager.platformsCollisions(character);
-            if(characterCollisionManager.enemiesCollisions(character)){
+
+            if(character.isInEnd()){
                 
             }
-            if(characterCollisionManager.powerUpsCollisions(character))
-                System.out.println("colision con power");
-            
-            if(character.isInvincible()){
-                if(counter > 5000){
-                    //EL INVENCIBLE DURA 5seg
-                    character.endInvencible();
-                    counter = 0;
+            else{
+                moveCharacter(horizontalDirection, verticalDirection);
+                characterCollisionManager.platformsCollisions(character);
+                if(characterCollisionManager.enemiesCollisions(character)){
+                    
                 }
-                else{
-                    counter += 10;
+                if(characterCollisionManager.powerUpsCollisions(character))
+                    System.out.println("colision con power");
+                
+                if(character.isInvincible()){
+                    if(counter > 5000){
+                        //EL INVENCIBLE DURA 5seg
+                        character.endInvencible();
+                        counter = 0;
+                    }
+                    if(characterCollisionManager.powerUpsCollisions(character))
+                        System.out.println("colision con power");
+                    
+                    if(character.isInvincible()){
+                        if(counter > 5000){
+                            //EL INVENCIBLE DURA 5seg
+                            character.endInvencible();
+                            counter = 0;
+                        }
+                        else{
+                            counter += 10;
+                        }
+                    }
                 }
-            }
-            
+            }   
             try {
                 Thread.sleep(16);
             } 
@@ -65,14 +72,7 @@ public class CharacterThread extends Thread {
                 e.printStackTrace();
             }
         }
-    }
-
-    
-    
-   
-   
-
-
+    }     
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
         character.applyGravity();
         switch (verticalDirection) {

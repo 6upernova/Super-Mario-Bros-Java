@@ -24,13 +24,13 @@ public class FireState extends SuperState{
 		fireBall.animation();
 	}
 
-	public HashMap<String, Sprite>  getSprites() {
+	public HashMap<String, Sprite>  getSprites(){
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible()){
-			sprites = character.getFireInvencibleSprites();
+			sprites = character.getSuperInvencibleSprites();
+			System.out.println("retorne los sprites super invencible");
 		}
-		else sprites = character.getFireSprites();
+		else sprites = character.getSuperSprites();
 		return sprites;
 	}
-
 }

@@ -83,7 +83,6 @@ public class EntityFactory {
 		character.setFireSprites(characterFireSprites());
 		character.setNormalInvencibleSprites(characterInvencibleSprites());
 		character.setSuperInvencibleSprites(characterSuperInvencibleSprites());
-		character.setFireInvencibleSprites(characterFireInvencibleSprites());
 		return character;
 	}	
 
@@ -99,6 +98,7 @@ public class EntityFactory {
 		characterSprites.put("Right3",spriteFactory.getCharacterRightSprite(3));
 		characterSprites.put("JumpingRight",spriteFactory.getCharacterJumpingSprite("Right"));
 		characterSprites.put("JumpingLeft",spriteFactory.getCharacterJumpingSprite("Left"));
+		characterSprites.put("InFlag",spriteFactory.getCharacterInFlag());
 		return characterSprites;
 	}
 
@@ -114,6 +114,7 @@ public class EntityFactory {
 		characterSuperSprites.put("Right3",spriteFactory.getSuperCharacterRightSprite(3));
 		characterSuperSprites.put("JumpingRight",spriteFactory.getSuperCharacterJumpingSprite("Right"));
 		characterSuperSprites.put("JumpingLeft",spriteFactory.getSuperCharacterJumpingSprite("Left"));
+		characterSuperSprites.put("InFlag",spriteFactory.getSuperCharacterInFlag());
 		return characterSuperSprites;
 	}
 	
@@ -129,6 +130,7 @@ public class EntityFactory {
 		characterFireSprites.put("Right3",spriteFactory.getFireCharacterRightSprite(3));
 		characterFireSprites.put("JumpingRight",spriteFactory.getFireCharacterJumpingSprite("Right"));
 		characterFireSprites.put("JumpingLeft",spriteFactory.getFireCharacterJumpingSprite("Left"));
+		characterFireSprites.put("InFlag",spriteFactory.getFireCharacterInFlag());
 		return characterFireSprites;
 	}
 	
@@ -144,6 +146,7 @@ public class EntityFactory {
 		characterSprites.put("Right3",spriteFactory.		getCharacterInvencibleRightSprite(3));
 		characterSprites.put("JumpingRight",spriteFactory.	getCharacterInvencibleJumpingSprite("Right"));
 		characterSprites.put("JumpingLeft",spriteFactory.	getCharacterInvencibleJumpingSprite("Left"));
+		characterSprites.put("InFlag",spriteFactory.getCharacterInFlag());
 		return characterSprites;
 	}
 
@@ -159,24 +162,9 @@ public class EntityFactory {
 		characterSuperSprites.put("Right3",spriteFactory.		getSuperCharacterInvencibleRightSprite(3));
 		characterSuperSprites.put("JumpingRight",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Right"));
 		characterSuperSprites.put("JumpingLeft",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Left"));
+		characterSuperSprites.put("InFlag",spriteFactory.getSuperCharacterInFlag());
 		return characterSuperSprites;
-	}
-	
-	private HashMap<String, Sprite> characterFireInvencibleSprites() {
-		HashMap<String,Sprite> characterFireSprites = new HashMap<String,Sprite>();
-		characterFireSprites.put("StillLeft",spriteFactory.		getFireCharacterInvencibleStillSprite("Left"));
-		characterFireSprites.put("StillRight",spriteFactory.	getFireCharacterInvencibleStillSprite("Right"));
-		characterFireSprites.put("Left1",spriteFactory.			getFireCharacterInvencibleLeftSprite(1));
-		characterFireSprites.put("Left2", spriteFactory.		getFireCharacterInvencibleLeftSprite(2));
-		characterFireSprites.put("Left3",spriteFactory.			getFireCharacterInvencibleLeftSprite(3));
-		characterFireSprites.put("Right1",spriteFactory.		getFireCharacterInvencibleRightSprite(1));
-		characterFireSprites.put("Right2", spriteFactory.		getFireCharacterInvencibleRightSprite(2));
-		characterFireSprites.put("Right3",spriteFactory.		getFireCharacterInvencibleRightSprite(3));
-		characterFireSprites.put("JumpingRight",spriteFactory.	getFireCharacterInvencibleJumpingSprite("Right"));
-		characterFireSprites.put("JumpingLeft",spriteFactory.	getFireCharacterInvencibleJumpingSprite("Left"));
-		return characterFireSprites;
-	}
-	
+	}	
 	
 	//POWER UPS 
 	private PowerUp newSuperMushroom(int worldX, int worldY) {

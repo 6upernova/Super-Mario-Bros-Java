@@ -18,6 +18,7 @@ public class Game {
     protected Level currentLevel;
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
     protected int numberLevel;
+    protected SoundReproducer sound;
 
     public Game (int level) {
         //this.numberLevel = 1;
@@ -42,11 +43,19 @@ public class Game {
     }
 
     public void start(){
+        numberLevel++;
         currentLevel = levelGenerator.createLevel();
         setObservers();
         CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
         viewController.showLevelScreen();
+        sound = new SoundReproducer("musicLevel"+ numberLevel);
+        sound.loop();
+    }
+
+    public void reproduceSoundEffect(String path) {
+        sound.setAuxiliarAudio(path);
+        sound.start();
     }
 
 

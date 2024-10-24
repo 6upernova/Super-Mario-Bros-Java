@@ -42,8 +42,7 @@ public class SoundReproducer {
 		}
 	}
 	
-	public void loop() {
-		
+	public void loop() {		
 		audioLevelMusic.setFramePosition(0);
 		audioLevelMusic.loop(audioLevelMusic.LOOP_CONTINUOUSLY);
 	}

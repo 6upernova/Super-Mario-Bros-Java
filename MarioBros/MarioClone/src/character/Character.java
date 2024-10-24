@@ -22,11 +22,11 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected HashMap<String, Sprite> fireSprites;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
-	protected HashMap<String, Sprite> characterFireInvencibleSprites;
 	//Gravity And movementd
 	protected boolean isInAir;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
+	private boolean isInEnd;
 	
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
@@ -38,6 +38,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.characterState = new NormalState(this);
+		this.isInEnd = false;
 	}
 	
 	public void moveLeft(String key){
@@ -261,11 +262,19 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	public void visit(Question questionBlock) {
 		
 	}
+	
 	public void visit(Mast mast) {
-
+		isInEnd = true;
+		setSprite(characterState.getSprites().get("InFlag"));	
+		observer.update();
 	}
 	public void visit(MastEnd mast) {
-
+		isInEnd = true;
+		setSprite(characterState.getSprites().get("InFlag"));	
+		observer.update();
+	}
+	public boolean isInEnd(){
+		return isInEnd;
 	}
 
 	public void setObserver(GraphicObserver observer) {
@@ -302,9 +311,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
 		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
 	}
-	public void setFireInvencibleSprites(HashMap<String, Sprite> characterInvencibleFireSprites) {
-		this.characterFireInvencibleSprites = characterInvencibleFireSprites;
-	}
 
 	public HashMap<String, Sprite> getNormalSprites() {
 		return sprites;
@@ -321,7 +327,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
     public HashMap<String, Sprite> getSuperInvencibleSprites() {
 		return characterSuperInvencibleSprites;
     }
-	public HashMap<String, Sprite> getFireInvencibleSprites() {
-		return characterFireInvencibleSprites;
-	}
+	
+
 }
