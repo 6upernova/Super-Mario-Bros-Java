@@ -48,19 +48,19 @@ public class BoundingBox extends Rectangle {
      // Sub-bounding boxes
 
     protected BoundingBox getBoundsTop() {
-        return new BoundingBox(x, y, width, height / 4);
+        return new BoundingBox(x+3, y, width-6, height / 4);
     }
 
     protected BoundingBox getBoundsBottom() {
-        return new BoundingBox(x, y + height * 3 / 4, width, height / 4);
+        return new BoundingBox(x+3, y + height * 3 / 4, width-6, height / 4);
     }
 
     protected BoundingBox getBoundsLeft() {
-        return new BoundingBox(x, y, width / 4, height);
+        return new BoundingBox(x, y+3, width / 4, height-6);
     }
 
     protected BoundingBox getBoundsRight() {
-        return new BoundingBox(x + width * 3 / 4, y, width / 4, height);
+        return new BoundingBox(x + width * 3 / 4, y+3, width / 4, height-6);
     }
     
 
