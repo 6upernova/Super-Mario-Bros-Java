@@ -52,5 +52,9 @@ public class GraphicTools {
 	public static float round2Digits(float number){
 		return Math.round(number * 100.0) / 100.0f;
 	}
+
+    public static float roundInt(float number){
+       return Math.round(number) / 1.0f;
+    }
     
 }

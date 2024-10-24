@@ -1,13 +1,16 @@
 package character;
 
+
 import java.util.Iterator;
 import java.util.List;
+
 
 import enemies.Enemy;
 import game.BoundingBox;
 import game.Game;
 import platforms.Platform;
 import powerUps.PowerUp;
+
 
 
 public class CharacterCollisionManager{
@@ -23,6 +26,8 @@ public class CharacterCollisionManager{
         this.platforms = game.getCurrentLevel().getPlatforms();
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}
+
+ 
 	
 	public boolean enemiesCollisions(Character character){
         boolean collision = false;
@@ -33,10 +38,14 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if(character.leftCollision(enemy) || character.rightCollision(enemy)){
+                if(character.leftCollision(enemy) && !character.isInvincible() || character.rightCollision(enemy) && !character.isInvincible()|| character.upCollision(enemy) && !character.isInvincible() ){
                     System.out.println("colision de costado");
                     character.damaged();
-                }	
+                }
+                if(character.isInvincible() || character.downCollision(enemy)){
+                    game.removeLogicalEntity(enemy);
+                    enemies.remove(enemy); 
+                } 	
                 /*
                 if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
                     character.dead();
@@ -46,9 +55,8 @@ public class CharacterCollisionManager{
                  */
                 //if(character.downCollision(enemy)){
                     //enemy.acceptVisit(character);
-            	System.out.println("colision con enemigo");
-                game.removeLogicalEntity(enemy);
-                enemies.remove(enemy);                    
+            	System.out.println("colision con enemigo"); 
+                                
                 endIteration = true;
             }
         }
@@ -85,9 +93,10 @@ public class CharacterCollisionManager{
 	        platform = it.next();
 	        collision = characterBox.collision(platform.getBoundingBox());               
 	        if(collision){
-                if(character.downCollision(platform)) {
+                if (character.getVerticalSpeed() < 0 && character.downCollision(platform) ) {
                     character.setIsInAir(false);
-                    character.setY(platform.getY() + platform.getHeight());
+                    character.setVerticalSpeed(0);
+                    character.setY(platform.getY() + (platform.getHeight()));
                 }
                 else if(character.leftCollision(platform)){
                     character.setX(platform.getX() + platform.getWidth());
