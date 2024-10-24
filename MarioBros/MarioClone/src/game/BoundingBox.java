@@ -51,7 +51,7 @@ public class BoundingBox extends Rectangle {
         return new BoundingBox(x, y, width, height / 4);
     }
 
-    protected BoundingBox getBoundsBottom() {
+    public BoundingBox getBoundsBottom() {
         return new BoundingBox(x, y + height * 3 / 4, width, height / 4);
     }
 

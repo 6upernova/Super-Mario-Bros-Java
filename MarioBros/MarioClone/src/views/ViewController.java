@@ -1,9 +1,7 @@
 package views;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import character.CharacterEntity;
 import character.Keyboard;
-import game.BoundingBox;
 import game.Game;
 import game.LogicalEntity;
 

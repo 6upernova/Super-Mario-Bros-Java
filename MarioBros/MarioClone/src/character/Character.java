@@ -48,6 +48,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 				setSprite(characterState.getSprites().get(key));	
 			observer.update();
 	}
+
 	public void moveRight(String key){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
@@ -55,21 +56,22 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 				setSprite(characterState.getSprites().get(key));
 			observer.update();
 	}
+
 	public void applyGravity() {
-		if (isInAir) {
-			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
+		if (isInAir){ 
+			verticalSpeed += ViewConstants.WORLD_GRAVITY;
+			
+			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
+				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
+			}
 			float worldY = getY();
-			/*if(worldY + verticalSpeed <= 0){
-				setY(0);
-			}*/
-			//else{
-				setY(worldY + verticalSpeed); 
-				observer.update();
-				
-			//}
+			System.out.println(worldY);
+			setY(worldY + (verticalSpeed*0.04f));
+			observer.update();
 		}
-		
-	}	
+	}
+	
+	
 	public void jump(String key){
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
@@ -85,10 +87,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		observer.update();
 	}
 
-	private boolean isOnSolid(){
-		//Metodo provisional hasta definir lo de las colisiones es decir hay que comprobar 
-		return getY()<=0;
-	}
+	
 
 	public boolean isInAir(){
 		return isInAir;
@@ -102,14 +101,16 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		//animation.dead();
 	}
 	
-	///////////////////////////////////////////////////
+	
     protected void changeState(CharacterState state) {
 		this.characterState = state;
     }
 	
+
 	public void damaged() {
 	}
-    ///////////////////////////////////////////////////
+    
+
 	
 	public int getScore() {
 	    return score;
@@ -221,7 +222,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		lives++;
 		addScore( greenMushroom.getPoints());
 		System.out.println("new score: "+lives);
-	//hacer que desaparezca de la pantalla
+		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(FireFlower flower){
@@ -263,11 +264,11 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		System.out.println("visita a la flag");
 	}
 	public void visit(VoidBlock voidBlock) {
+		if(this.rightCollision(voidBlock)){
+			isInAir = true;
+		}
 		subtractScore(15);
-		/*si todavia tiene vidas
-		resetea el nivel
-		sino muere 
-		*/
+		
         dead();
     }
 	public void visit(Block block) {
