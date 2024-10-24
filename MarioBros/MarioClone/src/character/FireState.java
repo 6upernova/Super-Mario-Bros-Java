@@ -10,8 +10,8 @@ public class FireState extends SuperState{
 		super(character);
 		this.fireBall= new FireBall();
 	}
-	public void damaged(Character character) {
-		super.damaged(character);
+	public void damaged() {
+		super.damaged();
 	}
 	
 	public boolean execute() {
@@ -20,7 +20,7 @@ public class FireState extends SuperState{
 		return toReturn;
 	}
 	
-	public void  throwFireBall() {
+	public void throwFireBall() {
 		fireBall.animation();
 	}
 

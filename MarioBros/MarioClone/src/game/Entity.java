@@ -66,6 +66,9 @@ public abstract class Entity implements LogicalEntity {
         return positionInY;
     }
 
+    public float getWidth(){
+        return GraphicTools.round2Digits(observer.getWidth() / (float) ViewConstants.CELL_SIZE);
+    }
     public float getHeight(){
         return GraphicTools.round2Digits(observer.getHeight() / (float) ViewConstants.CELL_SIZE);
     }

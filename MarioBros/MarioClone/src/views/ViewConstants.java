@@ -17,7 +17,7 @@ public class ViewConstants {
 	public static final float HIGH_LIMIT = 0.1f;
 	public static final float MAX_FALL_SPEED = -15.0f;            
 
-	public static final float CHARACTER_OFFSET = 0.035f;
+	
 	
 	public static final int MAP_CELLS=143;
 

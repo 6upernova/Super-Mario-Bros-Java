@@ -7,8 +7,8 @@ public class NormalState extends CharacterState{
 		super(character);
 	}
 
-	public void damaged(Character character) {
-		//character.dead();
+	public void damaged() {
+		System.out.println("Mario golpeado en estado normal");
 	}
 	
 	public HashMap<String, Sprite> getSprites() {

@@ -7,7 +7,7 @@ public class SuperState extends CharacterState{
 		super(character);
 	}
 
-	public void damaged(Character character) {
+	public void damaged() {
 		character.changeState(new NormalState(character));
 	}
 
