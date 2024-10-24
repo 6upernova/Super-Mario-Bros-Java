@@ -140,56 +140,37 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	}
 
 	//VISITAS
-    public void visit(Goomba goomba) {
-		if(leftCollision(goomba) || rightCollision(goomba)){
-			System.out.println("colision de costado");
-			characterState.damaged();
-		}		
+    public void visit(Goomba goomba) {	
 		if(downCollision(goomba)){
 			addScore(goomba.getPointsOnDeath());
 			goomba.dead();
 		}
     }    
     public void visit(KoopaTroopa koopaTroopa) {
-		if(leftCollision(koopaTroopa) || rightCollision(koopaTroopa)){
-			characterState.damaged();
-		}		
 		if(downCollision(koopaTroopa)){
 			addScore(koopaTroopa.getPointsOnDeath());
 			koopaTroopa.dead();
 		}
     }    
     public void visit(PiranhaPlant piranhaPlant) {
-		if(leftCollision(piranhaPlant) || rightCollision(piranhaPlant)){
-			characterState.damaged();
-		}		
 		if(downCollision(piranhaPlant)){
 			addScore(piranhaPlant.getPointsOnDeath());
 			piranhaPlant.dead();
 		}
     }
     public void visit(Lakitu lakitu) {
-		if(leftCollision(lakitu) || rightCollision(lakitu)){
-			characterState.damaged();
-		}		
 		if(downCollision(lakitu)){
 			addScore(lakitu.getPointsOnDeath());
 			lakitu.dead();
 		}
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(leftCollision(buzzyBeetle) || rightCollision(buzzyBeetle)){
-			characterState.damaged();
-		}		
 		if(downCollision(buzzyBeetle)){
 			addScore(buzzyBeetle.getPointsOnDeath());
 			buzzyBeetle.dead();
 		}
     }
 	public void visit(Spiny spiny) {
-		if(leftCollision(spiny) || rightCollision(spiny)){
-			characterState.damaged();
-		}		
 		if(downCollision(spiny)){
 			addScore(spiny.getPointsOnDeath());
 			spiny.dead();
