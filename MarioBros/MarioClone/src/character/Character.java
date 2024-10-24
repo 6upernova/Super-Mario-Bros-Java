@@ -8,6 +8,7 @@ import game.Visitor;
 import platforms.*;
 import powerUps.*;
 import views.GraphicObserver;
+import views.GraphicTools;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity,Visitor {
@@ -29,11 +30,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	protected float horizontalSpeed;
 	
 	public Character(Sprite sprite) {
-<<<<<<< HEAD
         super(sprite ,5,0);
-=======
-        super(sprite ,120,1);
->>>>>>> master
         this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
@@ -46,14 +43,14 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	
 	public void moveLeft(String key){
 			float worldX = getX();
-			setX(round2Digits(worldX - horizontalSpeed));
+			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));	
 			observer.update();
 	}
 	public void moveRight(String key){
 			float worldX = getX();
-			setX(round2Digits(worldX + horizontalSpeed));
+			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
 				setSprite(characterState.getSprites().get(key));
 			observer.update();
@@ -62,19 +59,14 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		if (isInAir) {
 			verticalSpeed -= ViewConstants.WORLD_GRAVITY ; 
 			float worldY = getY();
-			if(worldY + verticalSpeed <= 0){
+			/*if(worldY + verticalSpeed <= 0){
 				setY(0);
-			}
-			else{
+			}*/
+			//else{
 				setY(worldY + verticalSpeed); 
-			}
-			
-			
-			if (isOnSolid()) {
-				isInAir = false;
-				verticalSpeed = 0;
-				horizontalSpeed = ViewConstants.CHARACTER_SPEED; 
-			}
+				observer.update();
+				
+			//}
 		}
 		
 	}	
@@ -85,7 +77,6 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 			setSprite(characterState.getSprites().get(key));
         	observer.update();
 		}
-		
 	}
 
 	public void stayStill(String key){
@@ -102,9 +93,8 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	public boolean isInAir(){
 		return isInAir;
 	}
-
-	private float round2Digits(float number){
-		return Math.round(number * 100.0) / 100.0f;
+	public void setIsInAir(boolean isInAir){
+		this.isInAir = isInAir;
 	}
 	
 	public void dead(){
@@ -219,10 +209,7 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
-<<<<<<< HEAD
-=======
-		//setY(positionInY+1);
->>>>>>> master
+
 		updateBoundingBoxToBig();
 		//System.out.println(isOnSolid());
 		observer.update();
@@ -268,13 +255,9 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 	}
 
 	//platforms
-	public void visit(Block block) {
-
-	}
 	public void visit(Pipe pipe) {
-		if(boundingBox.leftCollision(pipe.getBoundingBox()) || boundingBox.rightCollision(pipe.getBoundingBox())){
-		}
-		//System.out.println("visita pipe");
+		isInAir = false;
+		System.out.println(positionInY);
 	}
 	public void visit(Flag flag) {
 		System.out.println("visita a la flag");
@@ -287,31 +270,15 @@ public class Character extends Entity implements CharacterEntity,Visitor {
 		*/
         dead();
     }
-	public void visit(Brick brickBlock) {
-		/*
+	public void visit(Block block) {
 		
-		if (boundingBox.upCollision(brickBlock.getBoundingBox())) {
-			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() + (float) boundingBox.getHeight();
-		}
-		if(boundingBox.downCollision(brickBlock.getBoundingBox())){
-			setVerticalSpeed(0);
-			positionInY = brickBlock.getY() - (float) boundingBox.getHeight();
-
-		}
-		if(boundingBox.leftCollision(brickBlock.getBoundingBox())){
-			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() + (float) brickBlock.getBoundingBox().getWidth();
-		}
-		if(boundingBox.rightCollision(brickBlock.getBoundingBox())){
-			setHorizontalSpeed(0);
-			positionInX = brickBlock.getX() - (float) brickBlock.getBoundingBox().getWidth();
-		}
-		observer.update();
-		*/
 	}
-	public void visit(Question voidBlock) {
 
+	public void visit(Brick brickBlock) {
+		
+	}
+	public void visit(Question questionBlock) {
+		
 	}
 	public void visit(Mast mast) {
 

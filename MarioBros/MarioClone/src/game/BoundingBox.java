@@ -1,7 +1,6 @@
 package game;
 import java.awt.Rectangle;
 
-import views.GraphicTools;
 public class BoundingBox extends Rectangle {
 
     public BoundingBox (int x, int y, int width, int height){
@@ -37,7 +36,6 @@ public class BoundingBox extends Rectangle {
     
     public boolean downCollision(BoundingBox externalBounding) {
         boolean downCollision = getBoundsBottom().intersects(externalBounding);
-        //System.out.println(downCollision);
         return downCollision;
     }    
 
@@ -49,7 +47,7 @@ public class BoundingBox extends Rectangle {
    
      // Sub-bounding boxes
 
-     protected BoundingBox getBoundsTop() {
+    protected BoundingBox getBoundsTop() {
         return new BoundingBox(x, y, width, height / 4);
     }
 

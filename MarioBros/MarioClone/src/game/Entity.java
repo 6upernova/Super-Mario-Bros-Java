@@ -2,6 +2,7 @@ package game;
 import factories.Sprite;
 import views.GraphicObserver;
 import views.GraphicTools;
+import views.ViewConstants;
 
 public abstract class Entity implements LogicalEntity {
     protected float positionInX;
@@ -26,16 +27,16 @@ public abstract class Entity implements LogicalEntity {
         return boundingBox.intersects(entity.getBoundingBox());
     }
     public boolean leftCollision(Entity entity){
-        return boundingBox.leftCollision(entity.getBoundingBox());
+        return boundingBox.leftCollision(entity.getBoundingBox().getBoundsRight());
     }
     public boolean rightCollision(Entity entity){
-        return boundingBox.rightCollision(entity.getBoundingBox());
+        return boundingBox.rightCollision(entity.getBoundingBox().getBoundsLeft());
     }
     public boolean upCollision(Entity entity){
-        return boundingBox.upCollision(entity.getBoundingBox());
+        return boundingBox.upCollision(entity.getBoundingBox().getBoundsBottom());
     }
     public boolean downCollision(Entity entity){
-        return boundingBox.downCollision(entity.getBoundingBox());
+        return boundingBox.downCollision(entity.getBoundingBox().getBoundsTop());
     }
     public Sprite getSprite(){
         return sprite;
@@ -63,6 +64,10 @@ public abstract class Entity implements LogicalEntity {
 
     public float getY(){
         return positionInY;
+    }
+
+    public float getHeight(){
+        return GraphicTools.round2Digits(observer.getHeight() / (float) ViewConstants.CELL_SIZE);
     }
     
     public GraphicObserver getGraphicObserver(){
