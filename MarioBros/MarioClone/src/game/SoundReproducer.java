@@ -42,14 +42,9 @@ public class SoundReproducer {
 		}
 	}
 	
-<<<<<<< Updated upstream
 	public void loop() {		
 		audioLevelMusic.setFramePosition(0);
 		audioLevelMusic.loop(audioLevelMusic.LOOP_CONTINUOUSLY);
-=======
-	public void loop() {
-		audioLevelMusic.loop(Clip.LOOP_CONTINUOUSLY);
->>>>>>> Stashed changes
 	}
 	
 	public void stop() {

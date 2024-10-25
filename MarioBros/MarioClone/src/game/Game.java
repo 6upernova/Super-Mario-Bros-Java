@@ -43,17 +43,12 @@ public class Game {
     }
 
     public void start(){
-<<<<<<< Updated upstream
         numberLevel++;
-=======
-    	numberLevel++;
->>>>>>> Stashed changes
         currentLevel = levelGenerator.createLevel();
         setObservers();
         CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
         viewController.showLevelScreen();
-<<<<<<< Updated upstream
         sound = new SoundReproducer("musicLevel"+ numberLevel);
         sound.loop();
     }
@@ -61,10 +56,6 @@ public class Game {
     public void reproduceSoundEffect(String path) {
         sound.setAuxiliarAudio(path);
         sound.start();
-=======
-        sound= new SoundReproducer("musicLevel"+ numberLevel);
-        sound.loop();
->>>>>>> Stashed changes
     }
 
 
@@ -119,12 +110,5 @@ public class Game {
         start();
     }
     
-    public void reproduceSoundEffect(String path) {
-    	sound.setAuxiliarAudio(path);
-    	sound.start();
-    }
-    /* public setViewController(ViewController viewController){
-         this.viewController = viewController;
-     }*/
 
 }
