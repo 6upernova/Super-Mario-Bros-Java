@@ -11,16 +11,22 @@ public class CharacterObserver extends GraphicObserver{
         super(observedCharacter);
         this.levelScreen = levelScreen;
         this.observedCharacter = observedCharacter;
-        update();
+        super.update();
     }
 
     
     public void update() {
-        super.update();
+        updateSprite();
+        updatePositionSize();
         levelScreen.updateScrollRight(observedCharacter);
         int x = GraphicTools.transformX(observedEntity.getX(),this);
         int y = GraphicTools.transformY(observedEntity.getY(),this);
         observedCharacter.getBoundingBox().updateBoundingBoxCoords(x, y);
+    }
+
+    public void respawn(){
+        levelScreen.resetScrollbar();
+        update();
     }
 
 }

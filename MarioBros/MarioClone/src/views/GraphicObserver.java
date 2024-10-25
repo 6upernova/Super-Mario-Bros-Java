@@ -41,6 +41,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
         int screenX = GraphicTools.transformX(entity.getX(), entityObserver);
         int screenY = GraphicTools.transformY(entity.getY(), entityObserver);
         BoundingBox hitBox = new BoundingBox(screenX, screenY, entityObserver.getWidth(), entityObserver.getHeight());
-        entity.setBoundingBox(hitBox);
+        hitBox.createExternalBounds();
+        entity.setBoundingBox(hitBox);   
     }
 }
