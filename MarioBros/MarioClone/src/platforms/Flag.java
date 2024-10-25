@@ -2,7 +2,6 @@ package platforms;
 
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class Flag extends Platform{
 	static final private boolean isBreakeable = false;
@@ -14,8 +13,5 @@ public class Flag extends Platform{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 	
 }

@@ -1,7 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class KoopaTroopa extends Enemy{
 
@@ -25,8 +24,6 @@ public class KoopaTroopa extends Enemy{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
+
 	
 }

@@ -1,7 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class Lakitu extends Enemy{
 
@@ -24,8 +23,5 @@ public class Lakitu extends Enemy{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 	
 }

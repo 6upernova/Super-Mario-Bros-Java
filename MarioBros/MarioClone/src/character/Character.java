@@ -6,12 +6,10 @@ import game.Entity;
 import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
-import views.GraphicObserver;
 import views.GraphicTools;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
-	
 	protected int lives;
 	protected int score;
 	protected boolean invincible;
@@ -245,12 +243,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		System.out.println("visita a la flag");
 	}
 	public void visit(VoidBlock voidBlock) {
-		if(this.rightCollision(voidBlock)){
-			isInAir = true;
+		if (downCollision(voidBlock)){
+			subtractScore(15);
+        	dead();
 		}
-		subtractScore(15);
-		
-        dead();
     }
 	public void visit(Block block) {
 		
@@ -275,11 +271,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 	public boolean isInEnd(){
 		return isInEnd;
-	}
-
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-		observer.update();
 	}
 
 	public float getVerticalSpeed() {

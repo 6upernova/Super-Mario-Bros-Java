@@ -1,7 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class Spiny extends Enemy{
 
@@ -24,7 +23,4 @@ public class Spiny extends Enemy{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 }

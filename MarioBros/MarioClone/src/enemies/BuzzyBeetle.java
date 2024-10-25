@@ -1,12 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Block;
-import platforms.Brick;
-import platforms.Pipe;
-import platforms.Question;
-import platforms.VoidBlock;
-import views.GraphicObserver;
 
 public class BuzzyBeetle extends Enemy {
 
@@ -29,9 +23,6 @@ public class BuzzyBeetle extends Enemy {
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 
 	
 	

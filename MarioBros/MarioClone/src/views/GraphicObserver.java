@@ -3,7 +3,6 @@ package views;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import enemies.EnemyEntity;
 import game.BoundingBox;
 import game.LogicalEntity;
 
