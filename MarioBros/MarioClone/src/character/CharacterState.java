@@ -7,14 +7,20 @@ import factories.Sprite;
 public abstract class CharacterState {
     protected Character character;
     HashMap<String, Sprite> stateSprites;
-    CharacterState(Character character) {
+
+    CharacterState(Character character, HashMap<String, Sprite> stateSprites) {
         this.character = character;
+        this.stateSprites = stateSprites;
     }
+
     public abstract void damaged();
 
     public HashMap<String, Sprite> getSprites() {
-		return character.getNormalSprites();
+		return stateSprites;
 	}
+
     protected abstract int getStarPoints();
+    protected abstract int getMushroomPoints();
+    protected abstract int getFireFlowerPoints();
     
 }

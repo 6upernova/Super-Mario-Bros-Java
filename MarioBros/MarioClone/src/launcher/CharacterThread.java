@@ -47,7 +47,12 @@ public class CharacterThread extends Thread {
                 game.playNextLevel(character.getScore(), character.getCoins(), character.getLives(), character.getState());
                 timer = 400;
                 inGame = false;
-            } else {
+            }
+            else if(character.getLives() == 0){
+                game.stop();
+                inGame= false;
+            } 
+            else {
                 moveCharacter(horizontalDirection, verticalDirection);
                 characterCollisionManager.platformsCollisions(character);
                 characterCollisionManager.enemiesCollisions(character);

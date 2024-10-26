@@ -38,6 +38,7 @@ public abstract class Entity implements LogicalEntity {
     public boolean downCollision(Entity entity){
         return boundingBox.downCollision(entity.getBoundingBox().getBoundsTop());
     }
+    
     public Sprite getSprite(){
         return sprite;
     }

@@ -7,7 +7,6 @@ import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
 import views.CharacterObserver;
-import views.GraphicObserver;
 import views.GraphicTools;
 import views.ViewConstants;
 
@@ -15,10 +14,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected int lives;
 	protected int score;
 	protected boolean invincible;
-	protected CharacterState characterState;
-	protected HashMap<String, Sprite> sprites;
-	protected HashMap<String, Sprite> superSprites;
-	protected HashMap<String, Sprite> fireSprites;
+	protected CharacterState characterActualState;
+	protected HashMap<String,CharacterState> characterStates;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
 
@@ -38,16 +35,21 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.isInAir = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
-		this.characterState = new NormalState(this);
 		this.isInEnd = false;
 		this.coins = 0;
+	}
+
+	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
+		this.characterStates = characterStates;
+		characterActualState = characterStates.get("Normal");
+
 	}
 	
 	public void moveLeft(String key){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
 			if(!isInAir())
-				setSprite(characterState.getSprites().get(key));	
+				setSprite(characterActualState.getSprites().get(key));	
 			observer.update();
 	}
 
@@ -55,7 +57,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
 			if(!isInAir())
-				setSprite(characterState.getSprites().get(key));
+				setSprite(characterActualState.getSprites().get(key));
 			observer.update();
 	}
 
@@ -77,14 +79,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
         	isInAir = true;
-			setSprite(characterState.getSprites().get(key));
+			setSprite(characterActualState.getSprites().get(key));
         	observer.update();
 		}
 	}
 
 	public void stayStill(String key){
 		if(!isInAir())
-			setSprite(characterState.getSprites().get(key));
+			setSprite(characterActualState.getSprites().get(key));
 		observer.update();
 	}
 
@@ -108,12 +110,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 	
 	
-    protected void changeState(CharacterState state) {
-		this.characterState = state;
+    protected void changeState(String state) {
+		this.characterActualState = characterStates.get(state);
     }
 
 	public void damaged() {
-		characterState.damaged();
+		characterActualState.damaged();
 	}
     
 	public int getCoins() {
@@ -185,12 +187,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		addScore(shell.getPointsOnDeath());
 		shell.dead();
 		} */
-	//Visits
-	//power ups
+	
+	//power ups visits
 	public void visit(SuperMushroom mushroom){
-		int points= mushroom.getPoints();
-		characterState = new SuperState(this);
-		points = points + 40;
+		int points = characterActualState.getMushroomPoints();
+		characterActualState = characterStates.get("Super");
 		addScore(points);
 
 		updateBoundingBoxToBig();
@@ -200,13 +201,13 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public void visit(GreenMushroom greenMushroom){
 		lives++;
-		addScore( greenMushroom.getPoints());
+		addScore(greenMushroom.getPoints());
 		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(FireFlower flower){
-		int points= flower.getPoints();
-		this.characterState = new FireState(this);
+		int points= characterActualState.getFireFlowerPoints();
+		this.characterActualState = characterStates.get("Fire");
 		addScore(points);
 		updateBoundingBoxToBig();
 		observer.update();
@@ -215,7 +216,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (invincible) {
 			addScore(35);
 		}
-		else addScore(characterState.getStarPoints());
+		else addScore(characterActualState.getStarPoints());
 		invincible = true;
 		observer.update();
 	}
@@ -227,7 +228,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	private void updateBoundingBoxToBig(){
-		//Set nuevo x,y acorde
 		boundingBox.height = 2 * boundingBox.height;	
 	}
 
@@ -243,8 +243,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			addScore(-15);
         	dead();
 		}
-		
-        dead();
     }
 	public void visit(Block block) {
 		
@@ -259,12 +257,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void visit(Mast mast) {
 		isInEnd = true;
-		setSprite(characterState.getSprites().get("InFlag"));	
+		setSprite(characterActualState.getSprites().get("InFlag"));	
 		observer.update();
 	}
 	public void visit(MastEnd mast) {
 		isInEnd = true;
-		setSprite(characterState.getSprites().get("InFlag"));	
+		setSprite(characterActualState.getSprites().get("InFlag"));	
 		observer.update();
 	}
 	public boolean isInEnd(){
@@ -285,15 +283,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = horizontalSpeed;
 	}
 
-	public void setNormalSprites(HashMap<String, Sprite> characterSprites) {
-		this.sprites = characterSprites;
-	}
-	public void setSuperSprites(HashMap<String, Sprite> characterSuperSprites) {
-		this.superSprites = characterSuperSprites;
-	}
-	public void setFireSprites(HashMap<String, Sprite> characterFireSprites) {
-		this.fireSprites = characterFireSprites;
-	}
 	public void setNormalInvencibleSprites(HashMap<String, Sprite> characterInvencibleSprites) {
 		this.characterInvencibleSprites = characterInvencibleSprites;
 	}
@@ -301,15 +290,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
 	}
 
-	public HashMap<String, Sprite> getNormalSprites() {
-		return sprites;
-    }
-    public HashMap<String, Sprite> getSuperSprites() {
-		return superSprites;
-    }
-	public HashMap<String, Sprite> getFireSprites() {
-		return fireSprites;
-	}
+	
 	public HashMap<String, Sprite> getNormalInvencibleSprites() {
 		return characterInvencibleSprites;
     }
@@ -330,11 +311,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 
     public void setState(CharacterState state) {
-		this.characterState = state;
+		this.characterActualState = state;
     }
 
     public CharacterState getState() {
-		return characterState;
+		return characterActualState;
     }
 	
 

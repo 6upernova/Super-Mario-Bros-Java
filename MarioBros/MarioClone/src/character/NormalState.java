@@ -3,25 +3,36 @@ import java.util.HashMap;
 import factories.Sprite;
 
 public class NormalState extends CharacterState{
-	NormalState(Character character) {
-		super(character);
+	public NormalState(Character character, HashMap<String, Sprite> stateSprites ) {
+		super(character, stateSprites);
 	}
 
 	public void damaged() {
-		System.out.println("Mario golpeado en estado normal");
+		character.dead();
 	}
 	
 	public HashMap<String, Sprite> getSprites() {
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible())
 			sprites = character.getNormalInvencibleSprites();
-		else sprites = character.getNormalSprites();
+		else 
+			sprites = stateSprites;
 		return sprites;
 	}
 
-	@Override
 	protected int getStarPoints() {
 		return 20;
+	}
+
+	
+	protected int getMushroomPoints() {
+		return 10;
+	}
+	
+
+	
+	protected int getFireFlowerPoints() {
+		return 5;
 	}
 	
 }

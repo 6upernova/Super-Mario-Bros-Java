@@ -47,6 +47,11 @@ public class Game {
         sound = new SoundReproducer("musicLevel"+ numberLevel);
         sound.loop();
     }
+
+    public void stop(){
+        //ranking 
+        viewController.shwowMenuScreen();
+    }
     
     public Level getCurrentLevel(){
         return currentLevel;
@@ -58,7 +63,6 @@ public class Game {
 
     //Graphic operations
     public void setObservers(){
-        //Hay que revisar la clase character y player
         setCharacterObserver(currentLevel.getCharacter());
         setPlatformsObservers(currentLevel.getPlatforms());
         setPowerUpsObservers(currentLevel.getPowerUps());
@@ -124,6 +128,7 @@ public class Game {
         }    
         currentLevel = levelGenerator.getNextLevel();   
         if(currentLevel != null){
+            //Cambiar por Un metodo que sea reset Character
             currentLevel.getCharacter().setState(state);       
             currentLevel.getCharacter().addCoins(coins);
             currentLevel.getCharacter().addLives(lives);
