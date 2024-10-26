@@ -6,7 +6,6 @@ public class SuperState extends CharacterState{
 
 	public SuperState(Character character ,  HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites );
-		character.updateBoundingBoxToBig();
 	}
 
 	public void damaged() {

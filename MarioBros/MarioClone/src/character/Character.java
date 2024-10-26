@@ -192,6 +192,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
 		characterActualState = characterStates.get("Super");
+		updateBoundingBoxToBig();
 		addScore(points);
 
 		observer.update();
