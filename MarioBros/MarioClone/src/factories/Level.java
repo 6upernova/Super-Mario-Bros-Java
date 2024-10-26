@@ -61,4 +61,10 @@ public class Level {
     public boolean isPaused(){
         return paused;
     }
+
+    public void delete() {
+        platformList.removeAll(platformList);
+        enemyList.removeAll(enemyList);
+        powerUpList.removeAll(powerUpList);
+    }
 }

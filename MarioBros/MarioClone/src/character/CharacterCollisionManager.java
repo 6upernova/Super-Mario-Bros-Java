@@ -1,20 +1,13 @@
 package character;
-
-
 import java.util.Iterator;
 import java.util.List;
-
-
 import enemies.Enemy;
 import game.BoundingBox;
 import game.Game;
 import platforms.Platform;
 import powerUps.PowerUp;
 
-
-
 public class CharacterCollisionManager{
-
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
     protected List<PowerUp> powerUps;
@@ -22,7 +15,7 @@ public class CharacterCollisionManager{
 	
 	public CharacterCollisionManager(Game game) {
 		this.game = game;
-		this.enemies = game.getCurrentLevel().getEnemies();
+    	this.enemies = game.getCurrentLevel().getEnemies();
         this.platforms = game.getCurrentLevel().getPlatforms();
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}

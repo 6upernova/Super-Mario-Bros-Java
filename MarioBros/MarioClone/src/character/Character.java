@@ -14,7 +14,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected int score;
 	protected boolean invincible;
 	protected CharacterState characterState;
-	protected String actualState; //Variable de uso provisional (eliminar cuando esten las colisiones)
 	protected HashMap<String, Sprite> sprites;
 	protected HashMap<String, Sprite> superSprites;
 	protected HashMap<String, Sprite> fireSprites;
@@ -25,10 +24,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
 	private boolean isInEnd;
+	private int coins;
 	
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
-        this.actualState = "Normal";
 		this.score = 0;
 		this.lives = 3;
         this.invincible = false;
@@ -37,6 +36,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.characterState = new NormalState(this);
 		this.isInEnd = false;
+		this.coins = 0;
 	}
 	
 	public void moveLeft(String key){
@@ -63,7 +63,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
 			}
 			float worldY = getY();
-			System.out.println(worldY);
 			setY(worldY + (verticalSpeed*0.04f));
 			observer.update();
 		}
@@ -108,7 +107,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		characterState.damaged();
 	}
     
-
+	public int getCoins() {
+		return coins;
+	}
 	
 	public int getScore() {
 	    return score;
@@ -117,15 +118,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void addScore(int number){
 		score = score + number;
 	}
-	
-	public void subtractScore(int number){
-			score = score - number;
-	}
-	
 	public int getLives() {
 		return lives;
 	}
-
+	
 	public boolean isInvincible() {
 		return invincible;
 	}
@@ -183,34 +179,27 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//Visits
 	//power ups
 	public void visit(SuperMushroom mushroom){
-		actualState="Super";
 		int points= mushroom.getPoints();
-		System.out.println("aumento");
 		characterState = new SuperState(this);
 		points = points + 40;
 		addScore(points);
 
 		updateBoundingBoxToBig();
-		//System.out.println(isOnSolid());
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(GreenMushroom greenMushroom){
-		System.out.println("old score: "+lives);
 		lives++;
 		addScore( greenMushroom.getPoints());
-		System.out.println("new score: "+lives);
 		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(FireFlower flower){
-		actualState="Fire";
 		int points= flower.getPoints();
 		this.characterState = new FireState(this);
 		addScore(points);
 		updateBoundingBoxToBig();
-		//System.out.println(isOnSolid());
 		observer.update();
 	}
 	public void visit(Star star){
@@ -223,9 +212,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(Coin coin){
-		System.out.println("old score: "+score);
 		addScore( coin.getPoints());
-		System.out.println("new score: "+score);
+		coins++;
 		//hacer que desaparezca de la pantalla
 	}
 
@@ -237,16 +225,17 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//platforms
 	public void visit(Pipe pipe) {
 		isInAir = false;
-		System.out.println(positionInY);
 	}
 	public void visit(Flag flag) {
-		System.out.println("visita a la flag");
+
 	}
 	public void visit(VoidBlock voidBlock) {
 		if (downCollision(voidBlock)){
-			subtractScore(15);
+			addScore(-15);
         	dead();
 		}
+		
+        dead();
     }
 	public void visit(Block block) {
 		
@@ -317,6 +306,26 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     public HashMap<String, Sprite> getSuperInvencibleSprites() {
 		return characterSuperInvencibleSprites;
+    }
+
+    public void setInEnd(boolean isInEnd) {	
+		this.isInEnd = isInEnd;
+    }
+
+    public void addCoins(int coins) {
+		this.coins = coins;
+    }
+
+    public void addLives(int lives) {
+		this.lives = lives;
+    }
+
+    public void setState(CharacterState state) {
+		this.characterState = state;
+    }
+
+    public CharacterState getState() {
+		return characterState;
     }
 	
 

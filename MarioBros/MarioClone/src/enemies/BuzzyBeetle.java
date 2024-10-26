@@ -1,6 +1,7 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
+import platforms.Platform;
 
 public class BuzzyBeetle extends Enemy {
 
@@ -24,6 +25,7 @@ public class BuzzyBeetle extends Enemy {
     	visitor.visit(this);
     }
 
-	
-	
+	public void visit(Platform platform){
+		
+	}	
 }

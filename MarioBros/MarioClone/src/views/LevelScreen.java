@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-
 import HitboxDebug.HitboxPanel;
 import character.CharacterEntity;
 import game.BoundingBox;
@@ -15,19 +14,19 @@ import game.LogicalEntity;
 public class LevelScreen extends JPanel {    
     protected ViewController viewController;
     protected JPanel contentPanel;
-    protected JLabel backgroundImageLabel;
     protected JScrollPane scrollPanel;
-
+    protected JLabel backgroundImageLabel;
+    protected InformationPanel informationPanel;
 
     public LevelScreen (ViewController viewController){
         this.viewController = viewController;
         setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT));
         setLayout(new BorderLayout());
         setBackgroundAndScroll();
+        addInformationPanel(); 
     }
 
     //Constructor operations
-
     protected void setBackgroundAndScroll() {
         configureBackgroundLabel();
         configureContentPanel();
@@ -65,12 +64,10 @@ public class LevelScreen extends JPanel {
     }
 
     //Observer operation
-
     public void updateScrollRight(CharacterEntity character) {
         JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
         int currentScrollPosition = horizontalBar.getValue();
-        int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);
-        
+        int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);        
         if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPosition() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
             int smoothScrollPosition = (int) (currentScrollPosition + 0.1 * (targetScrollPosition - currentScrollPosition));
             horizontalBar.setValue(smoothScrollPosition);
@@ -81,15 +78,12 @@ public class LevelScreen extends JPanel {
         return scrollPanel.getHorizontalScrollBar().getValue();
     }
 
-
     //View Controller and draw operations
     public CharacterObserver drawEntityCharacter(CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
         return characterObserver;
     }
-
-   
 
     public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
         EntityObserver entityObserver = new EntityObserver(entity);
@@ -101,13 +95,24 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.remove(g);
     }
 
+    private void addInformationPanel() {
+        informationPanel = new InformationPanel();       
+        this.add(informationPanel, BorderLayout.NORTH);
+    }    
+
+    public void updateInformationPanel(int newCoins, int newScore, int newTime, int newLives){
+        informationPanel.updateCoins(newCoins);    
+        informationPanel.updateScore(newScore);
+        informationPanel.updateTime(newTime);
+        informationPanel.updateLives(newLives);
+        informationPanel.updateInformation();
+    }
+
     public void drawHitbox(LogicalEntity entity) {
         BoundingBox hitbox = entity.getBoundingBox();
-        HitboxPanel hitboxPanel = new HitboxPanel(hitbox);
-        
+        HitboxPanel hitboxPanel = new HitboxPanel(hitbox);        
         backgroundImageLabel.add(hitboxPanel);
-        backgroundImageLabel.repaint();
-        
+        backgroundImageLabel.repaint(); 
     }
     
     public void resetScrollbar() {

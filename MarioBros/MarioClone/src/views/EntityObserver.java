@@ -1,5 +1,4 @@
 package views;
-import game.BoundingBox;
 import game.LogicalEntity;
 
 public class EntityObserver extends GraphicObserver{

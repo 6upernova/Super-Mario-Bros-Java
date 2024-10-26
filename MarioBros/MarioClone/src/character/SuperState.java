@@ -15,7 +15,6 @@ public class SuperState extends CharacterState{
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible()){
 			sprites = character.getSuperInvencibleSprites();
-			System.out.println("retorne los sprites super invencible");
 		}
 		else sprites = character.getSuperSprites();
 		return sprites;
