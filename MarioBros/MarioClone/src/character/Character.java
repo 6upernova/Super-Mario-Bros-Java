@@ -194,7 +194,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		characterActualState = characterStates.get("Super");
 		addScore(points);
 
-		updateBoundingBoxToBig();
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
@@ -209,7 +208,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		int points= characterActualState.getFireFlowerPoints();
 		this.characterActualState = characterStates.get("Fire");
 		addScore(points);
-		updateBoundingBoxToBig();
 		observer.update();
 	}
 	public void visit(Star star){
@@ -227,8 +225,17 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		//hacer que desaparezca de la pantalla
 	}
 
-	private void updateBoundingBoxToBig(){
-		boundingBox.height = 2 * boundingBox.height;	
+	public void updateBoundingBoxToBig(){
+		//Set nuevo x,y acorde
+		boundingBox.height *= 2;
+		boundingBox.updateExternalBoundsToBig();
+	}
+	public void updateBoundingBoxToSmall(){
+		//Set nuevo x,y acorde
+		if(boundingBox.height > ViewConstants.CELL_SIZE){
+			boundingBox.height /= 2;
+			boundingBox.updateExternalBoundsToSmall();
+		}
 	}
 
 	//platforms

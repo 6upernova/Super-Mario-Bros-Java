@@ -6,10 +6,12 @@ public class SuperState extends CharacterState{
 
 	public SuperState(Character character ,  HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites );
+		character.updateBoundingBoxToBig();
 	}
 
 	public void damaged() {
 		character.changeState("Normal");
+		character.updateBoundingBoxToSmall();
 	}
 
 	public HashMap<String, Sprite> getSprites() {
