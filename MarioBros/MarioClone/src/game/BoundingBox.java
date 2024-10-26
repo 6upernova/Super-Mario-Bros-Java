@@ -80,6 +80,20 @@ public class BoundingBox extends Rectangle {
     protected BoundingBox getBoundsRight() {
         return rightBound;
     }
+
+    public void updateExternalBoundsToBig(){
+        upperBound.height *= 2;
+        downBound.height *= 2;
+        leftBound.height *= 2;
+        rightBound.height *= 2;
+    }
+
+    public void updateExternalBoundsToSmall(){
+        upperBound.height /= 2;
+        downBound.height /= 2;
+        leftBound.height /= 2;
+        rightBound.height /= 2;
+    }
     
 
 

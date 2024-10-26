@@ -5,10 +5,12 @@ import factories.Sprite;
 public class SuperState extends CharacterState{	
 	SuperState(Character character) {
 		super(character);
+		character.updateBoundingBoxToBig();
 	}
 
 	public void damaged() {
 		character.changeState(new NormalState(character));
+		character.updateBoundingBoxToSmall();
 	}
 
 	public HashMap<String, Sprite> getSprites() {
