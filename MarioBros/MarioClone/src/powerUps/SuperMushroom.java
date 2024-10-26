@@ -1,7 +1,6 @@
 package powerUps;
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class SuperMushroom extends PowerUp{
 	static final private int points = 10;
@@ -16,8 +15,5 @@ public class SuperMushroom extends PowerUp{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 	
 }

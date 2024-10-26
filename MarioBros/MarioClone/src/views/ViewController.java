@@ -71,4 +71,10 @@ public class ViewController {
     public void removeLogicalEntity(LogicalEntity e) {
         levelScreen.remove(e);
     }
+    public void updateInformation(int newCoins, int newScore, int newTime, int newLives){
+        levelScreen.updateInformationPanel(newCoins,newScore, newTime, newLives);
+    }
+    public void clearEntities() {
+        this.levelScreen = new LevelScreen(this);
+    }
 }

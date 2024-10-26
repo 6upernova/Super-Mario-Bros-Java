@@ -9,13 +9,16 @@ import character.Character;
 public class LevelGenerator {
     protected EntityFactory entityFactory;
     protected Parser parser;
+    protected int levelNumber;
 
-    public LevelGenerator(String mode, int levelNumber) {
+    public LevelGenerator(String mode) {
         this.entityFactory= new EntityFactory(mode);
-        this.parser= new Parser(levelNumber);
+        this.levelNumber = 1;
+        this.parser= new Parser();
     }
 
     public Level createLevel(){
+        parser.setLevel(levelNumber);
         int type=0;
         int worldX=0;
         int worldY=0;
@@ -36,7 +39,7 @@ public class LevelGenerator {
             	        PowerUp powerUp= entityFactory.newPowerUp(type, worldX, worldY);
                         powerUpList.add(powerUp);
                     }
-                    else    if( type>19 && type<=27) { 
+                    else    if( type>19 && type<=30) { 
                     	        Platform platform= entityFactory.newPlatform(type, worldX, worldY);
                                 platformList.add(platform);
                             }            
@@ -44,11 +47,11 @@ public class LevelGenerator {
         return new Level(platformList, enemyList, powerUpList, character);
     }
 
-    /*
-     * public static void main(String[] args) {
-        LevelGenerator l = new LevelGenerator("original", 1);
-        Level level1 = l.createLevel();
+    public Level getNextLevel() {
+        this.levelNumber = levelNumber + 1;
+        Level level = null;
+        if(levelNumber < 4)
+            level = createLevel();
+        return level;
     }
-     * 
-     */  
 }

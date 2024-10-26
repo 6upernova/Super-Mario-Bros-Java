@@ -177,8 +177,17 @@ public abstract class SpriteFactory {
     public Sprite getBlockSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"SolidBlock.png");	 
     }
-    public Sprite getPipeSprite(){
-        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Pipe.png");	 
+    public Sprite getPipeTopRightSprite(){
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"PipeTopRight.png");	 
+    }
+    public Sprite getPipeTopLeftSprite(){
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"PipeTopLeft.png");	 
+    }
+    public Sprite getPipeBottomRightSprite(){
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"PipeBottomRight.png");	 
+    }
+    public Sprite getPipeBottomLeftSprite(){
+        return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"PipeBottomLeft.png");	 
     }
     public Sprite getFlagSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"Flag.png");	 

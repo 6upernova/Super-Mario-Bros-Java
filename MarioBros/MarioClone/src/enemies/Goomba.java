@@ -1,11 +1,7 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Block;
-import platforms.Brick;
-import platforms.Pipe;
-import platforms.Question;
-import platforms.VoidBlock;
+import platforms.Platform;
 import views.GraphicObserver;
 
 public class Goomba extends Enemy{
@@ -31,6 +27,8 @@ public class Goomba extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
-
+	public void visit(Platform platform){
+		
+	}
 	
 }

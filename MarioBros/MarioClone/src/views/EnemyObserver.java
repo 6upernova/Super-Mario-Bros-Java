@@ -11,8 +11,19 @@ public class EnemyObserver extends GraphicObserver{
 		super(observedEntity);
 		this.observedEnemy = observedEntity;
 		this.levelScreen = levelScreen;
-		update();
+		super.update();
 	}
 
-	
+	public void update() {
+        updateSprite();
+        updatePositionSize();
+        updateBoundingBoxCoords();
+    }
+
+    private void updateBoundingBoxCoords(){
+        int x = GraphicTools.transformX(observedEntity.getX(),this);
+        int y = GraphicTools.transformY(observedEntity.getY(),this);
+        observedEnemy.getBoundingBox().updateBoundingBoxCoords(x, y);
+    }
+
 }

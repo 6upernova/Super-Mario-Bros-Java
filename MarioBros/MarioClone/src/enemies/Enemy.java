@@ -1,10 +1,9 @@
 package enemies;
 import factories.Sprite;
-import game.EnemyVisitor;
 import game.Entity;
 import game.VisitedElement;
-import platforms.Platform;
 import views.Observer;
+import game.EnemyVisitor;
 
 public abstract class Enemy extends Entity implements EnemyEntity, EnemyVisitor,VisitedElement{
 	
@@ -38,10 +37,6 @@ public abstract class Enemy extends Entity implements EnemyEntity, EnemyVisitor,
 	
 	public void dead() {
 		//desaparecerlo de la pantalla y que se borre el objeto
-	}
-	
-	public void visit(Platform platform) {
-		
 	}
 	
 	

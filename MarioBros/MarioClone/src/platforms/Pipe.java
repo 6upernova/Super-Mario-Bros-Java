@@ -2,10 +2,8 @@ package platforms;
 
 import factories.Sprite;
 import game.CharacterVisitor;
-import game.Entity;
-import views.GraphicObserver;
 
-public class Pipe extends Platform{
+public abstract class Pipe extends Platform{
 
 	static final private boolean isBreakeable = false;
 	
@@ -16,8 +14,5 @@ public class Pipe extends Platform{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 
 }

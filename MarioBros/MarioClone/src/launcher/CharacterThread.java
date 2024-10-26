@@ -11,6 +11,7 @@ import character.CharacterCollisionManager;
 import character.Keyboard;
 
 public class CharacterThread extends Thread {
+    Game game;
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
@@ -27,47 +28,58 @@ public class CharacterThread extends Thread {
         this.frameCount = 0;
         this.spriteNumber = 1;
         this.maximumX = character.getX();
+        this.game = game;
     }
     
-    public void run(){
+    public void run() {
         String horizontalDirection;
         String verticalDirection;
         int counter = 0;
-    	while(true){
+        int timer = 400;
+        int timeCounter = 0; // Contador de tiempo
+        boolean inGame = true;
+        while (inGame) {
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
-            //System.out.println(maximumX+","+ ","+ (character.getY()-1) );
-            if(character.isInEnd()){
-                //cambiar de musica a la del final
-                // cambiar de nivel
-            }
-            else{
+    
+            if (character.isInEnd()) {
+                game.playNextLevel(character.getScore(), character.getCoins(), character.getLives(), character.getState());
+                timer = 400;
+                inGame = false;
+            } else {
                 moveCharacter(horizontalDirection, verticalDirection);
                 characterCollisionManager.platformsCollisions(character);
                 characterCollisionManager.enemiesCollisions(character);
                 characterCollisionManager.powerUpsCollisions(character);
                 
-                if(character.isInvincible()){
-                    if(counter > 5000){
-                        //EL INVENCIBLE DURA 5seg
+                if (character.isInvincible()) {
+                    if (counter > 5000) {
                         character.endInvencible();
                         counter = 0;
-                    }
-                    else{
+                    } else {
                         counter += 10;
                     }
                 }
-            }   
+    
+                // Actualizar timer cada segundo
+                timeCounter++;
+                if (timeCounter >= 60) { // 60 iteraciones aproximadamente 1 segundo
+                    timer--;
+                    timeCounter = 0; // Reiniciar el contador de tiempo
+                }
+    
+                game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
+            }
+    
             try {
                 Thread.sleep(16);
-            } 
-            catch (InterruptedException e) { 
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    
     
     
    
@@ -136,7 +148,7 @@ public class CharacterThread extends Thread {
     private HashMap<String,Platform> groupPlatformsByCoords(List<Platform> platforms){
         HashMap<String,Platform> toret = new HashMap<String,Platform>();
         for(Platform platform : platforms){
-            System.out.println(platform.getX()+","+platform.getY());
+            //System.out.println(platform.getX()+","+platform.getY());
             toret.put((platform.getX()+","+platform.getY()), platform);
         
         }
