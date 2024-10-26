@@ -50,7 +50,7 @@ public class Game {
 
     public void stop(){
         //ranking 
-        viewController.shwowMenuScreen();
+        viewController.showMenuScreen();
     }
     
     public Level getCurrentLevel(){

@@ -10,20 +10,20 @@ public class ViewController {
     protected LevelScreen levelScreen;
     //protected GameOverScreen gameOverScreen;
     //protected RankingScreen rankingScreen;
-    //protected MenuScreen menuScreen;
+    protected MenuScreen menuScreen;
     protected Keyboard keyboardInputs;
     protected Game game;
 
-    public ViewController(Game game){
-        this.game = game;
-        levelScreen = new LevelScreen(this);
-        configureWindow();
-        //To do resto de screens
-        
-    }
     public ViewController(){
+        this.game = new Game();
+        game.setViewController(this);
         levelScreen = new LevelScreen(this);
-        configureWindow();        
+        menuScreen = new MenuScreen(this);
+        configureWindow();
+        //showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
+        game.start();                   //comentar esta linea
+        
+        //To do resto de screens
     }
 
     public void configureWindow (){
@@ -37,8 +37,17 @@ public class ViewController {
 		window.setVisible(true);
     }
 
+    public void startGame(){
+        game.start();
+    }
+
+    public void showMenuScreen(){
+        window.setContentPane(menuScreen);
+        refresh();
+    }
     public void showLevelScreen(){
         window.setContentPane(levelScreen);
+        window.requestFocusInWindow();
         refresh();
     }
     //To do resto de screens
@@ -76,5 +85,10 @@ public class ViewController {
     }
     public void clearEntities() {
         this.levelScreen = new LevelScreen(this);
+    }
+
+    public void exitGame(){
+        window.setVisible(false);
+        window.dispose();
     }
 }
