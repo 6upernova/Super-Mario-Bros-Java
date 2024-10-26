@@ -3,7 +3,7 @@ package platforms;
 import factories.Sprite;
 import game.CharacterVisitor;
 
-public class Pipe extends Platform{
+public abstract class Pipe extends Platform{
 
 	static final private boolean isBreakeable = false;
 	

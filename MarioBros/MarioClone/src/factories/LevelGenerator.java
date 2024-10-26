@@ -39,7 +39,7 @@ public class LevelGenerator {
             	        PowerUp powerUp= entityFactory.newPowerUp(type, worldX, worldY);
                         powerUpList.add(powerUp);
                     }
-                    else    if( type>19 && type<=27) { 
+                    else    if( type>19 && type<=30) { 
                     	        Platform platform= entityFactory.newPlatform(type, worldX, worldY);
                                 platformList.add(platform);
                             }            

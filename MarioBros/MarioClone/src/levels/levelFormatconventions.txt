@@ -27,13 +27,17 @@ type is represented by int number:
             20      SolidBlock
             21      BickBlock
             22      QuestionBlock
-            23      Pipe
-            24      Void
-            25      Flag
-            26      Mast
+            23      Void
+            24      Flag
+            25      Mast
+            26      MastEnd
+            27      PipeBottomLeft
+            28      PipeBottomRight
+            29      PipeTopLeft
+            30      PipeTopRight
     projetiles
-            30      Fireball
-            31      SpinyEgg
+            31      Fireball
+            32      SpinyEgg
 
 Values greater than 100 represent compositions
     101     questionBlock 
