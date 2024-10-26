@@ -6,6 +6,7 @@ import game.Entity;
 import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
+import views.CharacterObserver;
 import views.GraphicObserver;
 import views.GraphicTools;
 import views.ViewConstants;
@@ -22,6 +23,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected HashMap<String, Sprite> fireSprites;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
+
+	
 	//Gravity And movementd
 	protected boolean isInAir;
 	protected float verticalSpeed;
@@ -98,7 +101,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void dead(){
 		lives--;
-		//animation.dead();
+		setX(5);
+		setY(0);
+		if(this.lives > 0)
+			((CharacterObserver)observer).respawn();
+		
+
 	}
 	
 	
@@ -245,8 +253,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		System.out.println("visita a la flag");
 	}
 	public void visit(VoidBlock voidBlock) {
-		if(this.rightCollision(voidBlock)){
-			isInAir = true;
+		if(this.downCollision(voidBlock)){
+			this.dead();
 		}
 		subtractScore(15);
 		
@@ -277,10 +285,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return isInEnd;
 	}
 
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-		observer.update();
-	}
 
 	public float getVerticalSpeed() {
 		return verticalSpeed;

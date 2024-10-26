@@ -56,8 +56,6 @@ public class ViewController {
 
     public GraphicObserver registerEntity(CharacterEntity character){
         GraphicObserver characterObserver = levelScreen.drawEntityCharacter(character);
-        character.setObserver(characterObserver);
-        levelScreen.drawHitbox(character);
         refresh();
         return characterObserver;
 
@@ -65,14 +63,12 @@ public class ViewController {
 
     public GraphicObserver registerEntity(LogicalEntity entity){
         GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity);
-        entity.setObserver(entityObserver);
-        levelScreen.drawHitbox(entity);
         refresh();
         return entityObserver;
     }
 
     
     public void removeLogicalEntity(LogicalEntity e) {
-        levelScreen.remove(e.getGraphicObserver());
+        levelScreen.remove(e);
     }
 }

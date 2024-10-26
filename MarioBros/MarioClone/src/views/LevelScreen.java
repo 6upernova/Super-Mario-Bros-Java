@@ -72,13 +72,18 @@ public class LevelScreen extends JPanel {
         int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);
         
         if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPosition() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
-            int smoothScrollPosition = (int) (currentScrollPosition + 0.1 * (targetScrollPosition - currentScrollPosition));
+            int smoothScrollPosition = Math.round(currentScrollPosition + 0.1f * (targetScrollPosition - currentScrollPosition));
             horizontalBar.setValue(smoothScrollPosition);
         }
     }
 
     public int getScrollbarXPosition(){
         return scrollPanel.getHorizontalScrollBar().getValue();
+    }
+
+    public void resetScrollbar() {
+        JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
+        horizontalBar.setValue(horizontalBar.getMinimum());
     }
 
 
@@ -97,8 +102,8 @@ public class LevelScreen extends JPanel {
         return entityObserver;   
     }
     
-    public void remove(GraphicObserver g){
-        backgroundImageLabel.remove(g);
+    public void remove(LogicalEntity g){
+        backgroundImageLabel.remove(g.getGraphicObserver());
     }
 
     public void drawHitbox(LogicalEntity entity) {
@@ -109,5 +114,7 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.repaint();
         
     }
+
+
     
 }   

@@ -34,7 +34,6 @@ public class CharacterThread extends Thread {
         String verticalDirection;
         int counter = 0;
     	while(true){
-
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
@@ -46,11 +45,8 @@ public class CharacterThread extends Thread {
             else{
                 moveCharacter(horizontalDirection, verticalDirection);
                 characterCollisionManager.platformsCollisions(character);
-                if(characterCollisionManager.enemiesCollisions(character)){
-                    
-                }
-                if(characterCollisionManager.powerUpsCollisions(character))
-                    System.out.println("colision con power");
+                characterCollisionManager.enemiesCollisions(character);
+                characterCollisionManager.powerUpsCollisions(character);
                 
                 if(character.isInvincible()){
                     if(counter > 5000){
