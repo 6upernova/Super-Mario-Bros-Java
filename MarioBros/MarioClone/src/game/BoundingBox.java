@@ -29,13 +29,6 @@ public class BoundingBox extends Rectangle {
 
     }    
 
-    public void setBoundingBoxX(float newX, float oldY) {
-        this.setLocation((int)newX, (int)oldY);
-    }
-
-    public void setBoundingBoxY(float oldX, float newY) {
-        this.setLocation((int)oldX, (int)newY);
-    }
 
     public boolean collision (BoundingBox entityBox) {
         return this.intersects(entityBox);

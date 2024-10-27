@@ -29,6 +29,8 @@ public class CharacterObserver extends GraphicObserver{
         observedCharacter.getBoundingBox().updateBoundingBoxCoords(x, y);
     }
 
+    
+
     public void respawn(){
         levelScreen.resetScrollbar();
         update();

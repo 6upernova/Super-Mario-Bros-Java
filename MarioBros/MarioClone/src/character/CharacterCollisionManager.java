@@ -38,10 +38,11 @@ public class CharacterCollisionManager{
                 }
                 if(character.isInvincible() || character.downCollision(enemy)){
                     game.removeLogicalEntity(enemy);
-                    enemies.remove(enemy); 
+                    enemies.remove(enemy);
+                    enemy.acceptVisit(character);
                 }
                 //if(character.downCollision(enemy)){
-                    //enemy.acceptVisit(character);
+                    
             	//System.out.println("colision con enemigo"); 
                                 
                 endIteration = true;

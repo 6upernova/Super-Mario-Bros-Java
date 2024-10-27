@@ -286,11 +286,13 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setSprite(characterActualState.getSprites().get("InFlag"));	
 		observer.update();
 	}
+	
 	public void visit(MastEnd mast) {
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));	
 		observer.update();
 	}
+
 	public boolean isInEnd(){
 		return isInEnd;
 	}
