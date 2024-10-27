@@ -31,21 +31,14 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if(character.leftCollision(enemy) && !character.isInvincible() || character.rightCollision(enemy) && !character.isInvincible()|| character.upCollision(enemy) && !character.isInvincible() ){
+                if(!character.isInvincible() && (character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy))){
                     System.out.println("colision de costado");
                     character.damaged();
                 }
                 if(character.isInvincible() || character.downCollision(enemy)){
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy); 
-                } 	
-                /*
-                if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
-                    character.dead();
-                    game.resetLevel();
-                    endIteration = true;
                 }
-                 */
                 //if(character.downCollision(enemy)){
                     //enemy.acceptVisit(character);
             	//System.out.println("colision con enemigo"); 

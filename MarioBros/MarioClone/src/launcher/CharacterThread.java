@@ -9,9 +9,10 @@ import platforms.*;
 import character.Character;
 import character.CharacterCollisionManager;
 import character.Keyboard;
+import enemies.Enemy;
 
 public class CharacterThread extends Thread {
-    Game game;
+    protected Game game;
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
@@ -23,7 +24,7 @@ public class CharacterThread extends Thread {
     public CharacterThread(Keyboard keyboard, Game game){
         this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
-        platformsByCoords = groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
+        this.platformsByCoords = groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
         this.keyboard = keyboard;
         this.frameCount = 0;
         this.spriteNumber = 1;
@@ -57,6 +58,7 @@ public class CharacterThread extends Thread {
                 characterCollisionManager.platformsCollisions(character);
                 characterCollisionManager.enemiesCollisions(character);
                 characterCollisionManager.powerUpsCollisions(character);
+                checkEnemiesInRange(game.getCurrentLevel().getEnemies());
                 
                 if (character.isInvincible()) {
                     if (counter > 5000) {
@@ -85,7 +87,13 @@ public class CharacterThread extends Thread {
         }
     }
     
-    
+    private void checkEnemiesInRange(List<Enemy> enemyList){
+        for(Enemy enemy : enemyList)
+            if(!enemy.isActive() && enemy.getX() == Math.round(character.getX()) + 6){
+                enemy.activateEnemy();
+                System.out.println("Enemigo en rango");
+            }
+    }
     
    
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
@@ -98,7 +106,7 @@ public class CharacterThread extends Thread {
                 else
                     character.jump("Jumping" + horizontalDirection);
             break;
-    }
+        }
     	switch(horizontalDirection) {
     		case "None":
     			character.stayStill("Still" + keyboard.getPreviousDirection());
