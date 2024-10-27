@@ -1,4 +1,5 @@
 package game;
+import java.util.Collection;
 import java.util.List;
 import character.Character;
 import character.CharacterState;
@@ -10,6 +11,7 @@ import launcher.CharacterThread;
 import launcher.EnemyThread;
 import platforms.Platform;
 import powerUps.PowerUp;
+import ranking.Ranking;
 import views.GraphicObserver;
 import views.ViewController;
 
@@ -23,6 +25,7 @@ public class Game {
     protected SoundReproducer sound;
     private String mode;
     protected CharacterThread thread;
+    protected Ranking ranking;
 
     public Game () {
         //this.numberLevel = 1;
@@ -31,7 +34,8 @@ public class Game {
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
         this.mode = "Original";
-        this.levelGenerator = new LevelGenerator(mode);           
+        this.levelGenerator = new LevelGenerator(mode);  
+        this.ranking = new Ranking();         
     }    
     //Launcher operation
     public void setViewController(ViewController viewController){
@@ -45,6 +49,8 @@ public class Game {
         EnemyThread enemyThread = new EnemyThread(this);
         CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
+        //viewController.showMenuScreen();
+        //viewController.showRankingScreen();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel"+ numberLevel);
         sound.loop();
@@ -53,6 +59,9 @@ public class Game {
 
     public void stop(){
         //ranking 
+        ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
+        
+        clearCurrentLevel();
         viewController.showMenuScreen();
     }
     
@@ -106,14 +115,7 @@ public class Game {
     public void removeLogicalEntity(LogicalEntity e) {
         viewController.removeLogicalEntity(e);
         System.out.println("borre algo");
-    }
-    
-    
-
-    public void resetLevel() {
-        start();
-    }
-   
+    }    
 
     public void playNextLevel(int score, int coins, int lives, CharacterState state) {
         changeLevel(score,coins,lives,state);
@@ -156,5 +158,7 @@ public class Game {
     public void updateInformation(int score, int coins, int timer, int lives) {
         viewController.updateInformation(coins, score, timer, lives);
     }
-
+    public Collection<String> getRankingPlayers() {
+        return ranking.getPlayers();
+    }
 }

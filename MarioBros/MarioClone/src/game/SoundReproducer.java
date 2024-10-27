@@ -1,13 +1,7 @@
 package game;
-
 import java.io.File;
-import java.io.IOException;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JToolBar.Separator;
 
 public class SoundReproducer {
 

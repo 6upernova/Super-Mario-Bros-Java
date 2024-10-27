@@ -1,4 +1,6 @@
 package views;
+import java.util.Collection;
+
 import javax.swing.JFrame;
 import character.CharacterEntity;
 import character.Keyboard;
@@ -9,16 +11,25 @@ public class ViewController {
     protected JFrame window;
     protected LevelScreen levelScreen;
     //protected GameOverScreen gameOverScreen;
-    //protected RankingScreen rankingScreen;
     protected MenuScreen menuScreen;
     protected Keyboard keyboardInputs;
     protected Game game;
+    protected RankingPanel rankingScreen;
 
+    public ViewController(Game game){
+        this.game = game;
+        this.levelScreen = new LevelScreen(this);
+        this.rankingScreen = new RankingPanel(game.getRankingPlayers());
+        configureWindow();
+        //To do resto de screens
+        
+    }
     public ViewController(){
         this.game = new Game();
         game.setViewController(this);
         levelScreen = new LevelScreen(this);
         menuScreen = new MenuScreen(this);
+        rankingScreen = new RankingPanel(game.getRankingPlayers());
         configureWindow();
         showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
         //game.start();                   //comentar esta linea
@@ -50,6 +61,12 @@ public class ViewController {
         window.requestFocusInWindow();
         refresh();
     }
+
+    public void showRankingScreen(){        
+        window.setContentPane(rankingScreen);
+        refresh();
+    }
+
     //To do resto de screens
 
     public void refresh(){
@@ -90,9 +107,14 @@ public class ViewController {
     public void exitGame(){
         window.setVisible(false);
         window.dispose();
+        System.exit(0);
     }
 
     public LevelScreen getLevelScreen(){
         return levelScreen;
+    }
+
+    public Collection<String> getPlayers() {
+        return game.getRankingPlayers();
     }
 }
