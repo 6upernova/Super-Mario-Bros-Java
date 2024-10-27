@@ -1,7 +1,7 @@
 package game;
 import factories.Sprite;
+import tools.GraphicTools;
 import views.GraphicObserver;
-import views.GraphicTools;
 import views.ViewConstants;
 
 public abstract class Entity implements LogicalEntity {

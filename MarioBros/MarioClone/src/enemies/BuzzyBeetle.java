@@ -1,11 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Block;
-import platforms.Brick;
-import platforms.Pipe;
-import platforms.Question;
-import platforms.VoidBlock;
 import views.GraphicObserver;
 
 public class BuzzyBeetle extends Enemy {
@@ -17,6 +12,9 @@ public class BuzzyBeetle extends Enemy {
 	public BuzzyBeetle(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
+	}
+	public String getDirection() {
+		return direction;
 	}
 	
 	public int getPointsOnDeath() {

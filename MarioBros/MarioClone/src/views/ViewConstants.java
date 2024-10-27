@@ -15,9 +15,9 @@ public class ViewConstants {
 	public static final float WORLD_GRAVITY = -0.4f;
 	public static final float LOW_LIMIT = 0.0167f;          
 	public static final float HIGH_LIMIT = 0.1f;
-	public static final float MAX_FALL_SPEED = -15.0f;            
+	//public static final float MAX_FALL_SPEED = -15.0f;            
 
-	
+	public static final float ENEMY_SPEED= 10/100.0f;
 	
 	public static final int MAP_CELLS=143;
 

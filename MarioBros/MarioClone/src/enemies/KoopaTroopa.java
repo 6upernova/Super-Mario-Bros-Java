@@ -14,7 +14,11 @@ public class KoopaTroopa extends Enemy{
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
 	}
-
+	
+	public String getDirection() {
+		return direction;
+	}
+	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}

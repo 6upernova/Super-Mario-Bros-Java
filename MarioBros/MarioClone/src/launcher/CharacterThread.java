@@ -1,16 +1,15 @@
 package launcher;
 
 import java.util.HashMap;
-import java.util.List;
 import game.Game;
-import views.GraphicTools;
-import views.ViewConstants;
 import platforms.*;
 import character.Character;
 import character.CharacterCollisionManager;
 import character.Keyboard;
+import tools.LogicTools;
 
 public class CharacterThread extends Thread {
+	
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
@@ -22,7 +21,7 @@ public class CharacterThread extends Thread {
     public CharacterThread(Keyboard keyboard, Game game){
         this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
-        platformsByCoords = groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
+        this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
         this.keyboard = keyboard;
         this.frameCount = 0;
         this.spriteNumber = 1;
@@ -101,8 +100,8 @@ public class CharacterThread extends Thread {
 
 	private void moveRight() {
 		maximumX = character.getX() > maximumX ? character.getX() : maximumX;
-
-        if(!character.isInAir() && !isOnSolid() ){
+		
+        if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
             character.setIsInAir(true);
         }
         
@@ -112,9 +111,11 @@ public class CharacterThread extends Thread {
     }
 		
 	private void moveLeft() {
-        float characterLeftLimit=characterInMapEnd(character.getX());
+        float characterLeftLimit;
+		characterLeftLimit = LogicTools.characterInMapEnd(character.getX(), maximumX);
+		
         if(character.getX()>characterLeftLimit) {
-            if(!character.isInAir() && !isOnSolid() ){
+            if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
                 character.setIsInAir(true);
             }
             character.moveLeft("Left"+spriteNumber);
@@ -122,37 +123,5 @@ public class CharacterThread extends Thread {
                 spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
         }
     }
-
-    //Metodos Para LogicTools:
-
-    private float characterInMapEnd(float characterXPosition) {
-        float characterLeftLimit=0;
-        float mapEnd=ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH/ViewConstants.CELL_SIZE;
-        if(characterXPosition>(mapEnd))
-            characterLeftLimit=(mapEnd);
-        else
-            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
-        return characterLeftLimit;
-    }
-
-
-    //Metodo provisional hasta tener un level data
-    private HashMap<String,Platform> groupPlatformsByCoords(List<Platform> platforms){
-        HashMap<String,Platform> toret = new HashMap<String,Platform>();
-        for(Platform platform : platforms){
-            System.out.println(platform.getX()+","+platform.getY());
-            toret.put((platform.getX()+","+platform.getY()), platform);
-        
-        }
-        return toret;
-    }
-
-    private String getKey(float x, float y){
-        return (GraphicTools.roundInt(x)+","+GraphicTools.roundInt(y));
-    }
-
-    private boolean isOnSolid(){
-        return platformsByCoords.get(getKey(character.getX() , character.getY()-1)) != null;
-    }
-
+    
 }

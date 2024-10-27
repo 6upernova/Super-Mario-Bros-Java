@@ -14,6 +14,10 @@ public class PiranhaPlant extends Enemy{
 		direction="None";
 	}
 	
+	public String getDirection() {
+		return direction;
+	}
+	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}

@@ -6,6 +6,7 @@ import factories.Level;
 import factories.LevelGenerator;
 import factories.SpriteFactory;
 import launcher.CharacterThread;
+import launcher.EnemyThread;
 import platforms.Platform;
 import powerUps.PowerUp;
 import views.GraphicObserver;
@@ -46,11 +47,13 @@ public class Game {
         numberLevel++;
         currentLevel = levelGenerator.createLevel();
         setObservers();
+        EnemyThread enemyThread = new EnemyThread(this);
         CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel"+ numberLevel);
         sound.loop();
+        enemyThread.start();
     }
 
     public void reproduceSoundEffect(String path) {

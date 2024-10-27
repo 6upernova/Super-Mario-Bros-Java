@@ -6,8 +6,8 @@ import game.Entity;
 import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
+import tools.GraphicTools;
 import views.GraphicObserver;
-import views.GraphicTools;
 import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
@@ -61,9 +61,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (isInAir){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
 			
-			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
-				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
-			}
+			//if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
+			//	verticalSpeed = ViewConstants.MAX_FALL_SPEED;
+			//}
 			float worldY = getY();
 			System.out.println(worldY);
 			setY(worldY + (verticalSpeed*0.04f));

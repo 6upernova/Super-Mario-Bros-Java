@@ -1,11 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Block;
-import platforms.Brick;
-import platforms.Pipe;
-import platforms.Question;
-import platforms.VoidBlock;
 import views.GraphicObserver;
 
 public class Goomba extends Enemy{
@@ -19,6 +14,10 @@ public class Goomba extends Enemy{
 		direction="Left";
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
