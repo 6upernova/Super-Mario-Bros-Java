@@ -1,9 +1,6 @@
 package views;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import enemies.EnemyEntity;
 import game.BoundingBox;
 import game.LogicalEntity;
 import tools.GraphicTools;
@@ -20,7 +17,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
 	public void update(){
         updateSprite();
         updatePositionSize();
-        setEntityBoundingBox(this, observedEntity);
+        setEntityBoundingBox(this);
     }
 
     protected void updateSprite(){
@@ -38,10 +35,11 @@ public abstract class GraphicObserver extends JLabel implements Observer {
         this.setBounds(x, y, width, height);
     }
 
-    protected void setEntityBoundingBox(GraphicObserver entityObserver, LogicalEntity entity  ){
-        int screenX = GraphicTools.transformX(entity.getX(), entityObserver);
-        int screenY = GraphicTools.transformY(entity.getY(), entityObserver);
+    protected void setEntityBoundingBox(GraphicObserver entityObserver){
+        int screenX = GraphicTools.transformX(observedEntity.getX(), entityObserver);
+        int screenY = GraphicTools.transformY(observedEntity.getY(), entityObserver);
         BoundingBox hitBox = new BoundingBox(screenX, screenY, entityObserver.getWidth(), entityObserver.getHeight());
-        entity.setBoundingBox(hitBox);
+        hitBox.createExternalBounds();
+        observedEntity.setBoundingBox(hitBox);   
     }
 }

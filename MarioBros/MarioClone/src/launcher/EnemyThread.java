@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import enemies.*;
 import game.Game;
-import tools.*;
 
 public class EnemyThread extends Thread {
 	
@@ -19,33 +18,33 @@ public class EnemyThread extends Thread {
     }
 
     public void run() {
+    	//Iterator<Enemy> enemiesIt=enemies.iterator();
+        //Enemy enemy;
+        //boolean endIteration=false;
         while (true) {
-        	 Iterator<Enemy> enemiesIt=enemies.iterator();
-             Enemy enemy;
-             boolean endIteration=false;
-             while(true) {
-                 frameCount++;
-                 enemy=enemiesIt.next();
-                 while(enemiesIt.hasNext() && !endIteration) {
-                     moveEnemy(enemy);
-                     enemy=enemiesIt.next();
-                 }
-                 try {
-                	 Thread.sleep(16);  // Aproximadamente 60 FPS
-                 }
-                 catch (InterruptedException e) {
-                	 e.printStackTrace();
-                 }
-             }
+        	frameCount++;
+        	for(Enemy enemy: enemies) {
+        		//enemy = enemiesIt.next();
+        		if(enemy.isActive())
+        			moveEnemy(enemy);
+        		//enemy = enemiesIt.next();
+        		//endIteration=true;
+        		try {
+        			Thread.sleep(16);
+        		}
+        		catch (InterruptedException e) {
+        		e.printStackTrace();
+        		} 
+        	}
         }
     }
 
         
-    private boolean inScreen(Enemy enemy) {
+   /* private boolean inScreen(Enemy enemy) {
     	float enemyPositionX= enemy.getX();
     	boolean isInScreen;
     	if(enemyPositionX>GraphicTools.getScreenPositionX(enemyPositionX))
-    }
+    }*/
     
     private void moveEnemy(Enemy enemy) {
         String direction = enemy.getDirection();

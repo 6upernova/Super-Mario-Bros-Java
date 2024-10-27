@@ -1,6 +1,7 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
+import platforms.Platform;
 import views.GraphicObserver;
 
 public class Goomba extends Enemy{
@@ -31,5 +32,10 @@ public class Goomba extends Enemy{
 		this.observer = observer;
 	}
 
+	@Override
+	public void visit(Platform platform) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

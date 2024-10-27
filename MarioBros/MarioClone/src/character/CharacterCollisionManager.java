@@ -1,20 +1,13 @@
 package character;
-
-
 import java.util.Iterator;
 import java.util.List;
-
-
 import enemies.Enemy;
 import game.BoundingBox;
 import game.Game;
 import platforms.Platform;
 import powerUps.PowerUp;
 
-
-
 public class CharacterCollisionManager{
-
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
     protected List<PowerUp> powerUps;
@@ -22,7 +15,7 @@ public class CharacterCollisionManager{
 	
 	public CharacterCollisionManager(Game game) {
 		this.game = game;
-		this.enemies = game.getCurrentLevel().getEnemies();
+    	this.enemies = game.getCurrentLevel().getEnemies();
         this.platforms = game.getCurrentLevel().getPlatforms();
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}
@@ -38,24 +31,17 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if(character.leftCollision(enemy) && !character.isInvincible() || character.rightCollision(enemy) && !character.isInvincible()|| character.upCollision(enemy) && !character.isInvincible() ){
+                if(!character.isInvincible() && (character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy))){
                     System.out.println("colision de costado");
                     character.damaged();
                 }
                 if(character.isInvincible() || character.downCollision(enemy)){
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy); 
-                } 	
-                /*
-                if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
-                    character.dead();
-                    game.resetLevel();
-                    endIteration = true;
                 }
-                 */
                 //if(character.downCollision(enemy)){
                     //enemy.acceptVisit(character);
-            	System.out.println("colision con enemigo"); 
+            	//System.out.println("colision con enemigo"); 
                                 
                 endIteration = true;
             }

@@ -4,6 +4,8 @@ import powerUps.*;
 import enemies.*;
 import java.util.HashMap;
 import character.Character;
+import character.*;
+
 
 public class EntityFactory {
 	
@@ -58,17 +60,23 @@ public class EntityFactory {
 		    case 21: 	platform = newBrick(worldX,worldY);
 						break;		                 
 		    case 22:	platform = newQuestion(worldX,worldY);
-						break;	                     
-		    case 23:	platform = newPipe(worldX,worldY);
 						break;                         
-		    case 24:  	platform = newVoid(worldX,worldY);
+		    case 23:  	platform = newVoid(worldX,worldY);
 						break;
-		    case 25:	platform = newFlag(worldX,worldY);
+		    case 24:	platform = newFlag(worldX,worldY);
 						break;         
-			case 26:	platform = newMast(worldX,worldY);
+			case 25:	platform = newMast(worldX,worldY);
 						break;  
-			case 27:	platform = newMastEnd(worldX,worldY);
-						break;    
+			case 26:	platform = newMastEnd(worldX,worldY);
+						break;
+			case 27:	platform = newPipeBottomLeft(worldX,worldY);
+						break;
+			case 28:	platform = newPipeBottomRight(worldX,worldY);
+						break;
+			case 29:	platform = newPipeTopLeft(worldX,worldY);
+						break;	                     
+		    case 30:	platform = newPipeTopRight(worldX,worldY);
+						break;
 		}
 		return platform;
 	}
@@ -78,15 +86,27 @@ public class EntityFactory {
 	public Character createCharacter(){
 		//Preguntar Si se puede hacer de esta manera 
         Character character = new Character(spriteFactory.getCharacterStillSprite("Right"));
-		character.setNormalSprites(characterSprites());
-		character.setSuperSprites(characterSuperSprites());
-		character.setFireSprites(characterFireSprites());
+		HashMap<String,CharacterState> characterStates = createStates(character);
+		character.setCharacterStates(characterStates);
+
+		
+		return character;
+	}
+	
+	private HashMap<String,CharacterState> createStates(Character character){
+		CharacterState normal = new NormalState (character, characterNormalSprites());
+		CharacterState supers = new SuperState (character, characterSuperSprites());
+		CharacterState fire = new FireState (character, characterFireSprites());
+		HashMap<String,CharacterState> characterStates =  new HashMap<String,CharacterState>();
+		characterStates.put("Normal",normal);
+		characterStates.put("Super", supers);
+		characterStates.put("Fire", fire);
 		character.setNormalInvencibleSprites(characterInvencibleSprites());
 		character.setSuperInvencibleSprites(characterSuperInvencibleSprites());
-		return character;
-	}	
+		return characterStates;
+	}
 
-	private HashMap<String, Sprite> characterSprites() {
+	private HashMap<String, Sprite> characterNormalSprites() {
 		HashMap<String,Sprite> characterSprites = new HashMap<String,Sprite>();
 		characterSprites.put("StillLeft",spriteFactory.getCharacterStillSprite("Left"));
 		characterSprites.put("StillRight",spriteFactory.getCharacterStillSprite("Right"));
@@ -219,8 +239,20 @@ public class EntityFactory {
 	}
 	
     //PLATFORMS
-	private Platform newPipe(int worldX, int worldY) {
-		Pipe pipe = new Pipe(spriteFactory.getPipeSprite(),worldX,worldY);
+	private Platform newPipeTopLeft(int worldX, int worldY) {
+		Pipe pipe = new PipeTopLeft(spriteFactory.getPipeTopLeftSprite(),worldX,worldY);
+	    return pipe;
+	}
+	private Platform newPipeTopRight(int worldX, int worldY) {
+		Pipe pipe = new PipeTopRight(spriteFactory.getPipeTopRightSprite(),worldX,worldY);
+	    return pipe;
+	}
+	private Platform newPipeBottomLeft(int worldX, int worldY) {
+		Pipe pipe = new PipeBottomLeft(spriteFactory.getPipeBottomLeftSprite(),worldX,worldY);
+	    return pipe;
+	}
+	private Platform newPipeBottomRight(int worldX, int worldY) {
+		Pipe pipe = new PipeBottomRight(spriteFactory.getPipeBottomRightSprite(),worldX,worldY);
 	    return pipe;
 	}
 	

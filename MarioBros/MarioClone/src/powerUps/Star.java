@@ -1,7 +1,6 @@
 package powerUps;
 import factories.Sprite;
 import game.CharacterVisitor;
-import views.GraphicObserver;
 
 public class Star extends PowerUp{
 	static final private int points = 20;
@@ -16,7 +15,4 @@ public class Star extends PowerUp{
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	public void setObserver(GraphicObserver observer) {
-		this.observer = observer;
-	}
 }

@@ -18,7 +18,7 @@ public class SoundReproducer {
 	public SoundReproducer(String path) {
 		   try {
 				File file= new File(folderPath + File.separator + path + ".wav");
-		        audioLevelMusic= AudioSystem.getClip();
+				audioLevelMusic= AudioSystem.getClip();
 		        audioLevelMusic.open(AudioSystem.getAudioInputStream(file));
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

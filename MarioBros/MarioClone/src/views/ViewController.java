@@ -10,20 +10,20 @@ public class ViewController {
     protected LevelScreen levelScreen;
     //protected GameOverScreen gameOverScreen;
     //protected RankingScreen rankingScreen;
-    //protected MenuScreen menuScreen;
+    protected MenuScreen menuScreen;
     protected Keyboard keyboardInputs;
     protected Game game;
 
-    public ViewController(Game game){
-        this.game = game;
-        levelScreen = new LevelScreen(this);
-        configureWindow();
-        //To do resto de screens
-        
-    }
     public ViewController(){
+        this.game = new Game();
+        game.setViewController(this);
         levelScreen = new LevelScreen(this);
-        configureWindow();        
+        menuScreen = new MenuScreen(this);
+        configureWindow();
+        showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
+        //game.start();                   //comentar esta linea
+        
+        //To do resto de screens
     }
 
     public void configureWindow (){
@@ -37,8 +37,17 @@ public class ViewController {
 		window.setVisible(true);
     }
 
+    public void startGame(){
+        game.start();
+    }
+
+    public void showMenuScreen(){
+        window.setContentPane(menuScreen);
+        refresh();
+    }
     public void showLevelScreen(){
         window.setContentPane(levelScreen);
+        window.requestFocusInWindow();
         refresh();
     }
     //To do resto de screens
@@ -56,8 +65,6 @@ public class ViewController {
 
     public GraphicObserver registerEntity(CharacterEntity character){
         GraphicObserver characterObserver = levelScreen.drawEntityCharacter(character);
-        character.setObserver(characterObserver);
-        levelScreen.drawHitbox(character);
         refresh();
         return characterObserver;
 
@@ -65,14 +72,23 @@ public class ViewController {
 
     public GraphicObserver registerEntity(LogicalEntity entity){
         GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity);
-        entity.setObserver(entityObserver);
-        levelScreen.drawHitbox(entity);
         refresh();
         return entityObserver;
     }
 
     
     public void removeLogicalEntity(LogicalEntity e) {
-        levelScreen.remove(e.getGraphicObserver());
+        levelScreen.remove(e);
+    }
+    public void updateInformation(int newCoins, int newScore, int newTime, int newLives){
+        levelScreen.updateInformationPanel(newCoins,newScore, newTime, newLives);
+    }
+    public void clearEntities() {
+        this.levelScreen = new LevelScreen(this);
+    }
+
+    public void exitGame(){
+        window.setVisible(false);
+        window.dispose();
     }
 }

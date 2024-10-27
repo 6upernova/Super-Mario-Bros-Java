@@ -1,18 +1,18 @@
 package enemies;
 import factories.Sprite;
-import game.EnemyVisitor;
 import game.Entity;
 import game.VisitedElement;
-import platforms.Platform;
 import tools.GraphicTools;
 import views.Observer;
 import views.ViewConstants;
+import game.EnemyVisitor;
 
 public abstract class Enemy extends Entity implements EnemyEntity, EnemyVisitor,VisitedElement{
 	
 	private int pointsOnDeath;
 	private int pointsOnKill;
 	private String direction;
+	private boolean isActive;
 	private float horizontalSpeed;
 	
 	public Enemy(Sprite sprite, int positionInX, int positionInY, int pointsOnDeath,int pointsOnKill) {
@@ -20,6 +20,7 @@ public abstract class Enemy extends Entity implements EnemyEntity, EnemyVisitor,
 		this.pointsOnDeath = pointsOnDeath;//Puntos cuando enemigo muere
 		this.pointsOnKill = pointsOnKill;//Puntos cuando enemigo mata
 		this.horizontalSpeed = ViewConstants.ENEMY_SPEED;
+		this.isActive = false;
 	}
 	
 	public void setDirection(String newDirection) {
@@ -39,17 +40,15 @@ public abstract class Enemy extends Entity implements EnemyEntity, EnemyVisitor,
 	public Observer getObserver() {
 		return observer;
 	}
+	public boolean isActive(){
+		return isActive;
+	}
+	public void activateEnemy(){
+		isActive = true;
+	}
 	
 	public void dead() {
 		//desaparecerlo de la pantalla y que se borre el objeto
-	}
-	
-	public void visit(Platform platform) {
-		
-	}
-	
-	public boolean isOnSolid() {
-		return getY()<=1;
 	}
 	
 	public void moveRight() {

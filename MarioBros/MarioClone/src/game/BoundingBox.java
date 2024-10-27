@@ -3,12 +3,30 @@ import java.awt.Rectangle;
 
 public class BoundingBox extends Rectangle {
 
+    protected BoundingBox leftBound;
+    protected BoundingBox rightBound;
+    protected BoundingBox upperBound;
+    protected BoundingBox downBound;
+
     public BoundingBox (int x, int y, int width, int height){
         super(x,y,width,height);
     }
     
-    public void updateBoundingBoxCoords(int positionInX, int positionInY) {
-        this.setLocation(positionInX,positionInY);
+    public void createExternalBounds(){
+        upperBound = new BoundingBox(x+3, y, width-6, height / 4);
+        downBound = new BoundingBox(x+3, y + height * 3 / 4, width-6, height / 4);
+        leftBound = new BoundingBox(x, y+3, width / 4, height-6);
+        rightBound = new BoundingBox(x + width * 3 / 4, y+3, width / 4, height-6);
+
+    }
+    
+    public void updateBoundingBoxCoords(int newX, int newY) {
+        this.setLocation(newX,newY);
+        downBound.setLocation(newX+3, newY + height * 3 / 4);
+        upperBound.setLocation(newX+3,newY);
+        leftBound.setLocation(newX, newY + 3);
+        rightBound.setLocation(newX + width * 3 / 4,newY + 3);
+
     }    
 
     public void setBoundingBoxX(float newX, float oldY) {
@@ -48,19 +66,33 @@ public class BoundingBox extends Rectangle {
      // Sub-bounding boxes
 
     protected BoundingBox getBoundsTop() {
-        return new BoundingBox(x+3, y, width-6, height / 4);
+        return upperBound;
     }
 
     protected BoundingBox getBoundsBottom() {
-        return new BoundingBox(x+3, y + height * 3 / 4, width-6, height / 4);
+        return downBound;
     }
 
     protected BoundingBox getBoundsLeft() {
-        return new BoundingBox(x, y+3, width / 4, height-6);
+        return leftBound;
     }
 
     protected BoundingBox getBoundsRight() {
-        return new BoundingBox(x + width * 3 / 4, y+3, width / 4, height-6);
+        return rightBound;
+    }
+
+    public void updateExternalBoundsToBig(){
+        upperBound.height *= 2;
+        downBound.height *= 2;
+        leftBound.height *= 2;
+        rightBound.height *= 2;
+    }
+
+    public void updateExternalBoundsToSmall(){
+        upperBound.height /= 2;
+        downBound.height /= 2;
+        leftBound.height /= 2;
+        rightBound.height /= 2;
     }
     
 

@@ -3,26 +3,39 @@ import java.util.HashMap;
 import factories.Sprite;
 
 public class SuperState extends CharacterState{	
-	SuperState(Character character) {
-		super(character);
+
+	public SuperState(Character character ,  HashMap<String, Sprite> stateSprites) {
+		super(character, stateSprites );
 	}
 
 	public void damaged() {
-		character.changeState(new NormalState(character));
+		character.changeState("Normal");
+		character.updateBoundingBoxToSmall();
 	}
 
 	public HashMap<String, Sprite> getSprites() {
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible()){
 			sprites = character.getSuperInvencibleSprites();
-			System.out.println("retorne los sprites super invencible");
 		}
-		else sprites = character.getSuperSprites();
+		else 
+			sprites = stateSprites;
+
 		return sprites;
 	}
 	
-	@Override
+	
 	protected int getStarPoints() {
+		return 30;
+	}
+
+	
+	protected int getMushroomPoints() {
+		return 50;
+	}
+
+	
+	protected int getFireFlowerPoints() {
 		return 30;
 	}
 }

@@ -7,9 +7,8 @@ import projectile.FireBall;
 public class FireState extends SuperState{
 	
 	private FireBall fireBall;
-	
-	public FireState(Character character) {
-		super(character);
+	public FireState(Character character, HashMap<String, Sprite> stateSprites) {
+		super(character, stateSprites);
 		this.fireBall= new FireBall();
 	}
 	public void damaged() {
@@ -30,9 +29,16 @@ public class FireState extends SuperState{
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible()){
 			sprites = character.getSuperInvencibleSprites();
-			System.out.println("retorne los sprites super invencible");
 		}
-		else sprites = character.getSuperSprites();
+		else 
+			sprites = stateSprites;
 		return sprites;
 	}
+
+	
+	protected int getFireFlowerPoints() {
+		return 35;
+	}
+
+
 }

@@ -1,15 +1,19 @@
 package launcher;
 
 import java.util.HashMap;
+import java.util.List;
+
 import game.Game;
 import platforms.*;
 import character.Character;
 import character.CharacterCollisionManager;
 import character.Keyboard;
+import enemies.Enemy;
 import tools.LogicTools;
 
 public class CharacterThread extends Thread {
 	
+	protected Game game;
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
@@ -19,6 +23,7 @@ public class CharacterThread extends Thread {
     private HashMap<String,Platform> platformsByCoords;
 
     public CharacterThread(Keyboard keyboard, Game game){
+    	this.game = game;
         this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
         this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
@@ -28,50 +33,68 @@ public class CharacterThread extends Thread {
         this.maximumX = character.getX();
     }
     
-    public void run(){
+    public void run() {
         String horizontalDirection;
         String verticalDirection;
         int counter = 0;
-    	while(true){
-
+        int timer = 400;
+        int timeCounter = 0; // Contador de tiempo
+        boolean inGame = true;
+        while (inGame) {
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
-            //System.out.println(maximumX+","+ ","+ (character.getY()-1) );
-            if(character.isInEnd()){
-                //cambiar de musica a la del final
-                // cambiar de nivel
+    
+            if (character.isInEnd()) {
+                game.playNextLevel(character.getScore(), character.getCoins(), character.getLives(), character.getState());
+                timer = 400;
+                inGame = false;
             }
-            else{
-                moveCharacter(horizontalDirection, verticalDirection);
-                characterCollisionManager.platformsCollisions(character);
-                if(characterCollisionManager.enemiesCollisions(character)){
-                    
-                }
-                if(characterCollisionManager.powerUpsCollisions(character))
-                    System.out.println("colision con power");
+            else if(character.getLives() == 0){
+                game.stop();
+                inGame= false;
+            	}
+            	else {
+            		moveCharacter(horizontalDirection, verticalDirection);
+            		characterCollisionManager.platformsCollisions(character);
+            		characterCollisionManager.enemiesCollisions(character);
+            		characterCollisionManager.powerUpsCollisions(character);
+            		checkEnemiesInRange(game.getCurrentLevel().getEnemies());
                 
-                if(character.isInvincible()){
-                    if(counter > 5000){
-                        //EL INVENCIBLE DURA 5seg
-                        character.endInvencible();
-                        counter = 0;
-                    }
-                    else{
-                        counter += 10;
-                    }
-                }
-            }   
+            		if (character.isInvincible()) {
+            			if (counter > 5000) {
+            				character.endInvencible();
+            				counter = 0;
+            			} else {
+            				counter += 10;
+            			}
+            		}
+    
+            		// Actualizar timer cada segundo
+            		timeCounter++;
+            		if (timeCounter >= 60) { // 60 iteraciones aproximadamente 1 segundo
+            			timer--;
+            			timeCounter = 0; // Reiniciar el contador de tiempo
+            		}
+    
+            		game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
+            }
+    
             try {
                 Thread.sleep(16);
-            } 
-            catch (InterruptedException e) { 
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-
     
+    private void checkEnemiesInRange(List<Enemy> enemyList){
+        for(Enemy enemy : enemyList)
+            if(!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16){
+                enemy.activateEnemy();
+                System.out.println("Enemigo en rango");
+            }
+    }
     
    
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
@@ -84,7 +107,7 @@ public class CharacterThread extends Thread {
                 else
                     character.jump("Jumping" + horizontalDirection);
             break;
-    }
+        }
     	switch(horizontalDirection) {
     		case "None":
     			character.stayStill("Still" + keyboard.getPreviousDirection());
@@ -113,7 +136,6 @@ public class CharacterThread extends Thread {
 	private void moveLeft() {
         float characterLeftLimit;
 		characterLeftLimit = LogicTools.characterInMapEnd(character.getX(), maximumX);
-		
         if(character.getX()>characterLeftLimit) {
             if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
                 character.setIsInAir(true);
@@ -123,5 +145,5 @@ public class CharacterThread extends Thread {
                 spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
         }
     }
-    
+
 }

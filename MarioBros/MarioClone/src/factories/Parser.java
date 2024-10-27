@@ -8,11 +8,10 @@ import java.util.LinkedList;
 public class Parser{
     protected LinkedList<Vector<Integer>> levelContent;    
     protected String path;    
+    protected int numberLevel;
 
-    public Parser(int numberLevel){
-        this.path = ("src"+File.separator + "levels" + File.separator + "level"+numberLevel+".txt");
+    public Parser(){
         this.levelContent = new LinkedList<>();
-        getLevelContent();
     }
     
     private void getLevelContent(){        
@@ -91,5 +90,11 @@ public class Parser{
         System.out.println(x+" "+y+" "+z);
         System.out.println("------------------");
         p.printContent();    
-    }   */         
+    }   */
+
+    public void setLevel(int levelNumber) {
+        this.numberLevel = levelNumber;
+        this.path = ("src"+File.separator + "levels" + File.separator + "level"+numberLevel+".txt");
+        getLevelContent();
+    }         
 }
