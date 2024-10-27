@@ -39,14 +39,7 @@ public class CharacterCollisionManager{
                 if(character.isInvincible() || character.downCollision(enemy)){
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy); 
-                } 	
-                /*
-                if(character.leftCollision(enemy) || character.rightCollision(enemy) && !character.isInvincible()){
-                    character.dead();
-                    game.resetLevel();
-                    endIteration = true;
                 }
-                 */
                 //if(character.downCollision(enemy)){
                     //enemy.acceptVisit(character);
             	//System.out.println("colision con enemigo"); 
