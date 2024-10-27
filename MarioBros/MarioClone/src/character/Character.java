@@ -6,9 +6,9 @@ import game.Entity;
 import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
-import views.CharacterObserver;
-import views.GraphicTools;
+import tools.GraphicTools;
 import views.ViewConstants;
+import views.CharacterObserver;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	protected int lives;
@@ -74,9 +74,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (isInAir){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
 			
-			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
-				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
-			}
+			//if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
+			//	verticalSpeed = ViewConstants.MAX_FALL_SPEED;
+			//}
 			float worldY = getY();
 			setY(worldY + (verticalSpeed*0.04f));
 			observer.update();

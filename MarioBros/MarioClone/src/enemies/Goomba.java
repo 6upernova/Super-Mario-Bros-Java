@@ -15,6 +15,10 @@ public class Goomba extends Enemy{
 		direction="Left";
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
@@ -27,7 +31,10 @@ public class Goomba extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
-	public void visit(Platform platform){
+
+	@Override
+	public void visit(Platform platform) {
+		// TODO Auto-generated method stub
 		
 	}
 	

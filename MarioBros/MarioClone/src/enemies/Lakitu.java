@@ -15,6 +15,10 @@ public class Lakitu extends Enemy{
 		direction="Left";
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}

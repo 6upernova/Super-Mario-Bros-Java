@@ -1,7 +1,9 @@
 package enemies;
+
 import factories.Sprite;
 import game.CharacterVisitor;
 import platforms.Platform;
+import views.GraphicObserver;
 
 public class BuzzyBeetle extends Enemy {
 
@@ -12,6 +14,9 @@ public class BuzzyBeetle extends Enemy {
 	public BuzzyBeetle(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
+	}
+	public String getDirection() {
+		return direction;
 	}
 	
 	public int getPointsOnDeath() {
@@ -24,8 +29,10 @@ public class BuzzyBeetle extends Enemy {
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-
-	public void visit(Platform platform){
+	@Override
+	public void visit(Platform platform) {
+		// TODO Auto-generated method stub
 		
-	}	
+	}
+
 }

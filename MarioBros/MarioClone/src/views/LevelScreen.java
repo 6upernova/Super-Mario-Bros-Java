@@ -10,8 +10,10 @@ import HitboxDebug.HitboxPanel;
 import character.CharacterEntity;
 import game.BoundingBox;
 import game.LogicalEntity;
+import tools.GraphicTools;
 
-public class LevelScreen extends JPanel {    
+public class LevelScreen extends JPanel {
+	
     protected ViewController viewController;
     protected JPanel contentPanel;
     protected JScrollPane scrollPanel;

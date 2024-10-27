@@ -1,6 +1,7 @@
 package views;
 
 import character.CharacterEntity;
+import tools.GraphicTools;
 
 public class CharacterObserver extends GraphicObserver{
 

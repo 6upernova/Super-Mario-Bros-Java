@@ -5,6 +5,7 @@ import factories.Sprite;
 import projectile.FireBall;
 
 public class FireState extends SuperState{
+	
 	private FireBall fireBall;
 	public FireState(Character character, HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites);

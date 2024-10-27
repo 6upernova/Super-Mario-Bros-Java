@@ -20,8 +20,8 @@ public class ViewController {
         levelScreen = new LevelScreen(this);
         menuScreen = new MenuScreen(this);
         configureWindow();
-        //showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
-        game.start();                   //comentar esta linea
+        showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
+        //game.start();                   //comentar esta linea
         
         //To do resto de screens
     }

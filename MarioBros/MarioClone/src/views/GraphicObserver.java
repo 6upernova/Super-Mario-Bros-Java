@@ -3,6 +3,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import game.BoundingBox;
 import game.LogicalEntity;
+import tools.GraphicTools;
 
 public abstract class GraphicObserver extends JLabel implements Observer {
    
@@ -22,7 +23,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
     protected void updateSprite(){
         String path = observedEntity.getSprite().getSkinPath();
         ImageIcon icon = new ImageIcon(getClass().getResource(path));
-        icon = GraphicTools.scalePlatformImage(icon);
+        icon = GraphicTools.scaleEntityImage(icon);
         this.setIcon(icon);
     }
 

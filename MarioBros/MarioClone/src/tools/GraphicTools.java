@@ -1,12 +1,15 @@
-package views;
+package tools;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import views.ViewConstants;
+
 public class GraphicTools {
 
     //Screen position methods
+	
     public static int getScreenPositionX(float worldX){
         return Math.round(worldX *  ViewConstants.CELL_SIZE);
     }
@@ -28,7 +31,7 @@ public class GraphicTools {
 
     //Scaling methods
 
-    public static ImageIcon scalePlatformImage(ImageIcon imageIcon) {
+    public static ImageIcon scaleEntityImage(ImageIcon imageIcon) {
     	Image image=imageIcon.getImage();
     	int width= imageIcon.getIconWidth();
     	int height=imageIcon.getIconHeight();

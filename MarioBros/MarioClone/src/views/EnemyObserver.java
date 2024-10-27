@@ -1,6 +1,7 @@
 package views;
 
 import enemies.EnemyEntity;
+import tools.GraphicTools;
 
 public class EnemyObserver extends GraphicObserver{
 	
