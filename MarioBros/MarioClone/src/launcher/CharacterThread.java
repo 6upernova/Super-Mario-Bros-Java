@@ -47,7 +47,7 @@ public class CharacterThread extends Thread {
             frameCount++;
     
             if (character.isInEnd()) {
-                game.playNextLevel(character.getScore(), character.getCoins(), character.getLives(), character.getState());
+                game.playNextLevel();
                 timer = 400;
                 inGame = false;
             }
@@ -70,7 +70,6 @@ public class CharacterThread extends Thread {
                         counter += 10;
                     }
                 }
-                System.out.println(character.isInvulnerable());
                 if(character.isInvulnerable()){
                     if (counter > character.HIT_INVINCIBILITY_TIME) {
                         character.setInvulnerable(false);
@@ -145,7 +144,7 @@ public class CharacterThread extends Thread {
 		
 	private void moveLeft() {
         float characterLeftLimit;
-		characterLeftLimit = LogicTools.characterInMapEnd(character.getX(), maximumX);
+		characterLeftLimit = LogicTools.characterInMapEnd(game);
         if(character.getX()>characterLeftLimit) {
             if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
                 character.setIsInAir(true);

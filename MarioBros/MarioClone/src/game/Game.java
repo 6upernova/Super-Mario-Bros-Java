@@ -24,18 +24,19 @@ public class Game {
     protected int numberLevel;
     protected SoundReproducer sound;
     private String mode;
+
+
     protected CharacterThread thread;
+    protected EnemyThread enemyThread;
     protected Ranking ranking;
 
+
     public Game () {
-        //this.numberLevel = 1;
-        //crear metodo changeLevel(int level) y si se quiere actualizar el nivel
-        //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
-        //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
-        //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
         this.mode = "Original";
         this.levelGenerator = new LevelGenerator(mode);  
-        this.ranking = new Ranking();         
+        this.ranking = new Ranking();
+        currentPlayer = "Noah";
+        setLevel(1);         
     }    
     //Launcher operation
     public void setViewController(ViewController viewController){
@@ -43,26 +44,28 @@ public class Game {
     }
 
     public void start(){
-        numberLevel++;
-        currentLevel = levelGenerator.createLevel();
         setObservers();
-        EnemyThread enemyThread = new EnemyThread(this);
-        CharacterThread thread = new CharacterThread(viewController.getKeyboard(), this);
+        enemyThread = new EnemyThread(this);
+        thread = new CharacterThread(viewController.getKeyboard(), this);
         thread.start();
-        //viewController.showMenuScreen();
-        //viewController.showRankingScreen();
+        enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel"+ numberLevel);
         sound.loop();
-        enemyThread.start();
     }
 
     public void stop(){
         //ranking 
         ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
-        
-        clearCurrentLevel();
+        viewController.clearLevelScreen();
         viewController.showMenuScreen();
+        
+
+    }
+
+    protected void setLevel(int number){
+        currentLevel = levelGenerator.createLevel(number);
+        currentLevel.setCharacter(levelGenerator.createCharacter());
     }
     
     public Level getCurrentLevel(){
@@ -117,43 +120,46 @@ public class Game {
         System.out.println("borre algo");
     }    
 
-    public void playNextLevel(int score, int coins, int lives, CharacterState state) {
-        changeLevel(score,coins,lives,state);
+    public void playNextLevel() {
+        changeLevel();
+        this.thread.interrupt();
+        this.enemyThread.interrupt();
         this.thread = new CharacterThread(viewController.getKeyboard(), this);
+        enemyThread = new EnemyThread(this);
         thread.start();
+        enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel" + numberLevel);
         sound.loop();
     }
     
 
-    protected void changeLevel(int score, int coins, int lives, CharacterState state) {  
+    protected void changeLevel() {  
         System.out.println("Cambiando de nivel");
-        // Eliminar elementos del nivel anterior
-        currentLevel.getCharacter().setInEnd(false); 
-        clearCurrentLevel();
+        Character currentCharacter =resetCharacter();
+        viewController.clearLevelScreen();
         if (sound != null) {
             sound.stop();
         }    
+       
         currentLevel = levelGenerator.getNextLevel();   
+        System.out.println(currentLevel == null);
         if(currentLevel != null){
-            //Cambiar por Un metodo que sea reset Character
-            currentLevel.getCharacter().setState(state);       
-            currentLevel.getCharacter().addCoins(coins);
-            currentLevel.getCharacter().addLives(lives);
-            currentLevel.getCharacter().addScore(score);
+            currentLevel.setCharacter(currentCharacter);
             setObservers();
-            viewController.showLevelScreen(); 
         }
         else{
-            //es porque gano, decidir que va a ir aca
+
         }
     }
 
-    private void clearCurrentLevel() {
-        currentLevel.delete(); 
-        viewController.clearEntities();
+    private Character resetCharacter(){
+        Character character = currentLevel.getCharacter();
+        character.setInEnd(false);
+        character.setInStart();
+        return character;
     }
+
 
     public void updateInformation(int score, int coins, int timer, int lives) {
         viewController.updateInformation(coins, score, timer, lives);

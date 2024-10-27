@@ -41,9 +41,6 @@ public class CharacterCollisionManager{
                     enemies.remove(enemy);
                     enemy.acceptVisit(character);
                 }
-                //if(character.downCollision(enemy)){
-                    
-            	//System.out.println("colision con enemigo"); 
                                 
                 endIteration = true;
             }

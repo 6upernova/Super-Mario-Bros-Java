@@ -71,7 +71,7 @@ public class LevelScreen extends JPanel {
         int currentScrollPosition = horizontalBar.getValue();
         int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);        
         if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPosition() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
-            int smoothScrollPosition = Math.round(currentScrollPosition + 0.1f * (targetScrollPosition - currentScrollPosition));
+            int smoothScrollPosition = Math.round(currentScrollPosition + 0.5f * (targetScrollPosition - currentScrollPosition));
             horizontalBar.setValue(smoothScrollPosition);
         }
     }

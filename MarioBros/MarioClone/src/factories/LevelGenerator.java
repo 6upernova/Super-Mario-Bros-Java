@@ -17,15 +17,15 @@ public class LevelGenerator {
         this.parser= new Parser();
     }
 
-    public Level createLevel(){
-        parser.setLevel(levelNumber);
+    public Level createLevel(int number){
+        this.levelNumber = number;
+        parser.setLevel(this.levelNumber);
         int type=0;
         int worldX=0;
         int worldY=0;
         List<Platform> platformList = new LinkedList<Platform>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
         List<Enemy> enemyList = new LinkedList<Enemy>();
-        Character character = entityFactory.createCharacter();
         //LEE CADA LINEA DEL TXT Y LO PASA A UN A CREATE, DESPUES CON ESO LO AÑADE
         while(parser.hasToRead()) {
             type= parser.getType();
@@ -44,14 +44,18 @@ public class LevelGenerator {
                                 platformList.add(platform);
                             }            
         }        
-        return new Level(platformList, enemyList, powerUpList, character);
+        return new Level(platformList, enemyList, powerUpList);
+    }
+
+    public Character createCharacter(){
+        return entityFactory.createCharacter();
     }
 
     public Level getNextLevel() {
         this.levelNumber = levelNumber + 1;
         Level level = null;
         if(levelNumber < 4)
-            level = createLevel();
+            level = createLevel(levelNumber);
         return level;
     }
 }

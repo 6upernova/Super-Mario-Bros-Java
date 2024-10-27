@@ -113,12 +113,6 @@ public class Ranking{
         return find;
     }
 
-    public void printContent(){
-        System.out.println("xxxxxxx");
-        for(int i = 0; i<size ;i++)
-            ranking[i].printVector();
-        System.out.println("xxxxxxx");
-    }
     public Collection<String> getPlayers() {
         List<String> players = new LinkedList<>();
         for(int i = 0;i<size;i++){

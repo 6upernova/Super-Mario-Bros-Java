@@ -17,22 +17,26 @@ public class RankingScreen extends JPanel {
 		this.viewController= viewController;
 		setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
         setLayout(null);
-        addBackButton();
         addRankingPanel(viewController.getPlayers());
+        addBackButton();
 
         
     }
 
     private void addRankingPanel(Collection<String> players) {
         rankingPanel = new RankingPanel(players);
-        this.add(rankingPanel, BorderLayout.CENTER);
+        rankingPanel.setVisible(true);
+        rankingPanel.setBounds(0, 0, ViewConstants.PANEL_WITDH, ViewConstants.PANEL_HEIGHT);
+        this.add(rankingPanel);
+        
     }
     
     private void addBackButton() {
         backButton = new JButton("Back to menu");        
-	    backButton.setPreferredSize(new Dimension(150, 50));
         backButton.addActionListener(new BackButtonListener());
-        add(backButton);
+        backButton.setBounds(0, 0 , 150, 30);
+        this.add(backButton);
+        this.setComponentZOrder(backButton, 0); 
     }
     
     private class BackButtonListener implements ActionListener{
@@ -42,4 +46,5 @@ public class RankingScreen extends JPanel {
         }
 		
 	}
+
 }

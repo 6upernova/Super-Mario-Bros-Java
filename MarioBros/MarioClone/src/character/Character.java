@@ -47,6 +47,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.coins = 0;
 	}
 
+	public void setInStart(){
+		setX(5);
+		setY(0);
+	}
+
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
 		this.characterStates = characterStates;
@@ -74,9 +79,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (isInAir){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
 			
-			//if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
-			//	verticalSpeed = ViewConstants.MAX_FALL_SPEED;
-			//}
+			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
+				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
+			}
 			float worldY = getY();
 			setY(worldY + (verticalSpeed*0.04f));
 			observer.update();
@@ -286,7 +291,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setSprite(characterActualState.getSprites().get("InFlag"));	
 		observer.update();
 	}
-	
+
 	public void visit(MastEnd mast) {
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));	

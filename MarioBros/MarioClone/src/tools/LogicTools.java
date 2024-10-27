@@ -5,19 +5,15 @@ import java.util.List;
 import platforms.Platform;
 import views.ViewConstants;
 import character.Character;
+import game.Game;
 
 public class LogicTools {
 	
-	public static float characterInMapEnd(float characterXPosition, float maximumX) {
-        float characterLeftLimit=0;
-        float mapEnd=ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH/ViewConstants.CELL_SIZE;
-        if(characterXPosition>(mapEnd))
-            characterLeftLimit=(mapEnd);
-        else
-            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
-        return characterLeftLimit;
+    public static float characterInMapEnd(Game game) {
+        float scrollbarPos = (game.getViewController().getLevelScreen().getScrollbarXPosition()/ViewConstants.CELL_SIZE);
+        return scrollbarPos+1;
+        
     }
-
     //Metodo provisional hasta tener un level data
     public static HashMap<String,Platform> groupPlatformsByCoords(List<Platform> platforms){
         HashMap<String,Platform> toret = new HashMap<String,Platform>();

@@ -64,7 +64,7 @@ public class MenuScreen extends JPanel{
 	private class NewGameButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			viewController.startGame();
+			viewController.newGame();
 		}
 		
 	}

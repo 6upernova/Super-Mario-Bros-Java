@@ -14,12 +14,12 @@ public class ViewController {
     protected MenuScreen menuScreen;
     protected Keyboard keyboardInputs;
     protected Game game;
-    protected RankingPanel rankingScreen;
+    protected RankingScreen rankingScreen;
 
     public ViewController(Game game){
         this.game = game;
         this.levelScreen = new LevelScreen(this);
-        this.rankingScreen = new RankingPanel(game.getRankingPlayers());
+        this.rankingScreen = new RankingScreen(this);
         configureWindow();
         //To do resto de screens
         
@@ -29,12 +29,10 @@ public class ViewController {
         game.setViewController(this);
         levelScreen = new LevelScreen(this);
         menuScreen = new MenuScreen(this);
-        rankingScreen = new RankingPanel(game.getRankingPlayers());
+        rankingScreen = new RankingScreen(this);
         configureWindow();
-        showMenuScreen();             //Para empezar el juego en la menuScreen borrar el comentario de esta linea y
-        //game.start();                   //comentar esta linea
+        showMenuScreen();             
         
-        //To do resto de screens
     }
 
     public void configureWindow (){
@@ -48,8 +46,14 @@ public class ViewController {
 		window.setVisible(true);
     }
 
-    public void startGame(){
+    protected void startGame(){
         game.start();
+    }
+
+    public void newGame(){
+        this.game = new Game();
+        game.setViewController(this);
+        startGame();
     }
 
     public void showMenuScreen(){
@@ -62,7 +66,8 @@ public class ViewController {
         refresh();
     }
 
-    public void showRankingScreen(){        
+    public void showRankingScreen(){
+        //rankingScreen.resfreshContent();    
         window.setContentPane(rankingScreen);
         refresh();
     }
@@ -100,7 +105,7 @@ public class ViewController {
     public void updateInformation(int newCoins, int newScore, int newTime, int newLives){
         levelScreen.updateInformationPanel(newCoins,newScore, newTime, newLives);
     }
-    public void clearEntities() {
+    public void clearLevelScreen() {
         this.levelScreen = new LevelScreen(this);
     }
 
