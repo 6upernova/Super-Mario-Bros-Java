@@ -17,7 +17,6 @@ public class CharacterThread extends Thread {
     private CharacterCollisionManager characterCollisionManager;
     private int frameCount;
     private int spriteNumber;
-    private float maximumX;
     private HashMap<String,Platform> platformsByCoords;
 
     public CharacterThread(Keyboard keyboard, Game game){
@@ -27,7 +26,6 @@ public class CharacterThread extends Thread {
         this.keyboard = keyboard;
         this.frameCount = 0;
         this.spriteNumber = 1;
-        this.maximumX = character.getX();
         this.game = game;
     }
     
@@ -59,8 +57,17 @@ public class CharacterThread extends Thread {
                 characterCollisionManager.powerUpsCollisions(character);
                 
                 if (character.isInvincible()) {
-                    if (counter > 5000) {
-                        character.endInvencible();
+                    if (counter > character.STAR_INVINCIBILITY_TIME) {
+                        character.setInvencible(false);
+                        counter = 0;
+                    } else {
+                        counter += 10;
+                    }
+                }
+                System.out.println(character.isInvulnerable());
+                if(character.isInvulnerable()){
+                    if (counter > character.HIT_INVINCIBILITY_TIME) {
+                        character.setInvulnerable(false);
                         counter = 0;
                     } else {
                         counter += 10;
@@ -76,7 +83,7 @@ public class CharacterThread extends Thread {
     
                 game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
             }
-    
+            
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
@@ -113,7 +120,7 @@ public class CharacterThread extends Thread {
     }
 
 	private void moveRight() {
-		maximumX = character.getX() > maximumX ? character.getX() : maximumX;
+		
 
         if(!character.isInAir() && !isOnSolid() ){
             character.setIsInAir(true);
@@ -125,8 +132,8 @@ public class CharacterThread extends Thread {
     }
 		
 	private void moveLeft() {
-        float characterLeftLimit=characterInMapEnd(character.getX());
-        if(character.getX()>characterLeftLimit) {
+        float characterLeftLimit=characterInMapEnd();
+        if(character.getX()>=characterLeftLimit) {
             if(!character.isInAir() && !isOnSolid() ){
                 character.setIsInAir(true);
             }
@@ -138,14 +145,10 @@ public class CharacterThread extends Thread {
 
     //Metodos Para LogicTools:
 
-    private float characterInMapEnd(float characterXPosition) {
-        float characterLeftLimit=0;
-        float mapEnd=ViewConstants.MAP_CELLS-ViewConstants.WIN_WIDTH/ViewConstants.CELL_SIZE;
-        if(characterXPosition>(mapEnd))
-            characterLeftLimit=(mapEnd);
-        else
-            characterLeftLimit= maximumX - (ViewConstants.LEFT_CHARACTER_SPACE);
-        return characterLeftLimit;
+    private float characterInMapEnd() {
+        float scrollbarPos = (game.getViewController().getLevelScreen().getScrollbarXPosition()/ViewConstants.CELL_SIZE);
+        return scrollbarPos+1;
+        
     }
 
 

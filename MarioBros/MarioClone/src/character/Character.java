@@ -13,7 +13,7 @@ import views.ViewConstants;
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	protected int lives;
 	protected int score;
-	protected boolean invincible;
+
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
@@ -24,20 +24,29 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected boolean isInAir;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
+
 	private boolean isInEnd;
 	private int coins;
+
+	protected boolean invincible;
+	protected boolean invulnerable;
+
+	public final int HIT_INVINCIBILITY_TIME = 100;
+	public final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
 		this.score = 0;
 		this.lives = 3;
         this.invincible = false;
+		this.invulnerable = false;
 		this.isInAir = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
 		this.coins = 0;
 	}
+
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
 		this.characterStates = characterStates;
@@ -99,14 +108,20 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.isInAir = isInAir;
 	}
 	
+	public boolean isInvulnerable(){
+		return invulnerable;
+	}
+
+	public void setInvulnerable(boolean state){
+		invulnerable = state;
+	}
+	
 	public void dead(){
 		lives--;
 		setX(5);
 		setY(0);
 		if(this.lives > 0)
 			((CharacterObserver)observer).respawn();
-		
-
 	}
 	
 	
@@ -137,8 +152,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return invincible;
 	}
 
-	public void endInvencible(){
-		this.invincible = false;
+	public void setInvencible(boolean invincible){
+		this.invincible = invincible;
 	}
 
 	public float getSpeed() {
@@ -215,7 +230,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (invincible) {
 			addScore(35);
 		}
-		else addScore(characterActualState.getStarPoints());
+		else {
+			addScore(characterActualState.getStarPoints());
+		}
+		
 		invincible = true;
 		observer.update();
 	}

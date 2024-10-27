@@ -56,6 +56,10 @@ public class Game {
     public Level getCurrentLevel(){
         return currentLevel;
     }
+
+    public ViewController getViewController(){
+        return viewController;
+    }
     public void reproduceSoundEffect(String path) {
         sound.setAuxiliarAudio(path);
         sound.start();

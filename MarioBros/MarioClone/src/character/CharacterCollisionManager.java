@@ -31,9 +31,10 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if(character.leftCollision(enemy) && !character.isInvincible() || character.rightCollision(enemy) && !character.isInvincible()|| character.upCollision(enemy) && !character.isInvincible() ){
+                if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && (!character.isInvincible() && !character.isInvulnerable())){
                     System.out.println("colision de costado");
                     character.damaged();
+                    character.setInvulnerable(true);
                 }
                 if(character.isInvincible() || character.downCollision(enemy)){
                     game.removeLogicalEntity(enemy);
