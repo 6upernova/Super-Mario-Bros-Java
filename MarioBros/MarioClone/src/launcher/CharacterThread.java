@@ -21,6 +21,7 @@ public class CharacterThread extends Thread {
     private int spriteNumber;
     private float maximumX;
     private HashMap<String,Platform> platformsByCoords;
+    
 
     public CharacterThread(Keyboard keyboard, Game game){
     	this.game = game;
@@ -61,14 +62,23 @@ public class CharacterThread extends Thread {
             		characterCollisionManager.powerUpsCollisions(character);
             		checkEnemiesInRange(game.getCurrentLevel().getEnemies());
                 
-            		if (character.isInvincible()) {
-            			if (counter > 5000) {
-            				character.endInvencible();
-            				counter = 0;
-            			} else {
-            				counter += 10;
-            			}
-            		}
+                if (character.isInvincible()) {
+                    if (counter > character.STAR_INVINCIBILITY_TIME) {
+                        character.setInvencible(false);
+                        counter = 0;
+                    } else {
+                        counter += 10;
+                    }
+                }
+                System.out.println(character.isInvulnerable());
+                if(character.isInvulnerable()){
+                    if (counter > character.HIT_INVINCIBILITY_TIME) {
+                        character.setInvulnerable(false);
+                        counter = 0;
+                    } else {
+                        counter += 10;
+                    }
+                }
     
             		// Actualizar timer cada segundo
             		timeCounter++;
@@ -79,7 +89,7 @@ public class CharacterThread extends Thread {
     
             		game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
             }
-    
+            
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {

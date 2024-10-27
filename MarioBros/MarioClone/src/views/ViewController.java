@@ -91,4 +91,8 @@ public class ViewController {
         window.setVisible(false);
         window.dispose();
     }
+
+    public LevelScreen getLevelScreen(){
+        return levelScreen;
+    }
 }

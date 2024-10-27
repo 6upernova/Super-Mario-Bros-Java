@@ -19,8 +19,9 @@ public class CharacterObserver extends GraphicObserver{
     public void update() {
         updateSprite();
         updatePositionSize();
-        levelScreen.updateScrollRight(observedCharacter);
         updateBoundingBoxCoords();
+        levelScreen.updateScrollRight(observedCharacter);
+        
     }
 
     private void updateBoundingBoxCoords(){
