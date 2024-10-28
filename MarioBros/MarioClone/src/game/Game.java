@@ -137,7 +137,7 @@ public class Game {
 
     protected void changeLevel() {  
         System.out.println("Cambiando de nivel");
-        Character currentCharacter =resetCharacter();
+        Character currentCharacter=resetCharacter();
         viewController.clearLevelScreen();
         if (sound != null) {
             sound.stop();

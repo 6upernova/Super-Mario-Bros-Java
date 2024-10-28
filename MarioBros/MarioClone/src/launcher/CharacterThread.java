@@ -20,7 +20,6 @@ public class CharacterThread extends Thread {
     private CharacterCollisionManager characterCollisionManager;
     private int frameCount;
     private int spriteNumber;
-    private float maximumX;
     private boolean isRunning;
     private HashMap<String,Platform> platformsByCoords;
     
@@ -33,7 +32,6 @@ public class CharacterThread extends Thread {
         this.keyboard = keyboard;
         this.frameCount = 0;
         this.spriteNumber = 1;
-        this.maximumX = character.getX();
         this.isRunning = false;
     }
     
@@ -108,13 +106,7 @@ public class CharacterThread extends Thread {
     
    
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
-		float characterLeftLimit = LogicTools.characterInMapEnd(game);
-        if(character.getX() < characterLeftLimit){
-            character.setX(character.getX()+0.5f);
-        }
-        else{
-            character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
-        }
+		
         character.applyGravity();
         switch (verticalDirection) {
         case "Up":
@@ -139,8 +131,8 @@ public class CharacterThread extends Thread {
     }
 
 	private void moveRight() {
-		maximumX = character.getX() > maximumX ? character.getX() : maximumX;
-		
+		character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
+
         if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
             character.setIsInAir(true);
         }
@@ -152,16 +144,22 @@ public class CharacterThread extends Thread {
 		
 	private void moveLeft() {
         float characterLeftLimit = LogicTools.characterInMapEnd(game);
-        if(character.getX() > characterLeftLimit){
-            if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
-                character.setIsInAir(true);
-            }
-            
-                character.moveLeft("Left"+spriteNumber);
-            
-            if(frameCount%4==0) 
-                spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+        if(character.getX() <= characterLeftLimit){
+            character.setHorizontalSpeed(0);
         }
+        else{
+            character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
+        }
+        
+        if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
+            character.setIsInAir(true);
+        }
+            
+        character.moveLeft("Left"+spriteNumber);
+            
+        if(frameCount%4==0) 
+            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
+
     }
 
 	public void setIsRunning(boolean value) {

@@ -22,7 +22,7 @@ public class ViewController {
         this.rankingScreen = new RankingScreen(this);
         this.preGameScreen = new PreGameScreen(this);
         configureWindow();
-        //To do resto de screens
+
         
     }
     public ViewController(){
@@ -48,16 +48,13 @@ public class ViewController {
 		window.setVisible(true);
     }
 
-    protected void startGame(){
-        game.start();
-    }
 
     public void newGame(String mode, String name){
         this.game = new Game();
         game.setMode(mode);
         game.setName(name);
         game.setViewController(this);
-        startGame();
+        game.start();
     }
 
     public void showMenuScreen(){

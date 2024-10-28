@@ -96,6 +96,7 @@ public class CharacterCollisionManager{
                 }
                 else if(character.rightCollision(platform)){
                     character.setX(Math.round(character.getX()));
+                    
                 }
                 platform.acceptVisit(character);
             }
