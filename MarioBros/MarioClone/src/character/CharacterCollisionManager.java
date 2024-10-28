@@ -32,15 +32,14 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && (!character.isInvincible() && !character.isInvulnerable())){
-                    System.out.println("colision de costado");
-                    character.damaged();
-                    character.setInvulnerable(true);
-                }
-                if(character.isInvincible() || character.downCollision(enemy)){
+            	if(character.isInvincible() || character.downCollision(enemy)){
+                    enemy.acceptVisit(character);
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy);
-                    enemy.acceptVisit(character);
+                }
+                if(!character.isInvincible() && !character.isInvulnerable()){
+                    character.damaged();
+                    character.setInvulnerable(true);
                 }
                                 
                 endIteration = true;

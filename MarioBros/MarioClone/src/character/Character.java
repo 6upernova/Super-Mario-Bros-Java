@@ -166,40 +166,37 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	//VISITAS
     public void visit(Goomba goomba) {	
-		if(downCollision(goomba)){
 			addScore(goomba.getPointsOnDeath());
 			goomba.dead();
-		}
     }    
     public void visit(KoopaTroopa koopaTroopa) {
-		if(downCollision(koopaTroopa)){
 			addScore(koopaTroopa.getPointsOnDeath());
 			koopaTroopa.dead();
-		}
     }    
     public void visit(PiranhaPlant piranhaPlant) {
-		if(downCollision(piranhaPlant)){
+    	 if(isInvincible()) {
 			addScore(piranhaPlant.getPointsOnDeath());
 			piranhaPlant.dead();
-		}
+    	 }
+    	 else damaged();
     }
     public void visit(Lakitu lakitu) {
-		if(downCollision(lakitu)){
 			addScore(lakitu.getPointsOnDeath());
 			lakitu.dead();
-		}
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(downCollision(buzzyBeetle)){
+		if(isInvincible()){
 			addScore(buzzyBeetle.getPointsOnDeath());
 			buzzyBeetle.dead();
 		}
+		else damaged();
     }
 	public void visit(Spiny spiny) {
-		if(downCollision(spiny)){
+		if(isInvincible()) {
 			addScore(spiny.getPointsOnDeath());
 			spiny.dead();
 		}
+		else damaged();
 	}
 	/*
 	public void visit(Shell shell) {
