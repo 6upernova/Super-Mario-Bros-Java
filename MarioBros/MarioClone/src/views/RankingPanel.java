@@ -8,15 +8,8 @@ import java.util.Iterator;
 import java.awt.Color;
 
 public class RankingPanel extends JLabel {
-<<<<<<< Updated upstream
-	
-    private Font customFont;
-    
-    public RankingPanel(Collection<String> players) {        
-        changeFont();
-=======
-    public RankingPanel(Collection<String> players) {       
->>>>>>> Stashed changes
+
+    public RankingPanel(Collection<String> players) {
         setIcon(new ImageIcon("src/assets/backgrounds/rankingBackground.png"));
         setLayout(new GridLayout(6, 1)); 
         addPlayers(players);
@@ -26,13 +19,8 @@ public class RankingPanel extends JLabel {
         add(emptyLabel);        
         Iterator<String> it = players.iterator();
         while(it.hasNext()){
-<<<<<<< Updated upstream
-            String player = it.next();
-            JLabel playerLabel = new JLabel(player, SwingConstants.CENTER);
-=======
             String player = "                 "+it.next();            
             JLabel playerLabel = new JLabel(player, SwingConstants.LEFT);
->>>>>>> Stashed changes
             playerLabel.setOpaque(false);
             playerLabel.setFont(ViewConstants.font);
             playerLabel.setForeground(Color.WHITE);

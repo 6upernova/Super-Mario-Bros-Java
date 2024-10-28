@@ -22,7 +22,7 @@ public class Game {
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
     protected int numberLevel;
     protected SoundReproducer sound;
-    protected CharacterThread thread;
+    protected CharacterThread characterThread;
     protected EnemyThread enemyThread;
     protected Ranking ranking;
     private String mode;
@@ -34,11 +34,8 @@ public class Game {
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
-<<<<<<< Updated upstream
         this.mode = "original";
-        this.levelGenerator = new LevelGenerator(mode);  
-=======
->>>>>>> Stashed changes
+        this.levelGenerator = new LevelGenerator(mode); 
         this.ranking = new Ranking();
     } 
     public void setName(String name){
@@ -52,8 +49,8 @@ public class Game {
     public void start(){
         setObservers();
         enemyThread = new EnemyThread(this);
-        thread = new CharacterThread(viewController.getKeyboard(), this);
-        thread.start();
+        characterThread = new CharacterThread(viewController.getKeyboard(), this);
+        characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel"+ numberLevel);
@@ -128,11 +125,11 @@ public class Game {
 
     public void playNextLevel() {
         changeLevel();
-        this.thread.interrupt();
+        this.characterThread.interrupt();
         this.enemyThread.interrupt();
-        this.thread = new CharacterThread(viewController.getKeyboard(), this);
+        this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
         enemyThread = new EnemyThread(this);
-        thread.start();
+        characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel" + numberLevel);

@@ -8,16 +8,11 @@ public class KoopaTroopa extends Enemy{
 
 	static final private int pointsOnDeath=90;
 	static final private int pointsOnKill=-45;
-	private String direction;
 	
 	
 	public KoopaTroopa(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
-	}
-	
-	public String getDirection() {
-		return direction;
 	}
 	
 	public int getPointsOnDeath() {
@@ -34,8 +29,4 @@ public class KoopaTroopa extends Enemy{
 		this.observer = observer;
 	}
 
-	public void visit(Platform platform){
-		
-	}
-	
 }

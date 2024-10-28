@@ -83,7 +83,8 @@ public abstract class SpriteFactory {
         Sprite sprite;
     	if(frame % 2 == 0)
             sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator + "Normal"+ File.separator +"InvencibleRight"+ frame + ".png");
-        else sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterRight"+ frame + ".png");
+        else 
+        	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterRight"+ frame + ".png");
         return sprite;
     }
     
@@ -91,7 +92,8 @@ public abstract class SpriteFactory {
         Sprite sprite;
         if(frame % 2 != 0)
             sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invencible"+ File.separator + "Normal"+ File.separator +"InvencibleLeft"+ frame + ".png");
-        else sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterLeft"+ frame + ".png");
+        else 
+        	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterLeft"+ frame + ".png");
         return sprite;
     }
 
@@ -107,7 +109,8 @@ public abstract class SpriteFactory {
         Sprite sprite;
     	if(frame % 2 == 0)
             sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator + "Super"+ File.separator +"InvencibleRight"+ frame + ".png");
-        else sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterRight"+ frame + ".png");
+        else 
+        	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterRight"+ frame + ".png");
         return sprite;
     }
     
@@ -115,7 +118,8 @@ public abstract class SpriteFactory {
         Sprite sprite;
         if(frame % 2 != 0)
             sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invencible"+ File.separator + "Super"+ File.separator +"InvencibleLeft"+ frame + ".png");
-        else sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterLeft"+ frame + ".png");
+        else 
+        	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterLeft"+ frame + ".png");
         return sprite;
     }
 

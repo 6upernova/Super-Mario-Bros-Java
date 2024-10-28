@@ -1,22 +1,17 @@
 package enemies;
+
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Platform;
 import views.GraphicObserver;
 
 public class Goomba extends Enemy{
 
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=-30;
-	private String direction;
 	
 	public Goomba(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
-	}
-
-	public String getDirection() {
-		return direction;
 	}
 	
 	public int getPointsOnDeath() {
@@ -30,12 +25,6 @@ public class Goomba extends Enemy{
     }
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
-	}
-
-	@Override
-	public void visit(Platform platform) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

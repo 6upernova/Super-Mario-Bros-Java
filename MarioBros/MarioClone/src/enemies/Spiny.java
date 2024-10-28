@@ -8,17 +8,13 @@ public class Spiny extends Enemy{
 
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=-30;
-	private String direction;
 	
 	public Spiny(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
 	}
 	
-	public String getDirection() {
-		return direction;
-	}
-	
+
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
@@ -33,7 +29,4 @@ public class Spiny extends Enemy{
 		this.observer = observer;
 	}
 
-	public void visit(Platform platform){
-		
-	}
 }

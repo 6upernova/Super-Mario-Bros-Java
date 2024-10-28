@@ -8,17 +8,12 @@ public class Lakitu extends Enemy{
 
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=0;
-	private String direction;
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
 	}
 
-	public String getDirection() {
-		return direction;
-	}
-	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
@@ -31,10 +26,6 @@ public class Lakitu extends Enemy{
     }
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
-	}
-
-	public void visit(Platform platform){
-		
 	}
 	
 }

@@ -93,7 +93,6 @@ public class CharacterThread extends Thread {
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

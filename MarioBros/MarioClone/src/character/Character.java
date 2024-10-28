@@ -60,25 +60,24 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 	
 	public void moveLeft(String key){
-			float worldX = getX();
-			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
-			if(!isInAir())
-				setSprite(characterActualState.getSprites().get(key));	
-			observer.update();
+		float worldX = getX();
+		setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
+		if(!isInAir())
+			setSprite(characterActualState.getSprites().get(key));	
+		observer.update();
 	}
 
 	public void moveRight(String key){
-			float worldX = getX();
-			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
-			if(!isInAir())
-				setSprite(characterActualState.getSprites().get(key));
-			observer.update();
+		float worldX = getX();
+		setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
+		if(!isInAir())
+			setSprite(characterActualState.getSprites().get(key));
+		observer.update();
 	}
 
 	public void applyGravity() {
 		if (isInAir){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
-			
 			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
 				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
 			}
@@ -305,13 +304,16 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public float getVerticalSpeed() {
 		return verticalSpeed;
 	}
+	
 	public void setVerticalSpeed(float verticalSpeed) {
 		this.verticalSpeed = verticalSpeed;
 		observer.update();
 	}
+	
 	public float getHorizontalSpeed() {
 		return horizontalSpeed;
 	}
+	
 	public void setHorizontalSpeed(float horizontalSpeed) {
 		this.horizontalSpeed = horizontalSpeed;
 	}

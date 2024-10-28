@@ -8,17 +8,13 @@ public class PiranhaPlant extends Enemy{
 
 	static final private int pointsOnDeath=30;
 	static final private int pointsOnKill=-30;
-	private String direction;
 	
 	public PiranhaPlant(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="None";
 	}
 	
-	public String getDirection() {
-		return direction;
-	}
-	
+
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
@@ -32,9 +28,4 @@ public class PiranhaPlant extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
-
-	public void visit(Platform platform){
-		
-	}
-	
 }
