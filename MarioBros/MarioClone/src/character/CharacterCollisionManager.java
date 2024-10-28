@@ -20,8 +20,6 @@ public class CharacterCollisionManager{
         this.platforms = game.getCurrentLevel().getPlatforms();
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}
-
- 
 	
 	public boolean enemiesCollisions(Character character){
         boolean collision = false;
@@ -74,7 +72,7 @@ public class CharacterCollisionManager{
 	    boolean collision = false;
 	    boolean endIteration = false;
 	    Iterator<Platform> it = platforms.iterator();
-
+	    boolean removeEntity=false;
 	    BoundingBox characterBox = character.getBoundingBox();
 	    Platform platform;
 	    while (it.hasNext() && !endIteration){
@@ -86,19 +84,24 @@ public class CharacterCollisionManager{
                     character.setVerticalSpeed(0);
                     character.setY(platform.getY() + (platform.getHeight()));
                 }
-                else if(character.leftCollision(platform)){
-                    character.setX(platform.getX() + platform.getWidth());
+                else  if(character.leftCollision(platform)){
+                          character.setX(platform.getX() + platform.getWidth());
                 }
                 else if(character.upCollision(platform)){
-                    character.setVerticalSpeed(0);
-                    character.setY(Math.round(character.getY()));
-                    character.setIsInAir(true);
+                        character.setVerticalSpeed(0);
+                        character.setY(Math.round(character.getY()));
+                        character.setIsInAir(true);
+                        removeEntity= platform.isBreakeable() && character.capacityToBreakBlocks();
                 }
-                else if(character.rightCollision(platform)){
-                    character.setX(Math.round(character.getX()));
-                    
-                }
+                else  if(character.rightCollision(platform)){
+                         character.setX(Math.round(character.getX()));
+                      }
                 platform.acceptVisit(character);
+                if(removeEntity) {
+                	game.removeLogicalEntity(platform);
+                	platforms.remove(platform);
+                	endIteration=true;
+                }
             }
 	    }
 	    return collision;

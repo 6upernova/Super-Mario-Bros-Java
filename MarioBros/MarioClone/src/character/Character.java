@@ -200,14 +200,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			piranhaPlant.dead();
     	 }
     	 else damaged();
-    }
+    }	
     public void visit(Lakitu lakitu) {
 			addScore(lakitu.getPointsOnDeath());
 			sounds.setAuxiliarAudio("kick");
 			lakitu.dead();
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(isInvincible() || this.downCollision(buzzyBeetle)){
+		if(isInvincible()){
 			addScore(buzzyBeetle.getPointsOnDeath());
 			sounds.setAuxiliarAudio("kick");
 			buzzyBeetle.dead();
@@ -290,8 +290,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	//platforms
 	public void visit(Pipe pipe) {
-		isInAir = false;
 	}
+	
 	public void visit(Flag flag) {
 
 	}
@@ -387,5 +387,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return characterActualState;
     }
 	
+    public boolean capacityToBreakBlocks() {
+    	return characterActualState.breakBlock();
+    }
 
 }

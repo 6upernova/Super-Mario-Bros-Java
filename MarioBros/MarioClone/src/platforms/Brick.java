@@ -8,8 +8,10 @@ public class Brick extends Platform{
 		super(sprite, positionInX, positionInY, true);
 	}
 
-	public void brakeBrick() {
-		
+	public void breakBrick() {
+		boundingBox = null;
+        sprite= new Sprite("void");
+		observer.update();
 	}
 	
 	public void acceptVisit(CharacterVisitor visitor) {

@@ -1,4 +1,5 @@
 package game;
+
 import java.util.Collection;
 import java.util.List;
 import character.Character;
@@ -29,7 +30,7 @@ public class Game {
 
 
     public Game () {
-        //this.numberLevel = 1;
+        this.numberLevel = 1;
         //crear metodo changeLevel(int level) y si se quiere actualizar el nivel
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
@@ -122,6 +123,7 @@ public class Game {
     }    
 
     public void playNextLevel() {
+        sound.stop();
         changeLevel();
         this.characterThread.interrupt();
         this.enemyThread.interrupt();
@@ -130,7 +132,6 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        sound = new SoundReproducer("musicLevel" + numberLevel);
         sound.loop();
     }
     
@@ -161,13 +162,14 @@ public class Game {
         return character;
     }
 
-
     public void updateInformation(int score, int coins, int timer, int lives) {
         viewController.updateInformation(coins, score, timer, lives);
     }
+    
     public Collection<String> getRankingPlayers() {
         return ranking.getPlayers();
     }
+    
     public void setMode(String mode) {
         this.mode = mode;
         this.levelGenerator = new LevelGenerator(mode);  

@@ -41,5 +41,4 @@ public class FireState extends SuperState{
 		return 35;
 	}
 
-
 }
