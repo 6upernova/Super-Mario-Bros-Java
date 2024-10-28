@@ -34,8 +34,6 @@ public class Game {
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
-        this.mode = "original";
-        this.levelGenerator = new LevelGenerator(mode); 
         this.ranking = new Ranking();
     } 
     public void setName(String name){
@@ -99,21 +97,21 @@ public class Game {
     
     protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-            GraphicObserver platformObserver = viewController.registerEntity(platform);
+            GraphicObserver platformObserver = viewController.registerEntity(platform, true);
     		platform.registerObserver(platformObserver);
     	}
     }
     
    protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		GraphicObserver enemyObserver = viewController.registerEntity(enemy);
+    		GraphicObserver enemyObserver = viewController.registerEntity(enemy, true);
     		enemy.registerObserver(enemyObserver);
     	}
     }
     
     protected void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList){
-    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp);
+    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, false);
     		powerUp.registerObserver(powerUpObserver);
     	}
     }

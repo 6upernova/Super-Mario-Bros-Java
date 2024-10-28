@@ -56,14 +56,17 @@ public class CharacterCollisionManager{
         boolean endIteration = false;
         while (it.hasNext() && !endIteration) {
             powerUp = it.next();
-            collision = character.colision(powerUp);
-            //System.out.println(collision);
-            if (collision) {
-                powerUp.acceptVisit(character);   
-                game.removeLogicalEntity(powerUp);  
-                powerUps.remove(powerUp);   
-                endIteration = true;
+            if(powerUp.isActive()){
+                collision = character.colision(powerUp);
+                //System.out.println(collision);
+                if (collision) {
+                    powerUp.acceptVisit(character);   
+                    game.removeLogicalEntity(powerUp);  
+                    powerUps.remove(powerUp);   
+                    endIteration = true;
+                }
             }
+            
         }
         return collision;
     }

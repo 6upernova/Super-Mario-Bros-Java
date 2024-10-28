@@ -93,8 +93,8 @@ public class LevelScreen extends JPanel {
         return characterObserver;
     }
 
-    public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
-        EntityObserver entityObserver = new EntityObserver(entity);
+    public GraphicObserver drawLogicalEntity(LogicalEntity entity, boolean isActive) {
+        EntityObserver entityObserver = new EntityObserver(entity, isActive);
         backgroundImageLabel.add(entityObserver);
         return entityObserver;   
     }

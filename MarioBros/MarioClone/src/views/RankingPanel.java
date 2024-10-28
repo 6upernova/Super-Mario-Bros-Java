@@ -14,6 +14,7 @@ public class RankingPanel extends JLabel {
         setLayout(new GridLayout(6, 1)); 
         addPlayers(players);
     }
+    
     private void addPlayers(Collection<String> players){
         JLabel emptyLabel = new JLabel();
         add(emptyLabel);        

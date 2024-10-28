@@ -99,8 +99,8 @@ public class ViewController {
 
     }
 
-    public GraphicObserver registerEntity(LogicalEntity entity){
-        GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity);
+    public GraphicObserver registerEntity(LogicalEntity entity, boolean isActive){
+        GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity, isActive);
         refresh();
         return entityObserver;
     }
