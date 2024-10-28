@@ -97,21 +97,21 @@ public class Game {
     
     protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-            GraphicObserver platformObserver = viewController.registerEntity(platform);
+            GraphicObserver platformObserver = viewController.registerEntity(platform, true);
     		platform.registerObserver(platformObserver);
     	}
     }
     
    protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		GraphicObserver enemyObserver = viewController.registerEntity(enemy);
+    		GraphicObserver enemyObserver = viewController.registerEntity(enemy, true);
     		enemy.registerObserver(enemyObserver);
     	}
     }
     
     protected void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList){
-    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp);
+    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, false);
     		powerUp.registerObserver(powerUpObserver);
     	}
     }

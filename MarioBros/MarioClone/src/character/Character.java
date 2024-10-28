@@ -211,7 +211,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//power ups visits
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
-		;
 		characterActualState = characterStates.get("Super");
 		updateBoundingBoxToBig();
 		addScore(points);
@@ -288,7 +287,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		
 	}
 	public void visit(Question questionBlock) {
-		
+		if(upCollision(questionBlock)){
+			setVerticalSpeed(0);
+			setY(Math.round(getY()));
+			setIsInAir(true);
+			questionBlock.activatePowerUp();
+		}		
 	}
 	
 	public void visit(Mast mast) {
