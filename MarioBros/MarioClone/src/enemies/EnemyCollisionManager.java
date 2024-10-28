@@ -17,7 +17,6 @@ public class EnemyCollisionManager {
 	public boolean platformsCollisions(Enemy enemy){
 	    boolean collision = false;
 	    Iterator<Platform> it = platforms.iterator();
-
 	    BoundingBox enemyBox = enemy.getBoundingBox();
 	    Platform platform;
 	    while (it.hasNext()){

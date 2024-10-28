@@ -12,6 +12,7 @@ public class PiranhaPlant extends Enemy{
 	public PiranhaPlant(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="None";
+		isInAir=false;
 	}
 	
 
@@ -22,9 +23,11 @@ public class PiranhaPlant extends Enemy{
 	public int getPointsOnKill() {
 		return pointsOnKill;
 	}
+	
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
+	
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}

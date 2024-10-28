@@ -13,6 +13,7 @@ public class KoopaTroopa extends Enemy{
 	public KoopaTroopa(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
+		isInAir=false;
 	}
 	
 	public int getPointsOnDeath() {
@@ -22,9 +23,11 @@ public class KoopaTroopa extends Enemy{
 	public int getPointsOnKill() {
 		return pointsOnKill;
 	}
+	
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
+	
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}

@@ -9,22 +9,23 @@ import views.ViewConstants;
 
 public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement{
 	
-	private int pointsOnDeath;
-	private int pointsOnKill;
+	protected int pointsOnDeath;
+	protected int pointsOnKill;
 	protected String direction;
 	protected boolean isActive;
 	protected boolean isInAir;
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
+	protected boolean flies;
 	
 	public Enemy(Sprite sprite, int positionInX, int positionInY, int pointsOnDeath,int pointsOnKill) {
 		super(sprite, positionInX, positionInY);
 		this.pointsOnDeath = pointsOnDeath;//Puntos cuando enemigo muere
-		this.pointsOnKill = pointsOnKill;//Puntos cuando enemigo mata
+		this.pointsOnKill = pointsOnKill;  //Puntos cuando enemigo mata
 		this.horizontalSpeed = ViewConstants.ENEMY_SPEED;
 		this.verticalSpeed = 0;
 		this.isActive = false;
-		this.isInAir = false;
+		this.isInAir = true;
 	}
 	
 	public void setDirection(String newDirection) {
@@ -38,9 +39,11 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public int pointsOnDeath() {
 		return pointsOnDeath;
 	}
+	
 	public int getPointsOnKill() {
 		return pointsOnKill;
 	}
+	
 	public Observer getObserver() {
 		return observer;
 	}
@@ -90,6 +93,10 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		observer.update();
 	}
 
+	public boolean isInAir() {
+		return isInAir;
+	}
+	
 	public void setIsInAir(boolean value) {
 		isInAir=value;
 	}
