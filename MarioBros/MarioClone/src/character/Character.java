@@ -211,10 +211,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//power ups visits
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
+		;
 		characterActualState = characterStates.get("Super");
 		updateBoundingBoxToBig();
 		addScore(points);
-
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
@@ -229,8 +229,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		int points= characterActualState.getFireFlowerPoints();
 		this.characterActualState = characterStates.get("Fire");
 		addScore(points);
+		updateBoundingBoxToBig();
 		observer.update();
 	}
+
 	public void visit(Star star){
 		if (invincible) {
 			addScore(35);
@@ -251,8 +253,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public void updateBoundingBoxToBig(){
 		//Set nuevo x,y acorde
-		boundingBox.height *= 2;
-		boundingBox.updateExternalBoundsToBig();
+		System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
+		if(boundingBox.height <= ViewConstants.CELL_SIZE){
+			boundingBox.height *= 2;
+			boundingBox.updateExternalBoundsToBig();
+		}
 	}
 	public void updateBoundingBoxToSmall(){
 		//Set nuevo x,y acorde

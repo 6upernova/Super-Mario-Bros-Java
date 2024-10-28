@@ -34,11 +34,6 @@ public class Game {
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
-<<<<<<< Updated upstream
-        this.mode = "original";
-        this.levelGenerator = new LevelGenerator(mode);  
-=======
->>>>>>> Stashed changes
         this.ranking = new Ranking();
     } 
     public void setName(String name){
