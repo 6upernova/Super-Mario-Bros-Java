@@ -12,7 +12,7 @@ public class Goomba extends Enemy{
 	public Goomba(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
-		isInAir=false;
+		flies=false;
 	}
 	
 	public int getPointsOnDeath() {

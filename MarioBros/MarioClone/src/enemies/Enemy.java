@@ -60,7 +60,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	
 
 	public void applyGravity() {
-		if (isInAir){ 
+		if (isInAir&&!flies){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
 			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
 				verticalSpeed = ViewConstants.MAX_FALL_SPEED;

@@ -8,12 +8,11 @@ public class Lakitu extends Enemy{
 
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=0;
-	static final private boolean isFlying=true;
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
-		isInAir=false;
+		flies=true;
 	}
 
 	public int getPointsOnDeath() {

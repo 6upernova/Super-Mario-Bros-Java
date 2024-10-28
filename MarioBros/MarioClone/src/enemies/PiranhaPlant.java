@@ -12,7 +12,7 @@ public class PiranhaPlant extends Enemy{
 	public PiranhaPlant(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="None";
-		isInAir=false;
+		flies=false;
 	}
 	
 
