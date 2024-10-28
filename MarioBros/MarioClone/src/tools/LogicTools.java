@@ -18,7 +18,6 @@ public class LogicTools {
     public static HashMap<String,Platform> groupPlatformsByCoords(List<Platform> platforms){
         HashMap<String,Platform> toret = new HashMap<String,Platform>();
         for(Platform platform : platforms){
-            System.out.println(platform.getX()+","+platform.getY());
             toret.put((platform.getX()+","+platform.getY()), platform);
         }
         return toret;

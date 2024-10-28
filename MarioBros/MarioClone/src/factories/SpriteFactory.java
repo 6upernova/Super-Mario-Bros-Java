@@ -7,6 +7,7 @@ public abstract class SpriteFactory {
     
     protected SpriteFactory(String path){
         this.folderPath = path;
+        System.out.println(path);
     }
     
     public HashMap<String,Sprite> getSpriteMapEnemy(){

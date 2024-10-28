@@ -26,7 +26,7 @@ public class LevelGenerator {
         List<Platform> platformList = new LinkedList<Platform>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
         List<Enemy> enemyList = new LinkedList<Enemy>();
-        //LEE CADA LINEA DEL TXT Y LO PASA A UN A CREATE, DESPUES CON ESO LO AÑADE
+        Character character = entityFactory.createCharacter();
         while(parser.hasToRead()) {
             type= parser.getType();
             worldX = parser.getPositionX();

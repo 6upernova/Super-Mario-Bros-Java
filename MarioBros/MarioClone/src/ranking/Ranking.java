@@ -47,6 +47,8 @@ public class Ranking{
     }     
         
     public void addToRank(String name, int score) {
+        if(name == null)
+            name = "Player";
         System.out.println("estoy añadiendo");
         int lastRankTop = size;
         if(entersInRanking(score)){  

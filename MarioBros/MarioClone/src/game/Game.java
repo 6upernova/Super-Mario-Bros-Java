@@ -32,10 +32,15 @@ public class Game {
 
 
     public Game () {
-        this.mode = "Original";
+        //this.numberLevel = 1;
+        //crear metodo changeLevel(int level) y si se quiere actualizar el nivel
+        //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
+        //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
+        //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
+        this.mode = "custom";
         this.levelGenerator = new LevelGenerator(mode);  
         this.ranking = new Ranking();
-        currentPlayer = "Noah";
+        currentPlayer = "Player";
         setLevel(1);         
     }    
     //Launcher operation
