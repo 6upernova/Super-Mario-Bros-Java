@@ -10,8 +10,8 @@ import game.Game;
 public class LogicTools {
 	
     public static float characterInMapEnd(Game game) {
-        float scrollbarPos = (game.getViewController().getLevelScreen().getScrollbarXPosition()/ViewConstants.CELL_SIZE);
-        return scrollbarPos+1;
+        float scrollbarPos = (game.getViewController().getLevelScreen().getScrollbarXPosition());
+        return scrollbarPos+0.5f;
         
     }
     //Metodo provisional hasta tener un level data

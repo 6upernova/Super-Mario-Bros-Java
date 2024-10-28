@@ -19,20 +19,21 @@ public class LevelScreen extends JPanel {
     protected JScrollPane scrollPanel;
     protected JLabel backgroundImageLabel;
     protected InformationPanel informationPanel;
+    private int backgroundX;
 
     public LevelScreen (ViewController viewController){
         this.viewController = viewController;
         setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT));
         setLayout(new BorderLayout());
         setBackgroundAndScroll();
-        addInformationPanel(); 
+        addInformationPanel();
+        backgroundX = 0; 
     }
 
     //Constructor operations
     protected void setBackgroundAndScroll() {
         configureBackgroundLabel();
         configureContentPanel();
-        configureScrollLabel();
     }
 
     private void configureBackgroundLabel(){
@@ -49,15 +50,9 @@ public class LevelScreen extends JPanel {
         contentPanel = new JPanel(null); 
         contentPanel.setPreferredSize(new Dimension(backgroundImageLabel.getIcon().getIconWidth(), ViewConstants.PANEL_HEIGHT));
         contentPanel.add(backgroundImageLabel);
+        this.add(contentPanel);
     }
 
-    private void configureScrollLabel(){
-        scrollPanel = new JScrollPane(contentPanel); 
-        scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scrollPanel.setBounds(0, 0, ViewConstants.PANEL_WITDH, ViewConstants.PANEL_HEIGHT);
-        this.add(scrollPanel, BorderLayout.CENTER);
-    }
    
     private ImageIcon getBackgroundIcon(String path){
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource(path));
@@ -66,23 +61,30 @@ public class LevelScreen extends JPanel {
     }
 
     //Observer operation
+
     public void updateScrollRight(CharacterEntity character) {
-        JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        int currentScrollPosition = horizontalBar.getValue();
-        int targetScrollPosition = GraphicTools.getScreenPositionX(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE);        
-        if (GraphicTools.getScreenPositionX(character.getX()) > getScrollbarXPosition() + ViewConstants.CELL_SIZE * ViewConstants.LEFT_CHARACTER_SPACE) {
-            int smoothScrollPosition = Math.round(currentScrollPosition + 0.5f * (targetScrollPosition - currentScrollPosition));
-            horizontalBar.setValue(smoothScrollPosition);
+        if(character.isMovingRight()){
+            float targetBackgroundPosition = -(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE)*ViewConstants.CELL_SIZE;
+        
+            if (character.getX() >= getScrollbarXPosition()+ViewConstants.LEFT_CHARACTER_SPACE &&
+                targetBackgroundPosition < 0 && 
+                Math.abs(targetBackgroundPosition - backgroundX) > 1) { 
+                
+                
+                backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f ; // Ajusta 0.1 para controlar la suavidad
+                backgroundImageLabel.setLocation(backgroundX, 0);
+                repaint();
+            }
         }
     }
 
     public int getScrollbarXPosition(){
-        return scrollPanel.getHorizontalScrollBar().getValue();
+        
+        return -backgroundX/ViewConstants.CELL_SIZE;
     }
 
     public void resetScrollbar() {
-        JScrollBar horizontalBar = scrollPanel.getHorizontalScrollBar();
-        horizontalBar.setValue(horizontalBar.getMinimum());
+        backgroundX = 0;
     }
 
 

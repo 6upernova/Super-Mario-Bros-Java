@@ -25,6 +25,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
 
+
+	protected boolean isMovingRight;
 	private boolean isInEnd;
 	private int coins;
 
@@ -52,6 +54,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setY(0);
 	}
 
+	public boolean isMovingRight(){
+		return isMovingRight;
+	}
+
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
 		this.characterStates = characterStates;
@@ -62,6 +68,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void moveLeft(String key){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
+			isMovingRight=false;
 			if(!isInAir())
 				setSprite(characterActualState.getSprites().get(key));	
 			observer.update();
@@ -70,6 +77,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void moveRight(String key){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
+			isMovingRight = true;
 			if(!isInAir())
 				setSprite(characterActualState.getSprites().get(key));
 			observer.update();
@@ -84,7 +92,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			}
 			float worldY = getY();
 			setY(worldY + (verticalSpeed*0.04f));
-			observer.update();
+			
 		}
 	}
 	
