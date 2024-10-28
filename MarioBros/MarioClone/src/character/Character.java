@@ -3,6 +3,7 @@ import java.util.HashMap;
 import enemies.*;
 import factories.Sprite;
 import game.Entity;
+import game.SoundReproducer;
 import game.CharacterVisitor;
 import platforms.*;
 import powerUps.*;
@@ -18,6 +19,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected HashMap<String,CharacterState> characterStates;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
+	protected SoundReproducer sounds;
 
 	
 	//Gravity And movementd
@@ -47,6 +49,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
 		this.coins = 0;
+		sounds = new SoundReproducer();
 	}
 
 	public void setInStart(){
@@ -101,7 +104,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
         	isInAir = true;
 			setSprite(characterActualState.getSprites().get(key));
+			sounds.setAuxiliarAudio("Jump");
         	observer.update();
+        	sounds.start();
 		}
 	}
 
@@ -132,8 +137,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		lives--;
 		setX(5);
 		setY(0);
-		if(this.lives > 0)
+		if(this.lives > 0) {
+			sounds.setAuxiliarAudio("gameOver");
 			((CharacterObserver)observer).respawn();
+		}
+		else sounds.setAuxiliarAudio("marioDie");
 	}
 	
 	
@@ -175,28 +183,33 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//VISITAS
     public void visit(Goomba goomba) {	
 			addScore(goomba.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			goomba.dead();
     }    
     public void visit(KoopaTroopa koopaTroopa) {
     	if(this.downCollision(koopaTroopa)) {
 			addScore(koopaTroopa.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			koopaTroopa.dead();
     	}
     }    
     public void visit(PiranhaPlant piranhaPlant) {
     	 if(isInvincible()) {
 			addScore(piranhaPlant.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			piranhaPlant.dead();
     	 }
     	 else damaged();
     }
     public void visit(Lakitu lakitu) {
 			addScore(lakitu.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			lakitu.dead();
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
 		if(isInvincible() || this.downCollision(buzzyBeetle)){
 			addScore(buzzyBeetle.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			buzzyBeetle.dead();
 		}
 		else damaged();
@@ -204,6 +217,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(Spiny spiny) {
 		if(isInvincible()) {
 			addScore(spiny.getPointsOnDeath());
+			sounds.setAuxiliarAudio("kick");
 			spiny.dead();
 		}
 		else damaged();
@@ -220,6 +234,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		characterActualState = characterStates.get("Super");
 		updateBoundingBoxToBig();
 		addScore(points);
+		sounds.setAuxiliarAudio("mushroom");
 		observer.update();
 		//hacer que desaparezca de la pantalla
 	}
@@ -227,6 +242,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(GreenMushroom greenMushroom){
 		lives++;
 		addScore(greenMushroom.getPoints());
+		sounds.setAuxiliarAudio("1-up");
 		//hacer que desaparezca de la pantalla
 	}
 
@@ -285,6 +301,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
         	dead();
 		}
     }
+	
 	public void visit(Block block) {
 		
 	}
@@ -298,6 +315,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			setY(Math.round(getY()));
 			setIsInAir(true);
 			questionBlock.activatePowerUp();
+			sounds.setAuxiliarAudio("powerUpAppears");
 		}		
 	}
 	

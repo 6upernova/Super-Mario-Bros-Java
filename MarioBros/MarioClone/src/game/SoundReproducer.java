@@ -9,9 +9,12 @@ public class SoundReproducer {
 	protected Clip audioLevelMusic;
 	protected Clip auxialiarAudio;
 	
+	public SoundReproducer() {
+	}
+	
 	public SoundReproducer(String path) {
 		try {
-			File file= new File(folderPath + File.separator + path + ".mp3");
+			File file= new File(folderPath + File.separator + path + ".wav");
 			audioLevelMusic= AudioSystem.getClip();
 		    audioLevelMusic.open(AudioSystem.getAudioInputStream(file));
 		} catch (Exception e) {
@@ -27,6 +30,7 @@ public class SoundReproducer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		start();
 	}
 	
 	public void start() {

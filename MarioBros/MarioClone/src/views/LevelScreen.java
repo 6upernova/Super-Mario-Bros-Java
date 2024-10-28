@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import HitboxDebug.HitboxPanel;
 import character.CharacterEntity;
