@@ -37,7 +37,7 @@ public class CharacterCollisionManager{
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy);
                 }
-                if(!character.isInvincible() && !character.isInvulnerable()){
+            	else if(!character.isInvincible() && !character.isInvulnerable()){
                     character.damaged();
                     character.setInvulnerable(true);
                 }

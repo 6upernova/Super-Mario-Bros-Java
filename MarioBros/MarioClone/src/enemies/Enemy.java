@@ -54,6 +54,23 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		isActive = true;
 	}
 	
+	public float getVerticalSpeed() {
+		return verticalSpeed;
+	}
+	
+	public void setVerticalSpeed(float verticalSpeed) {
+		this.verticalSpeed = verticalSpeed;
+		observer.update();
+	}
+
+	public boolean isInAir() {
+		return isInAir;
+	}
+	
+	public void setIsInAir(boolean value) {
+		isInAir=value;
+	}
+	
 	public void dead() {
 		//desaparecerlo de la pantalla y que se borre el objeto
 	}
@@ -74,7 +91,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public void moveRight() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		
 		observer.update();
 	}
 	
@@ -84,21 +100,5 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		observer.update();
 	}
 	
-	public float getVerticalSpeed() {
-		return verticalSpeed;
-	}
-	
-	public void setVerticalSpeed(float verticalSpeed) {
-		this.verticalSpeed = verticalSpeed;
-		observer.update();
-	}
-
-	public boolean isInAir() {
-		return isInAir;
-	}
-	
-	public void setIsInAir(boolean value) {
-		isInAir=value;
-	}
 	
 }
