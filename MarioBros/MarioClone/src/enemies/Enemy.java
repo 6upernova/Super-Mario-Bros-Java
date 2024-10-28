@@ -54,36 +54,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		isActive = true;
 	}
 	
-	public void dead() {
-		//desaparecerlo de la pantalla y que se borre el objeto
-	}
-	
-
-	public void applyGravity() {
-		if (isInAir){ 
-			verticalSpeed += ViewConstants.WORLD_GRAVITY;
-			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
-				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
-			}
-			float worldY = getY();
-			setY(worldY + (verticalSpeed*0.04f));
-			observer.update();
-		}
-	}
-	
-	public void moveRight() {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		
-		observer.update();
-	}
-	
-	public void moveLeft() {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		observer.update();
-	}
-	
 	public float getVerticalSpeed() {
 		return verticalSpeed;
 	}
@@ -100,5 +70,35 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public void setIsInAir(boolean value) {
 		isInAir=value;
 	}
+	
+	public void dead() {
+		//desaparecerlo de la pantalla y que se borre el objeto
+	}
+	
+
+	public void applyGravity() {
+		if (isInAir&&!flies){ 
+			verticalSpeed += ViewConstants.WORLD_GRAVITY;
+			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
+				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
+			}
+			float worldY = getY();
+			setY(worldY + (verticalSpeed*0.04f));
+			observer.update();
+		}
+	}
+	
+	public void moveRight() {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
+		observer.update();
+	}
+	
+	public void moveLeft() {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
+		observer.update();
+	}
+	
 	
 }

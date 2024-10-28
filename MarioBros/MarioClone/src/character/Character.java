@@ -178,8 +178,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			goomba.dead();
     }    
     public void visit(KoopaTroopa koopaTroopa) {
+    	if(this.downCollision(koopaTroopa)) {
 			addScore(koopaTroopa.getPointsOnDeath());
 			koopaTroopa.dead();
+    	}
     }    
     public void visit(PiranhaPlant piranhaPlant) {
     	 if(isInvincible()) {
@@ -193,7 +195,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			lakitu.dead();
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(isInvincible()){
+		if(isInvincible() || this.downCollision(buzzyBeetle)){
 			addScore(buzzyBeetle.getPointsOnDeath());
 			buzzyBeetle.dead();
 		}

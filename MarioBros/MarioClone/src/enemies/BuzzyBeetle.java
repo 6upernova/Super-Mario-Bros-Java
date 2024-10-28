@@ -13,6 +13,7 @@ public class BuzzyBeetle extends Enemy {
 	public BuzzyBeetle(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
+		flies=false;
 	}
 	
 	public int getPointsOnDeath() {
