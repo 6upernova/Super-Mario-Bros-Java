@@ -31,12 +31,16 @@ public class MenuScreen extends JPanel{
 	}
 	
 	private void configureButtons(){
-		newGame= new JButton("New Game");
-		ranking= new JButton("Ranking");
-		exit= new JButton("Exit");
-	    newGame.setBounds(300,ViewConstants.WIN_WIDTH/2 ,150, 50);
-	    ranking.setBounds(125,ViewConstants.WIN_WIDTH/2 ,150, 50);
-	    exit.setBounds(475,ViewConstants.WIN_WIDTH/2 ,150, 50);
+		newGame= new JButton("PLAY");
+		ranking= new JButton("RANKING");
+		exit= new JButton("EXIT");
+	    ranking.setBounds(75,ViewConstants.WIN_WIDTH/2 ,200, 50);
+	    newGame.setBounds(300,ViewConstants.WIN_WIDTH/2 ,200, 50);
+	    exit.setBounds(525,ViewConstants.WIN_WIDTH/2 ,200, 50);
+
+		newGame.setFont(ViewConstants.font);
+		ranking.setFont(ViewConstants.font);
+		exit.setFont(ViewConstants.font);
 	}
 	private void addButtonListeners(){
 		newGame.addActionListener(new NewGameButtonListener());
@@ -66,7 +70,7 @@ public class MenuScreen extends JPanel{
 	private class NewGameButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			viewController.newGame();
+			viewController.showPreGameScreen();
 		}
 		
 	}
@@ -78,6 +82,5 @@ public class MenuScreen extends JPanel{
             g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         }
     }
-
 
 }

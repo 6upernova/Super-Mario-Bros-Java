@@ -1,10 +1,6 @@
 package views;
 import javax.swing.JLabel;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.IOException;
 import java.awt.Color;
 
 public class InformationPanel extends JLabel {
@@ -23,19 +19,13 @@ public class InformationPanel extends JLabel {
         updateInformation();
     }
 
-    private void configureFontAndBackground() {setOpaque(false);               
+    private void configureFontAndBackground() {
+        setOpaque(false);               
         setOpaque(false);          
         setForeground(Color.WHITE);
         setBackground(new Color(0x6D6AFF, false)); 
         setOpaque(true);
-        try {
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src"+File.separator+"assets"+File.separator+"font"+File.separator+"smbfont.ttf"));
-            customFont = customFont.deriveFont(Font.BOLD, 16f); // Establecer estilo y tamaño de la fuente
-            setFont(customFont);
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-            setFont(new Font("Arial", Font.BOLD, 16));
-        }
+        setFont(ViewConstants.font);
     }
 
     public void updateInformation() {
@@ -64,5 +54,6 @@ public class InformationPanel extends JLabel {
     public void updateTime(int time){
         this.time = time;
     }
+    
     
 }

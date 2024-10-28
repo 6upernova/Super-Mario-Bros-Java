@@ -2,7 +2,6 @@ package game;
 import java.util.Collection;
 import java.util.List;
 import character.Character;
-import character.CharacterState;
 import enemies.Enemy;
 import factories.Level;
 import factories.LevelGenerator;
@@ -35,12 +34,16 @@ public class Game {
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
+<<<<<<< Updated upstream
         this.mode = "original";
         this.levelGenerator = new LevelGenerator(mode);  
+=======
+>>>>>>> Stashed changes
         this.ranking = new Ranking();
-        currentPlayer = "Player";
-        setLevel(1);         
-    }    
+    } 
+    public void setName(String name){
+        this.currentPlayer = name;
+    }   
     //Launcher operation
     public void setViewController(ViewController viewController){
         this.viewController = viewController;       
@@ -169,5 +172,10 @@ public class Game {
     }
     public Collection<String> getRankingPlayers() {
         return ranking.getPlayers();
+    }
+    public void setMode(String mode) {
+        this.mode = mode;
+        this.levelGenerator = new LevelGenerator(mode);  
+        setLevel(1);         
     }
 }

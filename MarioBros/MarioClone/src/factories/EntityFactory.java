@@ -12,7 +12,7 @@ public class EntityFactory {
 	protected SpriteFactory spriteFactory;
 	
 	public EntityFactory(String mode) {
-		if( mode == "custom" ) {
+		if( mode.toUpperCase().equals("Custom".toUpperCase())) {
 		   this.spriteFactory= new Custom(mode);
 		}
 		else this.spriteFactory= new Original(mode);

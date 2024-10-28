@@ -15,11 +15,12 @@ public class ViewController {
     protected Keyboard keyboardInputs;
     protected Game game;
     protected RankingScreen rankingScreen;
-
-    public ViewController(Game game){
+    protected PreGameScreen preGameScreen;
+    public ViewController(Game game){   
         this.game = game;
         this.levelScreen = new LevelScreen(this);
         this.rankingScreen = new RankingScreen(this);
+        this.preGameScreen = new PreGameScreen(this);
         configureWindow();
         //To do resto de screens
         
@@ -27,9 +28,10 @@ public class ViewController {
     public ViewController(){
         this.game = new Game();
         game.setViewController(this);
-        levelScreen = new LevelScreen(this);
-        menuScreen = new MenuScreen(this);
-        rankingScreen = new RankingScreen(this);
+        this.levelScreen = new LevelScreen(this);
+        this.menuScreen = new MenuScreen(this);
+        this.rankingScreen = new RankingScreen(this);
+        this.preGameScreen = new PreGameScreen(this);
         configureWindow();
         showMenuScreen();             
         
@@ -50,8 +52,10 @@ public class ViewController {
         game.start();
     }
 
-    public void newGame(){
+    public void newGame(String mode, String name){
         this.game = new Game();
+        game.setMode(mode);
+        game.setName(name);
         game.setViewController(this);
         startGame();
     }
@@ -66,9 +70,12 @@ public class ViewController {
         refresh();
     }
 
-    public void showRankingScreen(){
-        //rankingScreen.resfreshContent();    
+    public void showRankingScreen(){ 
         window.setContentPane(rankingScreen);
+        refresh();
+    }
+    public void showPreGameScreen(){
+        window.setContentPane(preGameScreen);
         refresh();
     }
 

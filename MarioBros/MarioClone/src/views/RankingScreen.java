@@ -1,5 +1,4 @@
 package views;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,9 +31,10 @@ public class RankingScreen extends JPanel {
     }
     
     private void addBackButton() {
-        backButton = new JButton("Back to menu");        
+        backButton = new JButton("BACK TO MENU");        
         backButton.addActionListener(new BackButtonListener());
-        backButton.setBounds(0, 0 , 150, 30);
+        backButton.setBounds(0, 0 , 300, 30);
+        backButton.setFont(ViewConstants.font);
         this.add(backButton);
         this.setComponentZOrder(backButton, 0); 
     }
