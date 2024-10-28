@@ -10,33 +10,29 @@ public class EnemyThread extends Thread {
     protected List<Enemy> enemies;
     private int frameCount;
     private int spriteNumber;
+    private boolean isRunning;
 
     public EnemyThread(Game game) {
         this.enemies = game.getCurrentLevel().getEnemies();
         this.frameCount = 0;
         this.spriteNumber = 1;
+        this.isRunning = false;
     }
 
     public void run() {
-    	//Iterator<Enemy> enemiesIt=enemies.iterator();
-        //Enemy enemy;
-        //boolean endIteration=false;
-        while (true) {
-        	frameCount++;
-        	for(Enemy enemy: enemies) {
-        		//enemy = enemiesIt.next();
-        		if(enemy.isActive())
-        			moveEnemy(enemy);
-        		//enemy = enemiesIt.next();
-        		//endIteration=true;
-        		try {
-        			Thread.sleep(16);
-        		}
-        		catch (InterruptedException e) {
-        		e.printStackTrace();
-        		} 
-        	}
-        }
+    	while(true) {
+    		Iterator<Enemy> iterator = enemies.iterator();
+    		Enemy enemy;
+    		while (iterator.hasNext()) {
+    			enemy=iterator.next();
+    			if (enemy.isActive()) 
+    				moveEnemy(enemy);
+    		}
+    		try {
+                Thread.sleep(16);
+            } catch (InterruptedException e) {
+            }
+    	}
     }
 
         
@@ -59,4 +55,9 @@ public class EnemyThread extends Thread {
             	break;
         }
     }
+    
+    public void setIsRunning(boolean value) {
+    	this.isRunning = value;
+    }
+    
 }

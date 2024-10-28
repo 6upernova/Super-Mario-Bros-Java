@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.awt.Color;
 
 public class InformationPanel extends JLabel {
+	
     protected int score;
     protected int coins;
     protected int lives; 
@@ -51,12 +52,15 @@ public class InformationPanel extends JLabel {
     public void updateScore(int score) {
         this.score = score;
     }
+    
     public void updateCoins(int coins) {
         this.coins = coins;
     }
+    
     public void updateLives(int lives) {
         this.lives = lives;
     }
+    
     public void updateTime(int time){
         this.time = time;
     }

@@ -23,12 +23,10 @@ public class Game {
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
     protected int numberLevel;
     protected SoundReproducer sound;
-    private String mode;
-
-
     protected CharacterThread thread;
     protected EnemyThread enemyThread;
     protected Ranking ranking;
+    private String mode;
 
 
     public Game () {
@@ -37,7 +35,7 @@ public class Game {
         //usarlo para que dentro de ese modo se llame a levelGenerator.getLevel(int level)
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
-        this.mode = "custom";
+        this.mode = "original";
         this.levelGenerator = new LevelGenerator(mode);  
         this.ranking = new Ranking();
         currentPlayer = "Player";

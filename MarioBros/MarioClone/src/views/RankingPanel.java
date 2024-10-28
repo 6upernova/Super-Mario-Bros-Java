@@ -12,7 +12,9 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 
 public class RankingPanel extends JLabel {
+	
     private Font customFont;
+    
     public RankingPanel(Collection<String> players) {        
         changeFont();
         setIcon(new ImageIcon("src/assets/backgrounds/rankingBackground.png"));
@@ -34,7 +36,7 @@ public class RankingPanel extends JLabel {
         add(emptyLabel);        
         Iterator<String> it = players.iterator();
         while(it.hasNext()){
-            String player = it.next();            
+            String player = it.next();
             JLabel playerLabel = new JLabel(player, SwingConstants.CENTER);
             playerLabel.setOpaque(false);
             playerLabel.setFont(customFont);

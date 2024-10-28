@@ -20,6 +20,7 @@ public class CharacterThread extends Thread {
     private int frameCount;
     private int spriteNumber;
     private float maximumX;
+    private boolean isRunning;
     private HashMap<String,Platform> platformsByCoords;
     
 
@@ -32,6 +33,7 @@ public class CharacterThread extends Thread {
         this.frameCount = 0;
         this.spriteNumber = 1;
         this.maximumX = character.getX();
+        this.isRunning = false;
     }
     
     public void run() {
@@ -40,20 +42,19 @@ public class CharacterThread extends Thread {
         int counter = 0;
         int timer = 400;
         int timeCounter = 0; // Contador de tiempo
-        boolean inGame = true;
-        while (inGame) {
+        setIsRunning(true);
+        while (isRunning) {
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
             frameCount++;
-    
             if (character.isInEnd()) {
                 game.playNextLevel();
                 timer = 400;
-                inGame = false;
+                isRunning = false;
             }
             else if(character.getLives() == 0){
                 game.stop();
-                inGame= false;
+                isRunning= false;
             	}
             	else {
             		moveCharacter(horizontalDirection, verticalDirection);
@@ -155,4 +156,7 @@ public class CharacterThread extends Thread {
         }
     }
 
+	public void setIsRunning(boolean value) {
+    	this.isRunning = value;
+    }
 }

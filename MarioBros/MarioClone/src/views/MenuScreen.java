@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+
 public class MenuScreen extends JPanel{
+
 	protected JButton exit;
 	protected JButton newGame;
 	protected JButton ranking;
