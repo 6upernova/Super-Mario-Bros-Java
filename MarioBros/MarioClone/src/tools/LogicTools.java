@@ -5,6 +5,7 @@ import java.util.List;
 import platforms.Platform;
 import views.ViewConstants;
 import character.Character;
+import enemies.Enemy;
 import game.Game;
 
 public class LogicTools {
@@ -30,5 +31,8 @@ public class LogicTools {
     public static boolean isOnSolid(HashMap<String,Platform> platformsByCoords, Character character){
         return platformsByCoords.get(getKey(character.getX() , character.getY()-1)) != null;
     }
+	public static boolean isOnSolid(HashMap<String, Platform> platformsByCoords, Enemy enemy) {
+		return platformsByCoords.get(getKey(enemy.getX() , enemy.getY()-1)) != null;
+	}
 
 }

@@ -1,4 +1,5 @@
 package character;
+
 import java.util.Iterator;
 import java.util.List;
 import enemies.Enemy;
@@ -31,15 +32,14 @@ public class CharacterCollisionManager{
             enemy = enemiesIt.next();
             collision = character.colision(enemy);
             if (collision) {
-                if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && (!character.isInvincible() && !character.isInvulnerable())){
-                    System.out.println("colision de costado");
-                    character.damaged();
-                    character.setInvulnerable(true);
-                }
-                if(character.isInvincible() || character.downCollision(enemy)){
+            	if(character.isInvincible() || character.downCollision(enemy)){
+                    enemy.acceptVisit(character);
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy);
-                    enemy.acceptVisit(character);
+                }
+                if(!character.isInvincible() && !character.isInvulnerable()){
+                    character.damaged();
+                    character.setInvulnerable(true);
                 }
                                 
                 endIteration = true;
@@ -55,14 +55,17 @@ public class CharacterCollisionManager{
         boolean endIteration = false;
         while (it.hasNext() && !endIteration) {
             powerUp = it.next();
-            collision = character.colision(powerUp);
-            //System.out.println(collision);
-            if (collision) {
-                powerUp.acceptVisit(character);   
-                game.removeLogicalEntity(powerUp);  
-                powerUps.remove(powerUp);   
-                endIteration = true;
+            if(powerUp.isActive()){
+                collision = character.colision(powerUp);
+                //System.out.println(collision);
+                if (collision) {
+                    powerUp.acceptVisit(character);   
+                    game.removeLogicalEntity(powerUp);  
+                    powerUps.remove(powerUp);   
+                    endIteration = true;
+                }
             }
+            
         }
         return collision;
     }

@@ -8,7 +8,7 @@ public abstract class CharacterState {
     protected Character character;
     HashMap<String, Sprite> stateSprites;
 
-    CharacterState(Character character, HashMap<String, Sprite> stateSprites) {
+    public CharacterState(Character character, HashMap<String, Sprite> stateSprites) {
         this.character = character;
         this.stateSprites = stateSprites;
     }

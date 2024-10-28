@@ -8,11 +8,13 @@ import java.util.Iterator;
 import java.awt.Color;
 
 public class RankingPanel extends JLabel {
-    public RankingPanel(Collection<String> players) {       
+
+    public RankingPanel(Collection<String> players) {
         setIcon(new ImageIcon("src/assets/backgrounds/rankingBackground.png"));
         setLayout(new GridLayout(6, 1)); 
         addPlayers(players);
     }
+    
     private void addPlayers(Collection<String> players){
         JLabel emptyLabel = new JLabel();
         add(emptyLabel);        

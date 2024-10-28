@@ -86,7 +86,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void applyGravity() {
 		if (isInAir){ 
 			verticalSpeed += ViewConstants.WORLD_GRAVITY;
-			
 			if(verticalSpeed <= ViewConstants.MAX_FALL_SPEED){
 				verticalSpeed = ViewConstants.MAX_FALL_SPEED;
 			}
@@ -175,40 +174,37 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	//VISITAS
     public void visit(Goomba goomba) {	
-		if(downCollision(goomba)){
 			addScore(goomba.getPointsOnDeath());
 			goomba.dead();
-		}
     }    
     public void visit(KoopaTroopa koopaTroopa) {
-		if(downCollision(koopaTroopa)){
 			addScore(koopaTroopa.getPointsOnDeath());
 			koopaTroopa.dead();
-		}
     }    
     public void visit(PiranhaPlant piranhaPlant) {
-		if(downCollision(piranhaPlant)){
+    	 if(isInvincible()) {
 			addScore(piranhaPlant.getPointsOnDeath());
 			piranhaPlant.dead();
-		}
+    	 }
+    	 else damaged();
     }
     public void visit(Lakitu lakitu) {
-		if(downCollision(lakitu)){
 			addScore(lakitu.getPointsOnDeath());
 			lakitu.dead();
-		}
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(downCollision(buzzyBeetle)){
+		if(isInvincible()){
 			addScore(buzzyBeetle.getPointsOnDeath());
 			buzzyBeetle.dead();
 		}
+		else damaged();
     }
 	public void visit(Spiny spiny) {
-		if(downCollision(spiny)){
+		if(isInvincible()) {
 			addScore(spiny.getPointsOnDeath());
 			spiny.dead();
 		}
+		else damaged();
 	}
 	/*
 	public void visit(Shell shell) {
@@ -219,7 +215,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//power ups visits
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
-		;
 		characterActualState = characterStates.get("Super");
 		updateBoundingBoxToBig();
 		addScore(points);
@@ -296,7 +291,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		
 	}
 	public void visit(Question questionBlock) {
-		
+		if(upCollision(questionBlock)){
+			setVerticalSpeed(0);
+			setY(Math.round(getY()));
+			setIsInAir(true);
+			questionBlock.activatePowerUp();
+		}		
 	}
 	
 	public void visit(Mast mast) {
@@ -318,13 +318,16 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public float getVerticalSpeed() {
 		return verticalSpeed;
 	}
+	
 	public void setVerticalSpeed(float verticalSpeed) {
 		this.verticalSpeed = verticalSpeed;
 		observer.update();
 	}
+	
 	public float getHorizontalSpeed() {
 		return horizontalSpeed;
 	}
+	
 	public void setHorizontalSpeed(float horizontalSpeed) {
 		this.horizontalSpeed = horizontalSpeed;
 	}

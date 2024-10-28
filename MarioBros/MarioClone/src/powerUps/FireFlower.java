@@ -3,6 +3,7 @@ import factories.Sprite;
 import game.CharacterVisitor;
 
 public class FireFlower extends PowerUp{
+	
 	static final private int points = 5;
 
 	public FireFlower(Sprite sprite, int positionInX, int positionInY) {

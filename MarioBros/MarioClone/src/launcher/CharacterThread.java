@@ -10,6 +10,7 @@ import character.CharacterCollisionManager;
 import character.Keyboard;
 import enemies.Enemy;
 import tools.LogicTools;
+import views.ViewConstants;
 
 public class CharacterThread extends Thread {
 	
@@ -93,7 +94,6 @@ public class CharacterThread extends Thread {
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -108,6 +108,13 @@ public class CharacterThread extends Thread {
     
    
     private void moveCharacter(String horizontalDirection, String verticalDirection) {
+		float characterLeftLimit = LogicTools.characterInMapEnd(game);
+        if(character.getX() < characterLeftLimit){
+            character.setX(character.getX()+0.5f);
+        }
+        else{
+            character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
+        }
         character.applyGravity();
         switch (verticalDirection) {
         case "Up":
@@ -144,13 +151,14 @@ public class CharacterThread extends Thread {
     }
 		
 	private void moveLeft() {
-        float characterLeftLimit;
-		characterLeftLimit = LogicTools.characterInMapEnd(game);
-        if(character.getX()>characterLeftLimit) {
+        float characterLeftLimit = LogicTools.characterInMapEnd(game);
+        if(character.getX() > characterLeftLimit){
             if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
                 character.setIsInAir(true);
             }
-            character.moveLeft("Left"+spriteNumber);
+            
+                character.moveLeft("Left"+spriteNumber);
+            
             if(frameCount%4==0) 
                 spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
         }

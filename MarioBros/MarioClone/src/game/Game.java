@@ -22,7 +22,7 @@ public class Game {
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
     protected int numberLevel;
     protected SoundReproducer sound;
-    protected CharacterThread thread;
+    protected CharacterThread characterThread;
     protected EnemyThread enemyThread;
     protected Ranking ranking;
     private String mode;
@@ -47,8 +47,8 @@ public class Game {
     public void start(){
         setObservers();
         enemyThread = new EnemyThread(this);
-        thread = new CharacterThread(viewController.getKeyboard(), this);
-        thread.start();
+        characterThread = new CharacterThread(viewController.getKeyboard(), this);
+        characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel"+ numberLevel);
@@ -97,21 +97,21 @@ public class Game {
     
     protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
-            GraphicObserver platformObserver = viewController.registerEntity(platform);
+            GraphicObserver platformObserver = viewController.registerEntity(platform, true);
     		platform.registerObserver(platformObserver);
     	}
     }
     
    protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		GraphicObserver enemyObserver = viewController.registerEntity(enemy);
+    		GraphicObserver enemyObserver = viewController.registerEntity(enemy, true);
     		enemy.registerObserver(enemyObserver);
     	}
     }
     
     protected void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList){
-    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp);
+    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, false);
     		powerUp.registerObserver(powerUpObserver);
     	}
     }
@@ -123,11 +123,11 @@ public class Game {
 
     public void playNextLevel() {
         changeLevel();
-        this.thread.interrupt();
+        this.characterThread.interrupt();
         this.enemyThread.interrupt();
-        this.thread = new CharacterThread(viewController.getKeyboard(), this);
+        this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
         enemyThread = new EnemyThread(this);
-        thread.start();
+        characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
         sound = new SoundReproducer("musicLevel" + numberLevel);

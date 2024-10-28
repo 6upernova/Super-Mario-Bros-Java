@@ -71,7 +71,7 @@ public class LevelScreen extends JPanel {
                 Math.abs(targetBackgroundPosition - backgroundX) > 1) { 
                 
                 
-                backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f ; // Ajusta 0.1 para controlar la suavidad
+                backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f ; 
                 backgroundImageLabel.setLocation(backgroundX, 0);
                 repaint();
             }
@@ -95,8 +95,8 @@ public class LevelScreen extends JPanel {
         return characterObserver;
     }
 
-    public GraphicObserver drawLogicalEntity(LogicalEntity entity) {
-        EntityObserver entityObserver = new EntityObserver(entity);
+    public GraphicObserver drawLogicalEntity(LogicalEntity entity, boolean isActive) {
+        EntityObserver entityObserver = new EntityObserver(entity, isActive);
         backgroundImageLabel.add(entityObserver);
         return entityObserver;   
     }
