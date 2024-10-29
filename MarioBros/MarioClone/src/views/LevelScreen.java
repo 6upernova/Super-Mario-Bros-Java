@@ -69,7 +69,7 @@ public class LevelScreen extends JPanel {
                 targetBackgroundPosition < 0 && 
                 Math.abs(targetBackgroundPosition - backgroundX) > 1) { 
                 
-                
+
                 backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f ; 
                 backgroundImageLabel.setLocation(backgroundX, 0);
                 repaint();

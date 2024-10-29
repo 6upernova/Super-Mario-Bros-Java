@@ -173,6 +173,7 @@ public class Game {
         this.levelGenerator = new LevelGenerator(mode);  
         setLevel(1);         
     }
+
     public void createFireBall(int x, int y, String direction) {
         currentLevel.addFireBall(levelGenerator.createFireBall(x,y,direction));
         setProjectilesObeservers(currentLevel.getProjectiles());

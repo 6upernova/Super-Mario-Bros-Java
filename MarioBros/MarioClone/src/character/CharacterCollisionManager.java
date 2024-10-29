@@ -35,11 +35,10 @@ public class CharacterCollisionManager{
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy);
                 }
-            	else if(!character.isInvincible() && !character.isInvulnerable()){
+            	else if(character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy) && (!character.isInvincible() && !character.isInvulnerable())){
                     character.damaged();
                     character.setInvulnerable(true);
-                }
-                                
+                }     
                 endIteration = true;
             }
         }
@@ -85,17 +84,16 @@ public class CharacterCollisionManager{
                     character.setY(platform.getY() + (platform.getHeight()));
                 }
                 else  if(character.leftCollision(platform)){
-                          character.setX(platform.getX() + platform.getWidth());
+                    character.setX(platform.getX() + platform.getWidth());
                 }
                 else if(character.upCollision(platform)){
-                        character.setVerticalSpeed(0);
-                        character.setY(Math.round(character.getY()));
-                        character.setIsInAir(true);
-                        removeEntity= platform.isBreakeable() && character.capacityToBreakBlocks();
+                    character.setVerticalSpeed(0);
+                    character.setY(Math.round(character.getY()));
+                    removeEntity= platform.isBreakeable() && character.capacityToBreakBlocks();
                 }
                 else  if(character.rightCollision(platform)){
-                         character.setX(Math.round(character.getX()));
-                      }
+                    character.setX(Math.round(character.getX()));
+                }
                 platform.acceptVisit(character);
                 if(removeEntity) {
                 	game.removeLogicalEntity(platform);

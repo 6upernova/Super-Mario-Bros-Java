@@ -35,7 +35,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected boolean invincible;
 	protected boolean invulnerable;
 
-	public final int HIT_INVINCIBILITY_TIME = 100;
+	public final int HIT_INVINCIBILITY_TIME = 200;
 	public final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
 	public Character(Sprite sprite) {
@@ -98,7 +98,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
 	}
 	
-	
 	public void jump(String key){
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
@@ -115,8 +114,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			setSprite(characterActualState.getSprites().get(key));
 		observer.update();
 	}
-
-	
 
 	public boolean isInAir(){
 		return isInAir;
@@ -135,8 +132,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void dead(){
 		lives--;
-		setX(5);
-		setY(0);
+		setInStart();
 		if(this.lives > 0) {
 			sounds.setAuxiliarAudio("gameOver");
 			((CharacterObserver)observer).respawn();
@@ -182,45 +178,36 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	//VISITAS
     public void visit(Goomba goomba) {	
-			addScore(goomba.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			goomba.dead();
+		addScore(goomba.getPointsOnDeath());
+		sounds.setAuxiliarAudio("kick");
+		goomba.dead();
     }    
     public void visit(KoopaTroopa koopaTroopa) {
-    	if(this.downCollision(koopaTroopa)) {
-			addScore(koopaTroopa.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			koopaTroopa.dead();
-    	}
+		addScore(koopaTroopa.getPointsOnDeath());
+		sounds.setAuxiliarAudio("kick");
+		//Change state
+		koopaTroopa.dead();
     }    
     public void visit(PiranhaPlant piranhaPlant) {
-    	 if(isInvincible()) {
-			addScore(piranhaPlant.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			piranhaPlant.dead();
-    	 }
-    	 else damaged();
+		sounds.setAuxiliarAudio("kick");
+		addScore(piranhaPlant.getPointsOnDeath());
+		piranhaPlant.dead();
     }	
     public void visit(Lakitu lakitu) {
-			addScore(lakitu.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			lakitu.dead();
+		sounds.setAuxiliarAudio("kick");
+		addScore(lakitu.getPointsOnDeath());
+		lakitu.dead();
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		if(isInvincible()){
-			addScore(buzzyBeetle.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			buzzyBeetle.dead();
-		}
-		else damaged();
+		sounds.setAuxiliarAudio("kick");
+		buzzyBeetle.dead();
+		addScore(buzzyBeetle.getPointsOnDeath());
+		
     }
 	public void visit(Spiny spiny) {
-		if(isInvincible()) {
-			addScore(spiny.getPointsOnDeath());
-			sounds.setAuxiliarAudio("kick");
-			spiny.dead();
-		}
-		else damaged();
+		addScore(spiny.getPointsOnDeath());
+		sounds.setAuxiliarAudio("kick");
+		spiny.dead();
 	}
 	/*
 	public void visit(Shell shell) {
@@ -263,7 +250,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		else {
 			addScore(characterActualState.getStarPoints());
 		}
-		
 		invincible = true;
 		observer.update();
 	}
@@ -274,23 +260,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		//hacer que desaparezca de la pantalla
 	}
 
-	public void updateBoundingBoxToBig(){
-		//Set nuevo x,y acorde
-		System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
-		if(boundingBox.height <= ViewConstants.CELL_SIZE){
-			boundingBox.height *= 2;
-			boundingBox.updateExternalBoundsToBig();
-		}
-	}
-	public void updateBoundingBoxToSmall(){
-		//Set nuevo x,y acorde
-		if(boundingBox.height > ViewConstants.CELL_SIZE){
-			boundingBox.height /= 2;
-			boundingBox.updateExternalBoundsToSmall();
-		}
-	}
 
-	//platforms
+	//platforms visit
 	public void visit(Pipe pipe) {
 	}
 	
@@ -313,9 +284,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 	public void visit(Question questionBlock) {
 		if(upCollision(questionBlock)){
-			setVerticalSpeed(0);
-			setY(Math.round(getY()));
-			setIsInAir(true);
 			questionBlock.activatePowerUp();
 			sounds.setAuxiliarAudio("powerUpAppears");
 		}		
@@ -395,6 +363,20 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public boolean canThrowFireball() {
 		return characterActualState.canThrowFireball();
+	}
+
+	public void updateBoundingBoxToBig(){
+		System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
+		if(boundingBox.height <= ViewConstants.CELL_SIZE){
+			boundingBox.height *= 2;
+			boundingBox.updateExternalBoundsToBig();
+		}
+	}
+	public void updateBoundingBoxToSmall(){
+		if(boundingBox.height > ViewConstants.CELL_SIZE){
+			boundingBox.height /= 2;
+			boundingBox.updateExternalBoundsToSmall();
+		}
 	}
 
 }
