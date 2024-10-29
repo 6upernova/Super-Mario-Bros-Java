@@ -73,25 +73,7 @@ public class Parser{
     public boolean hasToRead(){
         return !levelContent.isEmpty();
     }
-    /*
-    private void printContent(){
-        for(Vector<Integer> vector:levelContent)
-            vector.printVector();
-    }
-            
-    public static void main(String args[]){
-        Parser p = new Parser(1); 
-        p.printContent();
-        int x,y,z;
-        x = p.getPositionX();
-        y = p.getPositionY();
-        z = p.getType();
-        System.out.println("------------------");
-        System.out.println(x+" "+y+" "+z);
-        System.out.println("------------------");
-        p.printContent();    
-    }   */
-
+    
     public void setLevel(int levelNumber) {
         this.numberLevel = levelNumber;
         this.path = ("src"+File.separator + "levels" + File.separator + "level"+numberLevel+".txt");

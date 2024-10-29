@@ -49,7 +49,6 @@ public class Ranking{
     public void addToRank(String name, int score) {
         if(name == null)
             name = "Player";
-        System.out.println("estoy añadiendo");
         int lastRankTop = size;
         if(entersInRanking(score)){  
             if(isFull())
@@ -93,7 +92,7 @@ public class Ranking{
                         writer.newLine();
                 }       
             } catch (IOException e) {
-                System.err.println("Ocurrió un error al escribir en el archivo: " + e.getMessage());
+                System.err.println("Error for edit the file: " + e.getMessage());
         }
     }
     private boolean entersInRanking(int score){
@@ -107,7 +106,6 @@ public class Ranking{
                     for(int i = 0; i<size && !find;i++){
                         if(ranking[i].getScore() < score){
                             find = true;
-                            System.out.println("encontre");
                         }
                     }
                 }

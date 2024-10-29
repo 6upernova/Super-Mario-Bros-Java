@@ -120,7 +120,6 @@ public class Game {
     
     public void removeLogicalEntity(LogicalEntity e) {
         viewController.removeLogicalEntity(e);
-        System.out.println("borre algo");
     }    
 
     public void playNextLevel() {
@@ -138,15 +137,13 @@ public class Game {
     
 
     protected void changeLevel() {  
-        System.out.println("Cambiando de nivel");
         Character currentCharacter=resetCharacter();
         viewController.clearLevelScreen();
         if (sound != null) {
             sound.stop();
         }    
        
-        currentLevel = levelGenerator.getNextLevel();   
-        System.out.println(currentLevel == null);
+        currentLevel = levelGenerator.getNextLevel();  
         if(currentLevel != null){
             currentLevel.setCharacter(currentCharacter);
             setObservers();

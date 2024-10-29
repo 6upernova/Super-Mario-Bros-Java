@@ -65,11 +65,11 @@ public class CharacterThread extends Thread {
             		characterCollisionManager.powerUpsCollisions(character);
             		checkEnemiesInRange(game.getCurrentLevel().getEnemies());
 
-                    /*
+                    
                     for(Projectile projectile: game.getCurrentLevel().getProjectiles()){
                         moveProjectile(projectile);
                     } 
-                    */
+                    
 
                 if (character.isInvincible()) {
                     if (counter > character.STAR_INVINCIBILITY_TIME) {
@@ -109,7 +109,7 @@ public class CharacterThread extends Thread {
         for(Enemy enemy : enemyList)
             if(!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16){
                 enemy.activateEnemy();
-                System.out.println("Enemigo en rango");
+                //System.out.println("Enemigo en rango");
             }
     }
     

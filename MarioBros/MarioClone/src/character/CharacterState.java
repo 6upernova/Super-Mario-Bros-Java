@@ -6,7 +6,7 @@ import factories.Sprite;
 
 public abstract class CharacterState {
     protected Character character;
-    HashMap<String, Sprite> stateSprites;
+    protected HashMap<String, Sprite> stateSprites;
     protected boolean breakBlocks;
 
     public CharacterState(Character character, HashMap<String, Sprite> stateSprites, boolean capacityToBreakBlocks) {
@@ -30,6 +30,10 @@ public abstract class CharacterState {
 
     protected boolean canThrowFireball(){
         return false;
+    }
+
+    public boolean isSuper() {
+        return true;
     }
     
 }

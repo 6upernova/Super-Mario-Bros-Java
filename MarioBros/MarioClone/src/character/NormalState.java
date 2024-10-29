@@ -33,5 +33,8 @@ public class NormalState extends CharacterState{
 	protected int getFireFlowerPoints() {
 		return 5;
 	}
+	public boolean isSuper(){
+		return false;
+	}
 	
 }
