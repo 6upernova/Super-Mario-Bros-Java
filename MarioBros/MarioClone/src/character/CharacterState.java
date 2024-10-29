@@ -27,5 +27,9 @@ public abstract class CharacterState {
     protected  boolean breakBlock() {
     	return breakBlocks;
     }
+
+    protected boolean canThrowFireball(){
+        return false;
+    }
     
 }

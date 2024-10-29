@@ -2,25 +2,29 @@ package factories;
 import java.util.List;
 import platforms.Platform;
 import powerUps.PowerUp;
-import enemies.*;
+import projectile.Projectile;
 import character.Character;
+import enemies.Enemy;
+import java.util.LinkedList;
 
 public class Level {
     protected int remainingTime; 
-    protected List<Platform> platformList;
-    protected List<Enemy> enemyList;
-    protected List<PowerUp> powerUpList;
+    protected List<Platform> platforms;
+    protected List<Enemy> enemies;
+    protected List<PowerUp> powerUps;
+    protected List<Projectile> projectiles;
     protected Character character;
     protected boolean running;
     protected boolean paused;
 
     public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
         this.remainingTime = 400;
-        this.platformList = platforms;
-        this.enemyList = enemies;
-        this.powerUpList = powerUps;
+        this.platforms = platforms;
+        this.enemies = enemies;
+        this.powerUps = powerUps;
         this.running = false;
         this.paused = true;
+        this.projectiles = new LinkedList<>() ;
     }
 
     public void setCharacter(Character character){
@@ -43,13 +47,16 @@ public class Level {
     }
 
     public List<Platform> getPlatforms(){
-        return platformList;
+        return platforms;
     }
     public List<Enemy> getEnemies(){
-        return enemyList;
+        return enemies;
     }
     public List<PowerUp> getPowerUps(){
-        return powerUpList;
+        return powerUps;
+    }
+    public List<Projectile> getProjectiles(){
+        return projectiles;
     }
 
     public Character getCharacter(){
@@ -66,8 +73,13 @@ public class Level {
     }
 
     public void delete() {
-        platformList.removeAll(platformList);
-        enemyList.removeAll(enemyList);
-        powerUpList.removeAll(powerUpList);
+        platforms.removeAll(platforms);
+        enemies.removeAll(enemies);
+        powerUps.removeAll(powerUps);
+        projectiles.removeAll(projectiles);
+    }
+
+    public void addFireBall(Projectile projectile) {
+        projectiles.add(projectile);        
     }
 }

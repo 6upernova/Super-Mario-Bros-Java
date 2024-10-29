@@ -1,7 +1,6 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
-import platforms.Platform;
 import views.GraphicObserver;
 
 public class PiranhaPlant extends Enemy{

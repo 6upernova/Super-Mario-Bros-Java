@@ -1,10 +1,10 @@
 package launcher;
-
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
 import game.Game;
 import platforms.*;
+import projectile.Projectile;
 import character.Character;
 import character.CharacterCollisionManager;
 import character.Keyboard;
@@ -36,8 +36,10 @@ public class CharacterThread extends Thread {
     }
     
     public void run() {
+        //Iterator<Projectile> it = game.getCurrentLevel().getProjectiles().iterator();
         String horizontalDirection;
         String verticalDirection;
+        String spacebar;
         int counter = 0;
         int timer = 400;
         int timeCounter = 0; // Contador de tiempo
@@ -45,6 +47,7 @@ public class CharacterThread extends Thread {
         while (isRunning) {
             horizontalDirection = keyboard.getPlayerHorizontalDirection();
             verticalDirection = keyboard.getPlayerVerticalDirection();
+            spacebar = keyboard.getSpacebar();
             frameCount++;
             if (character.isInEnd()) {
                 game.playNextLevel();
@@ -56,12 +59,18 @@ public class CharacterThread extends Thread {
                 isRunning= false;
             	}
             	else {
-            		moveCharacter(horizontalDirection, verticalDirection);
+            		moveCharacter(horizontalDirection, verticalDirection, spacebar);
             		characterCollisionManager.platformsCollisions(character);
             		characterCollisionManager.enemiesCollisions(character);
             		characterCollisionManager.powerUpsCollisions(character);
             		checkEnemiesInRange(game.getCurrentLevel().getEnemies());
-                
+
+                    /*
+                    for(Projectile projectile: game.getCurrentLevel().getProjectiles()){
+                        moveProjectile(projectile);
+                    } 
+                    */
+
                 if (character.isInvincible()) {
                     if (counter > character.STAR_INVINCIBILITY_TIME) {
                         character.setInvencible(false);
@@ -104,10 +113,16 @@ public class CharacterThread extends Thread {
             }
     }
     
-   
-    private void moveCharacter(String horizontalDirection, String verticalDirection) {
+    private void moveCharacter(String horizontalDirection, String verticalDirection, String spacebar) {
 		
         character.applyGravity();
+        switch (spacebar) {
+            case "Space":
+                if(character.canThrowFireball()){
+                    game.createFireBall(Math.round(character.getX()), Math.round(character.getY()+1), keyboard.getPreviousDirection());
+                }                          
+                break;
+        }
         switch (verticalDirection) {
         case "Up":
             if(!character.isInAir())
@@ -164,5 +179,38 @@ public class CharacterThread extends Thread {
 
 	public void setIsRunning(boolean value) {
     	this.isRunning = value;
+    }
+
+
+    private void moveProjectile(Projectile projectile) {
+        String direction = projectile.getDirection();
+        switch (direction) {
+            case "Left":
+                moveProjectileLeft(projectile, projectile.getX());
+                break;
+            case "Right":
+                moveProjectileRight(projectile, projectile.getX());
+                break;
+        }
+    }
+    
+    private void moveProjectileLeft(Projectile projectile, float startPosition) {   
+        if(projectile.getX()-5 <= startPosition){
+            projectile.setX(projectile.getX()+1);
+        }     
+        else{
+            game.removeLogicalEntity(projectile);
+        }
+    	projectile.moveLeft();
+    }
+    
+    private void moveProjectileRight(Projectile projectile, float startPosition) {
+    	if(projectile.getX()-5 <= startPosition){
+            projectile.setX(projectile.getX()+1);
+        }
+        else{
+            game.removeLogicalEntity(projectile);
+        }
+    	projectile.moveRight();
     }
 }

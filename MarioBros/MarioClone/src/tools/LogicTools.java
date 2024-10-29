@@ -1,9 +1,7 @@
 package tools;
-
 import java.util.HashMap;
 import java.util.List;
 import platforms.Platform;
-import views.ViewConstants;
 import character.Character;
 import enemies.Enemy;
 import game.Game;

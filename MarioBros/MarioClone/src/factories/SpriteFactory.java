@@ -167,10 +167,10 @@ public abstract class SpriteFactory {
     }
     //PROJETILE
     public Sprite getFireballSprite(){
-        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Fireball.png");	 
+        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"Fireball1.png");	 
     }
     public Sprite getSpinyEggSprite(){
-        return new Sprite(folderPath + File.separator+"SpinyEgg.gif");	 
+        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinyEgg.gif");	 
     }
     //PLATFLORMS
     public Sprite getBrickSprite(){

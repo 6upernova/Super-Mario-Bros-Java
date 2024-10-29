@@ -4,6 +4,7 @@ import java.util.List;
 import platforms.Platform;
 import platforms.Question;
 import powerUps.PowerUp;
+import projectile.Projectile;
 import enemies.Enemy;
 import character.Character;
 
@@ -60,5 +61,10 @@ public class LevelGenerator {
         if(levelNumber < 4)
             level = createLevel(levelNumber);
         return level;
+    }
+
+    public Projectile createFireBall(int x, int y, String direction) {
+        return entityFactory.newFireBall(31,x, y, direction);
+
     }
 }

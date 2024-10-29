@@ -1,16 +1,10 @@
 package character;
 import java.util.HashMap;
-
 import factories.Sprite;
-import projectile.FireBall;
 
 public class FireState extends SuperState{
-	
-	private FireBall fireBall;
-	
 	public FireState(Character character, HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites);
-		this.fireBall= new FireBall();
 	}
 	public void damaged() {
 		super.damaged();
@@ -22,10 +16,6 @@ public class FireState extends SuperState{
 		return toReturn;
 	}
 	
-	public void throwFireBall() {
-		fireBall.animation();
-	}
-
 	public HashMap<String, Sprite>  getSprites(){
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible()){
@@ -41,4 +31,7 @@ public class FireState extends SuperState{
 		return 35;
 	}
 
+	public boolean canThrowFireball(){
+		return true;
+	}
 }

@@ -391,4 +391,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     	return characterActualState.breakBlock();
     }
 
+	public boolean canThrowFireball() {
+		return characterActualState.canThrowFireball();
+	}
+
 }

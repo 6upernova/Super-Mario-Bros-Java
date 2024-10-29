@@ -11,6 +11,7 @@ import launcher.CharacterThread;
 import launcher.EnemyThread;
 import platforms.Platform;
 import powerUps.PowerUp;
+import projectile.Projectile;
 import ranking.Ranking;
 import views.GraphicObserver;
 import views.ViewController;
@@ -175,4 +176,15 @@ public class Game {
         this.levelGenerator = new LevelGenerator(mode);  
         setLevel(1);         
     }
+    public void createFireBall(int x, int y, String direction) {
+        currentLevel.addFireBall(levelGenerator.createFireBall(x,y,direction));
+        setProjectilesObeservers(currentLevel.getProjectiles());
+    }
+
+    protected void setProjectilesObeservers(List<Projectile> projectiles){
+        for (Projectile projectile: projectiles) {
+            GraphicObserver projectileOberver = viewController.registerEntity(projectile,true);
+            projectile.registerObserver(projectileOberver);
+        }
+    } 
 }

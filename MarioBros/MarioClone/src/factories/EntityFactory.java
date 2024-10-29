@@ -1,6 +1,8 @@
 package factories;
 import platforms.*;
 import powerUps.*;
+import projectile.FireBall;
+import projectile.Projectile;
 import enemies.*;
 import java.util.HashMap;
 import character.Character;
@@ -289,4 +291,12 @@ public class EntityFactory {
 	    return mast;
 	}
 
+    public Projectile newFireBall(int type,int x, int y, String direction) {
+		FireBall projectile = null;
+		if(type == 31)
+			projectile = new FireBall(spriteFactory.getFireballSprite(), x, y, direction);
+		if(type == 32)
+		projectile = null; 	//HACER SPINY EGG
+		return projectile;
+    }
 }
