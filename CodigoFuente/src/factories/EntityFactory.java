@@ -122,6 +122,7 @@ public class EntityFactory {
 		characterSprites.put("JumpingRight",spriteFactory.getCharacterJumpingSprite("Right"));
 		characterSprites.put("JumpingLeft",spriteFactory.getCharacterJumpingSprite("Left"));
 		characterSprites.put("InFlag",spriteFactory.getCharacterInFlag());
+		characterSprites.put("Died", spriteFactory.getCharacterDead());
 		return characterSprites;
 	}
 

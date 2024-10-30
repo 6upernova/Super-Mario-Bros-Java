@@ -14,12 +14,14 @@ import views.CharacterObserver;
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	protected int lives;
 	protected int score;
+	protected int coins;
 
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
 	protected SoundReproducer sounds;
+	protected CharacterAnimations characterAnimations;
 
 	
 	//Gravity And movementd
@@ -27,14 +29,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
 
-
+	//Flags
 	protected boolean isMovingRight;
-	private boolean isInEnd;
-	private int coins;
-
+	protected boolean isInEnd;
 	protected boolean invincible;
 	protected boolean invulnerable;
+	protected boolean isDying;
 
+	//Constants
 	public final int HIT_INVINCIBILITY_TIME = 200;
 	public final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
@@ -45,14 +47,17 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
         this.invincible = false;
 		this.invulnerable = false;
 		this.isInAir = false;
+		this.isDying = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
 		this.coins = 0;
 		sounds = new SoundReproducer();
+		characterAnimations = new CharacterAnimations(this);
 	}
 
 	public void setInStart(){
+		((CharacterObserver)observer).respawn();
 		setX(5);
 		setY(0);
 	}
@@ -60,6 +65,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public boolean isMovingRight(){
 		return isMovingRight;
 	}
+
+	public boolean isDying() {
+        return isDying;
+    }
 
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
@@ -132,12 +141,16 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void dead(){
 		lives--;
-		setInStart();
+		
 		if(this.lives > 0) {
-			sounds.setAuxiliarAudio("gameOver");
-			((CharacterObserver)observer).respawn();
+			
+			sounds.setAuxiliarAudio("marioDie");
+			isDying = true;
+			characterAnimations.deathAnimation();
+			setInStart();
+			
 		}
-		else sounds.setAuxiliarAudio("marioDie");
+		else sounds.setAuxiliarAudio("gameOver");
 	}
 	
 	
@@ -378,5 +391,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			boundingBox.updateExternalBoundsToSmall();
 		}
 	}
+
+   
 
 }

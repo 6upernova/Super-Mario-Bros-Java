@@ -37,6 +37,9 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Normal"+ File.separator + "CharacterInFlag" + ".png");
     }
     
+    public Sprite getCharacterDead(){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Normal"+ File.separator + "CharacterDies" + ".png");
+    }
     ////////////////////////////////////////////////////////////////////////////////////////
     public Sprite getSuperCharacterStillSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Super"+ File.separator + "SuperCharacterStill"+ direction +".png");

@@ -1,6 +1,5 @@
 package entities.character;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import entities.enemies.Enemy;
@@ -52,16 +51,18 @@ public class CharacterThread extends Thread {
                 timer = 400;
                 isRunning = false;
             }
-            else if(character.getLives() == 0){
+            else if(character.getLives() <= 0){
                 game.stop();
                 isRunning= false;
-            	}
-            	else {
-            		moveCharacter(horizontalDirection, verticalDirection, spacebar);
-            		characterCollisionManager.platformsCollisions(character);
-            		characterCollisionManager.enemiesCollisions(character);
-            		characterCollisionManager.powerUpsCollisions(character);
-            		checkEnemiesInRange(game.getCurrentLevel().getEnemies());
+            }
+            else {
+                    if(!character.isDying()){
+            		    moveCharacter(horizontalDirection, verticalDirection, spacebar);
+            		    characterCollisionManager.platformsCollisions(character);
+            		    characterCollisionManager.enemiesCollisions(character);
+            		    characterCollisionManager.powerUpsCollisions(character);
+            		    checkEnemiesInRange(game.getCurrentLevel().getEnemies());
+                    }
 
                     
                     /*for(Projectile projectile: game.getCurrentLevel().getProjectiles()){
