@@ -1,6 +1,7 @@
 package game;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import entities.LogicalEntity;
@@ -28,7 +29,7 @@ public class Game {
     protected CharacterThread characterThread;
     protected EnemyThread enemyThread;
     protected Ranking ranking;
-    private String mode;
+    protected String mode;
 
 
     public Game () {
@@ -180,10 +181,8 @@ public class Game {
         setProjectilesObeservers(currentLevel.getProjectiles());
     }
 
-    protected void setProjectilesObeservers(List<Projectile> projectiles){
-        for (Projectile projectile: projectiles) {
-            GraphicObserver projectileOberver = viewController.registerEntity(projectile,true);
-            projectile.registerObserver(projectileOberver);
-        }
+    protected void setProjectilesObeservers(LinkedList<Projectile> projectiles){
+        GraphicObserver projectileOberver = viewController.registerEntity(projectiles.getLast(),true);
+        projectiles.getLast().registerObserver(projectileOberver);   
     } 
 }

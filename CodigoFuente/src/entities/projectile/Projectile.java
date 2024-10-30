@@ -3,14 +3,23 @@ package entities.projectile;
 import entities.Entity;
 import factories.Sprite;
 import tools.GraphicTools;
+import views.ViewConstants;
 
 public abstract class Projectile extends Entity{
 	protected boolean isMovingRight;
 	protected float horizontalSpeed;
-	protected String direction;
+	protected String direction;	
+	private float initialX;
+	private float initialY;
+	private float verticalSpeed;
+
+
+
 	protected Projectile(Sprite sprite, float positionInX, float positionInY, String direction) {
 		super(sprite, positionInX, positionInY);
 		this.direction = direction;
+		this.horizontalSpeed = ViewConstants.PROJECTILE_SPEED ;
+		this.verticalSpeed = 0;
 	}
 
 	public abstract void animation();
@@ -30,5 +39,32 @@ public abstract class Projectile extends Entity{
 	public String getDirection() {
 		return direction;
 	}
+	public void setInitialX(float initialX) {
+		this.initialX = initialX;
+	}
+
+	public float getInitialX() {
+		return initialX;
+	}
+	public void setInitialY(float initialY) {
+		this.initialY = initialY;
+	}
+
+	public float getInitialY() {
+		return initialY;
+	}
+
+
+	// Métodos para acceder a verticalSpeed
+	public float getVerticalSpeed() {
+		return verticalSpeed;
+	}
+
+	public void setVerticalSpeed(float verticalSpeed) {
+		this.verticalSpeed = verticalSpeed;
+	}
+
+
+
 
 }

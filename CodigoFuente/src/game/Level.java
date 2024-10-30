@@ -14,7 +14,7 @@ public class Level {
     protected List<Platform> platforms;
     protected List<Enemy> enemies;
     protected List<PowerUp> powerUps;
-    protected List<Projectile> projectiles;
+    protected LinkedList<Projectile> projectiles;
     protected Character character;
     protected boolean running;
     protected boolean paused;
@@ -57,7 +57,7 @@ public class Level {
     public List<PowerUp> getPowerUps(){
         return powerUps;
     }
-    public List<Projectile> getProjectiles(){
+    public LinkedList<Projectile> getProjectiles(){
         return projectiles;
     }
 
@@ -82,6 +82,6 @@ public class Level {
     }
 
     public void addFireBall(Projectile projectile) {
-        projectiles.add(projectile);        
+        projectiles.addLast(projectile);        
     }
 }
