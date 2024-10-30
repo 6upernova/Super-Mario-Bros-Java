@@ -65,14 +65,22 @@ public class EnemyThread extends Thread {
     	if(!enemy.isInAir() && !LogicTools.isOnSolid(platformsByCoords,enemy) ){
             enemy.setIsInAir(true);
         }
-    	enemy.moveLeft();
+
+        enemy.moveLeft(spriteNumber);
+            
+        if(frameCount%20==0) 
+            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }
     
     private void moveRight(Enemy enemy) {
     	if(!enemy.isInAir() && !LogicTools.isOnSolid(platformsByCoords,enemy) ){
             enemy.setIsInAir(true);
         }
-    	enemy.moveRight();
+
+        enemy.moveRight(spriteNumber);
+            
+        if(frameCount%20==0) 
+            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }
     
 }

@@ -1,6 +1,7 @@
 package enemies;
 import factories.Sprite;
 import game.CharacterVisitor;
+import tools.GraphicTools;
 import views.GraphicObserver;
 
 public class Lakitu extends Enemy{
@@ -12,6 +13,20 @@ public class Lakitu extends Enemy{
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
 		flies=true;
+	}
+	
+	public void moveRight(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
+		setSprite(sprites.get("Right"));
+		observer.update();
+	}
+	
+	public void moveLeft(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
+		setSprite(sprites.get("Left" ));
+		observer.update();
 	}
 
 	public int getPointsOnDeath() {

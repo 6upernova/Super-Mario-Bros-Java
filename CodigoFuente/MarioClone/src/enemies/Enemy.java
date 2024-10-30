@@ -6,6 +6,7 @@ import game.VisitedElement;
 import tools.GraphicTools;
 import views.Observer;
 import views.ViewConstants;
+import java.util.HashMap;
 
 public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement{
 	
@@ -17,6 +18,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
 	protected boolean flies;
+	protected HashMap<String, Sprite> sprites;
 	
 	public Enemy(Sprite sprite, int positionInX, int positionInY, int pointsOnDeath,int pointsOnKill) {
 		super(sprite, positionInX, positionInY);
@@ -53,6 +55,10 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public void activateEnemy(){
 		isActive = true;
 	}
+
+	public void setSpritesMap(HashMap<String, Sprite> spritesMap){
+		sprites = spritesMap;
+	}
 	
 	public float getVerticalSpeed() {
 		return verticalSpeed;
@@ -88,6 +94,20 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		}
 	}
 	
+	public void moveRight(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
+		setSprite(sprites.get("Right" + frame));
+		observer.update();
+	}
+	
+	public void moveLeft(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
+		setSprite(sprites.get("Left" + frame));
+		observer.update();
+	}
+	//Borrar estos cuando termine
 	public void moveRight() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));

@@ -216,18 +216,43 @@ public class EntityFactory {
 	
 	//ENEMYS
 	private Enemy newKoopaTroopa(int worldX, int worldY) {
-	    KoopaTroopa koopa = new KoopaTroopa(spriteFactory.getKoopaTroopaSprite(),worldX,worldY);
+	    KoopaTroopa koopa = new KoopaTroopa(spriteFactory.getKoopaTroopaLeftSprite(1),worldX,worldY);
+		koopa.setSpritesMap(getKoopaTroopaSprites());
 	    return koopa;
+	}
+	private HashMap<String, Sprite> getKoopaTroopaSprites(){
+		HashMap<String,Sprite> koopaTroopaSprites = new HashMap<String,Sprite>();
+		koopaTroopaSprites.put("Left1", spriteFactory.getKoopaTroopaLeftSprite(1));
+		koopaTroopaSprites.put("Left2", spriteFactory.getKoopaTroopaLeftSprite(2));
+		koopaTroopaSprites.put("Right1", spriteFactory.getKoopaTroopaRightSprite(1));
+		koopaTroopaSprites.put("Right2", spriteFactory.getKoopaTroopaRightSprite(2));
+		return koopaTroopaSprites;
 	}
 
 	private Enemy newBuzzyBeetle(int worldX, int worldY) {
-		BuzzyBeetle beetle = new BuzzyBeetle(spriteFactory.getBuzzyBeetleSprite(),worldX,worldY);
+		BuzzyBeetle beetle = new BuzzyBeetle(spriteFactory.getBuzzyBeetleLeftSprite(1),worldX,worldY);
+		beetle.setSpritesMap(getBuzzyBeetleSprites());
 	    return beetle;
+	}
+	private HashMap<String, Sprite> getBuzzyBeetleSprites(){
+		HashMap<String,Sprite> buzzyBeetleSprites = new HashMap<String,Sprite>();
+		buzzyBeetleSprites.put("Left1", spriteFactory.getBuzzyBeetleLeftSprite(1));
+		buzzyBeetleSprites.put("Left2", spriteFactory.getBuzzyBeetleLeftSprite(2));
+		buzzyBeetleSprites.put("Right1", spriteFactory.getBuzzyBeetleRightSprite(1));
+		buzzyBeetleSprites.put("Right2", spriteFactory.getBuzzyBeetleRightSprite(2));
+		return buzzyBeetleSprites;
 	}
 
 	private Enemy newLakitu(int worldX, int worldY) {
-		Lakitu lakitu = new Lakitu(spriteFactory.getLakituSprite(),worldX,worldY);
+		Lakitu lakitu = new Lakitu(spriteFactory.getLakituLeftSprite(),worldX,worldY);
+		lakitu.setSpritesMap(getLakituSprites());
 	    return lakitu;
+	}
+	private HashMap<String, Sprite> getLakituSprites(){
+		HashMap<String,Sprite> lakituSprites = new HashMap<String,Sprite>();
+		lakituSprites.put("Left", spriteFactory.getLakituLeftSprite());
+		lakituSprites.put("Right", spriteFactory.getLakituRightSprite());
+		return lakituSprites;
 	}
 
 	private Enemy newPiranhaPlant(int worldX, int worldY) {
@@ -236,8 +261,15 @@ public class EntityFactory {
 	}
 
 	private Enemy newGoomba(int worldX, int worldY) {
-		Goomba goomba = new Goomba(spriteFactory.getGoombaSprite(), worldX,worldY);
+		Goomba goomba = new Goomba(spriteFactory.getGoombaLeftSprite(), worldX,worldY);
+		goomba.setSpritesMap(getGoombaSprites());
 	    return goomba;
+	}
+	private HashMap<String, Sprite> getGoombaSprites(){
+		HashMap<String,Sprite> goombaSprites = new HashMap<String,Sprite>();
+		goombaSprites.put("Walking1", spriteFactory.getGoombaLeftSprite());
+		goombaSprites.put("Walking2", spriteFactory.getGoombaRightSprite());
+		return goombaSprites;
 	}
 	
     //PLATFORMS

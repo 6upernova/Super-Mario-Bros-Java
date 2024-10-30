@@ -2,6 +2,7 @@ package enemies;
 
 import factories.Sprite;
 import game.CharacterVisitor;
+import tools.GraphicTools;
 import views.GraphicObserver;
 
 public class Goomba extends Enemy{
@@ -13,6 +14,20 @@ public class Goomba extends Enemy{
 		super(sprite, positionInX, positionInY,pointsOnDeath,pointsOnKill);
 		direction="Left";
 		flies=false;
+	}
+
+	public void moveRight(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
+		setSprite(sprites.get("Walking" + frame));
+		observer.update();
+	}
+	
+	public void moveLeft(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
+		setSprite(sprites.get("Walking" + frame));
+		observer.update();
 	}
 	
 	public int getPointsOnDeath() {

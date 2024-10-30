@@ -128,21 +128,38 @@ public abstract class SpriteFactory {
     }
 
     //ENEMIES SPRITES
-    public Sprite getGoombaSprite(){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"GoombaLeft.png");	 
+    public Sprite getGoombaLeftSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"GoombaLeft.png");	
     }
-    public Sprite getKoopaTroopaSprite(){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaTroopaLeft1.png");	 
+    public Sprite getGoombaRightSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"GoombaRight.png");	
     }
+    
+    public Sprite getKoopaTroopaLeftSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaTroopaLeft"+ frame + ".png");	 
+    }
+    public Sprite getKoopaTroopaRightSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaTroopaRight"+ frame + ".png");	 
+    }
+
     public Sprite getPiranhaPlantSprite(){
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"PiranhaPlant1.png");	 
     }    
-    public Sprite getLakituSprite(){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"LakituLeft.png");	 
+    
+    public Sprite getLakituLeftSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"LakituLeft.png");	
     }
-    public Sprite getBuzzyBeetleSprite(){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleLeft1.png");	 
+    public Sprite getLakituRightSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"LakituRight.png");	
     }
+
+    public Sprite getBuzzyBeetleLeftSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleLeft"+ frame + ".png");	 
+    }
+    public Sprite getBuzzyBeetleRightSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleRight"+ frame + ".png");	 
+    }
+
     public Sprite getSpinySprite(){
         return new Sprite(folderPath + File.separator+"SpinnyLeft1.png");	 
     }
