@@ -21,6 +21,8 @@ public class ViewConstants {
 	public static final float MAX_FALL_SPEED = -15.0f;            
 
 	public static final float ENEMY_SPEED= 6/100.0f;
+
+	public static final float PROJECTILE_SPEED= 2/200.0f;
 	
 	public static final int MAP_CELLS=143;
 
