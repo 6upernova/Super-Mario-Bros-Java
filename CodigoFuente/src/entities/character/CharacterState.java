@@ -28,12 +28,12 @@ public abstract class CharacterState {
     	return breakBlocks;
     }
 
-    protected boolean canThrowFireball(){
-        return false;
-    }
+    protected abstract boolean canThrowFireball();
+       
+    
 
-    public boolean isSuper() {
-        return true;
-    }
+    public abstract boolean isSuper();
+    
+    
     
 }

@@ -34,7 +34,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected boolean isInEnd;
 	protected boolean invincible;
 	protected boolean invulnerable;
-	protected boolean isDying;
+	protected boolean isBusy;
 
 	//Constants
 	public final int HIT_INVINCIBILITY_TIME = 200;
@@ -47,7 +47,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
         this.invincible = false;
 		this.invulnerable = false;
 		this.isInAir = false;
-		this.isDying = false;
+		this.isBusy = false;
 		this.verticalSpeed = 0;
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
@@ -59,16 +59,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void setInStart(){
 		((CharacterObserver)observer).respawn();
 		setX(5);
-		setY(0);
+		setY(1);
 	}
 
-	public boolean isMovingRight(){
-		return isMovingRight;
-	}
-
-	public boolean isDying() {
-        return isDying;
-    }
 
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
@@ -103,6 +96,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			}
 			float worldY = getY();
 			setY(worldY + (verticalSpeed*0.04f));
+			observer.update();
 			
 		}
 	}
@@ -124,6 +118,18 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		observer.update();
 	}
 
+	public void dead(){
+		lives--;
+		
+		if(this.lives > 0) {
+			
+			sounds.setAuxiliarAudio("marioDie");
+			characterAnimations.deathAnimation();
+			
+		}
+		else sounds.setAuxiliarAudio("gameOver");
+	}
+
 	public boolean isInAir(){
 		return isInAir;
 	}
@@ -138,22 +144,20 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void setInvulnerable(boolean state){
 		invulnerable = state;
 	}
-	
-	public void dead(){
-		lives--;
-		
-		if(this.lives > 0) {
-			
-			sounds.setAuxiliarAudio("marioDie");
-			isDying = true;
-			characterAnimations.deathAnimation();
-			setInStart();
-			
-		}
-		else sounds.setAuxiliarAudio("gameOver");
+
+	public boolean isMovingRight(){
+		return isMovingRight;
+	}
+
+	public boolean isBusy() {
+        return isBusy;
+    }
+
+	public void setIsBusy(boolean isBusy) {
+		this.isBusy = isBusy;
 	}
 	
-	
+
     protected void changeState(String state) {
 		this.characterActualState = characterStates.get(state);
     }
@@ -391,6 +395,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			boundingBox.updateExternalBoundsToSmall();
 		}
 	}
+
+	
 
    
 

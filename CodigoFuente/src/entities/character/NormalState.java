@@ -36,5 +36,10 @@ public class NormalState extends CharacterState{
 	public boolean isSuper(){
 		return false;
 	}
+
+	
+	protected boolean canThrowFireball() {
+		return false;
+	}
 	
 }

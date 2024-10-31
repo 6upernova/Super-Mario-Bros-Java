@@ -10,12 +10,36 @@ public class CharacterAnimations{
     }
 
     public void deathAnimation() {
-        character.jump("Died");
-        for(int i = 0; i< 8000; i++){
-            character.applyGravity();
-        }
-        character.isDying = false;
+        new Thread(() -> {
+            character.setIsBusy(true);
+            character.jump("Died");
+
+            while (character.getY()>-10) {
+                character.applyGravity();
+                try {
+                    Thread.sleep(18);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            character.setIsBusy(false);
+            character.setInStart();
+            
+            
+            
+        }).start();
     }
 
+    public void superAnimation(){
+        new Thread(() -> {
+            
 
+
+        }).start();
+    }
+    
+    
 }
+       
+
+    

@@ -70,7 +70,7 @@ public class CharacterThread extends Thread {
                         }
                     }
 
-                    if(character.isDying()){
+                    if(!character.isBusy()){
                         moveCharacter(horizontalDirection, verticalDirection, spacebar, spacebarWasPressed);
                         characterCollisionManager.platformsCollisions(character);
                         characterCollisionManager.enemiesCollisions(character);
@@ -84,22 +84,22 @@ public class CharacterThread extends Thread {
                     } 
                     
 
-                if (character.isInvincible()) {
-                    if (counter > character.STAR_INVINCIBILITY_TIME) {
-                        character.setInvencible(false);
-                        counter = 0;
-                    } else {
-                        counter += 10;
+                    if (character.isInvincible()) {
+                        if (counter > character.STAR_INVINCIBILITY_TIME) {
+                            character.setInvencible(false);
+                            counter = 0;
+                        } else {
+                            counter += 10;
+                        }
                     }
-                }
-                if(character.isInvulnerable()){
-                    if (counter > character.HIT_INVINCIBILITY_TIME) {
-                        character.setInvulnerable(false);
-                        counter = 0;
-                    } else {
-                        counter += 10;
+                    if(character.isInvulnerable()){
+                        if (counter > character.HIT_INVINCIBILITY_TIME) {
+                            character.setInvulnerable(false);
+                            counter = 0;
+                        } else {
+                            counter += 10;
+                        }
                     }
-                }
             		timeCounter++;
             		if (timeCounter >= 60) { 
             			timer--;

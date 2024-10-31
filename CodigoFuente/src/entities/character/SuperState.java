@@ -39,4 +39,14 @@ public class SuperState extends CharacterState{
 		return 30;
 	}
 
+	@Override
+	protected boolean canThrowFireball() {
+		return false;
+	}
+
+	@Override
+	public boolean isSuper() {
+		return true;
+	}
+
 }
