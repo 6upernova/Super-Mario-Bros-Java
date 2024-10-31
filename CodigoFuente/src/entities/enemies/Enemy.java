@@ -107,18 +107,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		setSprite(sprites.get("Left" + frame));
 		observer.update();
 	}
-	//Borrar estos cuando termine
-	public void moveRight() {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		observer.update();
-	}
-	
-	public void moveLeft() {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		observer.update();
-	}
 	
 	
 }
