@@ -22,7 +22,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
 	protected SoundReproducer sounds;
 	protected CharacterAnimations characterAnimations;
-
 	
 	//Gravity And movementd
 	protected boolean isInAir;
@@ -105,6 +104,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
 	}
 	
+	public void smallJump(String key){
+		verticalSpeed = ViewConstants.CHARACTER_JUMP / 4;
+        isInAir = true;
+		setSprite(characterActualState.getSprites().get(key));
+        observer.update();
+	}
 	public void jump(String key){
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;

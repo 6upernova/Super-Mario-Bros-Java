@@ -32,6 +32,7 @@ public class CharacterCollisionManager{
             collision = character.colision(enemy);
             if (collision) {
             	if(character.isInvincible() || character.downCollision(enemy)){
+                    smallJump(character);
                     enemy.acceptVisit(character);
                     game.removeLogicalEntity(enemy);
                     enemies.remove(enemy);
@@ -44,6 +45,11 @@ public class CharacterCollisionManager{
             }
         }
         return collision;
+    }
+    
+    private void smallJump(Character character){
+        String side = character.isMovingRight() ? "Right" : "Left";
+        character.smallJump("Jumping" + side);
     }
 	
 	public boolean powerUpsCollisions(Character character){
