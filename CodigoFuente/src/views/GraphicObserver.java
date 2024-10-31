@@ -18,7 +18,7 @@ public abstract class GraphicObserver extends JLabel implements Observer {
 	public void update(){
         updateSprite();
         updatePositionSize();
-        setEntityBoundingBox(this);
+        setEntityBoundingBox();
     }
 
     protected void updateSprite(){
@@ -36,10 +36,10 @@ public abstract class GraphicObserver extends JLabel implements Observer {
         this.setBounds(x, y, width, height);
     }
 
-    protected void setEntityBoundingBox(GraphicObserver entityObserver){
-        int screenX = GraphicTools.transformX(observedEntity.getX(), entityObserver);
-        int screenY = GraphicTools.transformY(observedEntity.getY(), entityObserver);
-        BoundingBox hitBox = new BoundingBox(screenX, screenY, entityObserver.getWidth(), entityObserver.getHeight());
+    protected void setEntityBoundingBox(){
+        int screenX = GraphicTools.transformX(observedEntity.getX(), this);
+        int screenY = GraphicTools.transformY(observedEntity.getY(), this);
+        BoundingBox hitBox = new BoundingBox(screenX, screenY, this.getWidth(), this.getHeight());
         hitBox.createExternalBounds();
         observedEntity.setBoundingBox(hitBox);   
     }

@@ -1,4 +1,5 @@
 package entities.character;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,8 +12,8 @@ import tools.LogicTools;
 import views.ViewConstants;
 
 public class CharacterThread extends Thread {
-	
-	protected Game game;
+
+    protected Game game;
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
@@ -20,12 +21,11 @@ public class CharacterThread extends Thread {
     private int frameCount;
     private int spriteNumber;
     private boolean isRunning;
-    private HashMap<String,Platform> platformsByCoords;
+    private HashMap<String, Platform> platformsByCoords;
     private boolean spacebarWasPressed;
-    
 
-    public CharacterThread(Keyboard keyboard, Game game){
-    	this.game = game;
+    public CharacterThread(Keyboard keyboard, Game game) {
+        this.game = game;
         this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
         this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
@@ -37,7 +37,7 @@ public class CharacterThread extends Thread {
         this.projectileCollisionManager = new ProjectileCollisionManager(game);
         this.spacebarWasPressed = false;
     }
-    
+
     public void run() {
         String horizontalDirection;
         String verticalDirection;
@@ -56,148 +56,149 @@ public class CharacterThread extends Thread {
                 game.playNextLevel();
                 timer = 400;
                 isRunning = false;
-            }
-            else if(character.getLives() <= 0){
+            } 
+            else if (character.getLives() <= 0) {
                 game.stop();
-                isRunning= false;
-            	}
-            	else {
-                    if(spacebarWasPressed){
-                        spacebarCooldown += 16;
-                        if(spacebarCooldown >= 1000){
-                            setSpacebarWasPressed(false);
-                            spacebarCooldown = 0;
-                        }
+                isRunning = false;
+            } 
+            else {
+                if (spacebarWasPressed) {
+                    spacebarCooldown += 16;
+                    if (spacebarCooldown >= 1000) {
+                        setSpacebarWasPressed(false);
+                        spacebarCooldown = 0;
                     }
+                }
 
-                    if(!character.isBusy()){
-                        moveCharacter(horizontalDirection, verticalDirection, spacebar, spacebarWasPressed);
-                        characterCollisionManager.platformsCollisions(character);
-                        characterCollisionManager.enemiesCollisions(character);
-                        characterCollisionManager.powerUpsCollisions(character);
-                        checkEnemiesInRange(game.getCurrentLevel().getEnemies());
-                    }
+                if (!character.isBusy()) {
+                    moveCharacter(horizontalDirection, verticalDirection, spacebar, spacebarWasPressed);
+                    characterCollisionManager.platformsCollisions(character);
+                    characterCollisionManager.enemiesCollisions(character);
+                    characterCollisionManager.powerUpsCollisions(character);
+                    checkEnemiesInRange(game.getCurrentLevel().getEnemies());
+                }
 
-                    for(Projectile projectile: game.getCurrentLevel().getProjectiles()){
-                        moveProjectile(projectile);
-                        projectileCollisionManager.enemiesCollisions(projectile);
+                for (Projectile projectile : game.getCurrentLevel().getProjectiles()) {
+                    moveProjectile(projectile);
+                    projectileCollisionManager.enemiesCollisions(projectile);
+                }
+
+                if (character.isInvincible()) {
+                    if (counter > character.STAR_INVINCIBILITY_TIME) {
+                        character.setInvencible(false);
+                        counter = 0;
                     } 
-                    
+                    else {
+                        counter += 10;
+                    }
+                }
+                System.out.println(character.isInvulnerable());
+                if (character.isInvulnerable()) {
+                    if (counter > character.HIT_INVINCIBILITY_TIME) {
+                        character.setInvulnerable(false);
+                        counter = 0;
+                    } 
+                    else {
+                        counter += 10;
+                    }
+                }
+                timeCounter++;
+                if (timeCounter >= 60) {
+                    timer--;
+                    timeCounter = 0;
+                }
 
-                    if (character.isInvincible()) {
-                        if (counter > character.STAR_INVINCIBILITY_TIME) {
-                            character.setInvencible(false);
-                            counter = 0;
-                        } else {
-                            counter += 10;
-                        }
-                    }
-                    if(character.isInvulnerable()){
-                        if (counter > character.HIT_INVINCIBILITY_TIME) {
-                            character.setInvulnerable(false);
-                            counter = 0;
-                        } else {
-                            counter += 10;
-                        }
-                    }
-            		timeCounter++;
-            		if (timeCounter >= 60) { 
-            			timer--;
-            			timeCounter = 0;
-            		}
-    
-            		game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
+                game.updateInformation(character.getScore(), character.getCoins(), timer, character.getLives());
             }
-            
+
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
             }
         }
     }
-    
-    private void checkEnemiesInRange(List<Enemy> enemyList){
-        for(Enemy enemy : enemyList)
-            if(!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16){
+
+    private void checkEnemiesInRange(List<Enemy> enemyList) {
+        for (Enemy enemy : enemyList)
+            if (!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16) {
                 enemy.activateEnemy();
             }
     }
-    
-    private void moveCharacter(String horizontalDirection, String verticalDirection, String spacebar, boolean spacebarWasPressed) {
+
+    private void moveCharacter(String horizontalDirection, String verticalDirection, String spacebar,boolean spacebarWasPressed) {
         character.applyGravity();
-        
+
         switch (spacebar) {
             case "Space":
-                if(character.canThrowFireball() && !spacebarWasPressed) {
+                if (character.canThrowFireball() && !spacebarWasPressed) {
                     setSpacebarWasPressed(true);
-                    game.createFireBall(Math.round(character.getX()), Math.round(character.getY()+1), keyboard.getPreviousDirection());
+                    game.createFireBall(Math.round(character.getX()), Math.round(character.getY() + 1),
+                    keyboard.getPreviousDirection());
                     Projectile projectile = game.getCurrentLevel().getProjectiles().getLast();
                     projectile.setInitialX(projectile.getX());
                     projectile.setInitialY(projectile.getY()); // Establece la posición Y inicial
                 }
-                                                  
+
                 break;
         }
         switch (verticalDirection) {
-        case "Up":
-            if(!character.isInAir())
-                if(horizontalDirection == "None")
-                    character.jump("Jumping" + keyboard.getPreviousDirection());
-                else
-                    character.jump("Jumping" + horizontalDirection);
-            break;
-        }
-    	switch(horizontalDirection) {
-    		case "None":
-    			character.stayStill("Still" + keyboard.getPreviousDirection());
-    			break;
-    		case "Right":
-    			moveRight();
+            case "Up":
+                if (!character.isInAir())
+                    if (horizontalDirection == "None")
+                        character.jump("Jumping" + keyboard.getPreviousDirection());
+                    else
+                        character.jump("Jumping" + horizontalDirection);
                 break;
-    		case "Left":
-    			moveLeft();
-    			break;
-    	}
+        }
+        switch (horizontalDirection) {
+            case "None":
+                character.stayStill("Still" + keyboard.getPreviousDirection());
+                break;
+            case "Right":
+                moveRight();
+                break;
+            case "Left":
+                moveLeft();
+                break;
+        }
     }
 
-	private void setSpacebarWasPressed(boolean pressed) {
+    private void setSpacebarWasPressed(boolean pressed) {
         this.spacebarWasPressed = pressed;
     }
 
     private void moveRight() {
-		character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
+        character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
 
-        if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
+        if (!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords, character)) {
             character.setIsInAir(true);
         }
-        
         character.moveRight(spriteNumber);
         if(frameCount%4==0) 
             spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
     }
-		
-	private void moveLeft() {
+
+    private void moveLeft() {
         float characterLeftLimit = LogicTools.characterInMapEnd(game);
-        if(character.getX() <= characterLeftLimit){
+        if (character.getX() <= characterLeftLimit) {
             character.setHorizontalSpeed(0);
-        }
-        else{
+        } else {
             character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
         }
-        
-        if(!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords,character) ){
+
+        if (!character.isInAir() && !LogicTools.isOnSolid(platformsByCoords, character)) {
             character.setIsInAir(true);
         }
-            
         character.moveLeft(spriteNumber);
             
         if(frameCount%4==0) 
+
             spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
 
     }
 
-	public void setIsRunning(boolean value) {
-    	this.isRunning = value;
+    public void setIsRunning(boolean value) {
+        this.isRunning = value;
     }
 
     private void moveProjectile(Projectile projectile) {
@@ -205,42 +206,45 @@ public class CharacterThread extends Thread {
         String direction = projectile.getDirection();
         switch (direction) {
             case "Left":
-            
                 game.reproduceSoundEffect("fireball");
                 moveProjectileLeft(projectile);
                 break;
+
             case "Right":
-                
                 game.reproduceSoundEffect("fireball");
                 moveProjectileRight(projectile);
                 break;
         }
     }
+
     private void moveProjectileLeft(Projectile projectile) {
-        projectile.setX(projectile.getX() - 1);        
+        projectile.setX(projectile.getX() - 1);
         moveProjectileVerticalmenteY(projectile);
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             projectileCollisionManager.checkRemove(projectile);
-        } else {
+        } 
+        else {
             projectile.moveLeft();
         }
     }
-    
-    private void moveProjectileRight(Projectile projectile) {    
-        projectile.setX(projectile.getX() + 1);   
+
+    private void moveProjectileRight(Projectile projectile) {
+        projectile.setX(projectile.getX() + 1);
         moveProjectileVerticalmenteY(projectile);
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             projectileCollisionManager.checkRemove(projectile);
-        } else {
+        } 
+        else {
             projectile.moveRight();
         }
     }
 
-    private void moveProjectileVerticalmenteY(Projectile projectile) { 
-        float gravity = 0.15f * 0.5f;                     
-        projectile.setVerticalSpeed(projectile.getVerticalSpeed() - gravity);    
-        if(!projectileCollisionManager.projectilesCollisions(projectile))
+    private void moveProjectileVerticalmenteY(Projectile projectile) {
+        float gravity = 0.15f * 0.5f;
+        projectile.setVerticalSpeed(projectile.getVerticalSpeed() - gravity);
+        if (!projectileCollisionManager.projectilesCollisions(projectile))
             projectile.setY(projectile.getY() + projectile.getVerticalSpeed());
-        else projectile.setY(projectile.getY() - projectile.getVerticalSpeed());
-    }    
+        else
+            projectile.setY(projectile.getY() - projectile.getVerticalSpeed());
+    }
 }

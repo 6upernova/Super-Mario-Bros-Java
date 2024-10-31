@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
 import entities.character.Keyboard;
+import entities.enemies.EnemyEntity;
 import game.Game;
 
 public class ViewController {   
@@ -99,6 +100,12 @@ public class ViewController {
 
     public GraphicObserver registerEntity(LogicalEntity entity, boolean isActive){
         GraphicObserver entityObserver = levelScreen.drawLogicalEntity(entity, isActive);
+        refresh();
+        return entityObserver;
+    }
+
+    public GraphicObserver registerEntity(EnemyEntity enemy){
+        GraphicObserver entityObserver = levelScreen.drawLogicalEntity(enemy);
         refresh();
         return entityObserver;
     }

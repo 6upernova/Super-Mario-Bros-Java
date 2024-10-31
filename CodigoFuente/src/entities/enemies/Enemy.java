@@ -4,6 +4,7 @@ import entities.Entity;
 import entities.VisitedElement;
 import factories.Sprite;
 import tools.GraphicTools;
+import views.EnemyObserver;
 import views.Observer;
 import views.ViewConstants;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	}
 	
 	public void dead() {
-		//desaparecerlo de la pantalla y que se borre el objeto
+		((EnemyObserver)observer).remove();
 	}
 	
 

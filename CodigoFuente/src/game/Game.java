@@ -108,7 +108,7 @@ public class Game {
     
    protected void setEnemiesObservers(List<Enemy> enemyList) {
     	for (Enemy enemy: enemyList) {
-    		GraphicObserver enemyObserver = viewController.registerEntity(enemy, true);
+    		GraphicObserver enemyObserver = viewController.registerEntity(enemy);
     		enemy.registerObserver(enemyObserver);
     	}
     }

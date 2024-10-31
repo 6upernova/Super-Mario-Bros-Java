@@ -36,7 +36,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected boolean isBusy;
 
 	//Constants
-	public final int HIT_INVINCIBILITY_TIME = 200;
+	public final int HIT_INVINCIBILITY_TIME = 500;
 	public final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
 	public Character(Sprite sprite) {
@@ -110,6 +110,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setSprite(characterActualState.getSprites().get("Jumping" + direction));
         observer.update();
 	}
+	
 	public void jump(String key){
 		if(!isInAir()){
 			verticalSpeed = ViewConstants.CHARACTER_JUMP;
@@ -151,7 +152,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void setInvulnerable(boolean state){
-		invulnerable = state;
+		this.invulnerable = state;
 	}
 
 	public boolean isMovingRight(){
@@ -226,8 +227,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
 		sounds.setAuxiliarAudio("kick");
-		buzzyBeetle.dead();
 		addScore(buzzyBeetle.getPointsOnDeath());
+		buzzyBeetle.dead();
 		
     }
 	public void visit(Spiny spiny) {
@@ -246,7 +247,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		int points = characterActualState.getMushroomPoints();
 		addScore(points);
 		if(!characterActualState.isSuper()){
-			characterActualState = characterStates.get("Super");
+			setState("Super");
 			sounds.setAuxiliarAudio("mushroom");
 			characterAnimations.superAnimation("Normal", "Super");			
 			updateBoundingBoxToBig();
@@ -385,8 +386,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.lives = lives;
     }
 
-    public void setState(CharacterState state) {
-		this.characterActualState = state;
+    public void setState(String state) {
+		this.characterActualState = characterStates.get(state);
     }
 
     public CharacterState getState() {

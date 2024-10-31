@@ -11,14 +11,13 @@ public class CharacterAnimations{
     }
 
     public void deathAnimation() {
-        
             character.setIsBusy(true);
             character.jump("Died");
 
-            while (character.getY()>-10) {
+            while (character.getY()>-5) {
                 character.applyGravity();
                 try {
-                    Thread.sleep(18);
+                    Thread.sleep(16);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

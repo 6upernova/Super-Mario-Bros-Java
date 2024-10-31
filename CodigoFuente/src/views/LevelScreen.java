@@ -9,7 +9,11 @@ import HitboxDebug.HitboxPanel;
 import entities.BoundingBox;
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
+import entities.enemies.EnemyEntity;
 import tools.GraphicTools;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LevelScreen extends JPanel {
 	
@@ -99,6 +103,12 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.add(entityObserver);
         return entityObserver;   
     }
+
+    public GraphicObserver drawLogicalEntity(EnemyEntity entity) {
+        EnemyObserver entityObserver = new EnemyObserver(this, entity);
+        backgroundImageLabel.add(entityObserver);
+        return entityObserver;   
+    }
     
     public void remove(LogicalEntity g){
         backgroundImageLabel.remove(g.getGraphicObserver());
@@ -123,7 +133,31 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.add(hitboxPanel);
         backgroundImageLabel.repaint(); 
     }
-    
 
-    
+    public void drawPoints(JLabel pointsLabel) {
+        backgroundImageLabel.add(pointsLabel);
+        backgroundImageLabel.repaint();
+        pointsAnimation(pointsLabel);
+    }
+
+    public void pointsAnimation(JLabel pointsJLabel){
+
+        
+        Timer timer = new Timer(16, new ActionListener() {
+        int steps = 0;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            pointsJLabel.setLocation(pointsJLabel.getX(), pointsJLabel.getY() - 1);
+            steps++;
+            
+            if (steps >= 60) {
+                ((Timer) e.getSource()).stop();
+                backgroundImageLabel.remove(pointsJLabel);
+                backgroundImageLabel.repaint();
+            }
+        }
+        });
+        timer.start();
+    }
 }   
