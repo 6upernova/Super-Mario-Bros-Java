@@ -17,4 +17,7 @@ public class Coin extends PowerUp{
     	visitor.visit(this);
     }
 
+	public void activate() {
+		isActive=true;
+	}
 }

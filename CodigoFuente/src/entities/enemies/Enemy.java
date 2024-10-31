@@ -57,8 +57,16 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		isActive = true;
 	}
 
+	public HashMap<String, Sprite> getSpritesMap(){
+		return sprites;
+	}
+
 	public void setSpritesMap(HashMap<String, Sprite> spritesMap){
 		sprites = spritesMap;
+	}
+	
+	public float getHorizontalSpeed(){
+		return horizontalSpeed;
 	}
 	
 	public float getVerticalSpeed() {

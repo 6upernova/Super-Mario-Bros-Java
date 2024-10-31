@@ -38,21 +38,33 @@ public class EntityFactory {
 		return enemy;
 	}
 	
-	public PowerUp newPowerUp(int type, int worldX, int worldY) {
+	public Question newPowerUpWithQuestionBlock(int type, int worldX, int worldY) {
+		Question question= newQuestion(worldX, worldY - 1);
 		PowerUp powerUp = null;
 		switch (type){
 		    case 10:	powerUp = newSuperMushroom(worldX,worldY);
+		                question.setPowerUp(powerUp);  
 						break;
 		    case 11:	powerUp = newFireFlower(worldX,worldY);
+		                question.setPowerUp(powerUp);
 						break;
 		    case 12:	powerUp = newStar(worldX,worldY);
+		                question.setPowerUp(powerUp);
 						break;						
 		    case 13:	powerUp = newGreenMushroom(worldX,worldY);
+		                question.setPowerUp(powerUp);		    
 						break;						
-		    case 14:	powerUp = newCoin(worldX,worldY);
+		    case 14:	Coin coin = newCoin(worldX,worldY);
+		                question.setPowerUp(coin);
 						break;						
 		}
-		return powerUp;
+		return question;
+	}
+	
+	public Coin newOnlyCoin(int worldX, int worldY) {
+		Coin coin= newCoin(worldX, worldY);
+		coin.activate();
+		return coin;
 	}
 	
 	public Platform newPlatform(int type, int worldX, int worldY) {
@@ -190,6 +202,18 @@ public class EntityFactory {
 		return characterSuperSprites;
 	}	
 	
+	private HashMap<String, QuestionState> createQuestionStates() {
+		HashMap<String, QuestionState> states= new HashMap<String, QuestionState>();
+		Sprite sprite= spriteFactory.getQuestionBlockSprite();
+	    WithCoin stateWithCoin=  new WithCoin(sprite);
+	    WithPowerUp stateWithOrtherPowerUp= new WithPowerUp(sprite);
+	    QuestionBlockEmpty emptyQuestion= new QuestionBlockEmpty(0, spriteFactory.getQuestionEmptyBlock());
+	    states.put("WithCoin", stateWithCoin);
+		states.put("WithOrtherPowerUp", stateWithOrtherPowerUp);
+		states.put("EmptyQuestion", emptyQuestion);
+		return states;
+	}
+	
 	//POWER UPS 
 	private PowerUp newSuperMushroom(int worldX, int worldY) {
 		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
@@ -201,23 +225,23 @@ public class EntityFactory {
 	    return greenMushroom;                   
     }
 	
-	private PowerUp newStar(int worldX, int worldY) {
+	private Star newStar(int worldX, int worldY) {
 	    Star star = new Star(spriteFactory.getStarSprite(),worldX,worldY);
 	    return star;
 	}
 	
-	private PowerUp newCoin(int worldX, int worldY) {
+	private Coin newCoin(int worldX, int worldY) {
 	    Coin coin = new Coin(spriteFactory.getCoinSprite(),worldX,worldY );
 	    return coin;
 	}
 	
-	private PowerUp newFireFlower(int worldX, int worldY) {
+	private FireFlower newFireFlower(int worldX, int worldY) {
 		FireFlower flower = new FireFlower(spriteFactory.getFireFlowerSprite(), worldX,worldY);
 	    return flower;
 	}
 	
 	//ENEMYS
-	private Enemy newKoopaTroopa(int worldX, int worldY) {
+	private KoopaTroopa newKoopaTroopa(int worldX, int worldY) {
 	    KoopaTroopa koopa = new KoopaTroopa(spriteFactory.getKoopaTroopaLeftSprite(1),worldX,worldY);
 		koopa.setSpritesMap(getKoopaTroopaSprites());
 	    return koopa;
@@ -228,10 +252,11 @@ public class EntityFactory {
 		koopaTroopaSprites.put("Left2", spriteFactory.getKoopaTroopaLeftSprite(2));
 		koopaTroopaSprites.put("Right1", spriteFactory.getKoopaTroopaRightSprite(1));
 		koopaTroopaSprites.put("Right2", spriteFactory.getKoopaTroopaRightSprite(2));
+		koopaTroopaSprites.put("Shell", spriteFactory.getKoopaTroopaShellSprite());
 		return koopaTroopaSprites;
 	}
 
-	private Enemy newBuzzyBeetle(int worldX, int worldY) {
+	private BuzzyBeetle newBuzzyBeetle(int worldX, int worldY) {
 		BuzzyBeetle beetle = new BuzzyBeetle(spriteFactory.getBuzzyBeetleLeftSprite(1),worldX,worldY);
 		beetle.setSpritesMap(getBuzzyBeetleSprites());
 	    return beetle;
@@ -245,7 +270,7 @@ public class EntityFactory {
 		return buzzyBeetleSprites;
 	}
 
-	private Enemy newLakitu(int worldX, int worldY) {
+	private Lakitu newLakitu(int worldX, int worldY) {
 		Lakitu lakitu = new Lakitu(spriteFactory.getLakituLeftSprite(),worldX,worldY);
 		lakitu.setSpritesMap(getLakituSprites());
 	    return lakitu;
@@ -257,12 +282,12 @@ public class EntityFactory {
 		return lakituSprites;
 	}
 
-	private Enemy newPiranhaPlant(int worldX, int worldY) {
+	private PiranhaPlant newPiranhaPlant(int worldX, int worldY) {
 		PiranhaPlant piranha = new PiranhaPlant(spriteFactory.getPiranhaPlantSprite(),worldX,worldY);
 	    return piranha;
 	}
 
-	private Enemy newGoomba(int worldX, int worldY) {
+	private Goomba newGoomba(int worldX, int worldY) {
 		Goomba goomba = new Goomba(spriteFactory.getGoombaLeftSprite(), worldX,worldY);
 		goomba.setSpritesMap(getGoombaSprites());
 	    return goomba;
@@ -275,57 +300,58 @@ public class EntityFactory {
 	}
 	
     //PLATFORMS
-	private Platform newPipeTopLeft(int worldX, int worldY) {
+	private Pipe newPipeTopLeft(int worldX, int worldY) {
 		Pipe pipe = new PipeTopLeft(spriteFactory.getPipeTopLeftSprite(),worldX,worldY);
 	    return pipe;
 	}
-	private Platform newPipeTopRight(int worldX, int worldY) {
+	private Pipe newPipeTopRight(int worldX, int worldY) {
 		Pipe pipe = new PipeTopRight(spriteFactory.getPipeTopRightSprite(),worldX,worldY);
 	    return pipe;
 	}
-	private Platform newPipeBottomLeft(int worldX, int worldY) {
+	private Pipe newPipeBottomLeft(int worldX, int worldY) {
 		Pipe pipe = new PipeBottomLeft(spriteFactory.getPipeBottomLeftSprite(),worldX,worldY);
 	    return pipe;
 	}
-	private Platform newPipeBottomRight(int worldX, int worldY) {
+	private Pipe newPipeBottomRight(int worldX, int worldY) {
 		Pipe pipe = new PipeBottomRight(spriteFactory.getPipeBottomRightSprite(),worldX,worldY);
 	    return pipe;
 	}
 	
-	private Platform newVoid(int worldX, int worldY) {
+	private VoidBlock newVoid(int worldX, int worldY) {
 		VoidBlock gameVoid = new VoidBlock(spriteFactory.getVoidSprite(), worldX,worldY);
 	    return gameVoid;
 	}
 	
-	private Platform newFlag(int worldX, int worldY) {
+	private Flag newFlag(int worldX, int worldY) {
 		Flag flag = new Flag(spriteFactory.getFlagSprite(), worldX,worldY);
 	    return flag;
 	}
 	
-	private Platform newQuestion(int worldX, int worldY) {
-		Question question = new Question(spriteFactory.getQuestionBlockSprite(),worldX, worldY);
+	private Question newQuestion(int worldX, int worldY) {
+		HashMap<String, QuestionState> states= createQuestionStates();
+		Question question = new Question(spriteFactory.getQuestionBlockSprite(), worldX, worldY, states);
 	    return question;
 	}
-	
-	private Platform newBrick(int worldX, int worldY) {
+
+	private Brick newBrick(int worldX, int worldY) {
 		Brick brick = new Brick(spriteFactory.getBrickSprite(),worldX,worldY);
 	    return brick;
 	}
 	
-	private Platform newBlock(int worldX, int worldY) {
+	private Block newBlock(int worldX, int worldY) {
 		Block block = new Block(spriteFactory.getBlockSprite(),worldX,worldY);
 	    return block;
 	}
-	private Platform newMast(int worldX, int worldY) {
+	private Mast newMast(int worldX, int worldY) {
 		Mast mast = new Mast(spriteFactory.getMastSprite(),worldX,worldY);
 	    return mast;
 	}
-	private Platform newMastEnd(int worldX, int worldY) {
+	private MastEnd newMastEnd(int worldX, int worldY) {
 		MastEnd mast = new MastEnd(spriteFactory.getMastEndSprite(),worldX,worldY);
 	    return mast;
 	}
 
-    public Projectile newFireBall(int type,int x, int y, String direction) {
+    public FireBall newFireBall(int type,int x, int y, String direction) {
 		FireBall projectile = null;
 		if(type == 31)
 			projectile = new FireBall(spriteFactory.getFireballSprite(), x, y, direction);
