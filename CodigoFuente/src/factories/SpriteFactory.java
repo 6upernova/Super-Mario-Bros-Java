@@ -205,6 +205,9 @@ public abstract class SpriteFactory {
     public Sprite getBlockSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"SolidBlock.png");	 
     }
+    public Sprite getQuestionEmptyBlock() {
+    	return new Sprite(folderPath + File.separator + "Platforms" + File.separator+"EmptyQuestionBlock.png");
+    }
     public Sprite getPipeTopRightSprite(){
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"PipeTopRight.png");	 
     }

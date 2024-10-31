@@ -6,6 +6,7 @@ import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.platforms.Question;
+import entities.powerUps.Coin;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
 import game.Level;
@@ -38,16 +39,18 @@ public class LevelGenerator {
             	Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
                 enemyList.add(enemy);
             }
-            else if( type>9 && type<15) { 
-            	        PowerUp powerUp= entityFactory.newPowerUp(type, worldX, worldY);
-                        powerUpList.add(powerUp);
-                        Question questionBlock = (Question) entityFactory.newPlatform(22, worldX, worldY - 1);
-                        questionBlock.setPowerUp(powerUp);
-                        platformList.add(questionBlock);
-                    }
-            else if( type>19 && type<=30) { 
-            	Platform platform= entityFactory.newPlatform(type, worldX, worldY);
-                platformList.add(platform);
+            if( type>9 && type<15) { 
+                Question questionBlock = entityFactory.newPowerUpWithQuestionBlock(type, worldX, worldY);
+                powerUpList.add(questionBlock.getPowerUp());
+                platformList.add(questionBlock);
+            }
+            if(type == 15) {
+            	PowerUp powerUp= entityFactory.newOnlyCoin(worldX, worldY);
+            	powerUpList.add(powerUp);
+            } 
+            if( type>19 && type<=30) { 
+               Platform platform= entityFactory.newPlatform(type, worldX, worldY);
+               platformList.add(platform);
             }            
         }        
         return new Level(platformList, enemyList, powerUpList);

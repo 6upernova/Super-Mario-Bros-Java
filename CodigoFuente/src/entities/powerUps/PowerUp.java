@@ -15,10 +15,6 @@ public abstract class PowerUp extends Entity implements VisitedElement{
         this.points = points;
         this.isActive = false;
     }
-
-    public void effect(Character character) {
-
-    }
     
     public Observer getObserver() {
     	return observer;
@@ -38,5 +34,4 @@ public abstract class PowerUp extends Entity implements VisitedElement{
     public boolean isActive(){
         return isActive;
     }
-   // public void acceptVisit(Visitor v) {}
 }

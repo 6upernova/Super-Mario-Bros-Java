@@ -3,10 +3,10 @@ package game;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
 import entities.LogicalEntity;
 import entities.character.Character;
 import entities.character.CharacterThread;
+import entities.character.ObserverSound;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
 import entities.platforms.Platform;
@@ -21,12 +21,12 @@ import views.ViewController;
 public class Game {
     protected LevelGenerator levelGenerator;
     protected ViewController viewController;
-    protected SpriteFactory spriteFactory;
     protected Level currentLevel;
     protected String currentPlayer;//Crear label en el menu para ingresar nombre
     protected int numberLevel;
     protected SoundReproducer sound;
     protected CharacterThread characterThread;
+    protected SoundGenerator generatorSounds;
     protected EnemyThread enemyThread;
     protected Ranking ranking;
     protected String mode;
@@ -39,7 +39,10 @@ public class Game {
         //cuando se pueda hacer eso, se puede sacar el int level que tiene Game en el constructor
         //Luego cambiar a un metodo para no tener que crear un game si se quiere cambiar de nivel
         this.ranking = new Ranking();
+        generatorSounds= new SoundGenerator();
+        sound = new SoundReproducer(generatorSounds);
     } 
+    
     public void setName(String name){
         this.currentPlayer = name;
     }   
@@ -55,7 +58,7 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        sound = new SoundReproducer("musicLevel"+ numberLevel);
+        sound.setMusicSound("musicLevel"+ numberLevel);
         sound.loop();
     }
 
@@ -64,8 +67,6 @@ public class Game {
         ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         viewController.showMenuScreen();
-        
-
     }
 
     protected void setLevel(int number){
@@ -80,10 +81,6 @@ public class Game {
     public ViewController getViewController(){
         return viewController;
     }
-    public void reproduceSoundEffect(String path) {
-        sound.setAuxiliarAudio(path);
-        sound.start();
-    }
 
     //Graphic operations
     public void setObservers(){
@@ -96,10 +93,14 @@ public class Game {
     protected void setCharacterObserver(Character character){
         GraphicObserver characterObserver = viewController.registerEntity(character);
         character.registerObserver(characterObserver);
-
+        setCharacterObserverOfSound(character);
     }  
     
-    protected void setPlatformsObservers(List<Platform> platformsList) {
+    private void setCharacterObserverOfSound(Character character) {
+		ObserverSound observer= new ObserverSound(this);
+		character.setObserverOfSound(observer);
+	}
+	protected void setPlatformsObservers(List<Platform> platformsList) {
     	for (Platform platform: platformsList) {
             GraphicObserver platformObserver = viewController.registerEntity(platform, true);
     		platform.registerObserver(platformObserver);
@@ -115,7 +116,7 @@ public class Game {
     
     protected void setPowerUpsObservers(List<PowerUp> powerUpList) {
     	for (PowerUp powerUp: powerUpList){
-    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, false);
+    		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, powerUp.isActive());
     		powerUp.registerObserver(powerUpObserver);
     	}
     }
@@ -125,7 +126,7 @@ public class Game {
     }    
 
     public void playNextLevel() {
-        sound.stop();
+    	sound.stopMusic();
         changeLevel();
         this.characterThread.interrupt();
         this.enemyThread.interrupt();
@@ -134,24 +135,30 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
+        sound.setMusicSound("musicLevel"+ numberLevel);
         sound.loop();
     }
     
+    public void reproduceSound(String path) {
+    	sound.setAuxiliarSound(path);
+		sound.start();
+    }
 
+    public void stopSound() {
+    	sound.stopSoundAuxiliar();
+    }
+    
     protected void changeLevel() {  
         Character currentCharacter=resetCharacter();
         viewController.clearLevelScreen();
         if (sound != null) {
-            sound.stop();
+            sound.stopMusic();
         }    
        
         currentLevel = levelGenerator.getNextLevel();  
         if(currentLevel != null){
             currentLevel.setCharacter(currentCharacter);
             setObservers();
-        }
-        else{
-
         }
     }
 

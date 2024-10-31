@@ -4,6 +4,7 @@ import entities.character.CharacterVisitor;
 import factories.Sprite;
 //Representa vacíos entre bloques por los que puede caer Mario
 public class VoidBlock extends Platform{
+	
 	static final private int pointsOnKill = -15;
 	static final private boolean isBreakeable = false;
 	

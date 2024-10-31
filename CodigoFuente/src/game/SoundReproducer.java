@@ -1,51 +1,65 @@
 package game;
+
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundReproducer {
 
-	protected final String folderPath= "src"+ File.separator+"assets"+ File.separator+ "sounds" ;
-	protected Clip audioLevelMusic;
-	protected Clip auxialiarAudio;
+	private Clip audioLevelMusic;
+	private Clip auxialiarAudio;
+	private HashMap<String, File> hashSounds;
 	
-	public SoundReproducer() {
+	public SoundReproducer(SoundGenerator generator) {
+		hashSounds= generator.getFileOfSounds();
 	}
 	
-	public SoundReproducer(String path) {
+	public void setAuxiliarSound(String path) {
 		try {
-			File file= new File(folderPath + File.separator + path + ".wav");
-			audioLevelMusic= AudioSystem.getClip();
-		    audioLevelMusic.open(AudioSystem.getAudioInputStream(file));
-		} catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
-	}
-	
-	public void setAuxiliarAudio(String path) {
-		File file= new File(folderPath + File.separator + path + ".wav");
-		try {
-	        auxialiarAudio= AudioSystem.getClip();
-			auxialiarAudio.open(AudioSystem.getAudioInputStream(file));
-		} catch (Exception e) {
+			auxialiarAudio= AudioSystem.getClip();
+			auxialiarAudio.open(getSound(path));
+		} catch (LineUnavailableException | IOException e) {
 			e.printStackTrace();
 		}
-		start();
+	}
+	
+	public void setMusicSound(String path) {
+		try {
+			audioLevelMusic= AudioSystem.getClip();
+			audioLevelMusic.open(getSound(path));
+		} catch (LineUnavailableException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void start() {
-		if(!auxialiarAudio.isRunning()) {
-		   auxialiarAudio.setFramePosition(0);
 		   auxialiarAudio.start();
-		}
 	}
 	
 	public void loop() {		
-		audioLevelMusic.setFramePosition(0);
 		audioLevelMusic.loop(audioLevelMusic.LOOP_CONTINUOUSLY);
 	}
 	
-	public void stop() {
+	public void stopMusic() {
 		audioLevelMusic.stop();
+	}
+	
+	public void stopSoundAuxiliar() {
+		auxialiarAudio.stop();
+	}
+	
+	private AudioInputStream getSound(String path)  {
+		AudioInputStream toRet=null;
+		try {
+		     toRet=AudioSystem.getAudioInputStream(hashSounds.get(path));
+	    } catch (UnsupportedAudioFileException | IOException e) {
+				e.printStackTrace();
+		}
+		return toRet;
 	}
 }
