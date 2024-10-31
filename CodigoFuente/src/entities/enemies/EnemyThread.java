@@ -34,7 +34,6 @@ public class EnemyThread extends Thread {
     		while (iterator.hasNext()) {
     			enemy=iterator.next();
     			if (enemy.isActive()) { 
-    				
     				moveEnemy(enemy);
     			}
     		}
@@ -47,6 +46,7 @@ public class EnemyThread extends Thread {
     
     private void moveEnemy(Enemy enemy) {
     	ecm.platformsCollisions(enemy);
+        ecm.enemiesCollision(enemy);
         String direction = enemy.getDirection();
         enemy.applyGravity();
         switch (direction) {
