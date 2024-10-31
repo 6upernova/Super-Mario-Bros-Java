@@ -171,7 +171,7 @@ public class CharacterThread extends Thread {
             character.setIsInAir(true);
         }
         
-        character.moveRight("Right"+spriteNumber);
+        character.moveRight(spriteNumber);
         if(frameCount%4==0) 
             spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;
     }
@@ -189,7 +189,7 @@ public class CharacterThread extends Thread {
             character.setIsInAir(true);
         }
             
-        character.moveLeft("Left"+spriteNumber);
+        character.moveLeft(spriteNumber);
             
         if(frameCount%4==0) 
             spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;

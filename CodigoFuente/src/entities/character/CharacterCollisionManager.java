@@ -49,7 +49,7 @@ public class CharacterCollisionManager{
     
     private void smallJump(Character character){
         String side = character.isMovingRight() ? "Right" : "Left";
-        character.smallJump("Jumping" + side);
+        character.smallJump(side);
     }
 	
 	public boolean powerUpsCollisions(Character character){

@@ -73,21 +73,21 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return characterStates;
 	}
 	
-	public void moveLeft(String key){
+	public void moveLeft(int frame){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX - horizontalSpeed));
 			isMovingRight=false;
 			if(!isInAir())
-				setSprite(characterActualState.getSprites().get(key));	
+				setSprite(characterActualState.getSprites().get("Left" + frame));	
 			observer.update();
 	}
 
-	public void moveRight(String key){
+	public void moveRight(int frame){
 			float worldX = getX();
 			setX(GraphicTools.round2Digits(worldX + horizontalSpeed));
 			isMovingRight = true;
 			if(!isInAir())
-				setSprite(characterActualState.getSprites().get(key));
+				setSprite(characterActualState.getSprites().get("Right" + frame));
 			observer.update();
 	}
 
@@ -104,10 +104,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
 	}
 	
-	public void smallJump(String key){
+	public void smallJump(String direction){
 		verticalSpeed = ViewConstants.CHARACTER_JUMP / 4;
         isInAir = true;
-		setSprite(characterActualState.getSprites().get(key));
+		setSprite(characterActualState.getSprites().get("Jumping" + direction));
         observer.update();
 	}
 	public void jump(String key){
