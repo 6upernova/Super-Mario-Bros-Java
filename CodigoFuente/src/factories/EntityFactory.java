@@ -228,6 +228,7 @@ public class EntityFactory {
 		koopaTroopaSprites.put("Left2", spriteFactory.getKoopaTroopaLeftSprite(2));
 		koopaTroopaSprites.put("Right1", spriteFactory.getKoopaTroopaRightSprite(1));
 		koopaTroopaSprites.put("Right2", spriteFactory.getKoopaTroopaRightSprite(2));
+		koopaTroopaSprites.put("Shell", spriteFactory.getKoopaTroopaShellSprite());
 		return koopaTroopaSprites;
 	}
 

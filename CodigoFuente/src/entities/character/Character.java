@@ -212,7 +212,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		addScore(koopaTroopa.getPointsOnDeath());
 		sounds.setAuxiliarAudio("kick");
 		//Change state
-		koopaTroopa.dead();
+		koopaTroopa.hit(this);
     }    
     public void visit(PiranhaPlant piranhaPlant) {
 		sounds.setAuxiliarAudio("kick");

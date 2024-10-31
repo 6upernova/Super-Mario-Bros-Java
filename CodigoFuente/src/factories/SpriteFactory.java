@@ -144,6 +144,9 @@ public abstract class SpriteFactory {
     public Sprite getKoopaTroopaRightSprite(int frame){
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaTroopaRight"+ frame + ".png");	 
     }
+    public Sprite getKoopaTroopaShellSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaShell.png");	 
+    }
 
     public Sprite getPiranhaPlantSprite(){
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"PiranhaPlant1.png");	 
