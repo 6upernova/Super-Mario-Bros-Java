@@ -123,7 +123,7 @@ public class Game {
     
     public void removeLogicalEntity(LogicalEntity e) {
         viewController.removeLogicalEntity(e);
-    }    
+    }
 
     public void playNextLevel() {
     	sound.stopMusic();

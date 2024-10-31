@@ -34,8 +34,9 @@ public class CharacterCollisionManager{
             	if(character.isInvincible() || character.downCollision(enemy)){
                     smallJump(character);
                     enemy.acceptVisit(character);
-                    game.removeLogicalEntity(enemy);
-                    enemies.remove(enemy);
+                    character.killEnemySound();
+                    /*game.removeLogicalEntity(enemy);
+                    enemies.remove(enemy);*/
                 }
             	else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvincible() && !character.isInvulnerable()){
                     character.setInvulnerable(true);

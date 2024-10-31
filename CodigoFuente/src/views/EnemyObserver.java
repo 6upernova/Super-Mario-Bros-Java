@@ -37,8 +37,7 @@ public class EnemyObserver extends GraphicObserver{
         points.setFont(ViewConstants.font);
         points.setBounds(x, y,600, 40);
         levelScreen.drawPoints(points);
-        
-        
+        levelScreen.removeEntity(observedEntity);
     }
 
 

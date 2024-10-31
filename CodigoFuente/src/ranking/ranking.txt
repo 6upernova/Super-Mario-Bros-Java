@@ -1,5 +1,5 @@
-Noah,1010,1
-Player,975,2
-gabo,777,3
-Player,730,4
-Player,710,5
+Player,1800,1
+Noah,1010,2
+Player,975,3
+gabo,777,4
+Player,730,5

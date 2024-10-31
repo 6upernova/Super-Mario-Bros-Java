@@ -110,7 +110,7 @@ public class LevelScreen extends JPanel {
         return entityObserver;   
     }
     
-    public void remove(LogicalEntity g){
+    public void removeEntity(LogicalEntity g){
         backgroundImageLabel.remove(g.getGraphicObserver());
     }
 

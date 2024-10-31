@@ -202,19 +202,19 @@ public class CharacterThread extends Thread {
     }
 
     private void moveProjectile(Projectile projectile) {
+        //game.reproduceSound("fireball");
         projectileCollisionManager.projectilesCollisions(projectile);
         String direction = projectile.getDirection();
         switch (direction) {
             case "Left":
-                game.reproduceSoundEffect("fireball");
                 moveProjectileLeft(projectile);
                 break;
 
             case "Right":
-                game.reproduceSoundEffect("fireball");
                 moveProjectileRight(projectile);
                 break;
         }
+
     }
 
     private void moveProjectileLeft(Projectile projectile) {

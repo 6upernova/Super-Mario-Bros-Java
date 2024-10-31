@@ -199,12 +199,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	//VISITAS
     public void visit(Goomba goomba) {	
 		addScore(goomba.getPointsOnDeath());
-		soundOfKillEnemy();
 		goomba.dead();
     }    
     public void visit(KoopaTroopa koopaTroopa) {
 		addScore(koopaTroopa.getPointsOnDeath());
-		soundOfKillEnemy();
 		//Change state
 		koopaTroopa.hit(this);
     }    
@@ -213,12 +211,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		piranhaPlant.dead();
     }	
     public void visit(Lakitu lakitu) {
-    	soundOfKillEnemy();
 		addScore(lakitu.getPointsOnDeath());
 		lakitu.dead();
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
-		buzzyBeetle.dead();
 		addScore(buzzyBeetle.getPointsOnDeath());
 		buzzyBeetle.dead();
 		
@@ -228,7 +224,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		spiny.dead();
 	}
 	
-	public void soundOfKillEnemy() {
+	public void killEnemySound() {
 		observerOfSounds.reproduceSound("kick");
 	}
 	/*

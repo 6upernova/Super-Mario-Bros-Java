@@ -15,6 +15,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	protected int pointsOnKill;
 	protected String direction;
 	protected boolean isActive;
+	protected boolean isAlive;
 	protected boolean isInAir;
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
@@ -29,8 +30,17 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		this.verticalSpeed = 0;
 		this.isActive = false;
 		this.isInAir = true;
+		this.isAlive = true;
 	}
 	
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
 	public void setDirection(String newDirection) {
 		direction=newDirection;
 	}
@@ -88,6 +98,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	
 	public void dead() {
 		((EnemyObserver)observer).remove();
+		setAlive(false);
 	}
 	
 

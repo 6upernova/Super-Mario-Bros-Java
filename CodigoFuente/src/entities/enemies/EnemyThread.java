@@ -33,9 +33,13 @@ public class EnemyThread extends Thread {
     		frameCount++;
     		while (iterator.hasNext()) {
     			enemy=iterator.next();
+                
     			if (enemy.isActive()) { 
     				moveEnemy(enemy);
     			}
+                if(!enemy.isAlive()){
+                    enemies.remove(enemy);
+                }
     		}
     		try {
                 Thread.sleep(16);
