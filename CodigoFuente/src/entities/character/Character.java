@@ -247,9 +247,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		addScore(points);
 		if(!characterActualState.isSuper()){
 			characterActualState = characterStates.get("Super");
+			sounds.setAuxiliarAudio("mushroom");
 			characterAnimations.superAnimation("Normal", "Super");			
 			updateBoundingBoxToBig();
-			sounds.setAuxiliarAudio("mushroom");
+			
 		}
 		observer.update();
 		//hacer que desaparezca de la pantalla

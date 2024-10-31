@@ -11,7 +11,7 @@ public class CharacterAnimations{
     }
 
     public void deathAnimation() {
-        new Thread(() -> {
+        
             character.setIsBusy(true);
             character.jump("Died");
 
@@ -27,12 +27,10 @@ public class CharacterAnimations{
             character.setInStart();
             
             
-            
-        }).start();
     }
 
     public void superAnimation(String actualState, String newState){
-        new Thread(() -> {
+        
             character.setIsBusy(true);
             Sprite superm = character.getCharacterStates().get(actualState).getSprites().get("StillRight");
             Sprite normal = character.getCharacterStates().get(newState).getSprites().get("StillRight");
@@ -44,8 +42,6 @@ public class CharacterAnimations{
                     character.setSprite(superm);
                     character.getGraphicObserver().update();
                     Thread.sleep(100);
-               
-                    
                 } 
                 catch (InterruptedException e) {
                     e.printStackTrace();
@@ -53,9 +49,8 @@ public class CharacterAnimations{
             }
             character.setIsBusy(false);
 
-        }).start();
     }
-    
+
     
 }
        
