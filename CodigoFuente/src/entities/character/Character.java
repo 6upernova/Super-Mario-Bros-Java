@@ -69,6 +69,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		characterActualState = characterStates.get("Normal");
 
 	}
+
+	protected HashMap<String,CharacterState> getCharacterStates(){
+		return characterStates;
+	}
 	
 	public void moveLeft(String key){
 			float worldX = getX();
@@ -236,8 +240,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
 		addScore(points);
-		if(!characterActualState.isSuper()){			
+		if(!characterActualState.isSuper()){
 			characterActualState = characterStates.get("Super");
+			characterAnimations.superAnimation("Normal", "Super");			
 			updateBoundingBoxToBig();
 			sounds.setAuxiliarAudio("mushroom");
 		}
@@ -253,8 +258,16 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(FireFlower flower){
+		
 		int points= characterActualState.getFireFlowerPoints();
 		this.characterActualState = characterStates.get("Fire");
+		if(characterActualState.isSuper()){
+			characterAnimations.superAnimation("Super", "Fire");
+		}
+		else{
+			characterAnimations.superAnimation("Normal", "Fire");
+		}
+		
 		addScore(points);
 		updateBoundingBoxToBig();
 		observer.update();
