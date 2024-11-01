@@ -37,18 +37,19 @@ public class EnemyThread extends Thread {
     		frameCount++;
     		while (iterator.hasNext()) {
     			enemy = iterator.next();               
-    			if (enemy.isActive() && !game.getCurrentLevel().getRemovedEnemies().contains(enemy)) {     				
+    			if (enemy.isActive()) {     				
     				moveEnemy(enemy);
+                    
     			}
                 if(!enemy.isAlive()){
                     enemies.remove(enemy);
                     enemy.deactivateEnemy();
-                    game.getCurrentLevel().getRemovedEnemies().removeAll(game.getCurrentLevel().getRemovedEnemies());
                 }
     	    }
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

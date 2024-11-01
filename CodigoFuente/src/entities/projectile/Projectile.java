@@ -9,8 +9,8 @@ public abstract class Projectile extends Entity{
 	protected boolean isMovingRight;
 	protected float horizontalSpeed;
 	protected String direction;	
-	private float initialX;
-	private float initialY;
+	protected float initialX;
+	protected float initialY;
 	private float verticalSpeed;
 
 
@@ -18,6 +18,8 @@ public abstract class Projectile extends Entity{
 	protected Projectile(Sprite sprite, float positionInX, float positionInY, String direction) {
 		super(sprite, positionInX, positionInY);
 		this.direction = direction;
+		setInitialX(positionInX);
+		setInitialY(positionInY);
 		this.horizontalSpeed = ViewConstants.PROJECTILE_SPEED ;
 		this.verticalSpeed = 0;
 	}

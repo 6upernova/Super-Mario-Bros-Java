@@ -22,17 +22,16 @@ public class EnemyCollisionManager {
 	
 	public boolean platformsCollisions(Enemy enemy){
 	    boolean collision = false;
-		if(!game.getCurrentLevel().getRemovedEnemies().contains(enemy)){
-			Iterator<Platform> it = platforms.iterator();
-			BoundingBox enemyBox = enemy.getBoundingBox();
-			Platform platform;
-			while (it.hasNext()){
-				platform = it.next();
-				collision = enemyBox.collision(platform.getBoundingBox());               
-				if(collision)
-					collisionWithPlatform(enemy, platform);
-	    	}
+		Iterator<Platform> it = platforms.iterator();
+		BoundingBox enemyBox = enemy.getBoundingBox();
+		Platform platform;
+		while (it.hasNext()){
+			platform = it.next();
+			collision = enemyBox.collision(platform.getBoundingBox());               
+			if(collision)
+			collisionWithPlatform(enemy, platform);
 		}
+		
 		return collision;
 	}
 	

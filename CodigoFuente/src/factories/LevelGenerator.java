@@ -69,7 +69,6 @@ public class LevelGenerator {
 
     public Projectile createFireBall(int x, int y, String direction) {
         return entityFactory.newFireBall(31,x, y, direction);
-
     }
 
     public boolean haveNextLevel(){

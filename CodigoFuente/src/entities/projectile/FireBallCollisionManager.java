@@ -8,29 +8,27 @@ import game.Game;
 import entities.BoundingBox;
 
 
-public class ProjectileCollisionManager {    
+public class FireBallCollisionManager {    
 	protected List<Platform> platforms;
     protected List<Enemy> enemies;
     private Game game;
-	public ProjectileCollisionManager(Game game) {
+	public FireBallCollisionManager(Game game) {
 		this.platforms = game.getCurrentLevel().getPlatforms();
         this.enemies = game.getCurrentLevel().getEnemies();
         this.game = game;
 	}	
 
-	public boolean projectilesCollisions(Projectile projectile){
+	public boolean platformsCollisions(Projectile projectile){
 	    boolean collision = false;
         Iterator<Platform> it = platforms.iterator();
 	    BoundingBox projectileBox = projectile.getBoundingBox();
 	    Platform platform;
 	    while (it.hasNext() && !collision){
 	        platform = it.next();
-	        collision = projectileBox.collision(platform.getBoundingBox());               
-	        if(collision){
-                if(!projectile.downCollision(platform)){
-                    checkRemove(projectile);
-                }
-            }
+	        collision = projectileBox.collision(platform.getBoundingBox());
+            if(collision){
+                checkRemove(projectile);
+            }               
 	    }   
 	    return collision;
 	}
@@ -50,18 +48,15 @@ public class ProjectileCollisionManager {
             collision = projectile.colision(enemy);
             if (collision) {
                 endIteration = true;
-                game.getCurrentLevel().getCharacter().addScore(enemy.pointsOnDeath());
-                game.removeLogicalEntity(enemy);
-                game.addToRemovedEnenemies(enemy);      
-                game.getCurrentLevel().getEnemies().remove(enemy);          
+                enemy.acceptVisit(game.getCurrentLevel().getCharacter());
+                checkRemove(projectile);
             }
         }
         return collision;
     }
     
     public void moveProjectile(Projectile projectile) {        
-        game.reproduceSound("fireball");
-        projectilesCollisions(projectile);
+        platformsCollisions(projectile);
         String direction = projectile.getDirection();
         switch (direction) {
             case "Left":                
@@ -76,8 +71,6 @@ public class ProjectileCollisionManager {
     }
 
     private void moveProjectileLeft(Projectile projectile) {
-        projectile.setX(projectile.getX() - 1);
-        moveProjectileVerticalmenteY(projectile);
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             checkRemove(projectile);
         } 
@@ -87,8 +80,6 @@ public class ProjectileCollisionManager {
     }
 
     private void moveProjectileRight(Projectile projectile) {
-        projectile.setX(projectile.getX() + 1);
-        moveProjectileVerticalmenteY(projectile);
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             checkRemove(projectile);
         } 
@@ -97,12 +88,4 @@ public class ProjectileCollisionManager {
         }
     }
 
-    private void moveProjectileVerticalmenteY(Projectile projectile) {
-        float gravity = 0.15f * 0.5f;
-        projectile.setVerticalSpeed(projectile.getVerticalSpeed() - gravity);
-        if (!projectilesCollisions(projectile))
-            projectile.setY(projectile.getY() + projectile.getVerticalSpeed());
-        else
-            projectile.setY(projectile.getY() - projectile.getVerticalSpeed());
-    }
 }

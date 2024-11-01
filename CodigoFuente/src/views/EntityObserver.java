@@ -19,5 +19,7 @@ public class EntityObserver extends GraphicObserver{
     public void activateObserver(){
         isActive = true;
         update();
-    } 
+    }
+    
+    
 }

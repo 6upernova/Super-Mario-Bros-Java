@@ -16,7 +16,6 @@ public class Level {
     protected List<PowerUp> powerUps;
     protected LinkedList<Projectile> projectiles;
     
-    protected List<Enemy> removedEnemies;
     protected Character character;
     protected boolean running;
     protected boolean paused;
@@ -29,7 +28,6 @@ public class Level {
         this.running = false;
         this.paused = true;
         this.projectiles = new LinkedList<>() ;
-        this.removedEnemies = new LinkedList<>();
     }
 
     public void setCharacter(Character character){
@@ -63,9 +61,6 @@ public class Level {
     public LinkedList<Projectile> getProjectiles(){
         return projectiles;
     }
-    public List<Enemy> getRemovedEnemies(){
-        return removedEnemies;
-    }
 
     public Character getCharacter(){
         return character;
@@ -91,7 +86,4 @@ public class Level {
         projectiles.addLast(projectile);        
     }
 
-    public void addToRemovedEnenemies(Enemy enemy) {
-        removedEnemies.add(enemy);
-    }
 }

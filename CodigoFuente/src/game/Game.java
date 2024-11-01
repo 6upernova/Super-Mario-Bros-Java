@@ -11,6 +11,7 @@ import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
+import entities.projectile.FireBall;
 import entities.projectile.Projectile;
 import factories.LevelGenerator;
 import ranking.Ranking;
@@ -182,18 +183,16 @@ public class Game {
     }
 
     public void createFireBall(int x, int y, String direction) {
-        currentLevel.addFireBall(levelGenerator.createFireBall(x,y,direction));
-        setProjectilesObeservers(currentLevel.getProjectiles());
+        Projectile fireBall = levelGenerator.createFireBall(x,y,direction);
+        currentLevel.addFireBall(fireBall);
+        setProjectilesObservers(fireBall);
     }
 
-    protected void setProjectilesObeservers(LinkedList<Projectile> projectiles){
-        GraphicObserver projectileOberver = viewController.registerEntity(projectiles.getLast(),true);
-        projectiles.getLast().registerObserver(projectileOberver);   
+    protected void setProjectilesObservers(Projectile projectile){
+        GraphicObserver projectileOberver = viewController.registerEntity(projectile,true);
+        projectile.registerObserver(projectileOberver);   
     }
 
-    public void addToRemovedEnenemies(Enemy enemy) {
-        currentLevel.getRemovedEnemies().add(enemy);
-    }
 
     public void reproduceLoopSound(String path, int iteracions) {
         sound.setMusicSound(path);
