@@ -66,6 +66,9 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public void activateEnemy(){
 		isActive = true;
 	}
+	public void deactivateEnemy(){
+		isActive = false;
+	}
 
 	public HashMap<String, Sprite> getSpritesMap(){
 		return sprites;

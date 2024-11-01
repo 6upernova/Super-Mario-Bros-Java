@@ -39,6 +39,7 @@ public class EnemyThread extends Thread {
     			}
                 if(!enemy.isAlive()){
                     enemies.remove(enemy);
+                    enemy.deactivateEnemy();
                 }
     		}
     		try {
