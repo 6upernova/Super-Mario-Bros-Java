@@ -12,27 +12,44 @@ public class Lakitu extends Enemy {
 	static final private int pointsOnKill=0;
 
 	protected Character characterReference;
-	protected float characterX;
+	protected long arrivalTimeMillis;
+	protected String characterSide;
+	protected boolean waiting;
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		direction="Left";
 		flies=true;
 		characterReference = null;
+		characterSide = "Left";
+		horizontalSpeed = ViewConstants.CHARACTER_SPEED;
+		waiting = false;
 	}
 
 	public void move(int frame){
-		if(!isOnCharacterCoords()){
-			if(characterX > positionInX)
-				moveRight(frame);
-			else {
+		float destinationX = characterSide == "Right" ? characterReference.getX() - 3 : characterReference.getX() + 3;
+		if(!isOnDestinationCoords(destinationX)){
+			horizontalSpeed = ViewConstants.CHARACTER_SPEED * 3/2;
+			if(destinationX > positionInX)
+				direction = "Right";
+			else if(destinationX < positionInX)
 				direction = "Left";
-				moveLeft(frame);
-			}
+			else if(isOnDestinationCoords(destinationX))
+				direction = "None";
+
+			super.move(frame);
 		}
-		else{
-			characterX = characterReference.getX();
-			throwSpinyEgg(getSpinyOrientation());
+		else {
+			horizontalSpeed = ViewConstants.CHARACTER_SPEED;
+			if(!waiting){
+				arrivalTimeMillis = System.currentTimeMillis();
+				waiting = true;
+			}
+			if(checkThrowTime()){
+				waiting = false;
+				switchSide();
+				throwSpinyEgg(characterSide);
+			}
 		}
 	}
 
@@ -40,12 +57,16 @@ public class Lakitu extends Enemy {
 		System.out.println("Throws egg to "+ orientation);
 	}
 
-	private String getSpinyOrientation(){
-		return characterReference.getX() > positionInX ? "Right" : "Left";
+	private boolean checkThrowTime(){
+		return System.currentTimeMillis() - arrivalTimeMillis >= 3000;
 	}
 
-	private boolean isOnCharacterCoords(){
-		return positionInX - ViewConstants.ENEMY_SPEED <= characterX && characterX <= positionInX + ViewConstants.ENEMY_SPEED;
+	private boolean isOnDestinationCoords(float destinationX){
+		return positionInX - horizontalSpeed <= destinationX && destinationX <= positionInX + horizontalSpeed;
+	}
+
+	private void switchSide(){
+		characterSide = characterSide == "Left" ? "Right" : "Left";
 	}
 
 	public void moveRight(int frame) {
@@ -64,11 +85,6 @@ public class Lakitu extends Enemy {
 
 	public void setCharacterReference(Character character){
 		this.characterReference = character;
-	}
-	
-	public void activateEnemy(){
-		super.activateEnemy();
-		characterX = characterReference.getX();
 	}
 
 	public int getPointsOnDeath() {
