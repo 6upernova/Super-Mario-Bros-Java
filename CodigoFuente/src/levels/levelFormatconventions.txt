@@ -16,7 +16,6 @@ type is represented by int number:
             6       Spiny
             7       Buzzy Beetle
             8       Shell
-
     power ups
             10      Mushroom
             11      FireFlower

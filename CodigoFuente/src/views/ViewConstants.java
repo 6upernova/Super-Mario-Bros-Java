@@ -22,7 +22,7 @@ public class ViewConstants {
 
 	public static final float ENEMY_SPEED= 6/100.0f;
 
-	public static final float PROJECTILE_SPEED= 30/200.0f;
+	public static final float PROJECTILE_SPEED= 20/100.0f;
 	
 	public static final int MAP_CELLS=143;
 

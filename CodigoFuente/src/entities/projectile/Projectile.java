@@ -11,7 +11,7 @@ public abstract class Projectile extends Entity{
 	protected String direction;	
 	protected float initialX;
 	protected float initialY;
-	private float verticalSpeed;
+	protected float verticalSpeed;
 
 
 

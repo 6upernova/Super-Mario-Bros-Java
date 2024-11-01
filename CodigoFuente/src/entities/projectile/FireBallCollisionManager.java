@@ -27,8 +27,13 @@ public class FireBallCollisionManager {
 	        platform = it.next();
 	        collision = projectileBox.collision(platform.getBoundingBox());
             if(collision){
-                checkRemove(projectile);
-            }               
+                if(projectileBox.intersects(platform.getBoundingBox().getBoundsTop()))
+                    ((FireBall)projectile).rebound();
+                else if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
+                    checkRemove(projectile);
+                
+            }
+                           
 	    }   
 	    return collision;
 	}
@@ -84,7 +89,7 @@ public class FireBallCollisionManager {
             checkRemove(projectile);
         } 
         else {
-            projectile.moveRight();
+            ((FireBall)projectile).moveRight(game.getCurrentLevel().getCharacter().getY());
         }
     }
 

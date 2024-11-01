@@ -56,7 +56,7 @@ public class BoundingBox extends Rectangle {
    
      // Sub-bounding boxes
 
-    protected BoundingBox getBoundsTop() {
+    public BoundingBox getBoundsTop() {
         return upperBound;
     }
 
