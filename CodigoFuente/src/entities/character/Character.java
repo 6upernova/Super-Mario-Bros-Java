@@ -206,7 +206,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }    
     public void visit(PiranhaPlant piranhaPlant) {
 		addScore(piranhaPlant.getPointsOnDeath());
-		piranhaPlant.dead();
+		this.damaged();
     }	
     public void visit(Lakitu lakitu) {
 		addScore(lakitu.getPointsOnDeath());
