@@ -9,6 +9,7 @@ public class CharacterAnimations{
 
     public void deathAnimation() {
             character.setIsBusy(true);
+            character.setVerticalSpeed(0);
             character.jump("Died");
 
             while (character.getY()>-5) {

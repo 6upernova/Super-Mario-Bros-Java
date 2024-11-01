@@ -45,12 +45,11 @@ public class EnemyThread extends Thread {
                     enemy.deactivateEnemy();
                     game.getCurrentLevel().getRemovedEnemies().removeAll(game.getCurrentLevel().getRemovedEnemies());
                 }
-    		
-                try {
-                    Thread.sleep(16);
-                } catch (InterruptedException e) {
-                }
     	    }
+            try {
+                Thread.sleep(16);
+            } catch (InterruptedException e) {
+            }
         }
     }
     public void setIsRunning(boolean value) {
