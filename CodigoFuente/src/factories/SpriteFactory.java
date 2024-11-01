@@ -177,6 +177,9 @@ public abstract class SpriteFactory {
     public Sprite getBuzzyBeetleRightSprite(int frame){
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleRight"+ frame + ".png");	 
     }
+    public Sprite getBuzzyBeetleShellSprite(){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleShell.png");	 
+    }
 
     public Sprite getSpinySprite(){
         return new Sprite(folderPath + File.separator+"SpinnyLeft1.png");	 

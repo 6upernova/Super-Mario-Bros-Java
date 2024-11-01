@@ -270,6 +270,7 @@ public class EntityFactory {
 		buzzyBeetleSprites.put("Left2", spriteFactory.getBuzzyBeetleLeftSprite(2));
 		buzzyBeetleSprites.put("Right1", spriteFactory.getBuzzyBeetleRightSprite(1));
 		buzzyBeetleSprites.put("Right2", spriteFactory.getBuzzyBeetleRightSprite(2));
+		buzzyBeetleSprites.put("Shell", spriteFactory.getBuzzyBeetleShellSprite());
 		return buzzyBeetleSprites;
 	}
 

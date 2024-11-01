@@ -55,8 +55,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public void setInStart(){
 		((CharacterObserver)observer).respawn();
-		setX(120);
-		setY(3);
+		setX(5);
+		setY(1);
 	}
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
@@ -100,7 +100,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 	
 	public void smallJump(String direction){
-		verticalSpeed = ViewConstants.CHARACTER_JUMP / 4;
+		verticalSpeed = ViewConstants.CHARACTER_JUMP / 2;
         isInAir = true;
 		setSprite(characterActualState.getSprites().get("Jumping" + direction));
         observer.update();
@@ -215,7 +215,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     public void visit(BuzzyBeetle buzzyBeetle) {
 		addScore(buzzyBeetle.getPointsOnDeath());
-		buzzyBeetle.dead();
+		buzzyBeetle.hit();
 		
     }
 	public void visit(Spiny spiny) {
