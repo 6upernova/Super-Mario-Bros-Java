@@ -68,7 +68,6 @@ public class Game {
 
     protected void setLevel(int number){
         currentLevel = levelGenerator.createLevel(number);
-        currentLevel.setCharacter(levelGenerator.createCharacter());
     }
     
     public synchronized Level getCurrentLevel() {

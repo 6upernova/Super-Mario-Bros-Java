@@ -21,7 +21,7 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
         else{
             float enemyX = koopaTroopa.getX();
             float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
-            koopaTroopa.setX(GraphicTools.round2Digits(enemyX + horizontalSpeed * 1));
+            koopaTroopa.setX(GraphicTools.round2Digits(enemyX + horizontalSpeed * 4));
             koopaTroopa.getObserver().update();
         }
 	}
@@ -32,7 +32,7 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
         else{
             float enemyX = koopaTroopa.getX();
             float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
-            koopaTroopa.setX(GraphicTools.round2Digits(enemyX - horizontalSpeed * 1));
+            koopaTroopa.setX(GraphicTools.round2Digits(enemyX - horizontalSpeed * 4));
             koopaTroopa.getObserver().update();
         }
 	} 

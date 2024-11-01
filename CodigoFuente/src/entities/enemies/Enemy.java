@@ -45,6 +45,20 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
             	break;
         }
 	}
+
+	public void moveRight(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
+		setSprite(sprites.get("Right" + frame));
+		observer.update();
+	}
+	
+	public void moveLeft(int frame) {
+		float enemyX=getX();
+		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
+		setSprite(sprites.get("Left" + frame));
+		observer.update();
+	}
 	
 	public boolean isAlive() {
 		return isAlive;
@@ -130,19 +144,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		}
 	}
 	
-	public void moveRight(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		setSprite(sprites.get("Right" + frame));
-		observer.update();
-	}
 	
-	public void moveLeft(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		setSprite(sprites.get("Left" + frame));
-		observer.update();
-	}
 	
 	
 }

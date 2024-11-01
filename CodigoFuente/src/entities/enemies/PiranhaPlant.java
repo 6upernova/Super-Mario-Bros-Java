@@ -3,7 +3,6 @@ import entities.character.CharacterVisitor;
 import factories.Sprite;
 import tools.GraphicTools;
 import views.GraphicObserver;
-import views.ViewConstants;
 
 public class PiranhaPlant extends Enemy{
 
