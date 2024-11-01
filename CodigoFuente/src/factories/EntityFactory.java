@@ -287,8 +287,15 @@ public class EntityFactory {
 	}
 
 	private PiranhaPlant newPiranhaPlant(int worldX, int worldY) {
-		PiranhaPlant piranha = new PiranhaPlant(spriteFactory.getPiranhaPlantSprite(),worldX,worldY);
+		PiranhaPlant piranha = new PiranhaPlant(spriteFactory.getPiranhaPlantSprite(1),worldX ,worldY );
+		piranha.setSpritesMap(getPiranhaPlantSprites());
 	    return piranha;
+	}
+	private HashMap<String, Sprite> getPiranhaPlantSprites(){
+		HashMap<String,Sprite> piranhaPlantSprites = new HashMap<String,Sprite>();
+		piranhaPlantSprites.put("PiranhaPlant1", spriteFactory.getPiranhaPlantSprite(1));
+		piranhaPlantSprites.put("PiranhaPlant2", spriteFactory.getPiranhaPlantSprite(2));
+		return piranhaPlantSprites;
 	}
 
 	private Goomba newGoomba(int worldX, int worldY) {
