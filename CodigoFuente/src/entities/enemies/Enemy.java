@@ -22,7 +22,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	protected boolean flies;
 	protected HashMap<String, Sprite> sprites;
 	
-	public Enemy(Sprite sprite, int positionInX, int positionInY, int pointsOnDeath,int pointsOnKill) {
+	public Enemy(Sprite sprite, float positionInX, float positionInY, int pointsOnDeath,int pointsOnKill) {
 		super(sprite, positionInX, positionInY);
 		this.pointsOnDeath = pointsOnDeath;//Puntos cuando enemigo muere
 		this.pointsOnKill = pointsOnKill;  //Puntos cuando enemigo mata
@@ -31,6 +31,19 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		this.isActive = false;
 		this.isInAir = true;
 		this.isAlive = true;
+	}
+
+	public void move(int frame){
+		switch (direction) {
+            case "Left":
+                moveLeft(frame);
+                break;
+            case "Right":
+                moveRight(frame);
+                break;
+            case "None":
+            	break;
+        }
 	}
 	
 	public boolean isAlive() {

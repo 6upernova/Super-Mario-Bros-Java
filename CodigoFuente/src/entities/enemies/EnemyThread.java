@@ -59,40 +59,19 @@ public class EnemyThread extends Thread {
     private void moveEnemy(Enemy enemy) {
     	ecm.platformsCollisions(enemy);
         ecm.enemiesCollision(enemy);
-        String direction = enemy.getDirection();
         enemy.applyGravity();
-        switch (direction) {
-            case "Left":
-                moveLeft(enemy);
-                break;
-            case "Right":
-                moveRight(enemy);
-                break;
-            case "None":
-            	break;
-        }
+
+        checkEnemyInAir(enemy);
+        enemy.move(spriteNumber);
+        if(frameCount%20==0) 
+            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
+
     }
     
-    private void moveLeft(Enemy enemy) {
+    private void checkEnemyInAir(Enemy enemy){
     	if(!enemy.isInAir() && !LogicTools.isOnSolid(platformsByCoords,enemy) ){
             enemy.setIsInAir(true);
         }
-
-        enemy.moveLeft(spriteNumber);
-            
-        if(frameCount%20==0) 
-            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
-    }
-    
-    private void moveRight(Enemy enemy) {
-    	if(!enemy.isInAir() && !LogicTools.isOnSolid(platformsByCoords,enemy) ){
-            enemy.setIsInAir(true);
-        }
-
-        enemy.moveRight(spriteNumber);
-            
-        if(frameCount%20==0) 
-            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }
     
 }

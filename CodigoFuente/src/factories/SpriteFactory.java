@@ -160,8 +160,8 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"KoopaShell.png");	 
     }
 
-    public Sprite getPiranhaPlantSprite(){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"PiranhaPlant1.png");	 
+    public Sprite getPiranhaPlantSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"PiranhaPlant"+ frame + ".png");	 
     }    
     
     public Sprite getLakituLeftSprite(){
