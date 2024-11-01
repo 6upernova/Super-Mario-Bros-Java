@@ -1,12 +1,6 @@
 package game;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundGenerator {
 
@@ -29,6 +23,7 @@ public class SoundGenerator {
 		 soundHash.put("powerUpAppears", new File(folderPath+File.separator+ "powerUpAppears.wav"));
 		 soundHash.put("mushroom", new File(folderPath+File.separator+ "mushroom.wav"));
 		 soundHash.put("kick", new File(folderPath+File.separator+ "kick.wav"));
+		 soundHash.put("fireball", new File(folderPath+File.separator+ "fireball.wav"));
 	}
 	
 	public HashMap<String, File> getFileOfSounds(){

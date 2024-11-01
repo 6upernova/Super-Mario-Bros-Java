@@ -7,7 +7,6 @@ public abstract class SpriteFactory {
     
     protected SpriteFactory(String path){
         this.folderPath = path;
-        System.out.println(path);
     }
     
     public HashMap<String,Sprite> getSpriteMapEnemy(){
@@ -59,6 +58,9 @@ public abstract class SpriteFactory {
     public Sprite getSuperCharacterInFlag(){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Super"+ File.separator + "SuperCharacterInFlag" + ".png");
     }
+    public Sprite getSuperCharacterDead(){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Super"+ File.separator + "SuperCharacterDies" + ".png");
+    }
     ////////////////////////////////////////////////////////////////////////////////////////
     public Sprite getFireCharacterStillSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Fire"+ File.separator + "FireCharacterStill"+ direction +".png");
@@ -77,6 +79,9 @@ public abstract class SpriteFactory {
     }
     public Sprite getFireCharacterInFlag(){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Fire"+ File.separator + "FireCharacterInFlag" + ".png");
+    }
+    public Sprite getFireCharacterDead(){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Fire"+ File.separator + "FireCharacterDies" + ".png");
     }
     ///////////////////////////INVENCIBLES NORMAL////////////////////////////////////
     public Sprite getCharacterInvencibleStillSprite(String direction){
@@ -103,6 +108,9 @@ public abstract class SpriteFactory {
     public Sprite getCharacterInvencibleJumpingSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterJumping" + direction + ".png");
     }
+    public Sprite getCharacterInvencibleDead(){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Normal"+ File.separator + "CharacterDies" + ".png");
+    }
     ///////////////////////////INVENCIBLES SUPER////////////////////////////////////
     public Sprite getSuperCharacterInvencibleStillSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator +"Super" +File.separator + "Invencible"+ direction +"Still.png");
@@ -128,6 +136,10 @@ public abstract class SpriteFactory {
 
     public Sprite getSuperCharacterInvencibleJumpingSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterJumping" + direction + ".png");
+    }
+    
+    public Sprite getSuperCharacterInvencibleDead(){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Super"+ File.separator + "SuperCharacterDies" + ".png");
     }
 
     //ENEMIES SPRITES

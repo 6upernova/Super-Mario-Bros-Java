@@ -36,9 +36,6 @@ public class Vector<E> {
         type = null;
         return typee;
     }
-    protected void printVector() {
-        System.out.println(type+","+positionX+","+positionY);
-    }
 
 
 

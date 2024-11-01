@@ -41,7 +41,6 @@ public class CharacterCollisionManager{
             	else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvincible() && !character.isInvulnerable()){
                     character.setInvulnerable(true);
                     character.damaged();
-                    System.out.println("Colisiono de costado");
                 }     
                 endIteration = true;
             }
@@ -63,7 +62,6 @@ public class CharacterCollisionManager{
             powerUp = it.next();
             if(powerUp.isActive()){
                 collision = character.colision(powerUp);
-                //System.out.println(collision);
                 if (collision) {
                     powerUp.acceptVisit(character);   
                     game.removeLogicalEntity(powerUp);  

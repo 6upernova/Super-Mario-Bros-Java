@@ -16,6 +16,8 @@ public class EnemyThread extends Thread {
     private int frameCount;
     private int spriteNumber;
 	private HashMap<String, Platform> platformsByCoords;
+    private boolean isRunning;
+    private Game game;
 
     public EnemyThread(Game game) {
         this.enemies = game.getCurrentLevel().getEnemies();
@@ -23,30 +25,36 @@ public class EnemyThread extends Thread {
         this.spriteNumber = 1;
         this.ecm = new EnemyCollisionManager(game);
         this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
+        this.game = game;
     }
 
     public void run() {
     	List<Enemy> enemyCopy = new ArrayList<>(enemies); //Copia de la lista enemigos para poder modificarla
-    	while(true) {
+        setIsRunning(true);
+    	while(isRunning) {
     		Iterator<Enemy> iterator = enemyCopy.iterator();
     		Enemy enemy;
     		frameCount++;
     		while (iterator.hasNext()) {
-    			enemy=iterator.next();
-                
-    			if (enemy.isActive()) { 
+    			enemy = iterator.next();               
+    			if (enemy.isActive() && !game.getCurrentLevel().getRemovedEnemies().contains(enemy)) {     				
     				moveEnemy(enemy);
     			}
                 if(!enemy.isAlive()){
                     enemies.remove(enemy);
                     enemy.deactivateEnemy();
+                    game.getCurrentLevel().getRemovedEnemies().removeAll(game.getCurrentLevel().getRemovedEnemies());
                 }
-    		}
-    		try {
-                Thread.sleep(16);
-            } catch (InterruptedException e) {
-            }
-    	}
+    		
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                }
+    	    }
+        }
+    }
+    public void setIsRunning(boolean value) {
+        this.isRunning = value;
     }
     
     private void moveEnemy(Enemy enemy) {

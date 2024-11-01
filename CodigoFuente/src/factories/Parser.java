@@ -25,7 +25,6 @@ public class Parser{
         } catch (IOException e) {
             e.printStackTrace();
         }      
-        //printContent(); 
     }
     
     private void traduceAndAdd(String[] curretRowReading){

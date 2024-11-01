@@ -24,9 +24,6 @@ public class VectorRanking<K,V> {
         this.top = top;
     }
 
-    public void printVector() {
-        System.out.println(top+","+name+","+score);
-    }
     public String toString(){
         return name+","+score+","+top;
     }

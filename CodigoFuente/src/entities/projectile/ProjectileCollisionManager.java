@@ -19,8 +19,6 @@ public class ProjectileCollisionManager {
 	}	
 
 	public boolean projectilesCollisions(Projectile projectile){
-        
-        //float dampingFactor = ;    // Factor de amortiguación para reducir altura del rebote
 	    boolean collision = false;
         Iterator<Platform> it = platforms.iterator();
 	    BoundingBox projectileBox = projectile.getBoundingBox();
@@ -51,11 +49,60 @@ public class ProjectileCollisionManager {
             enemy = enemiesIt.next();
             collision = projectile.colision(enemy);
             if (collision) {
+                endIteration = true;
+                game.getCurrentLevel().getCharacter().addScore(enemy.pointsOnDeath());
                 game.removeLogicalEntity(enemy);
-                game.getCurrentLevel().getEnemies().remove(enemy);
-                
+                game.addToRemovedEnenemies(enemy);      
+                game.getCurrentLevel().getEnemies().remove(enemy);          
             }
         }
         return collision;
+    }
+    
+    public void moveProjectile(Projectile projectile) {        
+        game.reproduceSound("fireball");
+        projectilesCollisions(projectile);
+        String direction = projectile.getDirection();
+        switch (direction) {
+            case "Left":                
+                moveProjectileLeft(projectile);
+                break;
+
+            case "Right":
+                moveProjectileRight(projectile);
+                break;
+        }
+
+    }
+
+    private void moveProjectileLeft(Projectile projectile) {
+        projectile.setX(projectile.getX() - 1);
+        moveProjectileVerticalmenteY(projectile);
+        if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
+            checkRemove(projectile);
+        } 
+        else {
+            projectile.moveLeft();
+        }
+    }
+
+    private void moveProjectileRight(Projectile projectile) {
+        projectile.setX(projectile.getX() + 1);
+        moveProjectileVerticalmenteY(projectile);
+        if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
+            checkRemove(projectile);
+        } 
+        else {
+            projectile.moveRight();
+        }
+    }
+
+    private void moveProjectileVerticalmenteY(Projectile projectile) {
+        float gravity = 0.15f * 0.5f;
+        projectile.setVerticalSpeed(projectile.getVerticalSpeed() - gravity);
+        if (!projectilesCollisions(projectile))
+            projectile.setY(projectile.getY() + projectile.getVerticalSpeed());
+        else
+            projectile.setY(projectile.getY() - projectile.getVerticalSpeed());
     }
 }

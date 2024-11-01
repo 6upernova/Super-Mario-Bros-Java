@@ -42,7 +42,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	}
 
 	public void setDirection(String newDirection) {
-		direction=newDirection;
+		direction = newDirection;
 	}
 	
 	public String getDirection() {

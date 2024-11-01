@@ -17,9 +17,7 @@ public class RankingScreen extends JPanel {
 		setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
         setLayout(null);
         addRankingPanel(viewController.getPlayers());
-        addBackButton();
-
-        
+        addBackButton();  
     }
 
     private void addRankingPanel(Collection<String> players) {

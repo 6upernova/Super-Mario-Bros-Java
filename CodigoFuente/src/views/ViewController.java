@@ -71,6 +71,7 @@ public class ViewController {
 
     public void showRankingScreen(){ 
         window.setContentPane(rankingScreen);
+        rankingScreen.repaint();
         refresh();
     }
     public void showPreGameScreen(){

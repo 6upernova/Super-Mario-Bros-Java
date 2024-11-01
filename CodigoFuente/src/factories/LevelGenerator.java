@@ -6,10 +6,10 @@ import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.platforms.Question;
-import entities.powerUps.Coin;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
 import game.Level;
+import views.ViewConstants;
 
 public class LevelGenerator {
     protected EntityFactory entityFactory;
@@ -18,13 +18,12 @@ public class LevelGenerator {
 
     public LevelGenerator(String mode) {
         this.entityFactory= new EntityFactory(mode);
-        this.levelNumber = 1;
         this.parser= new Parser();
     }
 
     public Level createLevel(int number){
         this.levelNumber = number;
-        parser.setLevel(this.levelNumber);
+        parser.setLevel(levelNumber);
         int type=0;
         int worldX=0;
         int worldY=0;
@@ -63,7 +62,7 @@ public class LevelGenerator {
     public Level getNextLevel() {
         this.levelNumber = levelNumber + 1;
         Level level = null;
-        if(levelNumber < 4)
+        if(levelNumber <= ViewConstants.MAX_LEVELS)
             level = createLevel(levelNumber);
         return level;
     }
@@ -71,5 +70,9 @@ public class LevelGenerator {
     public Projectile createFireBall(int x, int y, String direction) {
         return entityFactory.newFireBall(31,x, y, direction);
 
+    }
+
+    public boolean haveNextLevel(){
+        return levelNumber+1 <= ViewConstants.MAX_LEVELS;
     }
 }

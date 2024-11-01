@@ -29,6 +29,7 @@ public class ViewConstants {
 	public static final int LEFT_CHARACTER_SPACE = 4;
 
 	public static final Font font = setFont();
+    public static final int MAX_LEVELS = 3;
 
 	private static Font setFont() {
 		Font font;

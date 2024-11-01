@@ -1,8 +1,5 @@
 package entities.character;
-
 import factories.Sprite;
-import views.ViewConstants;
-
 public class CharacterAnimations{
     protected Character character;
 

@@ -5,7 +5,6 @@ import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
 import entities.projectile.FireBall;
-import entities.projectile.Projectile;
 
 import java.util.HashMap;
 
@@ -151,6 +150,7 @@ public class EntityFactory {
 		characterSuperSprites.put("JumpingRight",spriteFactory.getSuperCharacterJumpingSprite("Right"));
 		characterSuperSprites.put("JumpingLeft",spriteFactory.getSuperCharacterJumpingSprite("Left"));
 		characterSuperSprites.put("InFlag",spriteFactory.getSuperCharacterInFlag());
+		characterSuperSprites.put("Died", spriteFactory.getSuperCharacterDead());
 		return characterSuperSprites;
 	}
 	
@@ -166,7 +166,8 @@ public class EntityFactory {
 		characterFireSprites.put("Right3",spriteFactory.getFireCharacterRightSprite(3));
 		characterFireSprites.put("JumpingRight",spriteFactory.getFireCharacterJumpingSprite("Right"));
 		characterFireSprites.put("JumpingLeft",spriteFactory.getFireCharacterJumpingSprite("Left"));
-		characterFireSprites.put("InFlag",spriteFactory.getFireCharacterInFlag());
+		characterFireSprites.put("InFlag",spriteFactory.getFireCharacterInFlag());		
+		characterFireSprites.put("Died", spriteFactory.getFireCharacterDead());
 		return characterFireSprites;
 	}
 	
@@ -183,6 +184,7 @@ public class EntityFactory {
 		characterSprites.put("JumpingRight",spriteFactory.	getCharacterInvencibleJumpingSprite("Right"));
 		characterSprites.put("JumpingLeft",spriteFactory.	getCharacterInvencibleJumpingSprite("Left"));
 		characterSprites.put("InFlag",spriteFactory.getCharacterInFlag());
+		characterSprites.put("Died", spriteFactory.getCharacterDead());
 		return characterSprites;
 	}
 
@@ -199,6 +201,7 @@ public class EntityFactory {
 		characterSuperSprites.put("JumpingRight",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Right"));
 		characterSuperSprites.put("JumpingLeft",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Left"));
 		characterSuperSprites.put("InFlag",spriteFactory.getSuperCharacterInFlag());
+		characterSuperSprites.put("Died", spriteFactory.getSuperCharacterDead());
 		return characterSuperSprites;
 	}	
 	

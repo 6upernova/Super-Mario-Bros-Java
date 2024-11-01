@@ -119,8 +119,6 @@ public class PreGameScreen extends JPanel {
         }
     
         public void actionPerformed(ActionEvent e) {
-            // Acción a realizar cuando se selecciona un modo
-            //System.out.println("Modo seleccionado: " + mode);
             setMode(mode);
         }
     }

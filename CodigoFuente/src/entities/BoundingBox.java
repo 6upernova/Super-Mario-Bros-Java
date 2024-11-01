@@ -35,8 +35,7 @@ public class BoundingBox extends Rectangle {
     }
 
     public boolean rightCollision(BoundingBox externalBounding) {
-        boolean colision = getBoundsRight().intersects(externalBounding);
-        //System.out.println("Colision der: "+colision);
+        boolean colision = getBoundsRight().intersects(externalBounding);   
         return colision;
     }
     
@@ -52,7 +51,6 @@ public class BoundingBox extends Rectangle {
 
     public boolean upCollision(BoundingBox externalBounding) {
         boolean upCollision = getBoundsTop().intersects(externalBounding); 
-        //System.out.println(upCollision);
         return upCollision;
     }
    

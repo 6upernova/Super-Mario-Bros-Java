@@ -11,24 +11,29 @@ public class EnemyCollisionManager {
 	
 	protected List<Platform> platforms;
 	protected List<Enemy> enemies;
+	protected Game game;
+	
 	
 	public EnemyCollisionManager(Game game) {
 		this.platforms = game.getCurrentLevel().getPlatforms();
+		this.game = game;
 		this.enemies = game.getCurrentLevel().getEnemies();
 	}
 	
 	public boolean platformsCollisions(Enemy enemy){
 	    boolean collision = false;
-	    Iterator<Platform> it = platforms.iterator();
-	    BoundingBox enemyBox = enemy.getBoundingBox();
-	    Platform platform;
-	    while (it.hasNext()){
-	        platform = it.next();
-	        collision = enemyBox.collision(platform.getBoundingBox());               
-	        if(collision)
-				collisionWithPlatform(enemy, platform);
-	    }
-	    return collision;
+		if(!game.getCurrentLevel().getRemovedEnemies().contains(enemy)){
+			Iterator<Platform> it = platforms.iterator();
+			BoundingBox enemyBox = enemy.getBoundingBox();
+			Platform platform;
+			while (it.hasNext()){
+				platform = it.next();
+				collision = enemyBox.collision(platform.getBoundingBox());               
+				if(collision)
+					collisionWithPlatform(enemy, platform);
+	    	}
+		}
+		return collision;
 	}
 	
 	private void collisionWithPlatform(Enemy enemy, Platform platform){

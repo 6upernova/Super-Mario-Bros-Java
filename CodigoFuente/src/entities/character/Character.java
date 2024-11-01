@@ -6,7 +6,6 @@ import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
 import factories.Sprite;
-import game.SoundReproducer;
 import tools.GraphicTools;
 import views.ViewConstants;
 import views.CharacterObserver;
@@ -51,13 +50,13 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
 		this.coins = 0;
-		characterAnimations = new CharacterAnimations(this);
+		this.characterAnimations = new CharacterAnimations(this);
 	}
 
 	public void setInStart(){
 		((CharacterObserver)observer).respawn();
-		setX(5);
-		setY(1);
+		setX(120);
+		setY(3);
 	}
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
@@ -246,7 +245,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			observerOfSounds.reproduceSound("mushroom");
 		}
 		observer.update();
-		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(GreenMushroom greenMushroom){
@@ -256,8 +254,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		//hacer que desaparezca de la pantalla
 	}
 
-	public void visit(FireFlower flower){
-		
+	public void visit(FireFlower flower){		
 		int points= characterActualState.getFireFlowerPoints();
 		this.characterActualState = characterStates.get("Fire");
 		if(characterActualState.isSuper()){
@@ -265,8 +262,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
 		else{
 			characterAnimations.superAnimation("Normal", "Fire");
-		}
-		
+		}		
 		addScore(points);
 		updateBoundingBoxToBig();
 		observer.update();
@@ -287,7 +283,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		addScore( coin.getPoints());
 		observerOfSounds.reproduceSound("coin");
 		coins++;
-		//hacer que desaparezca de la pantalla
 	}
 
 
@@ -302,6 +297,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if (downCollision(voidBlock)){
 			addScore(-15);
         	dead();
+			changeState("Normal");
 		}
     }
 	
@@ -321,13 +317,15 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void visit(Mast mast) {
 		isInEnd = true;
-		setSprite(characterActualState.getSprites().get("InFlag"));	
+		setSprite(characterActualState.getSprites().get("InFlag"));
+		addScore(Math.round(100 + 25 * mast.getY()));	
 		observer.update();
 	}
 
 	public void visit(MastEnd mast) {
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));	
+		addScore(Math.round(100 + 25 * mast.getY()));	
 		observer.update();
 	}
 
@@ -400,7 +398,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void updateBoundingBoxToBig(){
-		System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
+		//System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
 		if(boundingBox.height <= ViewConstants.CELL_SIZE){
 			boundingBox.height *= 2;
 			boundingBox.updateExternalBoundsToBig();
