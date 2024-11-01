@@ -46,10 +46,6 @@ public class CharacterAnimations{
             character.setIsBusy(false);
 
     }
-
-
-
-
     
 }
        

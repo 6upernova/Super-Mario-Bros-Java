@@ -13,6 +13,10 @@ public class ObserverSound {
 	public void reproduceSound(String path) {
 		game.reproduceSound(path);
 	}
+
+	public void loopSound(String path, int iteracions){
+		game.reproduceLoopSound(path, iteracions);
+	}
 	
 	public void stopSound() {
 		game.stopSound();

@@ -53,12 +53,13 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        sound.setMusicSound("musicLevel"+ numberLevel);
-        sound.loop();
+        sound.setMusicSound("musicLevel1");
+        sound.loop(-1);
     }
 
     public void stop(){
         //ranking 
+        sound.stopMusic();
         ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         viewController.showMenuScreen();
@@ -73,7 +74,6 @@ public class Game {
         return currentLevel;
     }
     
-
     public ViewController getViewController(){
         return viewController;
     }
@@ -132,12 +132,12 @@ public class Game {
     }
 
     public void stopSound() {
-    	sound.stopSoundAuxiliar();
+    	sound.stopMusic();
     }
     
     protected void changeLevel() {  
         viewController.clearLevelScreen();
-
+        sound.stopMusic();
         if(levelGenerator.haveNextLevel()){
             Character currentCharacter=resetCharacter();
             currentLevel = levelGenerator.getNextLevel(); 
@@ -152,8 +152,8 @@ public class Game {
             characterThread.start();
             enemyThread.start();
             viewController.showLevelScreen();
-            sound.setMusicSound("musicLevel"+ numberLevel);
-            sound.loop();
+            sound.setMusicSound("musicLevel1");
+            sound.loop(-1);
         }
         else{      
             viewController.showMenuScreen();
@@ -193,5 +193,10 @@ public class Game {
 
     public void addToRemovedEnenemies(Enemy enemy) {
         currentLevel.getRemovedEnemies().add(enemy);
+    }
+
+    public void reproduceLoopSound(String path, int iteracions) {
+        sound.setMusicSound(path);
+        sound.loop(iteracions);
     } 
 }

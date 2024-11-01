@@ -41,16 +41,18 @@ public class SoundReproducer {
 		   auxialiarAudio.start();
 	}
 	
-	public void loop() {		
-		audioLevelMusic.loop(audioLevelMusic.LOOP_CONTINUOUSLY);
+	public void loop(int iteracions) {		
+		audioLevelMusic.loop(iteracions);
 	}
 	
 	public void stopMusic() {
 		audioLevelMusic.stop();
+		audioLevelMusic.close();
 	}
 	
 	public void stopSoundAuxiliar() {
 		auxialiarAudio.stop();
+		audioLevelMusic.close();
 	}
 	
 	private AudioInputStream getSound(String path)  {
