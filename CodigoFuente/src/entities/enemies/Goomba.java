@@ -15,20 +15,6 @@ public class Goomba extends Enemy{
 		direction="Left";
 		flies=false;
 	}
-
-	public void moveRight(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		setSprite(sprites.get("Walking" + frame));
-		observer.update();
-	}
-	
-	public void moveLeft(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		setSprite(sprites.get("Walking" + frame));
-		observer.update();
-	}
 	
 	public int getPointsOnDeath() {
 		return pointsOnDeath;

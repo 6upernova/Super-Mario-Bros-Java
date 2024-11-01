@@ -14,20 +14,6 @@ public class Lakitu extends Enemy{
 		direction="Left";
 		flies=true;
 	}
-	
-	public void moveRight(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		setSprite(sprites.get("Right"));
-		observer.update();
-	}
-	
-	public void moveLeft(int frame) {
-		float enemyX=getX();
-		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		setSprite(sprites.get("Left" ));
-		observer.update();
-	}
 
 	public int getPointsOnDeath() {
 		return pointsOnDeath;
