@@ -129,6 +129,10 @@ public class Game {
 		sound.start();
     }
 
+    public void reproduceSoundDeath(String path) {
+    	reproduceSound(path);
+    }
+
     public void stopSound() {
     	sound.stopMusic();
     }
@@ -194,8 +198,16 @@ public class Game {
         sound.loop(iteracions);
     } 
 
-    private void startMusic(){
+    public void startMusic(){
         sound.setMusicSound("musicLevel1");
         sound.loop(-1);
+    }
+
+    public boolean isRunningSound() {
+        return sound.isRunning();
+    }
+
+    public void stopMusic() {
+        sound.stopMusic();
     }
 }
