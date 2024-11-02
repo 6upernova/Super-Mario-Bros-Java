@@ -7,28 +7,31 @@ import views.GraphicObserver;
 import views.ViewConstants;
 
 public class Lakitu extends Enemy {
-
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=0;
-
 	protected Character characterReference;
 	protected long arrivalTimeMillis;
 	protected String characterSide;
 	protected boolean waiting;
 	protected float travelTime; 			//0<= travelTime <= 1
+	protected boolean canThrowEgg;		
+	private int eggCooldown;
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
-		direction="Left";
-		flies=true;
-		characterReference = null;
-		characterSide = "Left";
-		horizontalSpeed = ViewConstants.CHARACTER_SPEED;
-		waiting = false;
-		travelTime = 0;
+		this.direction="Left";
+		this.flies=true;
+		this.characterReference = null;
+		this.characterSide = "Left";
+		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
+		this.waiting = false;
+		this.travelTime = 0;
+		this.canThrowEgg = false;
+		this.eggCooldown = ViewConstants.EGG_COOLDOWN;
 	}
 
 	public void move(int frame){
+		updateCooldown();
 		float destinationX = characterSide == "Right" ? characterReference.getX() - 3 : characterReference.getX() + 3;
 		if(!isOnDestinationCoords(destinationX)){
 			updateHorizontalSpeed();
@@ -44,10 +47,20 @@ public class Lakitu extends Enemy {
 			if(checkThrowTime()){
 				waiting = false;
 				switchSide();
-				throwSpinyEgg(characterSide);
 			}
 		}
 	}
+
+	private void updateCooldown() {
+		if(eggCooldown >= ViewConstants.EGG_COOLDOWN){
+			canThrowEgg = true;
+			eggCooldown = 0;
+		}
+		else{	
+			eggCooldown += ViewConstants.GAMETICK;
+			canThrowEgg = false;
+		}
+	}		
 
 	private void changeDirectionToDestination(float destinationX){
 		if(destinationX > positionInX)
@@ -60,10 +73,6 @@ public class Lakitu extends Enemy {
 
 	private boolean isOnDestinationCoords(float destinationX){
 		return positionInX - horizontalSpeed <= destinationX && destinationX <= positionInX + horizontalSpeed;
-	}
-
-	private void throwSpinyEgg(String orientation){
-		System.out.println("Throws egg to "+ orientation);
 	}
 
 	private boolean checkThrowTime(){
@@ -113,5 +122,8 @@ public class Lakitu extends Enemy {
 		this.observer = observer;
 	}
 
+	public boolean canThrowEgg(){
+		return canThrowEgg;
+	}
 	
 }

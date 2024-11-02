@@ -40,9 +40,9 @@ public class Ranking{
                 addToRank(name,score);            
             }
         } catch (IOException e) {
-            System.err.println("Error trying read the textfile: " + e.getMessage());
+            System.out.println("Error trying read the textfile: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.err.println("Format error: " + e.getMessage());
+            System.out.println("Format error: " + e.getMessage());
         }
     }     
         
@@ -92,7 +92,7 @@ public class Ranking{
                         writer.newLine();
                 }       
             } catch (IOException e) {
-                System.err.println("Error for edit the file: " + e.getMessage());
+                System.out.println("Error for edit the file: " + e.getMessage());
         }
     }
     private boolean entersInRanking(int score){

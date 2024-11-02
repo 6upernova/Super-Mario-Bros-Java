@@ -1,7 +1,5 @@
 package game;
-
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import entities.LogicalEntity;
 import entities.character.Character;
@@ -9,9 +7,9 @@ import entities.character.CharacterThread;
 import entities.character.ObserverSound;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
+import entities.enemies.Spiny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
-import entities.projectile.FireBall;
 import entities.projectile.Projectile;
 import factories.LevelGenerator;
 import ranking.Ranking;
@@ -211,5 +209,12 @@ public class Game {
 
     public void stopMusic() {
         sound.stopMusic();
+    }
+
+    public void createEgg(int x, int y) {
+        Spiny spiny = levelGenerator.createSpiny(x,y);
+        currentLevel.getEnemies().add(spiny);
+    	GraphicObserver enemyObserver = viewController.registerEntity(spiny);
+    	spiny.registerObserver(enemyObserver);        
     }
 }

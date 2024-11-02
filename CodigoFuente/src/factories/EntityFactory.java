@@ -307,7 +307,20 @@ public class EntityFactory {
 		goombaSprites.put("Walking2", spriteFactory.getGoombaRightSprite());
 		return goombaSprites;
 	}
-	
+	public Spiny newSpiny(int worldX, int worldY){
+        Spiny spiny = new Spiny(spriteFactory.getSpinyEggSprite(), worldX, worldY);
+		spiny.setSpritesMap(getSpinySprites());
+		return spiny;
+	}	
+	private HashMap<String, Sprite> getSpinySprites(){
+		HashMap<String,Sprite> spinySprites = new HashMap<String,Sprite>();
+		spinySprites.put("Left1",  spriteFactory.getSpinyLeftSprite(1));
+		spinySprites.put("Left2",  spriteFactory.getSpinyLeftSprite(2));
+		spinySprites.put("Right1", spriteFactory.getSpinyRightSprite(1));
+		spinySprites.put("Right2", spriteFactory.getSpinyRightSprite(2));
+		spinySprites.put("Egg", spriteFactory.getSpinyEggSprite());
+		return spinySprites;
+	}
     //PLATFORMS
 	private Pipe newPipeTopLeft(int worldX, int worldY) {
 		Pipe pipe = new PipeTopLeft(spriteFactory.getPipeTopLeftSprite(),worldX,worldY);

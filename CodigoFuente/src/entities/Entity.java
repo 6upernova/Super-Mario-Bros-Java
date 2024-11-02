@@ -24,7 +24,10 @@ public abstract class Entity implements LogicalEntity {
         return boundingBox;
     }
     public boolean colision(Entity entity){
-        return boundingBox.intersects(entity.getBoundingBox());
+        boolean colision = false;
+        if(entity.getBoundingBox() != null)
+            colision = boundingBox.intersects(entity.getBoundingBox());
+        return colision;
     }
     public boolean leftCollision(Entity entity){
         return boundingBox.leftCollision(entity.getBoundingBox().getBoundsRight());

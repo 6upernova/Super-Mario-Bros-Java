@@ -5,6 +5,7 @@ import java.util.List;
 import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.enemies.Lakitu;
+import entities.enemies.Spiny;
 import entities.platforms.Platform;
 import entities.platforms.Question;
 import entities.powerUps.PowerUp;
@@ -82,5 +83,9 @@ public class LevelGenerator {
 
     public boolean haveNextLevel(){
         return levelNumber+1 <= ViewConstants.MAX_LEVELS;
+    }
+
+    public Spiny createSpiny(int x, int y) {
+        return entityFactory.newSpiny(x, y);
     }
 }

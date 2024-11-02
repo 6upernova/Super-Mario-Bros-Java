@@ -130,7 +130,6 @@ public class CharacterThread extends Thread {
             case "Space":
                 if (character.canThrowFireball() && !spacebarWasPressed) {
                     setSpacebarWasPressed(true);
-                    System.out.println(Math.round(character.getX()));
                     game.createFireBall(Math.round(character.getX()), Math.round(character.getY()),keyboard.getPreviousDirection());
                 }
 

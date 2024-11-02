@@ -1,8 +1,8 @@
 package entities.enemies;
-
 import entities.Entity;
+import entities.PlatformsVisitor;
 import entities.VisitedElement;
-import entities.character.CharacterVisitor;
+import entities.platforms.Platform;
 import factories.Sprite;
 import tools.GraphicTools;
 import views.EnemyObserver;
@@ -10,7 +10,7 @@ import views.Observer;
 import views.ViewConstants;
 import java.util.HashMap;
 
-public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement, EnemyVisitor{
+public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement, EnemyVisitor, PlatformsVisitor{
 	
 	protected int pointsOnDeath;
 	protected int pointsOnKill;
@@ -172,7 +172,15 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 			this.setDirection("Left");
 			enemy.setDirection("Right");
 	}
-	
+	public boolean getFlies(){
+		return flies;
+	}
+
+    public boolean canThrowEgg() {
+		return false;
+    }
+		
+	public void visit(Platform block){} 
 }
 
 	
