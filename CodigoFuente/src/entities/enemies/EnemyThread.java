@@ -37,12 +37,17 @@ public class EnemyThread extends Thread {
     		frameCount++;
     		while (iterator.hasNext()) {
     			enemy = iterator.next();               
-    			if (enemy.isActive()) {     				
+    			if (enemy.isActive()) {    
+                    if(enemy.canThrowEgg()){
+                        game.createEgg(Math.round(enemy.getX()), Math.round(enemy.getY()));                        
+                        enemyCopy = new ArrayList<>(enemies);
+                    } 				
     				moveEnemy(enemy);
                     
     			}
                 if(!enemy.isAlive()){
-                    enemies.remove(enemy);
+                    enemies.remove(enemy);                      
+                    enemyCopy = new ArrayList<>(enemies);
                     enemy.deactivateEnemy();
                 }
     	    }

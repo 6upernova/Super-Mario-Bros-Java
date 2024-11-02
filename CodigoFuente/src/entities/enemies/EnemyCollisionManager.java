@@ -29,8 +29,10 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
 		while (it.hasNext()){
 			platform = it.next();
 			collision = enemyBox.collision(platform.getBoundingBox());               
-			if(collision)
-			collisionWithPlatform(enemy, platform);
+			if(collision){
+				platform.acceptVisit(enemy);
+				collisionWithPlatform(enemy, platform);
+			}
 		}
 	}
 	
@@ -67,16 +69,14 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
 				collision = enemySource.colision(enemyDestination);
 				if (collision) {
 					collisionWithOtherEnemy(enemySource, enemyDestination);
-					endIteration = true;
-					
+					endIteration = true;					
 				}
 			}
         }
 	}
 
 
-	public void powerUpsCollisions(Enemy entity) {
-		
+	public void powerUpsCollisions(Enemy entity) {		
 	}
 	
 	private void collisionWithOtherEnemy(Enemy enemySource, Enemy enemyDestination){

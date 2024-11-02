@@ -186,9 +186,17 @@ public abstract class SpriteFactory {
 
     /*============================================================Spiny Sprites============================================================*/
 
-    public Sprite getSpinySprite(){
-        return new Sprite(folderPath + File.separator+"SpinnyLeft1.png");	 
+    public Sprite getSpinyLeftSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyLeft"+frame+".png");	 
     }
+    public Sprite getSpinyRightSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyRight"+frame+".png");	 
+    }
+    public Sprite getSpinyEggSprite(){
+        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinyEgg.png");	 
+    }
+
+
     public Sprite getShellSprite(){
         return new Sprite(folderPath + File.separator+"Shell.png");	 
     }
@@ -216,10 +224,6 @@ public abstract class SpriteFactory {
     public Sprite getFireballSprite(){
         return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"Fireball1.png");	 
     }
-    public Sprite getSpinyEggSprite(){
-        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinyEgg.gif");	 
-    }
-
     /*==========================================================Platforms Sprites==========================================================*/
 
     public Sprite getBrickSprite(){

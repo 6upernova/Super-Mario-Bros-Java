@@ -28,6 +28,8 @@ public class ViewConstants {
 
 	public static final int LEFT_CHARACTER_SPACE = 4;
 
+    public static final int EGG_COOLDOWN = 8000;
+	public static final int GAMETICK = 16;
 	public static final Font font = setFont();
     public static final int MAX_LEVELS = 3;
 

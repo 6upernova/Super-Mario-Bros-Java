@@ -16,8 +16,7 @@ public class FireBall extends Projectile {
 	public void moveRight() {
 		float projectileX = getX();
 		setX(GraphicTools.round2Digits(projectileX + horizontalSpeed));
-		verticalSpeed += 0.02f;
-		System.out.println(verticalSpeed+"," +getY());      
+		verticalSpeed += 0.02f;    
     	setY(getY() - verticalSpeed);  
 		observer.update();
     }
