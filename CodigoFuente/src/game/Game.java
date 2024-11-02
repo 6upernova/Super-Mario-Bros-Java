@@ -64,7 +64,7 @@ public class Game {
     }
 
     protected void setLevel(int number){
-        currentLevel = levelGenerator.createLevel(number);
+        currentLevel = levelGenerator.createLevel(number, null);
     }
     
     public synchronized Level getCurrentLevel() {
@@ -139,7 +139,7 @@ public class Game {
         viewController.clearLevelScreen();
         if(levelGenerator.haveNextLevel()){
             Character currentCharacter=resetCharacter();
-            currentLevel = levelGenerator.getNextLevel(); 
+            currentLevel = levelGenerator.getNextLevel(currentCharacter); 
             currentLevel.setCharacter(currentCharacter);
             setObservers();
             currentCharacter.setIsBusy(true);

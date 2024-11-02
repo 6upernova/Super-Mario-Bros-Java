@@ -23,18 +23,18 @@ public class LevelGenerator {
         this.parser= new Parser();
     }
 
-    public Level createLevel(int number){
+    public Level createLevel(int number, Character character){
         this.levelNumber = number;
         parser.setLevel(levelNumber);
-        Character character = entityFactory.createCharacter();
+        Character characterReference = character == null ? entityFactory.createCharacter() : character;
         List<Platform> platformList = new LinkedList<Platform>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
         List<Enemy> enemyList = new LinkedList<Enemy>();
         while(parser.hasToRead()) {
-            generateEntity(character,platformList, enemyList, powerUpList);     
+            generateEntity(characterReference,platformList, enemyList, powerUpList);     
         } 
         Level levelGenerate= new Level(platformList, enemyList, powerUpList);  
-        levelGenerate.setCharacter(character);  
+        levelGenerate.setCharacter(characterReference);  
         return levelGenerate;
     }
 
@@ -69,11 +69,11 @@ public class LevelGenerator {
         return entityFactory.createCharacter();
     }
 
-    public Level getNextLevel() {
+    public Level getNextLevel(Character previousCharacter) {
         this.levelNumber = levelNumber + 1;
         Level level = null;
         if(levelNumber <= ViewConstants.MAX_LEVELS)
-            level = createLevel(levelNumber);
+            level = createLevel(levelNumber, previousCharacter);
         return level;
     }
 
