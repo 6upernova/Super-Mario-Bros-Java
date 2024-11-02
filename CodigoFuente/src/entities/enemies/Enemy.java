@@ -2,6 +2,7 @@ package entities.enemies;
 
 import entities.Entity;
 import entities.VisitedElement;
+import entities.character.CharacterVisitor;
 import factories.Sprite;
 import tools.GraphicTools;
 import views.EnemyObserver;
@@ -9,17 +10,22 @@ import views.Observer;
 import views.ViewConstants;
 import java.util.HashMap;
 
-public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement{
+public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement, EnemyVisitor{
 	
 	protected int pointsOnDeath;
 	protected int pointsOnKill;
 	protected String direction;
+
+	//flags
 	protected boolean isActive;
 	protected boolean isAlive;
 	protected boolean isInAir;
+	protected boolean flies;
+	protected boolean isHostile;
+
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
-	protected boolean flies;
+	
 	protected HashMap<String, Sprite> sprites;
 	
 	public Enemy(Sprite sprite, float positionInX, float positionInY, int pointsOnDeath,int pointsOnKill) {
@@ -31,6 +37,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		this.isActive = false;
 		this.isInAir = true;
 		this.isAlive = true;
+		
 	}
 
 	public void move(int frame){
@@ -143,8 +150,34 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 			observer.update();
 		}
 	}
+
+
+
+	public void acceptVisit(EnemyVisitor visitor){
+		visitor.visit(this);
+	}
+
+	public void visit(Enemy enemy){
+		if(this.leftCollision(enemy))
+			leftEnemyCollision(enemy);
+		else if(this.rightCollision(enemy))
+			rightEnemyCollision(enemy);
 	
 	
-	
-	
+	}
+
+	private void leftEnemyCollision(Enemy enemy){
+			this.setDirection("Right");
+			enemy.setDirection("Left");
+	}
+	private void rightEnemyCollision( Enemy enemy){
+			this.setDirection("Left");
+			enemy.setDirection("Right");
+	}
 }
+
+	
+	
+	
+	
+

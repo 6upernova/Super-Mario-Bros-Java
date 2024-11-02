@@ -63,28 +63,18 @@ public class EnemyCollisionManager {
         boolean endIteration = false;
         while(enemiesIt.hasNext() && !endIteration){
             enemyDestination = enemiesIt.next();
-			if(enemyDestination.isActive()){
+			if(enemyDestination.isActive() && !enemySource.equals(enemyDestination)){
 				boolean collision = enemySource.colision(enemyDestination);
 				if (collision) {
 					collisionWithOtherEnemy(enemySource, enemyDestination);
 					endIteration = true;
+					
 				}
 			}
         }
 	}
 	
 	private void collisionWithOtherEnemy(Enemy enemySource, Enemy enemyDestination){
-		if(enemySource.leftCollision(enemyDestination))
-			leftEnemyCollision(enemySource, enemyDestination);
-		else if(enemySource.rightCollision(enemyDestination))
-			rightEnemyCollision(enemySource, enemyDestination);
-	}
-	private void leftEnemyCollision(Enemy enemySource, Enemy enemyDestination){
-		enemySource.setDirection("Right");
-		enemyDestination.setDirection("Left");
-	}
-	private void rightEnemyCollision(Enemy enemySource, Enemy enemyDestination){
-		enemySource.setDirection("Left");
-		enemyDestination.setDirection("Right");
+		enemyDestination.acceptVisit(enemySource);
 	}
 }

@@ -44,7 +44,7 @@ public class LevelGenerator {
         if( type>1 && type<9 ) {
             Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
             if(type == 5){
-                Lakitu lakitu= (Lakitu) enemy;
+                Lakitu lakitu=(Lakitu) enemy;
                 lakitu.setCharacterReference(charater);
             }
             enemyList.add(enemy);

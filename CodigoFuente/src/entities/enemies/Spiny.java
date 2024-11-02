@@ -31,4 +31,5 @@ public class Spiny extends Enemy{
 		this.observer = observer;
 	}
 
+
 }

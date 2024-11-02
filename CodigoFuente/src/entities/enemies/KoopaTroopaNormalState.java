@@ -26,5 +26,9 @@ public class KoopaTroopaNormalState implements KoopaTroopaState {
 		koopaTroopa.setX(GraphicTools.round2Digits(enemyX - koopaTroopa.getHorizontalSpeed()));
 		koopaTroopa.setSprite(koopaTroopa.getSpritesMap().get("Left" + frame));
 		koopaTroopa.getObserver().update();
+	}
+
+	public void hitEnemy(Enemy enemy) {
+		
 	} 
 }

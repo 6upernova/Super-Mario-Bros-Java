@@ -45,5 +45,6 @@ public class Goomba extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
+
 	
 }

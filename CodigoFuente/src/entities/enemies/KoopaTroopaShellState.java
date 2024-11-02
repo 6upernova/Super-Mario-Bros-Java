@@ -69,5 +69,13 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
         if(System.currentTimeMillis() - spawnTimeMillis >= 5000)
             koopaTroopa.normalMode();
     }
+
+    public void hitEnemy(Enemy  enemy){
+        enemy.dead();
+    }
+        
+    
+
+    
     
 }

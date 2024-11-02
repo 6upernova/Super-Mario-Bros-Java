@@ -6,7 +6,7 @@ import entities.character.Character;
 import factories.Sprite;
 import views.GraphicObserver;
 
-public class KoopaTroopa extends Enemy{
+public class KoopaTroopa extends Enemy implements EnemyVisitor{
 
 	static final private int pointsOnDeath=90;
 	static final private int pointsOnKill=-45;
@@ -65,5 +65,13 @@ public class KoopaTroopa extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
+
+	
+	public void visit(Enemy enemy) {
+		koopaTroopaActualState.hitEnemy(enemy);
+	}
+
+
+	
 
 }

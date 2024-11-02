@@ -102,5 +102,6 @@ public class Lakitu extends Enemy {
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
+
 	
 }

@@ -127,7 +127,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if(this.lives > 0) {
 			observerOfSounds.loopSound("marioDie",3000);
 			characterAnimations.deathAnimation();
-			observerOfSounds.stopSound();
 			observerOfSounds.loopSound("musicLevel1", -1);
 		}
 		else observerOfSounds.reproduceSound("gameOver");
@@ -237,12 +236,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		int points = characterActualState.getMushroomPoints();
 		addScore(points);
 		if(!characterActualState.isSuper()){
+
 			characterActualState = characterStates.get("Super");
-			observerOfSounds.reproduceSound("mushroom");
-			characterAnimations.superAnimation("Normal", "Super");			
-			updateBoundingBoxToBig();	
 			updateBoundingBoxToBig();
 			observerOfSounds.reproduceSound("mushroom");
+			characterAnimations.superAnimation("Normal", "Super");				
 		}
 		observer.update();
 	}
@@ -357,7 +355,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
 		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
 	}
-
+	
 	
 	public HashMap<String, Sprite> getNormalInvencibleSprites() {
 		return characterInvencibleSprites;

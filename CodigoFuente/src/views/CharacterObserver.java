@@ -32,8 +32,8 @@ public class CharacterObserver extends GraphicObserver{
 
 
     public void respawn(){
-        update();
         levelScreen.resetScrollbar();
+        update();
         
     }
 

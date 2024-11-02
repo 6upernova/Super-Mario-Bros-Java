@@ -59,6 +59,7 @@ public class BuzzyBeetle extends Enemy {
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
+
 	
 
 }
