@@ -70,8 +70,9 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
             koopaTroopa.normalMode();
     }
 
-    public void hitEnemy(Enemy  enemy){
-        enemy.dead();
+    public void hitEnemy(Enemy enemy){
+        if(koopaTroopa.getDirection() != "None")
+            enemy.dead();
     }
         
     

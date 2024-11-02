@@ -303,7 +303,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(Brick brickBlock) {
-		brickBlock.breakBrick();
+		
 	}
 
 	public void visit(Question questionBlock) {
