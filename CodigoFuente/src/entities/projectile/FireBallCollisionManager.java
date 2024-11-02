@@ -89,7 +89,7 @@ public class FireBallCollisionManager {
             checkRemove(projectile);
         } 
         else {
-            ((FireBall)projectile).moveRight(game.getCurrentLevel().getCharacter().getY());
+            ((FireBall)projectile).moveRight();
         }
     }
 

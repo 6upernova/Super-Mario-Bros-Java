@@ -5,6 +5,7 @@ import java.util.List;
 
 import entities.enemies.Enemy;
 import entities.platforms.*;
+import entities.projectile.FireBallCollisionManager;
 import entities.projectile.Projectile;
 //import entities.projectile.FireBallCollisionManager;
 import game.Game;
@@ -16,7 +17,7 @@ public class CharacterThread extends Thread {
     protected Character character;
     protected Keyboard keyboard;
     private CharacterCollisionManager characterCollisionManager;
-    //private FireBallCollisionManager projectileCollisionManager;
+    private FireBallCollisionManager fireBallCollisionManager;
     private int frameCount;
     private int spriteNumber;
     private boolean isRunning;
@@ -32,7 +33,7 @@ public class CharacterThread extends Thread {
         this.frameCount = 0;
         this.spriteNumber = 1;
         this.isRunning = false;
-        //this.projectileCollisionManager = new FireBallCollisionManager(game);
+        this.fireBallCollisionManager = new FireBallCollisionManager(game);
         this.spacebarWasPressed = false;
     }
 
@@ -77,8 +78,8 @@ public class CharacterThread extends Thread {
                 }
 
                 for (Projectile projectile : game.getCurrentLevel().getProjectiles()) {                    
-                    //projectileCollisionManager.moveProjectile(projectile);
-                    //projectileCollisionManager.enemiesCollisions(projectile);
+                    fireBallCollisionManager.moveProjectile(projectile);
+                    fireBallCollisionManager.enemiesCollisions(projectile);
                 }
 
                 if (character.isInvincible()) {
