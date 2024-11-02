@@ -15,6 +15,7 @@ public class Lakitu extends Enemy {
 	protected long arrivalTimeMillis;
 	protected String characterSide;
 	protected boolean waiting;
+	protected float travelTime; 			//0<= travelTime <= 1
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
@@ -24,23 +25,18 @@ public class Lakitu extends Enemy {
 		characterSide = "Left";
 		horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		waiting = false;
+		travelTime = 0;
 	}
 
 	public void move(int frame){
 		float destinationX = characterSide == "Right" ? characterReference.getX() - 3 : characterReference.getX() + 3;
 		if(!isOnDestinationCoords(destinationX)){
-			horizontalSpeed = ViewConstants.CHARACTER_SPEED * 3/2;
-			if(destinationX > positionInX)
-				direction = "Right";
-			else if(destinationX < positionInX)
-				direction = "Left";
-			else if(isOnDestinationCoords(destinationX))
-				direction = "None";
-
+			updateHorizontalSpeed();
+			changeDirectionToDestination(destinationX);
 			super.move(frame);
 		}
 		else {
-			horizontalSpeed = ViewConstants.CHARACTER_SPEED;
+			travelTime = 0;
 			if(!waiting){
 				arrivalTimeMillis = System.currentTimeMillis();
 				waiting = true;
@@ -53,6 +49,19 @@ public class Lakitu extends Enemy {
 		}
 	}
 
+	private void changeDirectionToDestination(float destinationX){
+		if(destinationX > positionInX)
+			direction = "Right";
+		else if(destinationX < positionInX)
+			direction = "Left";
+		else if(isOnDestinationCoords(destinationX))
+			direction = "None";
+	}
+
+	private boolean isOnDestinationCoords(float destinationX){
+		return positionInX - horizontalSpeed <= destinationX && destinationX <= positionInX + horizontalSpeed;
+	}
+
 	private void throwSpinyEgg(String orientation){
 		System.out.println("Throws egg to "+ orientation);
 	}
@@ -61,12 +70,13 @@ public class Lakitu extends Enemy {
 		return System.currentTimeMillis() - arrivalTimeMillis >= 3000;
 	}
 
-	private boolean isOnDestinationCoords(float destinationX){
-		return positionInX - horizontalSpeed <= destinationX && destinationX <= positionInX + horizontalSpeed;
-	}
-
 	private void switchSide(){
 		characterSide = characterSide == "Left" ? "Right" : "Left";
+	}
+
+	private void updateHorizontalSpeed(){
+		travelTime += travelTime < 1 ? 1/26f : 0;
+		horizontalSpeed =  ViewConstants.CHARACTER_SPEED + 0.08f * travelTime * travelTime * travelTime;		
 	}
 
 	public void moveRight(int frame) {
