@@ -72,4 +72,8 @@ public class SoundReproducer {
 		}
 		return toRet;
 	}
+
+    public boolean isRunning() {
+		return audioLevelMusic.isRunning();
+    }
 }

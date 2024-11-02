@@ -8,6 +8,7 @@ public class CharacterAnimations{
     }
 
     public void deathAnimation() {
+        character.observerOfSounds.reproduceSoundDeadth("marioDie");
             character.setIsBusy(true);
             character.setVerticalSpeed(0);
             character.jump("Died");
@@ -20,9 +21,12 @@ public class CharacterAnimations{
                     e.printStackTrace();
                 }
             }
+            while (character.observerOfSounds.isRunning()) {
+                
+            }
+            character.observerOfSounds.loopMusicLevel();
             character.setIsBusy(false);
             character.setInStart();
-            
             
     }
 

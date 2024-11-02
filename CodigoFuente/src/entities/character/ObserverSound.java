@@ -14,11 +14,23 @@ public class ObserverSound {
 		game.reproduceSound(path);
 	}
 
-	public void loopSound(String path, int iteracions){
-		game.reproduceLoopSound(path, iteracions);
+	public void reproduceSoundDeadth(String path) {
+		game.reproduceLoopSound(path,0);
+	}
+
+	public boolean isRunning(){
+		return game.isRunningSound();
+	}
+
+	public void loopMusicLevel(){
+		game.startMusic();
 	}
 	
 	public void stopSound() {
 		game.stopSound();
+	}
+
+	public void stopSoundMusic() {
+		game.stopMusic();
 	}
 }
