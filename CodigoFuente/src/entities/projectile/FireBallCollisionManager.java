@@ -13,10 +13,12 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 	protected List<Platform> platforms;
     protected List<Enemy> enemies;
     private Game game;
+    private int spriteNumber;
 	public FireBallCollisionManager(Game game) {
 		this.platforms = game.getCurrentLevel().getPlatforms();
         this.enemies = game.getCurrentLevel().getEnemies();
         this.game = game;
+        this.spriteNumber = 1;
 	}	
 
 	public void platformsCollisions(Projectile projectile){
@@ -64,7 +66,9 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
         
     }
     
-    public void moveProjectile(Projectile projectile) {        
+    public void moveProjectile(Projectile projectile, int frame) {   
+        if(frame%5==0) 
+            spriteNumber = spriteNumber == 4 ? 1 : spriteNumber + 1;     
         platformsCollisions(projectile);
         String direction = projectile.getDirection();
         switch (direction) {
@@ -84,7 +88,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
             checkRemove(projectile);
         } 
         else {
-            projectile.moveLeft();
+            ((FireBall)projectile).moveLeft(spriteNumber);
         }
     }
 
@@ -93,7 +97,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
             checkRemove(projectile);
         } 
         else {
-            ((FireBall)projectile).moveRight();
+            ((FireBall)projectile).moveRight(spriteNumber);
         }
     }
 

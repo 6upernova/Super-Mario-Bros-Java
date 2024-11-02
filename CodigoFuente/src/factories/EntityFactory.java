@@ -360,12 +360,23 @@ public class EntityFactory {
 	    return mast;
 	}
 
+	//Projectiles
+
     public FireBall newFireBall(int type,int x, int y, String direction) {
 		FireBall projectile = null;
 		if(type == 31)
-			projectile = new FireBall(spriteFactory.getFireballSprite(), x, y, direction);
+			projectile = new FireBall(spriteFactory.getFireballSprite(1), x, y, direction, getFireBallSprites());
 		if(type == 32)
 		projectile = null; 	//HACER SPINY EGG
 		return projectile;
     }
+	
+	private HashMap<String,Sprite> getFireBallSprites(){
+		HashMap<String,Sprite> fireBallSprites = new HashMap<String,Sprite>();
+		fireBallSprites.put("1",spriteFactory.getFireballSprite(1));
+		fireBallSprites.put("2",spriteFactory.getFireballSprite(2));
+		fireBallSprites.put("3",spriteFactory.getFireballSprite(3));
+		fireBallSprites.put("4",spriteFactory.getFireballSprite(4));
+		return fireBallSprites;
+	}
 }

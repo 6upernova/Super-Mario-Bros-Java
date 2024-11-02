@@ -58,9 +58,9 @@ public class EnemyThread extends Thread {
     }
     
     private void moveEnemy(Enemy enemy) {
+        enemy.applyGravity();
     	ecm.platformsCollisions(enemy);
         ecm.enemiesCollisions(enemy);
-        enemy.applyGravity();
 
         checkEnemyInAir(enemy);
         enemy.move(spriteNumber);

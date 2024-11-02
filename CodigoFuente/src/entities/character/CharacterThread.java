@@ -78,7 +78,7 @@ public class CharacterThread extends Thread {
                 }
 
                 for (Projectile projectile : game.getCurrentLevel().getProjectiles()) {                    
-                    fireBallCollisionManager.moveProjectile(projectile);
+                    fireBallCollisionManager.moveProjectile(projectile,frameCount);
                     fireBallCollisionManager.enemiesCollisions(projectile);
                 }
 

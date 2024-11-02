@@ -68,7 +68,6 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
 				if (collision) {
 					collisionWithOtherEnemy(enemySource, enemyDestination);
 					endIteration = true;
-					
 				}
 			}
         }

@@ -152,7 +152,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	}
 
 
-
 	public void acceptVisit(EnemyVisitor visitor){
 		visitor.visit(this);
 	}
@@ -162,7 +161,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 			leftEnemyCollision(enemy);
 		else if(this.rightCollision(enemy))
 			rightEnemyCollision(enemy);
-	
 	
 	}
 
@@ -174,6 +172,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 			this.setDirection("Left");
 			enemy.setDirection("Right");
 	}
+	
 }
 
 	
