@@ -204,7 +204,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     public void visit(KoopaTroopa koopaTroopa) {
 		addScore(koopaTroopa.getPointsOnDeath());
 		//Change state
-		koopaTroopa.hit(this);
+		if(invincible)
+			koopaTroopa.dead();
+		else
+			koopaTroopa.hit(this);
     }    
     public void visit(PiranhaPlant piranhaPlant) {
 		addScore(piranhaPlant.getPointsOnDeath());

@@ -33,7 +33,8 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
             collision = character.colision(enemy);
             if (collision) {
             	if(character.isInvincible() || character.downCollision(enemy)){
-                    smallJump(character);
+                    if(character.downCollision(enemy))
+                        smallJump(character);
                     enemy.acceptVisit(character);
                     character.killEnemySound();
                 }
