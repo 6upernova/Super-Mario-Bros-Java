@@ -25,43 +25,43 @@ public class LevelGenerator {
     public Level createLevel(int number){
         this.levelNumber = number;
         parser.setLevel(levelNumber);
-        int type=0;
-        int worldX=0;
-        int worldY=0;
         Character character = entityFactory.createCharacter();
         List<Platform> platformList = new LinkedList<Platform>();
         List<PowerUp> powerUpList = new LinkedList<PowerUp>();
         List<Enemy> enemyList = new LinkedList<Enemy>();
         while(parser.hasToRead()) {
-            type= parser.getType();
-            worldX = parser.getPositionX();
-            worldY = parser.getPositionY();
-            if( type>1 && type<9 ) {
-            	Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
-                if(type == 5){
-                    Lakitu lakitu = (Lakitu) enemy;
-                    lakitu.setCharacterReference(character);
-                }
-
-                enemyList.add(enemy);
-            }
-            if( type>9 && type<15) { 
-                Question questionBlock = entityFactory.newPowerUpWithQuestionBlock(type, worldX, worldY);
-                powerUpList.add(questionBlock.getPowerUp());
-                platformList.add(questionBlock);
-            }
-            if(type == 15) {
-            	PowerUp powerUp= entityFactory.newOnlyCoin(worldX, worldY);
-            	powerUpList.add(powerUp);
-            } 
-            if( type>19 && type<=30) { 
-               Platform platform= entityFactory.newPlatform(type, worldX, worldY);
-               platformList.add(platform);
-            }            
+            generateEntity(character,platformList, enemyList, powerUpList);     
         } 
-        Level levelGenerated = new Level(platformList, enemyList, powerUpList);
-        levelGenerated.setCharacter(character);
-        return levelGenerated;
+        Level levelGenerate= new Level(platformList, enemyList, powerUpList);  
+        levelGenerate.setCharacter(character);  
+        return levelGenerate;
+    }
+
+    private void generateEntity(Character charater,List<Platform> platformList,List<Enemy> enemyList,List<PowerUp> powerUpList){    
+        int type= parser.getType();
+        int worldX = parser.getPositionX();
+        int worldY = parser.getPositionY();
+        if( type>1 && type<9 ) {
+            Enemy enemy= entityFactory.newEnemy(type, worldX, worldY);
+            if(type == 5){
+                Lakitu lakitu= (Lakitu) enemy;
+                lakitu.setCharacterReference(charater);
+            }
+            enemyList.add(enemy);
+        }
+        if( type>9 && type<15) { 
+            Question questionBlock = entityFactory.newPowerUpWithQuestionBlock(type, worldX, worldY);
+            powerUpList.add(questionBlock.getPowerUp());
+            platformList.add(questionBlock);
+        }
+        if(type == 15) {
+            PowerUp powerUp= entityFactory.newOnlyCoin(worldX, worldY);
+            powerUpList.add(powerUp);
+        } 
+        if( type>19 && type<=30) { 
+           Platform platform= entityFactory.newPlatform(type, worldX, worldY);
+           platformList.add(platform);
+        }       
     }
 
     public Character createCharacter(){

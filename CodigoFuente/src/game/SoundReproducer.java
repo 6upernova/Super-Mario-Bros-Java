@@ -29,6 +29,7 @@ public class SoundReproducer {
 	}
 	
 	public void setMusicSound(String path) {
+		resourseAudioController(audioLevelMusic);
 		try {
 			audioLevelMusic= AudioSystem.getClip();
 			audioLevelMusic.open(getSound(path));
@@ -43,6 +44,13 @@ public class SoundReproducer {
 	
 	public void loop(int iteracions) {		
 		audioLevelMusic.loop(iteracions);
+	}
+
+	private void resourseAudioController(Clip clip){
+		if(clip!=null && clip.isActive()){
+			clip.stop();
+			clip.close();
+		}
 	}
 	
 	public void stopMusic() {

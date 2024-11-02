@@ -54,8 +54,7 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        sound.setMusicSound("musicLevel1");
-        sound.loop(-1);
+        startMusic();
     }
 
     public void stop(){
@@ -122,7 +121,6 @@ public class Game {
     }
 
     public void playNextLevel() {
-    	sound.stopMusic();
         changeLevel();
     }
     
@@ -137,7 +135,6 @@ public class Game {
     
     protected void changeLevel() {  
         viewController.clearLevelScreen();
-        sound.stopMusic();
         if(levelGenerator.haveNextLevel()){
             Character currentCharacter=resetCharacter();
             currentLevel = levelGenerator.getNextLevel(); 
@@ -149,11 +146,10 @@ public class Game {
             this.enemyThread.interrupt();
             this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
             this.enemyThread = new EnemyThread(this);
+            viewController.showLevelScreen();
+            startMusic();
             characterThread.start();
             enemyThread.start();
-            viewController.showLevelScreen();
-            sound.setMusicSound("musicLevel1");
-            sound.loop(-1);
         }
         else{      
             viewController.showMenuScreen();
@@ -197,4 +193,9 @@ public class Game {
         sound.setMusicSound(path);
         sound.loop(iteracions);
     } 
+
+    private void startMusic(){
+        sound.setMusicSound("musicLevel1");
+        sound.loop(-1);
+    }
 }

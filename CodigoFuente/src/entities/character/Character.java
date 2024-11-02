@@ -128,6 +128,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			observerOfSounds.loopSound("marioDie",3000);
 			characterAnimations.deathAnimation();
 			observerOfSounds.stopSound();
+			observerOfSounds.loopSound("musicLevel1", -1);
 		}
 		else observerOfSounds.reproduceSound("gameOver");
 	}
@@ -310,7 +311,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(Question questionBlock) {
 		if(upCollision(questionBlock)){
 			score += questionBlock.damage();
-			observerOfSounds.reproduceSound("powerUpAppears");
+			if(!questionBlock.isEmpty())
+			  observerOfSounds.reproduceSound("powerUpAppears");
 		}		
 	}
 	

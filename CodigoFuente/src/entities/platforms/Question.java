@@ -9,7 +9,6 @@ import factories.Sprite;
 public class Question extends Platform {
 
 	private static final boolean isBreakeable = false;
-
 	protected QuestionState actualState;
 	protected HashMap<String,QuestionState> questionStates;
 	
@@ -37,6 +36,10 @@ public class Question extends Platform {
         	update();
         }
 		return points;
+	}
+
+    public boolean isEmpty(){
+        return actualState.isEmpty();
 	}
 
 	public void acceptVisit(CharacterVisitor visitor) {

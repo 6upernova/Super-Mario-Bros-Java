@@ -69,12 +69,10 @@ public class EntityFactory {
 	public Platform newPlatform(int type, int worldX, int worldY) {
 		Platform platform=null;
 		switch (type){
-		    case 20:	platform = newBlock(worldX,worldY);
+		    case 21:	platform = newBlock(worldX,worldY);
 						break; 
-		    case 21: 	platform = newBrick(worldX,worldY);
-						break;		                 
-		    case 22:	platform = newQuestion(worldX,worldY);
-						break;                         
+		    case 22: 	platform = newBrick(worldX,worldY);
+						break;	                     
 		    case 23:  	platform = newVoid(worldX,worldY);
 						break;
 		    case 24:	platform = newFlag(worldX,worldY);
