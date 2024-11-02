@@ -56,7 +56,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void setInStart(){
 		((CharacterObserver)observer).respawn();
 		setX(5);
-		setY(1);
+		setY(0.5f);
+		observer.update();
 	}
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){
@@ -119,12 +120,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void stayStill(String key){
 		if(!isInAir())
 			setSprite(characterActualState.getSprites().get(key));
+		isMovingRight = false;
 		observer.update();
 	}
 
 	public void dead(){
 		lives--;
 		if(this.lives > 0) {
+			isMovingRight = false;
 			observerOfSounds.stopSoundMusic();
 			characterAnimations.deathAnimation();
 		}
@@ -235,7 +238,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		int points = characterActualState.getMushroomPoints();
 		addScore(points);
 		if(!characterActualState.isSuper()){
-
 			characterActualState = characterStates.get("Super");
 			updateBoundingBoxToBig();
 			observerOfSounds.reproduceSound("mushroom");
@@ -303,7 +305,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(Brick brickBlock) {
-		brickBlock.breakBrick();
 	}
 
 	public void visit(Question questionBlock) {

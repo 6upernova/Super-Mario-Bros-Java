@@ -66,18 +66,16 @@ public class LevelScreen extends JPanel {
     //Observer operation
 
     public void updateScrollRight(CharacterEntity character) {
-        if(character.isMovingRight()){
-            float targetBackgroundPosition = -(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE)*ViewConstants.CELL_SIZE;
-        
-            if (character.getX() >= getScrollbarXPosition()+ViewConstants.LEFT_CHARACTER_SPACE &&
-                targetBackgroundPosition < 0 && 
-                Math.abs(targetBackgroundPosition - backgroundX) > 1) { 
-                
+    
+        float targetBackgroundPosition = -(character.getX() - ViewConstants.LEFT_CHARACTER_SPACE)*ViewConstants.CELL_SIZE;
 
-                backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f ; 
-                backgroundImageLabel.setLocation(backgroundX, 0);
-                repaint();
-            }
+        if (character.getX() >= getScrollbarXPosition() + ViewConstants.LEFT_CHARACTER_SPACE &&
+            targetBackgroundPosition < 0 &&
+            Math.abs(targetBackgroundPosition - backgroundX) > 1) {
+
+            backgroundX += (targetBackgroundPosition - backgroundX) * 0.1f;
+            backgroundImageLabel.setLocation(backgroundX, 0);
+            repaint();
         }
     }
 
@@ -88,6 +86,7 @@ public class LevelScreen extends JPanel {
 
     public void resetScrollbar() {
         backgroundX = 0;
+        backgroundImageLabel.setLocation(backgroundX, 0);
     }
 
 

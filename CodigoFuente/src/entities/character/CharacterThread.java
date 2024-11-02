@@ -177,7 +177,8 @@ public class CharacterThread extends Thread {
         float characterLeftLimit = LogicTools.characterInMapEnd(game);
         if (character.getX() <= characterLeftLimit) {
             character.setHorizontalSpeed(0);
-        } else {
+        } 
+        else {
             character.setHorizontalSpeed(ViewConstants.CHARACTER_SPEED);
         }
 

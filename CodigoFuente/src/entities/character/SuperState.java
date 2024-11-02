@@ -10,7 +10,7 @@ public class SuperState extends CharacterState{
 
 	public void damaged() {
 		character.changeState("Normal");
-		//character.characterAnimations.superAnimation("Super", "Normal");
+		character.characterAnimations.superAnimation("Super", "Normal");
 		character.updateBoundingBoxToSmall();
 	}
 

@@ -20,7 +20,9 @@ public class CharacterObserver extends GraphicObserver{
         updateSprite();
         updatePositionSize();
         updateBoundingBoxCoords();
-        levelScreen.updateScrollRight(observedCharacter);
+        if(observedCharacter.isMovingRight()){
+            levelScreen.updateScrollRight(observedCharacter);
+        }
         
     }
 

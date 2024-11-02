@@ -4,12 +4,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import entities.BoundingBox;
+import entities.CollisionManager;
 import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import game.Game;
 
-public class CharacterCollisionManager{
+public class CharacterCollisionManager implements CollisionManager<Character>{
     protected List<Enemy> enemies;
     protected List<Platform> platforms;
     protected List<PowerUp> powerUps;
@@ -22,7 +23,7 @@ public class CharacterCollisionManager{
         this.powerUps = game.getCurrentLevel().getPowerUps();
 	}
 	
-	public boolean enemiesCollisions(Character character){
+	public void enemiesCollisions(Character character){
         boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
         Enemy enemy;
@@ -43,7 +44,6 @@ public class CharacterCollisionManager{
                 endIteration = true;
             }
         }
-        return collision;
     }
     
     private void smallJump(Character character){
@@ -51,7 +51,7 @@ public class CharacterCollisionManager{
         character.smallJump(side);
     }
 	
-	public boolean powerUpsCollisions(Character character){
+	public void powerUpsCollisions(Character character){
         boolean collision = false;
         Iterator<PowerUp> it = powerUps.iterator();
         PowerUp powerUp;
@@ -69,10 +69,9 @@ public class CharacterCollisionManager{
             }
             
         }
-        return collision;
     }
 	
-	public boolean platformsCollisions(Character character){
+	public void platformsCollisions(Character character){
 	    boolean collision = false;
 	    boolean endIteration = false;
 	    Iterator<Platform> it = platforms.iterator();
@@ -107,6 +106,5 @@ public class CharacterCollisionManager{
                 }
             }
 	    }
-	    return collision;
 	}
 }

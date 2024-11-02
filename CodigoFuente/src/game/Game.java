@@ -144,6 +144,7 @@ public class Game {
             currentLevel = levelGenerator.getNextLevel(); 
             currentLevel.setCharacter(currentCharacter);
             setObservers();
+            currentCharacter.setIsBusy(true);
             this.characterThread.setIsRunning(false);
             this.enemyThread.setIsRunning(false);
             this.characterThread.interrupt();
@@ -154,6 +155,7 @@ public class Game {
             startMusic();
             characterThread.start();
             enemyThread.start();
+            currentCharacter.setIsBusy(false);
         }
         else{      
             viewController.showMenuScreen();

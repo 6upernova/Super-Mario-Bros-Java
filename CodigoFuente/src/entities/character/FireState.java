@@ -10,11 +10,6 @@ public class FireState extends SuperState{
 		super.damaged();
 	}
 	
-	public boolean execute() {
-		boolean toReturn = true;
-		//completar
-		return toReturn;
-	}
 	
 	public HashMap<String, Sprite>  getSprites(){
 		HashMap<String, Sprite> sprites;

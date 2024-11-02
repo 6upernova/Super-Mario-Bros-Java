@@ -4,10 +4,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import entities.BoundingBox;
+import entities.CollisionManager;
 import entities.platforms.Platform;
 import game.Game;
 
-public class EnemyCollisionManager {
+public class EnemyCollisionManager implements CollisionManager<Enemy> {
 	
 	protected List<Platform> platforms;
 	protected List<Enemy> enemies;
@@ -20,7 +21,7 @@ public class EnemyCollisionManager {
 		this.enemies = game.getCurrentLevel().getEnemies();
 	}
 	
-	public boolean platformsCollisions(Enemy enemy){
+	public void platformsCollisions(Enemy enemy){
 	    boolean collision = false;
 		Iterator<Platform> it = platforms.iterator();
 		BoundingBox enemyBox = enemy.getBoundingBox();
@@ -31,8 +32,6 @@ public class EnemyCollisionManager {
 			if(collision)
 			collisionWithPlatform(enemy, platform);
 		}
-		
-		return collision;
 	}
 	
 	private void collisionWithPlatform(Enemy enemy, Platform platform){
@@ -57,14 +56,15 @@ public class EnemyCollisionManager {
 		enemy.setDirection("Left");
 	}
 
-	public void enemiesCollision(Enemy enemySource){
+	public void enemiesCollisions(Enemy enemySource){
+		boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
         Enemy enemyDestination;
         boolean endIteration = false;
         while(enemiesIt.hasNext() && !endIteration){
             enemyDestination = enemiesIt.next();
 			if(enemyDestination.isActive() && !enemySource.equals(enemyDestination)){
-				boolean collision = enemySource.colision(enemyDestination);
+				collision = enemySource.colision(enemyDestination);
 				if (collision) {
 					collisionWithOtherEnemy(enemySource, enemyDestination);
 					endIteration = true;
@@ -72,6 +72,11 @@ public class EnemyCollisionManager {
 				}
 			}
         }
+	}
+
+
+	public void powerUpsCollisions(Enemy entity) {
+		
 	}
 	
 	private void collisionWithOtherEnemy(Enemy enemySource, Enemy enemyDestination){

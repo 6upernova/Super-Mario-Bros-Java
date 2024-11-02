@@ -6,9 +6,10 @@ import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import game.Game;
 import entities.BoundingBox;
+import entities.CollisionManager;
 
 
-public class FireBallCollisionManager {    
+public class FireBallCollisionManager implements CollisionManager<Projectile> {    
 	protected List<Platform> platforms;
     protected List<Enemy> enemies;
     private Game game;
@@ -18,7 +19,7 @@ public class FireBallCollisionManager {
         this.game = game;
 	}	
 
-	public boolean platformsCollisions(Projectile projectile){
+	public void platformsCollisions(Projectile projectile){
 	    boolean collision = false;
         Iterator<Platform> it = platforms.iterator();
 	    BoundingBox projectileBox = projectile.getBoundingBox();
@@ -35,7 +36,6 @@ public class FireBallCollisionManager {
             }
                            
 	    }   
-	    return collision;
 	}
 
     public void checkRemove(Projectile projectile){        
@@ -43,7 +43,7 @@ public class FireBallCollisionManager {
         game.getCurrentLevel().getProjectiles().remove(projectile);   
     }
 
-    public boolean enemiesCollisions(Projectile projectile){
+    public void enemiesCollisions(Projectile projectile){
         boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
         Enemy enemy;
@@ -57,7 +57,11 @@ public class FireBallCollisionManager {
                 checkRemove(projectile);
             }
         }
-        return collision;
+    }
+
+   
+    public void powerUpsCollisions(Projectile entity) {
+        
     }
     
     public void moveProjectile(Projectile projectile) {        
