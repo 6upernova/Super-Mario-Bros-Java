@@ -28,12 +28,8 @@ public class KoopaTroopa extends Enemy implements EnemyVisitor{
 		return koopaTroopaStates;
 	}
 	
-	public void moveRight(int frame) {
-		koopaTroopaActualState.moveRight(frame);
-	}
-	
-	public void moveLeft(int frame) {
-		koopaTroopaActualState.moveLeft(frame);
+	public void move(int frame){
+		koopaTroopaActualState.move(frame);
 	}
 
 	public void hit(Character character){

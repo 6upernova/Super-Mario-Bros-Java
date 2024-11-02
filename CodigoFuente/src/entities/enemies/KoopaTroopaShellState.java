@@ -15,26 +15,35 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
         standing = true;
     }
 
-    public void moveRight(int frame) {
+    public void move(int frame){
         if(standing)
             checkChangeState();
-        else{
-            float enemyX = koopaTroopa.getX();
-            float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
-            koopaTroopa.setX(GraphicTools.round2Digits(enemyX + horizontalSpeed * 4));
-            koopaTroopa.getObserver().update();
-        }
+        else
+            switch (koopaTroopa.getDirection()) {
+                case "Left":
+                    moveLeft(frame);
+                    break;
+                case "Right":
+                    moveRight(frame);
+                    break;
+                case "None":
+                    break;
+            }
+    }
+    private void moveRight(int frame) {
+        float enemyX = koopaTroopa.getX();
+        float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
+        koopaTroopa.setX(GraphicTools.round2Digits(enemyX + horizontalSpeed * 4));
+        koopaTroopa.getObserver().update();
+        
 	}
 	
-	public void moveLeft(int frame) {
-        if(standing)
-            checkChangeState();
-        else{
-            float enemyX = koopaTroopa.getX();
-            float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
-            koopaTroopa.setX(GraphicTools.round2Digits(enemyX - horizontalSpeed * 4));
-            koopaTroopa.getObserver().update();
-        }
+	private void moveLeft(int frame) {
+        float enemyX = koopaTroopa.getX();
+        float horizontalSpeed = koopaTroopa.getHorizontalSpeed();
+        koopaTroopa.setX(GraphicTools.round2Digits(enemyX - horizontalSpeed * 4));
+        koopaTroopa.getObserver().update();
+        
 	} 
 
     public void hit(Character character){
@@ -70,8 +79,9 @@ public class KoopaTroopaShellState implements KoopaTroopaState {
             koopaTroopa.normalMode();
     }
 
-    public void hitEnemy(Enemy  enemy){
-        enemy.dead();
+    public void hitEnemy(Enemy enemy){
+        if(!standing)
+            enemy.dead();
     }
         
     

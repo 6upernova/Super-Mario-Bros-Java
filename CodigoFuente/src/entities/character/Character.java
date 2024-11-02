@@ -305,6 +305,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(Brick brickBlock) {
+		
 	}
 
 	public void visit(Question questionBlock) {
