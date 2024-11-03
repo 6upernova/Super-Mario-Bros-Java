@@ -184,18 +184,19 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"BeetleShell.png");	 
     }
 
-    /*============================================================Spiny Sprites============================================================*/
+    /*============================================================Spinny Sprites============================================================*/
 
-    public Sprite getSpinyLeftSprite(int frame){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyLeft"+frame+".png");	 
+    public Sprite getSpinnyLeftSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinnyLeft"+frame+".png");	 
     }
-    public Sprite getSpinyRightSprite(int frame){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyRight"+frame+".png");	 
+    
+    public Sprite getSpinnyRightSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinnyRight"+frame+".png");	 
     }
-    public Sprite getSpinyEggSprite(){
-        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinyEgg.png");	 
+    
+    public Sprite getSpinnyEggSprite(){
+        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinnyEgg.png");	 
     }
-
 
     public Sprite getShellSprite(){
         return new Sprite(folderPath + File.separator+"Shell.png");	 
@@ -262,6 +263,5 @@ public abstract class SpriteFactory {
     public Sprite getMastEndSprite() {
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"MastEnd.png");
     }
-
     /*=====================================================================================================================================*/
 }

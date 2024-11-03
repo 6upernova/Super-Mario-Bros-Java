@@ -6,12 +6,12 @@ import entities.powerUps.PowerUp;
 
 public abstract class QuestionState {
 
-	protected int golpesantesdeestarvacio;
+	protected int hits;
 	protected PowerUp powerUpOn;
 	protected Sprite sprite;
 	
 	public QuestionState(int hits, Sprite newSprite) {
-		golpesantesdeestarvacio= hits;
+		this.hits= hits;
 		powerUpOn= null;
 		sprite= newSprite;
 	}
@@ -25,7 +25,7 @@ public abstract class QuestionState {
 	}
 	
 	public boolean isEmpty() {
-		return golpesantesdeestarvacio == 0;
+		return hits == 0;
 	}
 	
 	public abstract int damaged(ObserverSound observerSound);

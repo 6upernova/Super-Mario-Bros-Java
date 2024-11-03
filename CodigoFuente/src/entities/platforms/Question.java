@@ -10,6 +10,7 @@ import factories.Sprite;
 public class Question extends Platform {
 
 	private static final boolean isBreakeable = false;
+	
 	protected QuestionState actualState;
 	protected HashMap<String,QuestionState> questionStates;
 	
@@ -32,9 +33,9 @@ public class Question extends Platform {
 	public int damage(ObserverSound observerSound){
 		int points= actualState.damaged(observerSound); 
         if(actualState.isEmpty()) {
-        	chargeToVoidQuestionBlock();
-        	update();
-		}
+        	changeToVoidQuestionBlock();
+        	observer.update();
+        }
 		return points;
 	}
 
@@ -46,13 +47,9 @@ public class Question extends Platform {
     	visitor.visit(this);
     }
 	
-	private void chargeToVoidQuestionBlock() {
+	private void changeToVoidQuestionBlock() {
 		actualState= questionStates.get("EmptyQuestion");
 		sprite= actualState.getSprite();
-	}
-	
-	private void update() {
-		observer.update();
 	}
 	
 	public PowerUp getPowerUp() {

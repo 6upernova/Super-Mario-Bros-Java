@@ -1,12 +1,14 @@
 package entities.enemies;
-import java.util.HashMap;
 
+import java.util.HashMap;
 import entities.character.CharacterVisitor;
 import factories.Sprite;
+
 public class BuzzyBeetle extends Enemy {
 
 	static final private int pointsOnDeath=30;
 	static final private int pointsOnKill=-15;
+	
 	protected HashMap<String, BuzzyBeetleState> buzzyBeetleStates;
 	protected BuzzyBeetleState buzzyBeetleActualState;
 	

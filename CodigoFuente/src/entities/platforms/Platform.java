@@ -3,9 +3,11 @@ package entities.platforms;
 import entities.Entity;
 import entities.PlatformsVisitor;
 import entities.VisitedElement;
+import entities.enemies.Enemy;
+import entities.enemies.EnemyVisitor;
 import factories.Sprite;
 
-public abstract class Platform extends Entity implements VisitedElement, Visited{
+public abstract class Platform extends Entity implements VisitedElement, EnemyVisitor{
 
 	protected boolean isBreakeable;
 	
@@ -22,4 +24,6 @@ public abstract class Platform extends Entity implements VisitedElement, Visited
 		visitor.visit(this);
 	}
 	
+    public void visit(Enemy enemy) {}
+    
 }

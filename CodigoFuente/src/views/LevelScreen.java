@@ -89,8 +89,6 @@ public class LevelScreen extends JPanel {
         backgroundImageLabel.setLocation(backgroundX, 0);
     }
 
-
-    //View Controller and draw operations
     public CharacterObserver drawEntityCharacter(CharacterEntity characterEntity){
         CharacterObserver characterObserver = new CharacterObserver(this, characterEntity);
         backgroundImageLabel.add(characterObserver);
@@ -140,16 +138,11 @@ public class LevelScreen extends JPanel {
     }
 
     public void pointsAnimation(JLabel pointsJLabel){
-
-        
         Timer timer = new Timer(16, new ActionListener() {
         int steps = 0;
-
-        @Override
         public void actionPerformed(ActionEvent e) {
             pointsJLabel.setLocation(pointsJLabel.getX(), pointsJLabel.getY() - 1);
             steps++;
-            
             if (steps >= 60) {
                 ((Timer) e.getSource()).stop();
                 backgroundImageLabel.remove(pointsJLabel);

@@ -7,7 +7,7 @@ import entities.character.CharacterThread;
 import entities.character.ObserverSound;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
-import entities.enemies.Spiny;
+import entities.enemies.Spinny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
@@ -39,8 +39,8 @@ public class Game {
     
     public void setName(String name){
         this.currentPlayer = name;
-    }   
-    //Launcher operation
+    }
+    
     public void setViewController(ViewController viewController){
         this.viewController = viewController;       
     }
@@ -56,7 +56,7 @@ public class Game {
     }
 
     public void stop(){
-        //ranking 
+        sound.stopMusic();
         ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         waitMusic();
@@ -74,8 +74,7 @@ public class Game {
     public ViewController getViewController(){
         return viewController;
     }
-
-    //Graphic operations
+    
     public void setObservers(){
         setCharacterObserver(currentLevel.getCharacter());
         setPlatformsObservers(currentLevel.getPlatforms());
@@ -222,9 +221,9 @@ public class Game {
     }
 
     public void createEgg(int x, int y) {
-        Spiny spiny = levelGenerator.createSpiny(x,y);
-        currentLevel.getEnemies().add(spiny);
-    	GraphicObserver enemyObserver = viewController.registerEntity(spiny);
-    	spiny.registerObserver(enemyObserver);        
+        Spinny spinny = levelGenerator.createSpinny(x,y);
+        currentLevel.getEnemies().add(spinny);
+    	GraphicObserver enemyObserver = viewController.registerEntity(spinny);
+    	spinny.registerObserver(enemyObserver);        
     }
 }

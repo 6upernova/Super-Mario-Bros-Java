@@ -11,32 +11,27 @@ import views.ViewConstants;
 import views.CharacterObserver;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
+	
+	public final int HIT_INVINCIBILITY_TIME = 500;
+	public final int STAR_INVINCIBILITY_TIME = 5000 ;
+	
 	protected int lives;
 	protected int score;
 	protected int coins;
-
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
 	protected HashMap<String, Sprite> characterInvencibleSprites;
 	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
 	protected CharacterAnimations characterAnimations;
 	protected ObserverSound observerOfSounds;
-	
-	//Gravity And movementd
 	protected boolean isInAir;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
-
-	//Flags
 	protected boolean isMovingRight;
 	protected boolean isInEnd;
 	protected boolean invincible;
 	protected boolean invulnerable;
 	protected boolean isBusy;
-
-	//Constants
-	public final int HIT_INVINCIBILITY_TIME = 500;
-	public final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
@@ -104,7 +99,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void smallJump(String direction){
 		verticalSpeed = ViewConstants.CHARACTER_JUMP / 2;
-        isInAir = true;
 		setSprite(characterActualState.getSprites().get("Jumping" + direction));
         observer.update();
 	}
@@ -137,6 +131,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public boolean isInAir(){
 		return isInAir;
 	}
+	
 	public void setIsInAir(boolean isInAir){
 		this.isInAir = isInAir;
 	}
@@ -200,49 +195,47 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return ViewConstants.CHARACTER_SPEED;
 	}
 
-	//VISITAS
     public void visit(Goomba goomba) {	
 		killEnemySound();
 		observerOfSounds.reproduceSound("stomp");
 		addScore(goomba.getPointsOnDeath());
 		goomba.dead();
     }    
+    
     public void visit(KoopaTroopa koopaTroopa) {
 		killEnemySound();
 		observerOfSounds.reproduceSound("stomp");
 		addScore(koopaTroopa.getPointsOnDeath());
-		//Change state
-		if(invincible)
-			koopaTroopa.dead();
-		else
-			koopaTroopa.hit(this);
-    }    
+		koopaTroopa.hit(this);
+    }   
+    
     public void visit(PiranhaPlant piranhaPlant) {
 		addScore(piranhaPlant.getPointsOnDeath());
 		this.damaged();
     }	
+    
     public void visit(Lakitu lakitu) {
 		killEnemySound();
 		addScore(lakitu.getPointsOnDeath());
 		lakitu.dead();
     }
+    
     public void visit(BuzzyBeetle buzzyBeetle) {
 		killEnemySound();
 		addScore(buzzyBeetle.getPointsOnDeath());
 		buzzyBeetle.hit();
 		
     }
-	public void visit(Spiny spiny) {
-		killEnemySound();
-		addScore(spiny.getPointsOnDeath());
-		spiny.dead();
+    
+	public void visit(Spinny spinny) {
+		addScore(spinny.getPointsOnDeath());
+		spinny.dead();
 	}
 	
 	public void killEnemySound() {
 		observerOfSounds.reproduceSound("stomp");
 	}
 	
-	//power ups visits
 	public void visit(SuperMushroom mushroom){
 		int points = characterActualState.getMushroomPoints();
 		addScore(points);
@@ -259,7 +252,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		lives++;
 		addScore(greenMushroom.getPoints());
 		observerOfSounds.reproduceSound("1-up");
-		//hacer que desaparezca de la pantalla
 	}
 
 	public void visit(FireFlower flower){		
@@ -293,13 +285,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		coins++;
 	}
 
-
-	//platforms visit
-	public void visit(Pipe pipe) {
-	}
+	public void visit(Pipe pipe) {}
 	
-	public void visit(Flag flag) {
-	}
+	public void visit(Flag flag) {}
+	
+	public void visit(Block block) {}
+
+	public void visit(Brick brickBlock) {}
+
 	public void visit(VoidBlock voidBlock) {
 		if (downCollision(voidBlock)){
 			addScore(-15);
@@ -308,14 +301,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
     }
 	
-	public void visit(Block block) {
-		
-	}
-
-	public void visit(Brick brickBlock) {
-		
-	}
-
 	public void visit(Question questionBlock) {
 		if(upCollision(questionBlock)){
 		     questionBlock.damage(observerOfSounds);
@@ -362,6 +347,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void setNormalInvencibleSprites(HashMap<String, Sprite> characterInvencibleSprites) {
 		this.characterInvencibleSprites = characterInvencibleSprites;
 	}
+	
 	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
 		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
 	}
@@ -370,6 +356,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public HashMap<String, Sprite> getNormalInvencibleSprites() {
 		return characterInvencibleSprites;
     }
+	
     public HashMap<String, Sprite> getSuperInvencibleSprites() {
 		return characterSuperInvencibleSprites;
     }
@@ -407,21 +394,17 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void updateBoundingBoxToBig(){
-		//System.out.println(boundingBox.height <= ViewConstants.CELL_SIZE);
 		if(boundingBox.height <= ViewConstants.CELL_SIZE){
 			boundingBox.height *= 2;
 			boundingBox.updateExternalBoundsToBig();
 		}
 	}
+	
 	public void updateBoundingBoxToSmall(){
 		if(boundingBox.height > ViewConstants.CELL_SIZE){
 			boundingBox.height /= 2;
 			boundingBox.updateExternalBoundsToSmall();
 		}
 	}
-
-	
-
-   
 
 }

@@ -1,7 +1,8 @@
 package entities.enemies;
-import java.util.HashMap;
 
+import java.util.HashMap;
 import entities.character.CharacterVisitor;
+import entities.platforms.Platform;
 import entities.character.Character;
 import factories.Sprite;
 import views.GraphicObserver;
@@ -10,6 +11,7 @@ public class KoopaTroopa extends Enemy{
 
 	static final private int pointsOnDeath=90;
 	static final private int pointsOnKill=-45;
+	
 	protected HashMap<String, KoopaTroopaState> koopaTroopaStates;
 	protected KoopaTroopaState koopaTroopaActualState;
 	
@@ -61,13 +63,21 @@ public class KoopaTroopa extends Enemy{
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
 	}
-
 	
 	public void visit(Enemy enemy) {
 		koopaTroopaActualState.hitEnemy(enemy);
 	}
 
+	@Override
+	public void visit(Platform platform) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void acceptVisit(EnemyVisitor enemy) {
+		// TODO Auto-generated method stub
+		
+	}
 	
-
 }

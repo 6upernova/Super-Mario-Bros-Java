@@ -9,8 +9,9 @@ public class WithPowerUp extends QuestionState {
 		super(1, sprite);
 	}
 
+
 	public int damaged(ObserverSound observerSound) {
-	    golpesantesdeestarvacio--;
+	    hits--;
 	    powerUpOn.activatePowerUp();
 		observerSound.reproduceSound("powerUpAppears");
 		return 0;

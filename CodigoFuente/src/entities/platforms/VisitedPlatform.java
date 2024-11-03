@@ -2,7 +2,6 @@ package entities.platforms;
 
 import entities.PlatformsVisitor;
 
-public interface Visited {
+public interface VisitedPlatform {
     public void acceptVisit(PlatformsVisitor visitor);
-
 }

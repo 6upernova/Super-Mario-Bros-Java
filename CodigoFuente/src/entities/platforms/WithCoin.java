@@ -9,9 +9,8 @@ public class WithCoin extends QuestionState{
 		super(3,sprite);
 	}
 
-	public int damaged(ObserverSound obserSound) {
-		golpesantesdeestarvacio--;
-		obserSound.reproduceSound("coin");
+	public int damaged(ObserverSound observerSound) {
+		hits--;
 		return powerUpOn.getPoints();
 	}
 

@@ -9,6 +9,7 @@ import entities.BoundingBox;
 
 
 public class HitboxPanel extends JLabel {
+	
     BoundingBox hitbox;
 
     public HitboxPanel(BoundingBox hitbox) {
@@ -18,7 +19,6 @@ public class HitboxPanel extends JLabel {
         updateHitbox();
     }
 
-    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.YELLOW);  
@@ -30,5 +30,6 @@ public class HitboxPanel extends JLabel {
         revalidate();
         repaint();
     }
+    
 }
 

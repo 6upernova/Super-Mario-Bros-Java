@@ -6,5 +6,4 @@ public interface CollisionManager<T extends LogicalEntity> {
     public void platformsCollisions(T entity);
     public void powerUpsCollisions(T entity);
 
-
 }

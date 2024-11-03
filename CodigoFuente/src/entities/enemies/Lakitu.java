@@ -1,5 +1,6 @@
 package entities.enemies;
 import entities.character.CharacterVisitor;
+import entities.platforms.Platform;
 import entities.character.Character;
 import factories.Sprite;
 import tools.GraphicTools;
@@ -7,14 +8,16 @@ import views.GraphicObserver;
 import views.ViewConstants;
 
 public class Lakitu extends Enemy {
+	
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=0;
+	
 	protected Character characterReference;
 	protected long arrivalTimeMillis;
 	protected String characterSide;
 	protected boolean waiting;
-	protected float travelTime; 			//0<= travelTime <= 1
-	protected boolean canThrowEgg;		
+	protected float travelTime;
+	protected boolean canThrowEgg;
 	private int eggCooldown;
 	
 	public Lakitu(Sprite sprite, int positionInX, int positionInY) {

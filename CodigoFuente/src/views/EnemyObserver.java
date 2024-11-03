@@ -30,15 +30,18 @@ public class EnemyObserver extends GraphicObserver{
 
 
     public void remove(){
-        JLabel points = new JLabel("\u002B"+observedEnemy.getPointsOnDeath());
-        int x = GraphicTools.transformX(observedEnemy.getX(),this);
-        int y = GraphicTools.transformY(observedEnemy.getY(),this);
-        points.setForeground(Color.WHITE);
-        points.setFont(ViewConstants.font);
-        points.setBounds(x, y,600, 40);
-        levelScreen.drawPoints(points);
+    	System.out.println(observedEnemy.getY());
+        if(observedEnemy.getY()>=0) {
+    		JLabel points = new JLabel("\u002B"+observedEnemy.getPointsOnDeath());
+    		int x = GraphicTools.transformX(observedEnemy.getX(),this);
+        	int y = GraphicTools.transformY(observedEnemy.getY(),this);
+    		points.setForeground(Color.WHITE);
+        	points.setFont(ViewConstants.font);
+        	points.setBounds(x, y,600, 40);
+            levelScreen.drawPoints(points);
+        }
         levelScreen.removeEntity(observedEntity);
+		this.update();
     }
-
 
 }

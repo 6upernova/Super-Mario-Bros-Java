@@ -2,7 +2,16 @@ package entities.enemies;
 import entities.Entity;
 import entities.PlatformsVisitor;
 import entities.VisitedElement;
+import entities.platforms.Block;
+import entities.platforms.Brick;
+import entities.platforms.Flag;
+import entities.platforms.Mast;
+import entities.platforms.MastEnd;
+import entities.platforms.Pipe;
 import entities.platforms.Platform;
+import entities.platforms.Question;
+import entities.platforms.VisitedPlatform;
+import entities.platforms.VoidBlock;
 import factories.Sprite;
 import tools.GraphicTools;
 import views.EnemyObserver;
@@ -10,34 +19,29 @@ import views.Observer;
 import views.ViewConstants;
 import java.util.HashMap;
 
-public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement, EnemyVisitor, PlatformsVisitor{
+public abstract class Enemy extends Entity implements EnemyEntity, VisitedElement, EnemyVisitor, PlatformsVisitor{
 	
 	protected int pointsOnDeath;
 	protected int pointsOnKill;
 	protected String direction;
-
-	//flags
 	protected boolean isActive;
 	protected boolean isAlive;
 	protected boolean isInAir;
 	protected boolean flies;
 	protected boolean isHostile;
-
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
-	
 	protected HashMap<String, Sprite> sprites;
 	
 	public Enemy(Sprite sprite, float positionInX, float positionInY, int pointsOnDeath,int pointsOnKill) {
 		super(sprite, positionInX, positionInY);
-		this.pointsOnDeath = pointsOnDeath;//Puntos cuando enemigo muere
-		this.pointsOnKill = pointsOnKill;  //Puntos cuando enemigo mata
+		this.pointsOnDeath = pointsOnDeath;
+		this.pointsOnKill = pointsOnKill;
 		this.horizontalSpeed = ViewConstants.ENEMY_SPEED;
 		this.verticalSpeed = 0;
 		this.isActive = false;
 		this.isInAir = true;
 		this.isAlive = true;
-		
 	}
 
 	public void move(int frame){
@@ -83,7 +87,7 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		return direction;
 	}
 	
-	public int pointsOnDeath() {
+	public int getpointsOnDeath() {
 		return pointsOnDeath;
 	}
 	
@@ -94,12 +98,15 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 	public Observer getObserver() {
 		return observer;
 	}
+	
 	public boolean isActive(){
 		return isActive;
 	}
+	
 	public void activateEnemy(){
 		isActive = true;
 	}
+	
 	public void deactivateEnemy(){
 		isActive = false;
 	}
@@ -137,7 +144,6 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		((EnemyObserver)observer).remove();
 		setAlive(false);
 	}
-	
 
 	public void applyGravity() {
 		if (isInAir&&!flies){ 
@@ -151,27 +157,22 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
 		}
 	}
 
-
 	public void acceptVisit(EnemyVisitor visitor){
 		visitor.visit(this);
 	}
-
-	public void visit(Enemy enemy){
-		if(this.leftCollision(enemy))
-			leftEnemyCollision(enemy);
-		else if(this.rightCollision(enemy))
-			rightEnemyCollision(enemy);
 	
-	}
-
+	public void visit(Platform platform) {}
+	
 	private void leftEnemyCollision(Enemy enemy){
 			this.setDirection("Right");
 			enemy.setDirection("Left");
 	}
+	
 	private void rightEnemyCollision( Enemy enemy){
 			this.setDirection("Left");
 			enemy.setDirection("Right");
 	}
+	
 	public boolean getFlies(){
 		return flies;
 	}
@@ -179,12 +180,12 @@ public abstract class Enemy extends Entity implements EnemyEntity,VisitedElement
     public boolean canThrowEgg() {
 		return false;
     }
-		
-	public void visit(Platform block){} 
+	
+	public void visit(Enemy enemy){
+		if(this.leftCollision(enemy))
+			leftEnemyCollision(enemy);
+		else if(this.rightCollision(enemy))
+			rightEnemyCollision(enemy);
+	}
+	
 }
-
-	
-	
-	
-	
-

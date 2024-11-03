@@ -96,7 +96,6 @@ public class EntityFactory {
 	
 
 	public Character createCharacter(){
-		//Preguntar Si se puede hacer de esta manera 
         Character character = new Character(spriteFactory.getCharacterStillSprite("Right"));
 		HashMap<String,CharacterState> characterStates = createStates(character);
 		character.setCharacterStates(characterStates);
@@ -241,7 +240,6 @@ public class EntityFactory {
 	    return flower;
 	}
 	
-	//ENEMYS
 	private KoopaTroopa newKoopaTroopa(int worldX, int worldY) {
 	    KoopaTroopa koopa = new KoopaTroopa(spriteFactory.getKoopaTroopaLeftSprite(1),worldX,worldY);
 		koopa.setSpritesMap(getKoopaTroopaSprites());
@@ -307,21 +305,21 @@ public class EntityFactory {
 		goombaSprites.put("Walking2", spriteFactory.getGoombaRightSprite());
 		return goombaSprites;
 	}
-	public Spiny newSpiny(int worldX, int worldY){
-        Spiny spiny = new Spiny(spriteFactory.getSpinyEggSprite(), worldX, worldY);
-		spiny.setSpritesMap(getSpinySprites());
-		return spiny;
+	public Spinny newSpinny(int worldX, int worldY){
+        Spinny spinny = new Spinny(spriteFactory.getSpinnyEggSprite(), worldX, worldY);
+		spinny.setSpritesMap(getSpinnySprites());
+		return spinny;
 	}	
-	private HashMap<String, Sprite> getSpinySprites(){
-		HashMap<String,Sprite> spinySprites = new HashMap<String,Sprite>();
-		spinySprites.put("Left1",  spriteFactory.getSpinyLeftSprite(1));
-		spinySprites.put("Left2",  spriteFactory.getSpinyLeftSprite(2));
-		spinySprites.put("Right1", spriteFactory.getSpinyRightSprite(1));
-		spinySprites.put("Right2", spriteFactory.getSpinyRightSprite(2));
-		spinySprites.put("Egg", spriteFactory.getSpinyEggSprite());
-		return spinySprites;
+	private HashMap<String, Sprite> getSpinnySprites(){
+		HashMap<String,Sprite> spinnySprites = new HashMap<String,Sprite>();
+		spinnySprites.put("Left1",  spriteFactory.getSpinnyLeftSprite(1));
+		spinnySprites.put("Left2",  spriteFactory.getSpinnyLeftSprite(2));
+		spinnySprites.put("Right1", spriteFactory.getSpinnyRightSprite(1));
+		spinnySprites.put("Right2", spriteFactory.getSpinnyRightSprite(2));
+		spinnySprites.put("Egg", spriteFactory.getSpinnyEggSprite());
+		return spinnySprites;
 	}
-    //PLATFORMS
+  
 	private Pipe newPipeTopLeft(int worldX, int worldY) {
 		Pipe pipe = new PipeTopLeft(spriteFactory.getPipeTopLeftSprite(),worldX,worldY);
 	    return pipe;

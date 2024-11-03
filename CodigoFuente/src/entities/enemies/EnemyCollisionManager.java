@@ -43,6 +43,7 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
 			leftPlatformCollision(enemy, platform);
 		else if(enemy.rightCollision(platform) && enemy.getDirection()=="Right")
 			rightPlatformCollision(enemy, platform);
+		platform.visit(enemy);
 	}
 	private void downPlatformCollision(Enemy enemy, Platform platform){
 		enemy.setIsInAir(false);
@@ -74,7 +75,6 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
 			}
         }
 	}
-
 
 	public void powerUpsCollisions(Enemy entity) {		
 	}

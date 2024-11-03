@@ -53,8 +53,6 @@ public class BoundingBox extends Rectangle {
         boolean upCollision = getBoundsTop().intersects(externalBounding); 
         return upCollision;
     }
-   
-     // Sub-bounding boxes
 
     public BoundingBox getBoundsTop() {
         return upperBound;
@@ -85,7 +83,5 @@ public class BoundingBox extends Rectangle {
         leftBound.height /= 2;
         rightBound.height /= 2;
     }
-    
-
 
 }

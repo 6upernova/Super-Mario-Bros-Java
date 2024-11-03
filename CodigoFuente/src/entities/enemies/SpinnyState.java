@@ -1,8 +1,10 @@
 package entities.enemies;
-public abstract class SpinyState {
-    protected Spiny spiny;
-    public SpinyState(Spiny spiny){
-        this.spiny = spiny;
+public abstract class SpinnyState {
+	
+    protected Spinny spinny;
+    
+    public SpinnyState(Spinny spinny){
+        this.spinny = spinny;
     }
     public abstract void moveRight(int frame);
 	public abstract void moveLeft(int frame);
