@@ -1,7 +1,7 @@
 package entities.platforms;
 import entities.character.CharacterVisitor;
 import factories.Sprite;
-import views.GraphicObserver;
+import observer.GraphicObserver;
 
 public class MastEnd extends Platform{
     static final private boolean isBreakeable = false;

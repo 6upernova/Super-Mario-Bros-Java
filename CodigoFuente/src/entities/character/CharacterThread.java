@@ -1,8 +1,6 @@
 package entities.character;
-
 import java.util.HashMap;
 import java.util.List;
-
 import entities.enemies.Enemy;
 import entities.platforms.*;
 import entities.projectile.FireBallCollisionManager;

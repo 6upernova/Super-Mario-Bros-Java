@@ -8,6 +8,7 @@ import entities.character.CharacterEntity;
 import entities.character.Keyboard;
 import entities.enemies.EnemyEntity;
 import game.Game;
+import observer.GraphicObserver;
 
 public class ViewController {   
     protected JFrame window;

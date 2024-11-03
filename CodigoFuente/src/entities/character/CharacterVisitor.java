@@ -2,6 +2,10 @@ package entities.character;
 import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
+import entities.state.buzzyBeetle.BuzzyBeetle;
+import entities.state.koopaTroopa.KoopaTroopa;
+import entities.state.question.Question;
+import entities.state.spiny.Spinny;
 
 public interface CharacterVisitor{
 	

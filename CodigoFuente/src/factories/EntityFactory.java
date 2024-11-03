@@ -1,10 +1,21 @@
 package factories;
-import entities.character.*;
 import entities.character.Character;
+import entities.character.characterStates.CharacterState;
+import entities.character.characterStates.FireState;
+import entities.character.characterStates.NormalState;
+import entities.character.characterStates.SuperState;
 import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
 import entities.projectile.FireBall;
+import entities.state.buzzyBeetle.BuzzyBeetle;
+import entities.state.koopaTroopa.KoopaTroopa;
+import entities.state.question.Question;
+import entities.state.question.QuestionBlockEmpty;
+import entities.state.question.QuestionState;
+import entities.state.question.WithCoin;
+import entities.state.question.WithPowerUp;
+import entities.state.spiny.Spinny;
 
 import java.util.HashMap;
 

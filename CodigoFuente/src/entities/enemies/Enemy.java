@@ -1,21 +1,13 @@
 package entities.enemies;
 import entities.Entity;
-import entities.PlatformsVisitor;
-import entities.VisitedElement;
-import entities.platforms.Block;
-import entities.platforms.Brick;
-import entities.platforms.Flag;
-import entities.platforms.Mast;
-import entities.platforms.MastEnd;
-import entities.platforms.Pipe;
 import entities.platforms.Platform;
-import entities.platforms.Question;
-import entities.platforms.VisitedPlatform;
-import entities.platforms.VoidBlock;
+import entities.visitor.EnemyVisitor;
+import entities.visitor.PlatformsVisitor;
+import entities.visitor.VisitedElement;
 import factories.Sprite;
+import observer.EnemyObserver;
+import observer.Observer;
 import tools.GraphicTools;
-import views.EnemyObserver;
-import views.Observer;
 import views.ViewConstants;
 import java.util.HashMap;
 

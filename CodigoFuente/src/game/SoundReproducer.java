@@ -16,7 +16,7 @@ public class SoundReproducer {
 	private HashMap<String, File> hashSounds;
 	
 	public SoundReproducer(SoundGenerator generator) {
-		hashSounds= generator.getFileOfSounds();
+		this.hashSounds= generator.getFileOfSounds();
 	}
 	
 	public void setAuxiliarSound(String path) {

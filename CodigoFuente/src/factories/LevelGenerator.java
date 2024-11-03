@@ -5,11 +5,11 @@ import java.util.List;
 import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.enemies.Lakitu;
-import entities.enemies.Spinny;
 import entities.platforms.Platform;
-import entities.platforms.Question;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
+import entities.state.question.Question;
+import entities.state.spiny.Spinny;
 import game.Level;
 import views.ViewConstants;
 
@@ -27,18 +27,18 @@ public class LevelGenerator {
         this.levelNumber = number;
         parser.setLevel(levelNumber);
         Character characterReference = character == null ? entityFactory.createCharacter() : character;
-        List<Platform> platformList = new LinkedList<Platform>();
-        List<PowerUp> powerUpList = new LinkedList<PowerUp>();
-        List<Enemy> enemyList = new LinkedList<Enemy>();
+        List<Platform> platforms = new LinkedList<Platform>();
+        List<PowerUp> powerUps = new LinkedList<PowerUp>();
+        List<Enemy> enemies = new LinkedList<Enemy>();
         while(parser.hasToRead()) {
-            generateEntity(characterReference,platformList, enemyList, powerUpList);     
+            generateEntity(characterReference,platforms, enemies, powerUps);     
         } 
-        Level levelGenerate= new Level(platformList, enemyList, powerUpList);  
+        Level levelGenerate= new Level(platforms, enemies, powerUps);  
         levelGenerate.setCharacter(characterReference);  
         return levelGenerate;
     }
 
-    private void generateEntity(Character charater,List<Platform> platformList,List<Enemy> enemyList,List<PowerUp> powerUpList){    
+    private void generateEntity(Character charater,List<Platform> platforms,List<Enemy> enemies,List<PowerUp> powerUps){    
         int type= parser.getType();
         int worldX = parser.getPositionX();
         int worldY = parser.getPositionY();
@@ -48,20 +48,20 @@ public class LevelGenerator {
                 Lakitu lakitu=(Lakitu) enemy;
                 lakitu.setCharacterReference(charater);
             }
-            enemyList.add(enemy);
+            enemies.add(enemy);
         }
         if( type>9 && type<15) { 
             Question questionBlock = entityFactory.newPowerUpWithQuestionBlock(type, worldX, worldY);
-            powerUpList.add(questionBlock.getPowerUp());
-            platformList.add(questionBlock);
+            powerUps.add(questionBlock.getPowerUp());
+            platforms.add(questionBlock);
         }
         if(type == 15) {
             PowerUp powerUp= entityFactory.newOnlyCoin(worldX, worldY);
-            powerUpList.add(powerUp);
+            powerUps.add(powerUp);
         } 
         if( type>19 && type<=30) { 
            Platform platform= entityFactory.newPlatform(type, worldX, worldY);
-           platformList.add(platform);
+           platforms.add(platform);
         }       
     }
 

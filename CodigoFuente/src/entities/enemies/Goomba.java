@@ -1,10 +1,9 @@
 package entities.enemies;
-
 import entities.character.CharacterVisitor;
 import entities.platforms.Platform;
 import factories.Sprite;
+import observer.GraphicObserver;
 import tools.GraphicTools;
-import views.GraphicObserver;
 
 public class Goomba extends Enemy{
 
@@ -49,7 +48,6 @@ public class Goomba extends Enemy{
 
 	@Override
 	public void visit(Platform platform) {
-		// TODO Auto-generated method stub
 		
 	}
 	

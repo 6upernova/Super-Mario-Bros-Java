@@ -1,8 +1,8 @@
 package entities.enemies;
 import entities.character.CharacterVisitor;
 import factories.Sprite;
+import observer.GraphicObserver;
 import tools.GraphicTools;
-import views.GraphicObserver;
 
 public class PiranhaPlant extends Enemy{
 

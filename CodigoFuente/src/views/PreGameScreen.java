@@ -31,8 +31,8 @@ public class PreGameScreen extends JPanel {
         createModeSelecter();
         createInitButton();        
         addBackButton();
-		background = new ImageIcon("src/assets/backgrounds/menuBackground.png").getImage();
-        this.mode = "ORIGINAl ";
+		this.background = new ImageIcon("src/assets/backgrounds/menuBackground.png").getImage();
+        this.mode = "ORIGINAL";
 	}
 
     private void createNameInput() {

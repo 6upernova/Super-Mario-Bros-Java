@@ -13,8 +13,6 @@ public abstract class Projectile extends Entity{
 	protected float initialY;
 	protected float verticalSpeed;
 
-
-
 	protected Projectile(Sprite sprite, float positionInX, float positionInY, String direction) {
 		super(sprite, positionInX, positionInY);
 		this.direction = direction;

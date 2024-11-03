@@ -21,7 +21,7 @@ public class MenuScreen extends JPanel{
 		setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
         setLayout(null);
         createJButtons();
-		background = new ImageIcon("src/assets/backgrounds/menuBackground.png").getImage();
+		this.background = new ImageIcon("src/assets/backgrounds/menuBackground.png").getImage();
 	}
 
 	private void createJButtons() {

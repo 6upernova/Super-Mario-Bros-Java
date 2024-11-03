@@ -21,7 +21,7 @@ public class RankingScreen extends JPanel {
     }
 
     private void addRankingPanel(Collection<String> players) {
-        rankingPanel = new RankingPanel(players);
+        this.rankingPanel = new RankingPanel(players);
         rankingPanel.setVisible(true);
         rankingPanel.setBounds(0, 0, ViewConstants.PANEL_WITDH, ViewConstants.PANEL_HEIGHT);
         this.add(rankingPanel);

@@ -1,8 +1,6 @@
 package entities.enemies;
-
 import java.util.Iterator;
 import java.util.List;
-
 import entities.BoundingBox;
 import entities.CollisionManager;
 import entities.platforms.Platform;

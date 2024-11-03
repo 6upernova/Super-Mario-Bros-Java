@@ -1,9 +1,9 @@
 package entities.powerUps;
 import entities.Entity;
-import entities.VisitedElement;
+import entities.visitor.VisitedElement;
 import factories.Sprite;
-import views.EntityObserver;
-import views.Observer;
+import observer.EntityObserver;
+import observer.Observer;
 
 public abstract class PowerUp extends Entity implements VisitedElement{
 

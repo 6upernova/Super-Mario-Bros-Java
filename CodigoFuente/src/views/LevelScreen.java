@@ -10,6 +10,10 @@ import entities.BoundingBox;
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
 import entities.enemies.EnemyEntity;
+import observer.CharacterObserver;
+import observer.EnemyObserver;
+import observer.EntityObserver;
+import observer.GraphicObserver;
 import tools.GraphicTools;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +34,7 @@ public class LevelScreen extends JPanel {
         setLayout(new BorderLayout());
         setBackgroundAndScroll();
         addInformationPanel();
-        backgroundX = 0; 
+        this.backgroundX = 0; 
     }
 
     //Constructor operations

@@ -1,13 +1,11 @@
 package entities.projectile;
 import java.util.Iterator;
 import java.util.List;
-
 import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import game.Game;
 import entities.BoundingBox;
 import entities.CollisionManager;
-
 
 public class FireBallCollisionManager implements CollisionManager<Projectile> {    
 	

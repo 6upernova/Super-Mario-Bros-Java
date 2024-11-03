@@ -23,7 +23,6 @@ public class FireBall extends Projectile {
 		verticalSpeed += 0.02f;     
     	setY(getY() - verticalSpeed);
 		setSprite(sprites.get(""+spriteNumber));  
-		System.out.println(spriteNumber);
 		observer.update();
     }
 

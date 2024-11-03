@@ -1,11 +1,9 @@
 package entities;
 import factories.Sprite;
+import observer.GraphicObserver;
 import tools.GraphicTools;
-import views.GraphicObserver;
 import views.ViewConstants;
-
-public abstract class Entity implements LogicalEntity {
-	
+public abstract class Entity implements LogicalEntity {	
     protected float positionInX;
     protected float positionInY;
     protected Sprite sprite;

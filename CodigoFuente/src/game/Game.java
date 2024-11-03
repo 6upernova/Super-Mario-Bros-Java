@@ -4,16 +4,16 @@ import java.util.List;
 import entities.LogicalEntity;
 import entities.character.Character;
 import entities.character.CharacterThread;
-import entities.character.ObserverSound;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
-import entities.enemies.Spinny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
+import entities.state.spiny.Spinny;
 import factories.LevelGenerator;
+import observer.GraphicObserver;
+import observer.ObserverSound;
 import ranking.Ranking;
-import views.GraphicObserver;
 import views.ViewController;
 
 public class Game {
@@ -47,8 +47,8 @@ public class Game {
 
     public void start(){
         setObservers();
-        enemyThread = new EnemyThread(this);
-        characterThread = new CharacterThread(viewController.getKeyboard(), this);
+        this.enemyThread = new EnemyThread(this);
+        this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();

@@ -1,10 +1,10 @@
 package entities.platforms;
 
 import entities.Entity;
-import entities.PlatformsVisitor;
-import entities.VisitedElement;
 import entities.enemies.Enemy;
-import entities.enemies.EnemyVisitor;
+import entities.visitor.EnemyVisitor;
+import entities.visitor.PlatformsVisitor;
+import entities.visitor.VisitedElement;
 import factories.Sprite;
 
 public abstract class Platform extends Entity implements VisitedElement, EnemyVisitor{

@@ -1,10 +1,9 @@
 package entities.enemies;
-import entities.character.CharacterVisitor;
-import entities.platforms.Platform;
 import entities.character.Character;
+import entities.character.CharacterVisitor;
 import factories.Sprite;
+import observer.GraphicObserver;
 import tools.GraphicTools;
-import views.GraphicObserver;
 import views.ViewConstants;
 
 public class Lakitu extends Enemy {

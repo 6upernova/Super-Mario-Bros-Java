@@ -1,7 +1,5 @@
 package entities.character;
-
 import java.awt.event.KeyEvent;
-
 public class Keyboard extends java.awt.event.KeyAdapter {
 
     private String playerHorizontalDirection, playerVerticalDirection;

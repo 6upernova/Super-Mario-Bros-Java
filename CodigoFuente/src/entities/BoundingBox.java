@@ -2,7 +2,6 @@ package entities;
 import java.awt.Rectangle;
 
 public class BoundingBox extends Rectangle {
-
     protected BoundingBox leftBound;
     protected BoundingBox rightBound;
     protected BoundingBox upperBound;
@@ -13,11 +12,10 @@ public class BoundingBox extends Rectangle {
     }
     
     public void createExternalBounds(){
-        upperBound = new BoundingBox(x+3, y, width-6, height / 4);
-        downBound = new BoundingBox(x+3, y + height * 3 / 4, width-6, height / 4);
-        leftBound = new BoundingBox(x, y+3, width / 4, height-6);
-        rightBound = new BoundingBox(x + width * 3 / 4, y+3, width / 4, height-6);
-
+        this.upperBound = new BoundingBox(x+3, y, width-6, height / 4);
+        this.downBound = new BoundingBox(x+3, y + height * 3 / 4, width-6, height / 4);
+        this.leftBound = new BoundingBox(x, y+3, width / 4, height-6);
+        this.rightBound = new BoundingBox(x + width * 3 / 4, y+3, width / 4, height-6);
     }
     
     public void updateBoundingBoxCoords(int newX, int newY) {
@@ -26,7 +24,6 @@ public class BoundingBox extends Rectangle {
         upperBound.setLocation(newX+3,newY);
         leftBound.setLocation(newX, newY + 3);
         rightBound.setLocation(newX + width * 3 / 4,newY + 3);
-
     }    
 
 

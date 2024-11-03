@@ -2,13 +2,19 @@ package entities.character;
 import java.util.HashMap;
 
 import entities.Entity;
+import entities.character.characterStates.*;
 import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
+import entities.state.buzzyBeetle.BuzzyBeetle;
+import entities.state.koopaTroopa.KoopaTroopa;
+import entities.state.question.Question;
+import entities.state.spiny.Spinny;
 import factories.Sprite;
+import observer.CharacterObserver;
+import observer.ObserverSound;
 import tools.GraphicTools;
 import views.ViewConstants;
-import views.CharacterObserver;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	
@@ -156,7 +162,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.isBusy = isBusy;
 	}
 
-    protected void changeState(String state) {
+    public void changeState(String state) {
 		this.characterActualState = characterStates.get(state);
     }
 
@@ -405,6 +411,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			boundingBox.height /= 2;
 			boundingBox.updateExternalBoundsToSmall();
 		}
+	}
+
+	public CharacterAnimations getCharacterAnimations(){
+		return characterAnimations;
 	}
 
 }
