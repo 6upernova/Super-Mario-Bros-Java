@@ -13,7 +13,6 @@ public class SoundGenerator {
 	}
 
 	private void createSounds() {
-		 soundHash.put("musicLevel1",new File(folderPath+ File.separator+ "musicLevel1.wav"));
 		 soundHash.put("stageClear", new File(folderPath+File.separator+ "stageClear.wav"));
 		 soundHash.put("gameOver",new File(folderPath+File.separator+ "gameOver.wav"));
 		 soundHash.put("jump",new File(folderPath+File.separator+ "jump.wav"));
@@ -24,6 +23,10 @@ public class SoundGenerator {
 		 soundHash.put("mushroom", new File(folderPath+File.separator+ "mushroom.wav"));
 		 soundHash.put("kick", new File(folderPath+File.separator+ "kick.wav"));
 		 soundHash.put("fireball", new File(folderPath+File.separator+ "fireball.wav"));
+		 soundHash.put("stomp", new File(folderPath+File.separator+ "stomp.wav"));
+		 soundHash.put("breakBrick", new File(folderPath+File.separator+ "breakBrick.wav"));
+		 soundHash.put("musicLevel1",new File(folderPath+ File.separator+ "musicLevel1.wav"));
+
 	}
 	
 	public HashMap<String, File> getFileOfSounds(){

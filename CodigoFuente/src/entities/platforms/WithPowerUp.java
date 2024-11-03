@@ -1,5 +1,6 @@
 package entities.platforms;
 
+import entities.character.ObserverSound;
 import factories.Sprite;
 
 public class WithPowerUp extends QuestionState {
@@ -8,9 +9,10 @@ public class WithPowerUp extends QuestionState {
 		super(1, sprite);
 	}
 
-	public int damaged() {
+	public int damaged(ObserverSound observerSound) {
 	    golpesantesdeestarvacio--;
 	    powerUpOn.activatePowerUp();
+		observerSound.reproduceSound("powerUpAppears");
 		return 0;
 	}
 

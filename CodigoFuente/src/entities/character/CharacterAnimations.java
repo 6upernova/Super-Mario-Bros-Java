@@ -8,7 +8,7 @@ public class CharacterAnimations{
     }
 
     public void deathAnimation() {
-        character.observerOfSounds.reproduceSoundDeadth("marioDie");
+        character.observerOfSounds.reproduceSoundOneIteration("marioDie");
             character.setIsBusy(true);
             character.setVerticalSpeed(0);
             character.jump("Died");

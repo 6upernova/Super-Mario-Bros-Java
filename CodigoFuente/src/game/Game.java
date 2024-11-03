@@ -52,14 +52,14 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        startMusic();
+        startMusicLevel();
     }
 
     public void stop(){
         //ranking 
-        sound.stopMusic();
         ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
+        waitMusic();
         viewController.showMenuScreen();
     }
 
@@ -112,6 +112,7 @@ public class Game {
     		GraphicObserver powerUpObserver = viewController.registerEntity(powerUp, powerUp.isActive());
     		powerUp.registerObserver(powerUpObserver);
     	}
+        
     }
     
     public void removeLogicalEntity(LogicalEntity e) {
@@ -134,6 +135,11 @@ public class Game {
     public void stopSound() {
     	sound.stopMusic();
     }
+
+    public void startMusicLevel(){
+        sound.setMusicSound("musicLevel1");
+        sound.loop(-1);
+    }
     
     protected void changeLevel() {  
         viewController.clearLevelScreen();
@@ -141,16 +147,17 @@ public class Game {
             Character currentCharacter=resetCharacter();
             currentLevel = levelGenerator.getNextLevel(currentCharacter); 
             currentLevel.setCharacter(currentCharacter);
-            setObservers();
             currentCharacter.setIsBusy(true);
+            setObservers();
             this.characterThread.setIsRunning(false);
             this.enemyThread.setIsRunning(false);
             this.characterThread.interrupt();
             this.enemyThread.interrupt();
             this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
             this.enemyThread = new EnemyThread(this);
+            waitMusic();
             viewController.showLevelScreen();
-            startMusic();
+            startMusicLevel();
             characterThread.start();
             enemyThread.start();
             currentCharacter.setIsBusy(false);
@@ -160,10 +167,17 @@ public class Game {
         }
     }
 
+
+    private void waitMusic(){
+        while(sound.isRunning()){
+        }
+    }
+
     private Character resetCharacter(){
         Character character = currentLevel.getCharacter();
-        character.setInEnd(false);
         character.setInStart();
+        character.setInEnd(false);
+        character.setIsInAir(false);
         return character;
     }
 
@@ -195,20 +209,16 @@ public class Game {
 
     public void reproduceLoopSound(String path, int iteracions) {
         sound.setMusicSound(path);
-        sound.loop(iteracions);
+        sound.loop(0);
     } 
 
-    public void startMusic(){
-        sound.setMusicSound("musicLevel1");
-        sound.loop(-1);
+    public void startMusic(String path){
+        sound.setMusicSound("path");
+        sound.loop(0);
     }
 
     public boolean isRunningSound() {
         return sound.isRunning();
-    }
-
-    public void stopMusic() {
-        sound.stopMusic();
     }
 
     public void createEgg(int x, int y) {

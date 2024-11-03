@@ -2,6 +2,7 @@ package entities.platforms;
 
 import java.util.HashMap;
 import entities.character.CharacterVisitor;
+import entities.character.ObserverSound;
 import entities.powerUps.Coin;
 import entities.powerUps.PowerUp;
 import factories.Sprite;
@@ -28,13 +29,12 @@ public class Question extends Platform {
 		actualState.setPowerUp(coin);
 	}
 	
-	public int damage(){
-		int points= 0;
-        points = actualState.damaged();
+	public int damage(ObserverSound observerSound){
+		int points= actualState.damaged(observerSound); 
         if(actualState.isEmpty()) {
         	chargeToVoidQuestionBlock();
         	update();
-        }
+		}
 		return points;
 	}
 

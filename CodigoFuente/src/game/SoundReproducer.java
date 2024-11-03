@@ -66,8 +66,8 @@ public class SoundReproducer {
 	private AudioInputStream getSound(String path)  {
 		AudioInputStream toRet=null;
 		try {
-		     toRet=AudioSystem.getAudioInputStream(hashSounds.get(path));
-	    } catch (UnsupportedAudioFileException | IOException e) {
+		     toRet= AudioSystem.getAudioInputStream(hashSounds.get(path));
+	    } catch (UnsupportedAudioFileException | IOException | NullPointerException e) {
 				e.printStackTrace();
 		}
 		return toRet;
