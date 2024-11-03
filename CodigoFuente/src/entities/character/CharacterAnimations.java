@@ -27,6 +27,7 @@ public class CharacterAnimations{
             character.observerOfSounds.loopMusicLevel();
             character.setIsBusy(false);
             character.setInStart();
+            character.setIsInAir(false);
             
     }
 

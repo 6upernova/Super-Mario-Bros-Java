@@ -56,11 +56,13 @@ public class Game {
     }
 
     public void stop(){
-        sound.stopMusic();
-        ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
+        //ranking 
+        boolean enterInRanking= ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         waitMusic();
-        viewController.showMenuScreen();
+        if( enterInRanking )
+            viewController.showRankingScreen();
+        else viewController.showMenuScreen();
     }
 
     protected void setLevel(int number){
@@ -143,19 +145,19 @@ public class Game {
     protected void changeLevel() {  
         viewController.clearLevelScreen();
         if(levelGenerator.haveNextLevel()){
+            this.characterThread.setIsRunning(false);
+            this.enemyThread.setIsRunning(false);
+            this.characterThread.interrupt();
+            this.enemyThread.interrupt();
+            waitMusic();
+            viewController.showLevelScreen();
             Character currentCharacter=resetCharacter();
             currentLevel = levelGenerator.getNextLevel(currentCharacter); 
             currentLevel.setCharacter(currentCharacter);
             currentCharacter.setIsBusy(true);
             setObservers();
-            this.characterThread.setIsRunning(false);
-            this.enemyThread.setIsRunning(false);
-            this.characterThread.interrupt();
-            this.enemyThread.interrupt();
             this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
             this.enemyThread = new EnemyThread(this);
-            waitMusic();
-            viewController.showLevelScreen();
             startMusicLevel();
             characterThread.start();
             enemyThread.start();

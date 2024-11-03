@@ -58,9 +58,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setX(5);
 		setY(0);
 		((CharacterObserver)observer).respawn();
-		setX(5);
-		setY(0.5f);
-		observer.update();
 	}
 
 	public void setCharacterStates(HashMap<String,CharacterState> characterStates){

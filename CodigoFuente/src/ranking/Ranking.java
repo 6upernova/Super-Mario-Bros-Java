@@ -46,11 +46,13 @@ public class Ranking{
         }
     }     
         
-    public void addToRank(String name, int score) {
+    public boolean addToRank(String name, int score) {
+        boolean toRet=false;
         if(name == null)
             name = "Player";
         int lastRankTop = size;
-        if(entersInRanking(score)){  
+        if(entersInRanking(score)){ 
+            toRet= true; 
             if(isFull())
                 lastRankTop = 4;          
             ranking[lastRankTop] =  new VectorRanking<>(name ,lastRankTop+1 , score);  
@@ -59,7 +61,8 @@ public class Ranking{
       
         if(!isFull())
             size++;  
-            updateRanking();             
+            updateRanking();   
+        return toRet;          
     }
 
     private void reorder(){
