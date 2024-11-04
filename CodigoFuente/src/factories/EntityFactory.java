@@ -401,4 +401,8 @@ public class EntityFactory {
 		fireBallSprites.put("4",spriteFactory.getFireballSprite(4));
 		return fireBallSprites;
 	}
+
+    public String createBackground(int levelNumber) {
+		return spriteFactory.getLevelBackground(levelNumber);
+    }
 }

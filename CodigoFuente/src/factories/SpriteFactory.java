@@ -264,4 +264,8 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Platforms"+ File.separator+"MastEnd.png");
     }
     /*=====================================================================================================================================*/
+
+    public String getLevelBackground(int levelNumber) {
+        return folderPath + File.separator+"Backgrounds"+ File.separator+"background-lvl"+levelNumber+".png";
+    }
 }

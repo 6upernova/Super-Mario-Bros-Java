@@ -55,6 +55,7 @@ public class ViewController {
         game.setMode(mode);
         game.setName(name);
         game.setViewController(this);
+        setBackgroundAndScroll();
         game.start();
     }
 
@@ -135,4 +136,12 @@ public class ViewController {
     public Collection<String> getPlayers() {
         return game.getRankingPlayers();
     }
+    public String getLevelBrackground() {
+        return game.getCurrentLevel().getBackground();
+    }
+
+    public void setBackgroundAndScroll(){
+        levelScreen.setBackgroundAndScroll();
+    }
+
 }

@@ -152,6 +152,7 @@ public class Game {
             viewController.showLevelScreen();
             Character currentCharacter=resetCharacter();
             currentLevel = levelGenerator.getNextLevel(currentCharacter); 
+            viewController.setBackgroundAndScroll();
             currentLevel.setCharacter(currentCharacter);
             currentCharacter.setIsBusy(true);
             setObservers();

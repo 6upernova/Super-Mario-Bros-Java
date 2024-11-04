@@ -35,6 +35,7 @@ public class LevelGenerator {
         } 
         Level levelGenerate= new Level(platforms, enemies, powerUps);  
         levelGenerate.setCharacter(characterReference);  
+        levelGenerate.setBackground(entityFactory.createBackground(levelNumber));
         return levelGenerate;
     }
 

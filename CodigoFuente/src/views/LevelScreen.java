@@ -19,8 +19,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LevelScreen extends JPanel {
-	
+public class LevelScreen extends JPanel {	
     protected ViewController viewController;
     protected JPanel contentPanel;
     protected JScrollPane scrollPanel;
@@ -32,7 +31,7 @@ public class LevelScreen extends JPanel {
         this.viewController = viewController;
         setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH, ViewConstants.WIN_HEIGHT));
         setLayout(new BorderLayout());
-        setBackgroundAndScroll();
+        //setBackgroundAndScroll();
         addInformationPanel();
         this.backgroundX = 0; 
     }
@@ -45,7 +44,9 @@ public class LevelScreen extends JPanel {
 
     private void configureBackgroundLabel(){
         //To do: Reemplazar el path del background con la funcionalidad de registrar silueta
-        ImageIcon backgroundIcon = getBackgroundIcon("/assets/backgrounds/background-lvl1.png");
+        String background = viewController.getLevelBrackground();
+        //("/assets/backgrounds/levelBackground/original/background-lvl1.png"
+        ImageIcon backgroundIcon = getBackgroundIcon(background);
         backgroundImageLabel = new JLabel();
         backgroundImageLabel.setIcon(backgroundIcon);
         backgroundImageLabel.setPreferredSize(new Dimension(backgroundImageLabel.getIcon().getIconWidth(), backgroundImageLabel.getIcon().getIconHeight()));

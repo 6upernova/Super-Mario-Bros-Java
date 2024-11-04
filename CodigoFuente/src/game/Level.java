@@ -1,12 +1,10 @@
 package game;
 import java.util.List;
-
 import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
-
 import java.util.LinkedList;
 
 public class Level {
@@ -15,10 +13,10 @@ public class Level {
     protected List<Enemy> enemies;
     protected List<PowerUp> powerUps;
     protected LinkedList<Projectile> projectiles;
-    
     protected Character character;
     protected boolean running;
     protected boolean paused;
+    protected String background;
 
     public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
         this.remainingTime = 400;
@@ -33,7 +31,7 @@ public class Level {
     public void setCharacter(Character character){
         this.character = character;
     }
-
+   
     public void start(){
         running = true;
         paused = false;
@@ -84,6 +82,13 @@ public class Level {
 
     public void addFireBall(Projectile projectile) {
         projectiles.addLast(projectile);        
+    }
+
+    public String getBackground() {
+        return background;
+    }
+    public void setBackground(String background){
+        this.background = background;
     }
 
 }
