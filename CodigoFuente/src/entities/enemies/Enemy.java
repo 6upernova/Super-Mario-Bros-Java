@@ -69,6 +69,7 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+		observer.update();
 	}
 
 	public void setDirection(String newDirection) {

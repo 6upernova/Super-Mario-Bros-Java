@@ -112,6 +112,7 @@ public class LevelScreen extends JPanel {
     
     public void removeEntity(LogicalEntity g){
         backgroundImageLabel.remove(g.getGraphicObserver());
+        repaint();
     }
 
     private void addInformationPanel() {

@@ -1,6 +1,4 @@
 package entities;
-import javax.swing.text.View;
-
 import entities.character.Character;
 import entities.platforms.Flag;
 import factories.Sprite;
@@ -79,7 +77,7 @@ public class Animations{
             }
         }
         character.setIsBusy(false);
-}
+    }
     
 
 }

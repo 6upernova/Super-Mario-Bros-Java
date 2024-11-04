@@ -1,20 +1,14 @@
 package entities.projectile;
-
 import java.util.HashMap;
-
 import factories.Sprite;
 import tools.GraphicTools;
 
 public class FireBall extends Projectile {
-	String direction;
-	HashMap<String,Sprite> sprites;
+	protected String direction;
+	protected HashMap<String,Sprite> sprites;
 	public FireBall(Sprite sprite, float positionInX, float positionInY, String direction, HashMap<String,Sprite> sprites ) {
 		super(sprite, positionInX, positionInY, direction);
 		this.sprites = sprites;
-	}
-
-	public void animation() {
-		
 	}
 
 	public void moveRight(int spriteNumber) {

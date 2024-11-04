@@ -43,7 +43,7 @@ public class EnemyObserver extends GraphicObserver{
             levelScreen.drawPoints(points);
         }
         levelScreen.removeEntity(observedEntity);
-		this.update();
+		update();
     }
 
 }
