@@ -297,8 +297,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(VoidBlock voidBlock) {
 		if (downCollision(voidBlock)){
 			addScore(-15);
-        	dead();
+			dead();
 			changeState("Normal");
+			updateBoundingBoxToSmall();
 		}
     }
 	

@@ -8,10 +8,6 @@ public class FireState extends SuperState{
 	public FireState(Character character, HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites);
 	}
-	public void damaged() {
-		super.damaged();
-	}
-	
 	
 	public HashMap<String, Sprite>  getSprites(){
 		HashMap<String, Sprite> sprites;

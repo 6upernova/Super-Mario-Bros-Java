@@ -58,6 +58,8 @@ public class Game {
     public void stop(){
         boolean enterInRanking= ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
+        characterThread.interrupt();
+        enemyThread.interrupt();
         waitMusic();
         if(enterInRanking)
             viewController.showRankingScreen();

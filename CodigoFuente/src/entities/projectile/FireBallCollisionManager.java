@@ -31,7 +31,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 	        collision = projectileBox.collision(platform.getBoundingBox());
             if(collision){
                 if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
-                checkRemove(projectile);
+                    checkRemove(projectile);
                 else if(projectileBox.downCollision(platform.getBoundingBox()))
                     ((FireBall)projectile).rebound();
             }
@@ -53,7 +53,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
             collision = projectile.colision(enemy);
             if (collision) {
                 endIteration = true;
-                enemy.acceptVisit(game.getCurrentLevel().getCharacter());
+                enemy.dead();
                 checkRemove(projectile);
                 game.reproduceSound("kick");
             }
@@ -71,6 +71,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
         switch (direction) {
             case "Left":                
                 moveProjectileLeft(projectile);
+                break;
             case "Right":
                 moveProjectileRight(projectile);
                 break;
