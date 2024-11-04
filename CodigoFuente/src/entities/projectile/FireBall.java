@@ -28,8 +28,7 @@ public class FireBall extends Projectile {
 
 	public void rebound(){
 		setY(getY()+1);
-		verticalSpeed = -verticalSpeed*0.7f;
-		
+		verticalSpeed = -verticalSpeed*0.4f;	
 	}
 
 
@@ -38,7 +37,6 @@ public class FireBall extends Projectile {
 		setX(GraphicTools.round2Digits(projectileX - horizontalSpeed));
 		verticalSpeed += 0.02f;      
     	setY(getY() - verticalSpeed);
-
 		setSprite(sprites.get(""+spriteNumber));
 		observer.update();
 	}

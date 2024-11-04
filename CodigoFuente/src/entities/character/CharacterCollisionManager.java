@@ -36,6 +36,7 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
                     if(character.downCollision(enemy))
                         smallJump(character);
                     enemy.acceptVisit(character);
+                    game.reproduceSound("stomp");
                 }
             	else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvincible() && !character.isInvulnerable()){
                     character.setInvulnerable(true);
@@ -102,6 +103,7 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
                 if(removeEntity) {
                 	game.removeLogicalEntity(platform);
                 	platforms.remove(platform);
+                    character.getSoundObserver().reproduceSound("breakBrick");
                 	endIteration=true;
                 }
             }

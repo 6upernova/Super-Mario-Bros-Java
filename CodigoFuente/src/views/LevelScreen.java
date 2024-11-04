@@ -22,7 +22,6 @@ import java.awt.event.ActionListener;
 public class LevelScreen extends JPanel {	
     protected ViewController viewController;
     protected JPanel contentPanel;
-    protected JScrollPane scrollPanel;
     protected JLabel backgroundImageLabel;
     protected InformationPanel informationPanel;
     private int backgroundX;

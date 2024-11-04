@@ -80,7 +80,7 @@ public class CharacterThread extends Thread {
                 }
 
                 if (character.isInvincible()) {
-                    if (counter > character.STAR_INVINCIBILITY_TIME) {
+                    if (counter > character.getStarInvencibilityTime()) {
                         character.setInvencible(false);
                         counter = 0;
                     } 
@@ -89,7 +89,7 @@ public class CharacterThread extends Thread {
                     }
                 }
                 if (character.isInvulnerable()) {
-                    if (counter > character.HIT_INVINCIBILITY_TIME) {
+                    if (counter > character.getHitInvencibilityTime()) {
                         character.setInvulnerable(false);
                         counter = 0;
                     } 
@@ -128,8 +128,8 @@ public class CharacterThread extends Thread {
                 if (character.canThrowFireball() && !spacebarWasPressed) {
                     setSpacebarWasPressed(true);
                     game.createFireBall(Math.round(character.getX()), Math.round(character.getY()),keyboard.getPreviousDirection());
+                    game.reproduceSound("fireball");
                 }
-
                 break;
         }
         switch (verticalDirection) {

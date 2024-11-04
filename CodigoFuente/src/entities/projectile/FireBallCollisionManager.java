@@ -30,10 +30,10 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 	        platform = it.next();
 	        collision = projectileBox.collision(platform.getBoundingBox());
             if(collision){
-                if(projectileBox.intersects(platform.getBoundingBox().getBoundsTop()))
+                if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
+                checkRemove(projectile);
+                else if(projectileBox.downCollision(platform.getBoundingBox()))
                     ((FireBall)projectile).rebound();
-                else if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
-                    checkRemove(projectile);
             }
 	    }   
 	}
@@ -55,6 +55,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
                 endIteration = true;
                 enemy.acceptVisit(game.getCurrentLevel().getCharacter());
                 checkRemove(projectile);
+                game.reproduceSound("kick");
             }
         }
     }

@@ -16,8 +16,8 @@ import views.ViewConstants;
 
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	
-	public final int HIT_INVINCIBILITY_TIME = 500;
-	public final int STAR_INVINCIBILITY_TIME = 5000 ;
+	private final int HIT_INVINCIBILITY_TIME = 500;
+	private final int STAR_INVINCIBILITY_TIME = 5000 ;
 	
 	protected int lives;
 	protected int score;
@@ -74,6 +74,15 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			if(!isInAir())
 				setSprite(characterActualState.getSprites().get("Left" + frame));	
 			observer.update();
+	}
+
+	public int getStarInvencibilityTime(){
+		return STAR_INVINCIBILITY_TIME;
+	}
+
+	
+	public int getHitInvencibilityTime(){
+		return HIT_INVINCIBILITY_TIME;
 	}
 
 	public void moveRight(int frame){
@@ -198,15 +207,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
     public void visit(Goomba goomba) {	
-		killEnemySound();
-		soundObserver.reproduceSound("stomp");
 		addScore(goomba.getPointsOnDeath());
 		goomba.dead();
     }    
     
     public void visit(KoopaTroopa koopaTroopa) {
-		killEnemySound();
-		soundObserver.reproduceSound("stomp");
 		addScore(koopaTroopa.getPointsOnDeath());
 		koopaTroopa.hit(this);
     }   
@@ -217,13 +222,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }	
     
     public void visit(Lakitu lakitu) {
-		killEnemySound();
 		addScore(lakitu.getPointsOnDeath());
 		lakitu.dead();
     }
     
     public void visit(BuzzyBeetle buzzyBeetle) {
-		killEnemySound();
 		addScore(buzzyBeetle.getPointsOnDeath());
 		buzzyBeetle.hit();
 		
@@ -232,10 +235,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(Spinny spinny) {
 		addScore(spinny.getPointsOnDeath());
 		spinny.dead();
-	}
-	
-	public void killEnemySound() {
-		soundObserver.reproduceSound("stomp");
 	}
 	
 	public void visit(SuperMushroom mushroom){
@@ -282,6 +281,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public void visit(Coin coin){
 		addScore( coin.getPoints());
+		soundObserver.reproduceSound("coin");
 		coins++;
 	}
 
@@ -291,7 +291,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	
 	public void visit(Block block) {}
 
-	public void visit(Brick brickBlock) {}
+	public void visit(Brick brickBlock) {
+		
+	}
 
 	public void visit(VoidBlock voidBlock) {
 		if (downCollision(voidBlock)){
