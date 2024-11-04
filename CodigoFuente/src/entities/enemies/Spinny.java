@@ -1,8 +1,10 @@
-package entities.state.spiny;
+package entities.enemies;
 import java.util.HashMap;
 import entities.character.CharacterVisitor;
-import entities.enemies.Enemy;
 import entities.platforms.Platform;
+import entities.state.spinny.NormalSpinny;
+import entities.state.spinny.SpinnyEgg;
+import entities.state.spinny.SpinnyState;
 import factories.Sprite;
 import observer.GraphicObserver;
 

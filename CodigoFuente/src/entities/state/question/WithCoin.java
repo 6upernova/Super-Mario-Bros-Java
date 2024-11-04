@@ -1,14 +1,15 @@
 package entities.state.question;
 import factories.Sprite;
-import observer.ObserverSound;
+import observer.SoundObserver;
 public class WithCoin extends QuestionState{
 
 	public WithCoin(Sprite sprite) {
 		super(3,sprite);
 	}
 
-	public int damaged(ObserverSound observerSound) {
+	public int damaged(SoundObserver soundObserver) {
 		hits--;
+		soundObserver.reproduceSound("coin");
 		return powerUpOn.getPoints();
 	}
 

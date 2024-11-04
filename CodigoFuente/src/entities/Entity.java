@@ -4,7 +4,8 @@ import observer.GraphicObserver;
 import tools.GraphicTools;
 import views.ViewConstants;
 public abstract class Entity implements LogicalEntity {	
-    protected float positionInX;
+
+	protected float positionInX;
     protected float positionInY;
     protected Sprite sprite;
     protected GraphicObserver observer;

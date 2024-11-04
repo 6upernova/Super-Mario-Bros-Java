@@ -5,11 +5,11 @@ import java.util.List;
 import entities.character.Character;
 import entities.enemies.Enemy;
 import entities.enemies.Lakitu;
+import entities.enemies.Spinny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
 import entities.state.question.Question;
-import entities.state.spiny.Spinny;
 import game.Level;
 import views.ViewConstants;
 

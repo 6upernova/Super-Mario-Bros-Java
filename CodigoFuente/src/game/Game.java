@@ -6,13 +6,13 @@ import entities.character.Character;
 import entities.character.CharacterThread;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
+import entities.enemies.Spinny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
-import entities.state.spiny.Spinny;
 import factories.LevelGenerator;
 import observer.GraphicObserver;
-import observer.ObserverSound;
+import observer.SoundObserver;
 import ranking.Ranking;
 import views.ViewController;
 
@@ -20,7 +20,7 @@ public class Game {
     protected LevelGenerator levelGenerator;
     protected ViewController viewController;
     protected Level currentLevel;
-    protected String currentPlayer;//Crear label en el menu para ingresar nombre
+    protected String currentPlayerName;
     protected int numberLevel;
     protected SoundReproducer sound;
     protected CharacterThread characterThread;
@@ -38,7 +38,7 @@ public class Game {
     } 
     
     public void setName(String name){
-        this.currentPlayer = name;
+        this.currentPlayerName = name;
     }
     
     public void setViewController(ViewController viewController){
@@ -56,7 +56,7 @@ public class Game {
     }
 
     public void stop(){
-        boolean enterInRanking= ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
+        boolean enterInRanking= ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         waitMusic();
         if(enterInRanking)
@@ -90,7 +90,7 @@ public class Game {
     }  
     
     private void setCharacterObserverOfSound(Character character) {
-		ObserverSound observer= new ObserverSound(this);
+		SoundObserver observer= new SoundObserver(this);
 		character.setObserverOfSound(observer);
 	}
 	protected void setPlatformsObservers(List<Platform> platformsList) {

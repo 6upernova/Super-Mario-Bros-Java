@@ -1,4 +1,5 @@
 package entities.state.buzzyBeetle;
+import entities.enemies.BuzzyBeetle;
 import tools.GraphicTools;
 public class BuzzyBeetleNormalState implements BuzzyBeetleState {
     protected BuzzyBeetle buzzyBeetle;

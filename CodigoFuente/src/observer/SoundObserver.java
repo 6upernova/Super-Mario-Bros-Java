@@ -2,11 +2,11 @@ package observer;
 
 import game.Game;
 
-public class ObserverSound {
+public class SoundObserver {
 	
 	protected Game game;
            
-	public ObserverSound(Game manager) {
+	public SoundObserver(Game manager) {
 		game= manager;
 	}
 	

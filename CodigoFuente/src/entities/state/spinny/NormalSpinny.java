@@ -1,4 +1,5 @@
-package entities.state.spiny;
+package entities.state.spinny;
+import entities.enemies.Spinny;
 import tools.GraphicTools;
 import views.ViewConstants;
 public class NormalSpinny extends SpinnyState {   

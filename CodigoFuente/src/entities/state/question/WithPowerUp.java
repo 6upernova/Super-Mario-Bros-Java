@@ -1,16 +1,18 @@
 package entities.state.question;
+
 import factories.Sprite;
-import observer.ObserverSound;
+import observer.SoundObserver;
+
 public class WithPowerUp extends QuestionState {
 
 	public WithPowerUp(Sprite sprite) {
 		super(1, sprite);
 	}
 
-	public int damaged(ObserverSound observerSound) {
+	public int damaged(SoundObserver soundObserver) {
 	    hits--;
 	    powerUpOn.activatePowerUp();
-		observerSound.reproduceSound("powerUpAppears");
+		soundObserver.reproduceSound("powerUpAppears");
 		return 0;
 	}
 

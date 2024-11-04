@@ -4,12 +4,14 @@ import entities.character.Character;
 import factories.Sprite;
 
 public class SuperState extends CharacterState{		
+	
 	public SuperState(Character character ,  HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites, true);
 	}
+	
 	public void damaged() {
 		character.changeState("Normal");
-		character.getCharacterAnimations().superAnimation("Super", "Normal");
+		character.getCharacterAnimations().superAnimation(character,"Super", "Normal");
 		character.updateBoundingBoxToSmall();
 	}
 

@@ -6,7 +6,7 @@ import entities.platforms.Platform;
 import entities.powerUps.Coin;
 import entities.powerUps.PowerUp;
 import factories.Sprite;
-import observer.ObserverSound;
+import observer.SoundObserver;
 
 public class Question extends Platform {
 
@@ -31,8 +31,8 @@ public class Question extends Platform {
 		actualState.setPowerUp(coin);
 	}
 	
-	public int damage(ObserverSound observerSound){
-		int points= actualState.damaged(observerSound); 
+	public int damage(SoundObserver soundObserver){
+		int points= actualState.damaged(soundObserver); 
         if(actualState.isEmpty()) {
         	changeToVoidQuestionBlock();
         	observer.update();

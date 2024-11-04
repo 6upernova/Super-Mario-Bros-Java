@@ -2,6 +2,7 @@ package entities.state.koopaTroopa;
 
 import entities.character.Character;
 import entities.enemies.Enemy;
+import entities.enemies.KoopaTroopa;
 import tools.GraphicTools;
 
 public class KoopaTroopaNormalState implements KoopaTroopaState {

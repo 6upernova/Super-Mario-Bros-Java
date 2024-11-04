@@ -8,14 +8,11 @@ import entities.enemies.*;
 import entities.platforms.*;
 import entities.powerUps.*;
 import entities.projectile.FireBall;
-import entities.state.buzzyBeetle.BuzzyBeetle;
-import entities.state.koopaTroopa.KoopaTroopa;
 import entities.state.question.Question;
 import entities.state.question.QuestionBlockEmpty;
 import entities.state.question.QuestionState;
 import entities.state.question.WithCoin;
 import entities.state.question.WithPowerUp;
-import entities.state.spiny.Spinny;
 
 import java.util.HashMap;
 

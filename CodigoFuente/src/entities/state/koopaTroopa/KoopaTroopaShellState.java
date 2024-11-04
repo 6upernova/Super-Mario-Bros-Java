@@ -3,6 +3,7 @@ import factories.Sprite;
 import tools.GraphicTools;
 import entities.character.Character;
 import entities.enemies.Enemy;
+import entities.enemies.KoopaTroopa;
 
 public class KoopaTroopaShellState implements KoopaTroopaState {
     protected KoopaTroopa koopaTroopa;

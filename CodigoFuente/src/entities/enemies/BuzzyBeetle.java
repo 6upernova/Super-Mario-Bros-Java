@@ -1,7 +1,9 @@
-package entities.state.buzzyBeetle;
+package entities.enemies;
 import java.util.HashMap;
 import entities.character.CharacterVisitor;
-import entities.enemies.Enemy;
+import entities.state.buzzyBeetle.BuzzyBeetleNormalState;
+import entities.state.buzzyBeetle.BuzzyBeetleShellState;
+import entities.state.buzzyBeetle.BuzzyBeetleState;
 import factories.Sprite;
 
 public class BuzzyBeetle extends Enemy {

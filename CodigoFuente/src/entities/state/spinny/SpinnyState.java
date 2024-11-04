@@ -1,4 +1,6 @@
-package entities.state.spiny;
+package entities.state.spinny;
+
+import entities.enemies.Spinny;
 
 public abstract class SpinnyState {
 	

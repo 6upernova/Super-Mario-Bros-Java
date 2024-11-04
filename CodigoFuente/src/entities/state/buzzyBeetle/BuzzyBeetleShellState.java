@@ -1,5 +1,7 @@
 package entities.state.buzzyBeetle;
 
+import entities.enemies.BuzzyBeetle;
+
 public class BuzzyBeetleShellState implements BuzzyBeetleState {
     protected BuzzyBeetle buzzyBeetle;
 

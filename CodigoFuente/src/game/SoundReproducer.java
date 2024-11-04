@@ -12,7 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class SoundReproducer {
 
 	private Clip audioLevelMusic;
-	private Clip auxialiarAudio;
+	private Clip auxiliarAudio;
 	private HashMap<String, File> hashSounds;
 	
 	public SoundReproducer(SoundGenerator generator) {
@@ -21,8 +21,8 @@ public class SoundReproducer {
 	
 	public void setAuxiliarSound(String path) {
 		try {
-			auxialiarAudio= AudioSystem.getClip();
-			auxialiarAudio.open(getSound(path));
+			auxiliarAudio= AudioSystem.getClip();
+			auxiliarAudio.open(getSound(path));
 		} catch (LineUnavailableException | IOException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class SoundReproducer {
 	}
 	
 	public void start() {
-		   auxialiarAudio.start();
+		   auxiliarAudio.start();
 	}
 	
 	public void loop(int iteracions) {		
@@ -59,7 +59,7 @@ public class SoundReproducer {
 	}
 	
 	public void stopSoundAuxiliar() {
-		auxialiarAudio.stop();
+		auxiliarAudio.stop();
 		audioLevelMusic.close();
 	}
 	
