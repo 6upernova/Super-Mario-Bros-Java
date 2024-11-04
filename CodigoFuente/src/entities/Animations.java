@@ -1,6 +1,10 @@
 package entities;
+import javax.swing.text.View;
+
 import entities.character.Character;
+import entities.platforms.Flag;
 import factories.Sprite;
+import views.ViewConstants;
 
 public class Animations{
 	
@@ -59,7 +63,25 @@ public class Animations{
             }
             character.setIsBusy(false);
     }
+
+    public void characterInFlagAnimation(Character character, Flag flag){
+        character.setIsBusy(true);
+        while(flag.getY()>1){
+            character.setY(character.getY()-1);
+            flag.setY(flag.getY()-1);
+            character.getGraphicObserver().update();
+            flag.getGraphicObserver().update();
+            try{
+                Thread.sleep(ViewConstants.GAMETICK*2);                
+            } 
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        character.setIsBusy(false);
+}
     
+
 }
        
 

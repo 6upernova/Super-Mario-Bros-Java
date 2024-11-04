@@ -59,7 +59,7 @@ public class CharacterThread extends Thread {
             } 
             else {
                 if (spacebarWasPressed) {
-                    spacebarCooldown += 16;
+                    spacebarCooldown += ViewConstants.GAMETICK;
                     if (spacebarCooldown >= 1000) {
                         setSpacebarWasPressed(false);
                         spacebarCooldown = 0;
@@ -85,7 +85,7 @@ public class CharacterThread extends Thread {
                         counter = 0;
                     } 
                     else {
-                        counter += 10;
+                        counter += ViewConstants.GAMETICK;
                     }
                 }
                 if (character.isInvulnerable()) {
@@ -94,7 +94,7 @@ public class CharacterThread extends Thread {
                         counter = 0;
                     } 
                     else {
-                        counter += 10;
+                        counter += ViewConstants.GAMETICK;
                     }
                 }
                 timeCounter++;
@@ -107,7 +107,7 @@ public class CharacterThread extends Thread {
             }
 
             try {
-                Thread.sleep(16);
+                Thread.sleep(ViewConstants.GAMETICK);
             } catch (InterruptedException e) {
             }
         }

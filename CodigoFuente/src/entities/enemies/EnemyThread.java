@@ -6,6 +6,7 @@ import java.util.List;
 import entities.platforms.Platform;
 import game.Game;
 import tools.LogicTools;
+import views.ViewConstants;
 
 public class EnemyThread extends Thread {
 	
@@ -51,7 +52,7 @@ public class EnemyThread extends Thread {
     	    }
             if(!game.getCurrentLevel().getCharacter().isInEnd()){
                 try {
-                    Thread.sleep(16);
+                    Thread.sleep(ViewConstants.GAMETICK);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
