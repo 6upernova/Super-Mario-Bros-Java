@@ -69,12 +69,10 @@ public class KoopaTroopa extends Enemy{
 		koopaTroopaActualState.hitEnemy(enemy);
 	}
 
-	@Override
 	public void visit(Platform platform) {
 		
 	}
 
-	@Override
 	public void acceptVisit(EnemyVisitor enemy) {
 		
 	}

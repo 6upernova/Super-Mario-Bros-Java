@@ -8,7 +8,7 @@ import entities.enemies.KoopaTroopa;
 public class KoopaTroopaShellState implements KoopaTroopaState {
     protected KoopaTroopa koopaTroopa;
     protected long spawnTimeMillis;
-    public boolean standing;
+    protected boolean standing;
 
     public KoopaTroopaShellState(KoopaTroopa koopaTroopa){
         this.koopaTroopa = koopaTroopa;
