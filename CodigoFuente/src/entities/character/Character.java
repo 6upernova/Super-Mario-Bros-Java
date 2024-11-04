@@ -315,6 +315,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		setSprite(characterActualState.getSprites().get("InFlag"));
 		addScore(Math.round(100 + 25 * flag.getY()));	
 		soundObserver.reproduceSoundOneIteration("stageClear");
+		characterAnimations.characterInFlagAnimation(this, flag);
 		observer.update();
 	}
 	

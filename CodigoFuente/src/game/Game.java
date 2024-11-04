@@ -148,7 +148,7 @@ public class Game {
         if(levelGenerator.haveNextLevel()){
             this.characterThread.setIsRunning(false);
             this.enemyThread.setIsRunning(false);
-            this.enemyThread.interrupt();
+            //this.enemyThread.interrupt();
             waitMusic();
             viewController.showLevelScreen();
             Character currentCharacter = resetCharacter();
