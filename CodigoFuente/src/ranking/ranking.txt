@@ -1,5 +1,3 @@
 Player,2925,1
 Player,1940,2
-Player,1590,3
-Player,1555,4
-Player,1195,5
+Player,335,3

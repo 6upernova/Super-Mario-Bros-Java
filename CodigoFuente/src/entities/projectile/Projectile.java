@@ -22,7 +22,6 @@ public abstract class Projectile extends Entity{
 		this.verticalSpeed = 0;
 	}
 
-	public abstract void animation();
 
     public void moveRight() {
 		float projectileX = getX();

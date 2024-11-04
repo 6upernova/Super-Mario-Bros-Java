@@ -23,7 +23,6 @@ public class CharacterThread extends Thread {
 
     public CharacterThread(Keyboard keyboard, Game game) {
         this.game = game;
-        this.characterCollisionManager = new CharacterCollisionManager(game);
         this.character = game.getCurrentLevel().getCharacter();
         this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
         this.keyboard = keyboard;
@@ -31,6 +30,7 @@ public class CharacterThread extends Thread {
         this.spriteNumber = 1;
         this.isRunning = false;
         this.fireBallCollisionManager = new FireBallCollisionManager(game);
+        this.characterCollisionManager = new CharacterCollisionManager(game);
         this.spacebarWasPressed = false;
     }
 
@@ -67,7 +67,7 @@ public class CharacterThread extends Thread {
                 }
 
                 if (!character.isBusy()) {
-                    moveCharacter(horizontalDirection, verticalDirection, spacebar, spacebarWasPressed);
+                    moveCharacter(horizontalDirection, verticalDirection, spacebar);
                     characterCollisionManager.platformsCollisions(character);
                     characterCollisionManager.enemiesCollisions(character);
                     characterCollisionManager.powerUpsCollisions(character);
@@ -120,7 +120,7 @@ public class CharacterThread extends Thread {
             }
     }
 
-    private void moveCharacter(String horizontalDirection, String verticalDirection, String spacebar,boolean spacebarWasPressed) {
+    private void moveCharacter(String horizontalDirection, String verticalDirection, String spacebar) {
         character.applyGravity();
 
         switch (spacebar) {

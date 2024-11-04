@@ -13,9 +13,6 @@ public class FireBall extends Projectile {
 		this.sprites = sprites;
 	}
 
-	public void animation() {
-		
-	}
 
 	public void moveRight(int spriteNumber) {
 		float projectileX = getX();
