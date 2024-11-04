@@ -51,8 +51,8 @@ public abstract class Entity implements LogicalEntity {
         return sprite;
     }
 
-    public Sprite setSprite(Sprite sprite){
-        return this.sprite = sprite;
+    public void setSprite(Sprite sprite){
+         this.sprite = sprite;
     }
 
     public void registerObserver(GraphicObserver observer){

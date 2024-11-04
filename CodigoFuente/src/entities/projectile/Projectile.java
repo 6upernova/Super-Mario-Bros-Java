@@ -52,7 +52,6 @@ public abstract class Projectile extends Entity{
 		return initialY;
 	}
 
-
 	// Métodos para acceder a verticalSpeed
 	public float getVerticalSpeed() {
 		return verticalSpeed;
@@ -61,8 +60,5 @@ public abstract class Projectile extends Entity{
 	public void setVerticalSpeed(float verticalSpeed) {
 		this.verticalSpeed = verticalSpeed;
 	}
-
-
-
 
 }

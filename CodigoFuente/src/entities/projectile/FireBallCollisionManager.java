@@ -31,19 +31,21 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 	        collision = projectileBox.collision(platform.getBoundingBox());
             if(collision){
                 if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
-                    checkRemove(projectile);
+                    blow(projectile);
                 else if(projectileBox.downCollision(platform.getBoundingBox()))
                     ((FireBall)projectile).rebound();
             }
 	    }   
 	}
 
-    public void checkRemove(Projectile projectile){        
-        game.removeLogicalEntity(projectile);
-        game.getCurrentLevel().getProjectiles().remove(projectile);   
+    public void blow(Projectile projectile){
+        FireBall fireBall= (FireBall) projectile;
+        fireBall.setIsExplotion(true);  
+        spriteNumber=1;
     }
 
     public void enemiesCollisions(Projectile projectile){
+        if(!((FireBall)projectile).isExplotion){
         boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
         Enemy enemy;
@@ -54,10 +56,11 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
             if (collision) {
                 endIteration = true;
                 enemy.dead();
-                checkRemove(projectile);
+                blow(projectile);
                 game.reproduceSound("kick");
             }
         }
+       }
     }
 
    
@@ -68,19 +71,36 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
             spriteNumber = spriteNumber == 4 ? 1 : spriteNumber + 1;     
         platformsCollisions(projectile);
         String direction = projectile.getDirection();
-        switch (direction) {
-            case "Left":                
-                moveProjectileLeft(projectile);
-                break;
-            case "Right":
-                moveProjectileRight(projectile);
-                break;
+        if(!((FireBall)projectile).isExplotion)
+             switch (direction) {
+                  case "Left":                
+                        moveProjectileLeft(projectile);
+                        break;
+                  case "Right":
+                        moveProjectileRight(projectile);
+                        break;
+             }
+        else explotion(projectile);
+    }
+
+    private void explotion(Projectile projectile){
+        FireBall fireBall=((FireBall) projectile);
+        if(spriteNumber==4){
+            remove(fireBall);
         }
+        else{
+             fireBall.explotion(spriteNumber);
+        }
+    }
+
+    private void remove(FireBall fireBall){ 
+        game.removeLogicalEntity(fireBall);
+        game.getCurrentLevel().getProjectiles().remove(fireBall);
     }
 
     private void moveProjectileLeft(Projectile projectile) {
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
-            checkRemove(projectile);
+            blow(projectile);
         } 
         else {
             ((FireBall)projectile).moveLeft(spriteNumber);
@@ -89,7 +109,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 
     private void moveProjectileRight(Projectile projectile) {
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
-            checkRemove(projectile);
+            blow(projectile);
         } 
         else {
             ((FireBall)projectile).moveRight(spriteNumber);
