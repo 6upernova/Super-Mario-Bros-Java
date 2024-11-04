@@ -3,9 +3,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import entities.character.Character;
-import entities.enemies.Enemy;
-import entities.enemies.Lakitu;
-import entities.enemies.Spinny;
+import entities.enemies.*;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
@@ -86,7 +84,7 @@ public class LevelGenerator {
         return levelNumber+1 <= ViewConstants.MAX_LEVELS;
     }
 
-    public Spinny createSpinny(int x, int y) {
-        return entityFactory.newSpinny(x, y);
+    public Spiny createSpinny(int x, int y) {
+        return entityFactory.newSpiny(x, y);
     }
 }

@@ -186,16 +186,16 @@ public abstract class SpriteFactory {
 
     /*============================================================Spinny Sprites============================================================*/
 
-    public Sprite getSpinnyLeftSprite(int frame){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinnyLeft"+frame+".png");	 
+    public Sprite getSpinyLeftSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyLeft"+frame+".png");	 
     }
     
-    public Sprite getSpinnyRightSprite(int frame){
-        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinnyRight"+frame+".png");	 
+    public Sprite getSpinyRightSprite(int frame){
+        return new Sprite(folderPath + File.separator+"Enemy"+ File.separator+"SpinyRight"+frame+".png");	 
     }
     
-    public Sprite getSpinnyEggSprite(){
-        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinnyEgg.png");	 
+    public Sprite getSpinyEggSprite(){
+        return new Sprite(folderPath + File.separator+"Projectiles"+ File.separator+"SpinyEgg.png");	 
     }
 
     public Sprite getShellSprite(){

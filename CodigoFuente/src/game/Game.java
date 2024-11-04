@@ -6,7 +6,7 @@ import entities.character.Character;
 import entities.character.CharacterThread;
 import entities.enemies.Enemy;
 import entities.enemies.EnemyThread;
-import entities.enemies.Spinny;
+import entities.enemies.Spiny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.Projectile;
@@ -146,11 +146,10 @@ public class Game {
         if(levelGenerator.haveNextLevel()){
             this.characterThread.setIsRunning(false);
             this.enemyThread.setIsRunning(false);
-            this.characterThread.interrupt();
             this.enemyThread.interrupt();
             waitMusic();
             viewController.showLevelScreen();
-            Character currentCharacter=resetCharacter();
+            Character currentCharacter = resetCharacter();
             currentLevel = levelGenerator.getNextLevel(currentCharacter); 
             viewController.setBackgroundAndScroll();
             currentLevel.setCharacter(currentCharacter);
@@ -223,7 +222,7 @@ public class Game {
     }
 
     public void createEgg(int x, int y) {
-        Spinny spinny = levelGenerator.createSpinny(x,y);
+        Spiny spinny = levelGenerator.createSpinny(x,y);
         currentLevel.getEnemies().add(spinny);
     	GraphicObserver enemyObserver = viewController.registerEntity(spinny);
     	spinny.registerObserver(enemyObserver);        

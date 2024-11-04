@@ -53,6 +53,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void setInStart(){	
+		setSprite(characterActualState.getSprites().get("StillRight"));
 		setX(5);
 		setY(0);
 		((CharacterObserver)observer).respawn();
@@ -232,7 +233,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		
     }
     
-	public void visit(Spinny spinny) {
+	public void visit(Spiny spinny) {
 		addScore(spinny.getPointsOnDeath());
 		spinny.dead();
 	}
@@ -287,8 +288,6 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 
 	public void visit(Pipe pipe) {}
 	
-	public void visit(Flag flag) {}
-	
 	public void visit(Block block) {}
 
 	public void visit(Brick brickBlock) {
@@ -309,6 +308,16 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}		
 	}
 	
+	
+	public void visit(Flag flag) {		
+		isInEnd = true;
+		setSprite(characterActualState.getSprites().get("InFlag"));
+		addScore(Math.round(100 + 25 * flag.getY()));	
+		soundObserver.reproduceSoundOneIteration("stageClear");
+		observer.update();
+	}
+	
+
 	public void visit(Mast mast) {
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));

@@ -24,6 +24,6 @@ public interface CharacterVisitor{
     public void visit(PiranhaPlant piranhaPlant);
     public void visit(Lakitu lakitu);
     public void visit(BuzzyBeetle buzzyBeetle) ;
-	public void visit(Spinny spinny);
+	public void visit(Spiny spinny);
 
 }

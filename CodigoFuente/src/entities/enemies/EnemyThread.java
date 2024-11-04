@@ -49,10 +49,12 @@ public class EnemyThread extends Thread {
                     enemy.deactivateEnemy();
                 }
     	    }
-            try {
-                Thread.sleep(16);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(!game.getCurrentLevel().getCharacter().isInEnd()){
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -2,23 +2,21 @@ package entities.enemies;
 import java.util.HashMap;
 import entities.character.CharacterVisitor;
 import entities.platforms.Platform;
-import entities.state.spinny.NormalSpinny;
-import entities.state.spinny.SpinnyEgg;
-import entities.state.spinny.SpinnyState;
+import entities.state.spiny.*;
 import factories.Sprite;
 import observer.GraphicObserver;
 
-public class Spinny extends Enemy{		
+public class Spiny extends Enemy{		
 	static final private int pointsOnDeath=60;
 	static final private int pointsOnKill=-30;	
-	protected SpinnyState spinnyState;
-	protected HashMap<String, SpinnyState> spinnyStates;	
-	public Spinny(Sprite sprite, int positionInX, int positionInY) {
+	protected SpinyState spinyActualState;
+	protected HashMap<String, SpinyState> spinyStates;	
+	public Spiny(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
-		direction = "Left";
-		flies = false;
-		this.spinnyStates = getSpinnyStates();
-		spinnyState = spinnyStates.get("Egg");
+		this.direction = "Left";
+		this.flies = false;
+		this.spinyStates = getSpinyStates();
+		this.spinyActualState = spinyStates.get("Egg");
 	}
 	
 	public void move(int frame){
@@ -52,37 +50,37 @@ public class Spinny extends Enemy{
 	}
 
 	public void changeToEggState(){		
-		spinnyState = spinnyStates.get("Egg");	
+		spinyActualState = spinyStates.get("Egg");	
 		observer.update();
 	}
 	
 	public void changeToNormalState(){
-		spinnyState = spinnyStates.get("Normal");
+		spinyActualState = spinyStates.get("Normal");
         Sprite normalSprite = sprites.get("Right1");
         setSprite(normalSprite);
         observer.update();	
 	}
-	private HashMap<String, SpinnyState> getSpinnyStates(){
-		HashMap<String, SpinnyState> spinnyStates = new HashMap<String, SpinnyState>();
-		spinnyStates.put("Normal", new NormalSpinny(this));
-		spinnyStates.put("Egg", new SpinnyEgg(this));
-		return spinnyStates;
+	private HashMap<String, SpinyState> getSpinyStates(){
+		HashMap<String, SpinyState> spinyStates = new HashMap<String, SpinyState>();
+		spinyStates.put("Normal", new SpinyNormalState(this));
+		spinyStates.put("Egg", new SpinyEggState(this));
+		return spinyStates;
 	}
 	
 	public void moveRight(int frame) {
-		spinnyState.moveRight(frame);
+		spinyActualState.moveRight(frame);
 	}	
 	
 	public void moveLeft(int frame) {
-		spinnyState.moveLeft(frame);
+		spinyActualState.moveLeft(frame);
 	}
 
 	public void applyGravity(){
-		spinnyState.applyGravity();		
+		spinyActualState.applyGravity();		
 		observer.update();
 	}
 
-	public void visit(Platform p) {
-		spinnyState.visitPlatform();
+	public void visit(Platform platform) {
+		spinyActualState.visitPlatform();
 	}
 }
