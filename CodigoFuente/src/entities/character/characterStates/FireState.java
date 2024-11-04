@@ -5,6 +5,7 @@ import entities.character.Character;
 import factories.Sprite;
 
 public class FireState extends SuperState{
+	
 	public FireState(Character character, HashMap<String, Sprite> stateSprites) {
 		super(character, stateSprites);
 	}
@@ -18,7 +19,6 @@ public class FireState extends SuperState{
 			sprites = stateSprites;
 		return sprites;
 	}
-
 	
 	public int getFireFlowerPoints() {
 		return 35;

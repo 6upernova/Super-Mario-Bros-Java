@@ -20,7 +20,6 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 	protected boolean isAlive;
 	protected boolean isInAir;
 	protected boolean flies;
-	protected boolean isHostile;
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
 	protected HashMap<String, Sprite> sprites;
