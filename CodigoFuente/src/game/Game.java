@@ -117,8 +117,8 @@ public class Game {
         
     }
     
-    public void removeLogicalEntity(LogicalEntity e) {
-        viewController.removeLogicalEntity(e);
+    public void removeLogicalEntity(LogicalEntity entity) {
+        viewController.removeLogicalEntity(entity);
     }
 
     public void playNextLevel() {
