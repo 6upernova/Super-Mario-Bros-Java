@@ -22,7 +22,6 @@ public class ViewController {
     public ViewController(Game game){   
         this.game = game;
         this.levelScreen = new LevelScreen(this);
-        this.rankingScreen = new RankingScreen(this);
         this.preGameScreen = new PreGameScreen(this);
         configureWindow();
 
@@ -33,7 +32,6 @@ public class ViewController {
         game.setViewController(this);
         this.levelScreen = new LevelScreen(this);
         this.menuScreen = new MenuScreen(this);
-        this.rankingScreen = new RankingScreen(this);
         this.preGameScreen = new PreGameScreen(this);
         configureWindow();
         showMenuScreen();             
@@ -71,8 +69,8 @@ public class ViewController {
     }
 
     public void showRankingScreen(){ 
+        this.rankingScreen = new RankingScreen(this);
         window.setContentPane(rankingScreen);
-        rankingScreen.repaint();
         refresh();
     }
     public void showPreGameScreen(){

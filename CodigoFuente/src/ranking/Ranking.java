@@ -28,7 +28,9 @@ public class Ranking{
         return size == 0;
     }
 
-    public void getRanking(){        
+    public void getRanking() {        
+        // Limpia el arreglo antes de cargar los datos
+        size = 0;    
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String linea;
             String name;
@@ -37,22 +39,23 @@ public class Ranking{
                 String[] partes = linea.split(",");                 
                 name = partes[0];
                 score = Integer.parseInt(partes[1]);
-                addToRank(name,score);            
+                addToRank(name, score);            
             }
         } catch (IOException e) {
             System.out.println("Error trying read the textfile: " + e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Format error: " + e.getMessage());
         }
-    }     
+    }
+    
         
     public boolean addToRank(String name, int score) {
-        boolean toRet=false;
+        boolean entered = false;
         if(name == null)
             name = "Player";
         int lastRankTop = size;
         if(entersInRanking(score)){ 
-            toRet= true; 
+            entered = true; 
             if(isFull())
                 lastRankTop = 4;          
             ranking[lastRankTop] =  new VectorRanking<>(name ,lastRankTop+1 , score);  
@@ -62,11 +65,10 @@ public class Ranking{
         if(!isFull())
             size++;  
             updateRanking();   
-        return toRet;          
+        return entered;                  
     }
 
     private void reorder(){
-        //ordena de mayor a menor
         VectorRanking<String,Integer> temp;
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {

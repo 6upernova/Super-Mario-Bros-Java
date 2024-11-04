@@ -56,11 +56,10 @@ public class Game {
     }
 
     public void stop(){
-        //ranking 
         boolean enterInRanking= ranking.addToRank(currentPlayer, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         waitMusic();
-        if( enterInRanking )
+        if(enterInRanking)
             viewController.showRankingScreen();
         else viewController.showMenuScreen();
     }

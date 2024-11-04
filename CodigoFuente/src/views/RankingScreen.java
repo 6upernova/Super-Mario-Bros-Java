@@ -2,7 +2,6 @@ package views;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -16,15 +15,16 @@ public class RankingScreen extends JPanel {
 		this.viewController= viewController;
 		setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
         setLayout(null);
-        addRankingPanel(viewController.getPlayers());
+        addRankingPanel();
         addBackButton();  
     }
 
-    private void addRankingPanel(Collection<String> players) {
-        this.rankingPanel = new RankingPanel(players);
+    private void addRankingPanel() {
+        this.rankingPanel = new RankingPanel(viewController);
         rankingPanel.setVisible(true);
         rankingPanel.setBounds(0, 0, ViewConstants.PANEL_WITDH, ViewConstants.PANEL_HEIGHT);
         this.add(rankingPanel);
+        repaint();
         
     }
     
@@ -43,6 +43,5 @@ public class RankingScreen extends JPanel {
             viewController.showMenuScreen();
         }
 		
-	}
-
+	}  
 }
