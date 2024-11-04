@@ -313,7 +313,7 @@ public class EntityFactory {
 		goombaSprites.put("Walking2", spriteFactory.getGoombaRightSprite());
 		return goombaSprites;
 	}
-	public Spiny newSpiny(int worldX, int worldY){
+	public Spiny getNewSpiny(int worldX, int worldY){
         Spiny spiny = new Spiny(spriteFactory.getSpinyEggSprite(), worldX, worldY);
 		spiny.setSpritesMap(getSpinySprites());
 		return spiny;

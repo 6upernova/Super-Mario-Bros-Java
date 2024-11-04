@@ -224,7 +224,7 @@ public class Game {
     }
 
     public void createEgg(int x, int y) {
-        Spiny spinny = levelGenerator.createSpinny(x,y);
+        Spiny spinny = levelGenerator.getNewSpinny(x,y);
         currentLevel.getEnemies().add(spinny);
     	GraphicObserver enemyObserver = viewController.registerEntity(spinny);
     	spinny.registerObserver(enemyObserver);        

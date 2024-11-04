@@ -84,7 +84,7 @@ public class LevelGenerator {
         return levelNumber+1 <= ViewConstants.MAX_LEVELS;
     }
 
-    public Spiny createSpinny(int x, int y) {
-        return entityFactory.newSpiny(x, y);
+    public Spiny getNewSpinny(int x, int y) {
+        return entityFactory.getNewSpiny(x, y);
     }
 }
