@@ -58,12 +58,13 @@ public class Game {
     public void stop(){
         boolean enterInRanking= ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
-        characterThread.interrupt();
-        enemyThread.interrupt();
+        enemyThread.setIsRunning(false);
+        viewController.showGameOver();
         waitMusic();
         if(enterInRanking)
             viewController.showRankingScreen();
-        else viewController.showMenuScreen();
+        else 
+            viewController.showMenuScreen();
     }
 
     protected void setLevel(int number){
@@ -148,7 +149,6 @@ public class Game {
         if(levelGenerator.haveNextLevel()){
             this.characterThread.setIsRunning(false);
             this.enemyThread.setIsRunning(false);
-            //this.enemyThread.interrupt();
             waitMusic();
             viewController.showLevelScreen();
             Character currentCharacter = resetCharacter();

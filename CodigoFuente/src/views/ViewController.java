@@ -1,7 +1,14 @@
 package views;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Collection;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.text.BoxView;
+import javax.swing.text.html.HTMLDocument.HTMLReader.BlockAction;
 
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
@@ -13,12 +20,12 @@ import observer.GraphicObserver;
 public class ViewController {   
     protected JFrame window;
     protected LevelScreen levelScreen;
-    //protected GameOverScreen gameOverScreen;
     protected MenuScreen menuScreen;
     protected Keyboard keyboardInputs;
     protected Game game;
     protected RankingScreen rankingScreen;
     protected PreGameScreen preGameScreen;
+
     public ViewController(Game game){   
         this.game = game;
         this.levelScreen = new LevelScreen(this);
@@ -142,6 +149,22 @@ public class ViewController {
 
     public void setBackgroundAndScroll(){
         levelScreen.setBackgroundAndScroll();
+    }
+    public void showGameOver() {
+        JPanel gameOverScreen = new JPanel();
+        JLabel gameOverText = new JLabel("GAME OVER", JLabel.CENTER);
+        gameOverText.setForeground(Color.WHITE);
+        gameOverText.setFont(ViewConstants.font.deriveFont(48f));
+     
+
+        gameOverScreen.setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
+        gameOverScreen.setLayout(new BorderLayout());
+        gameOverScreen.setBackground(Color.BLACK);
+        gameOverScreen.add(gameOverText,BorderLayout.CENTER);
+
+        window.setContentPane(gameOverScreen);
+        refresh();
+        
     }
 
 }
