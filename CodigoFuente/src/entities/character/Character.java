@@ -40,7 +40,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
 		this.score = 0;
-		this.lives = 3;
+		this.lives = 1;
         this.invencible = false;
 		this.invulnerable = false;
 		this.isInAir = false;
@@ -49,7 +49,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = ViewConstants.CHARACTER_SPEED;
 		this.isInEnd = false;
 		this.coins = 0;
-		characterAnimations= new Animations();
+		this.characterAnimations = new Animations();
 	}
 
 	public void setInStart(){	
