@@ -24,8 +24,8 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected int coins;
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
-	protected HashMap<String, Sprite> characterInvencibleSprites;
-	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
+	protected HashMap<String, Sprite> characterInvincibleSprites;
+	protected HashMap<String, Sprite> characterSuperInvincibleSprites;
 	protected SoundObserver soundObserver;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
@@ -200,7 +200,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return invincible;
 	}
 
-	public void setInvencible(boolean invincible){
+	public void setInvincible(boolean invincible){
 		this.invincible = invincible;
 	}
 
@@ -235,8 +235,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     
 	public void visit(Spiny spinny) {
-		addScore(spinny.getPointsOnDeath());
-		spinny.dead();
+		if(invincible) {
+			addScore(spinny.getPointsOnDeath());
+			spinny.dead();
+		}
 	}
 	
 	public void visit(SuperMushroom mushroom){
@@ -361,21 +363,21 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = horizontalSpeed;
 	}
 
-	public void setNormalInvencibleSprites(HashMap<String, Sprite> characterInvencibleSprites) {
-		this.characterInvencibleSprites = characterInvencibleSprites;
+	public void setNormalInvincibleSprites(HashMap<String, Sprite> characterInvincibleSprites) {
+		this.characterInvincibleSprites = characterInvincibleSprites;
 	}
 	
-	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
-		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
+	public void setSuperInvincibleSprites(HashMap<String, Sprite> characterSuperInvincibleSprites) {
+		this.characterSuperInvincibleSprites = characterSuperInvincibleSprites;
 	}
 
 	
-	public HashMap<String, Sprite> getNormalInvencibleSprites() {
-		return characterInvencibleSprites;
+	public HashMap<String, Sprite> getNormalInvincibleSprites() {
+		return characterInvincibleSprites;
     }
 	
-    public HashMap<String, Sprite> getSuperInvencibleSprites() {
-		return characterSuperInvencibleSprites;
+    public HashMap<String, Sprite> getSuperInvincibleSprites() {
+		return characterSuperInvincibleSprites;
     }
 
     public void setInEnd(boolean isInEnd) {	

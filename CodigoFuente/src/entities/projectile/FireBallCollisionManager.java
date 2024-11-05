@@ -32,8 +32,10 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
             if(collision){    
                 if(projectileBox.downCollision(platform.getBoundingBox()))
                     projectile.rebound();
-                if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
+                if(projectile.rightCollision(platform) || projectile.leftCollision(platform)) {
                     explode(projectile);
+                	game.reproduceSound("fireballImpact");
+                }
             }
 	    }   
 	}
@@ -73,7 +75,7 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
     
     public void moveProjectile(FireBall projectile, int frame) {   
         if(frame%2==0) 
-            spriteNumber = spriteNumber == 4 ? 1 : spriteNumber + 1;     
+            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;     
         platformsCollisions(projectile);
         String direction = projectile.getDirection();
         if(!(projectile).getIsExploding())
@@ -89,7 +91,7 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
     }
 
     private void exploding(FireBall projectile){
-        if(spriteNumber==4){
+        if(spriteNumber==3){
             remove(projectile);
         }
         else{
