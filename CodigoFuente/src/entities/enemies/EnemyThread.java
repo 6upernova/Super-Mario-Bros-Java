@@ -40,7 +40,8 @@ public class EnemyThread extends Thread {
                     if(enemy.canThrowEgg()){
                         game.createEgg(Math.round(enemy.getX()), Math.round(enemy.getY()));                        
                         enemyCopy = new ArrayList<>(enemies);
-                    } 				
+                    }
+
     				moveEnemy(enemy);
                     
     			}
@@ -62,6 +63,10 @@ public class EnemyThread extends Thread {
     public void setIsRunning(boolean value) {
         this.isRunning = value;
     }
+
+    public void resetPlatformsByCoords(){
+        platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
+    }
     
     private void moveEnemy(Enemy enemy) {
     	ecm.platformsCollisions(enemy);
@@ -69,6 +74,7 @@ public class EnemyThread extends Thread {
         enemy.applyGravity();
         checkEnemyInAir(enemy);
         enemy.move(spriteNumber);
+        
         if(frameCount%20==0) 
             spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }

@@ -125,6 +125,7 @@ public class Game {
     public void removeLogicalEntity(Platform entity){
         viewController.removeLogicalEntity(entity);
         characterThread.resetPlatformsByCoords();
+        enemyThread.resetPlatformsByCoords();
     }
 
     public void playNextLevel() {

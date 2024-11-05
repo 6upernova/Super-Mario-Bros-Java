@@ -33,13 +33,13 @@ public class Level {
         this.character = character;
     }
 
-    public List<Platform> getPlatforms(){
+    public synchronized List<Platform> getPlatforms(){
         return platforms;
     }
-    public List<Enemy> getEnemies(){
+    public synchronized List<Enemy> getEnemies(){
         return enemies;
     }
-    public List<PowerUp> getPowerUps(){
+    public synchronized List<PowerUp> getPowerUps(){
         return powerUps;
     }
     public LinkedList<FireBall> getFireBalls(){
