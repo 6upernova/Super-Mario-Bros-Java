@@ -223,12 +223,12 @@ public class EntityFactory {
 	}
 	
 	//POWER UPS 
-	private PowerUp newSuperMushroom(int worldX, int worldY) {
+	private SuperMushroom newSuperMushroom(int worldX, int worldY) {
 		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
 	    return superMushroom;
 	}
     
-	private PowerUp newGreenMushroom(int worldX, int worldY) {
+	private GreenMushroom newGreenMushroom(int worldX, int worldY) {
 	    GreenMushroom greenMushroom = new GreenMushroom(spriteFactory.getGreenMushroomSprite(),worldX,worldY);
 	    return greenMushroom;                   
     }
@@ -381,13 +381,10 @@ public class EntityFactory {
 
 	//Projectiles
 
-    public FireBall newFireBall(int type,int x, int y, String direction) {
-		FireBall projectile = null;
-		if(type == 31)
-			projectile = new FireBall(spriteFactory.getFireballSprite(1), x, y, direction, getFireBallSprites());
-		if(type == 32)
-		projectile = null; 	//HACER SPINY EGG
-		return projectile;
+    public FireBall newFireBall(int x, int y, String direction) {
+		return new FireBall(spriteFactory.getFireballSprite(1), x, y, direction, getFireBallSprites());
+
+		
     }
 	
 	private HashMap<String,Sprite> getFireBallSprites(){

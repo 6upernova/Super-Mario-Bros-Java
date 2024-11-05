@@ -134,7 +134,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void dead(){
 		lives--;
 		if(this.lives > 0) {
-			soundObserver.reproduceSoundOneIteration("marioDie",0);
+			soundObserver.reproduceSoundOneIteration("characterDies",0);
 			characterAnimations.characterDeathAnimation(this);
 		}
 		else soundObserver.reproduceSoundOneIteration("gameOver",0);
@@ -306,9 +306,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 	
 	public void visit(Question questionBlock) {
+		int points = 0;
 		if(upCollision(questionBlock)){
-		     questionBlock.damage(soundObserver);
-		}		
+			points = questionBlock.damage(soundObserver, this);
+		}
+		addScore(points);		
 	}
 	
 	
@@ -381,7 +383,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 
     public void addCoins(int coins) {
-		this.coins = coins;
+		this.coins += coins;
     }
 
     public void addLives(int lives) {

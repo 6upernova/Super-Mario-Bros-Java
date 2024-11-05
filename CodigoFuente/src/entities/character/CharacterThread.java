@@ -3,8 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import entities.enemies.Enemy;
 import entities.platforms.*;
+import entities.projectile.FireBall;
 import entities.projectile.FireBallCollisionManager;
-import entities.projectile.Projectile;
 import game.Game;
 import tools.LogicTools;
 import views.ViewConstants;
@@ -74,7 +74,7 @@ public class CharacterThread extends Thread {
                     checkEnemiesInRange(game.getCurrentLevel().getEnemies());
                 }
 
-                for (Projectile projectile : game.getCurrentLevel().getProjectiles()) {                    
+                for (FireBall projectile : game.getCurrentLevel().getFireBalls()) {                    
                     fireBallCollisionManager.moveProjectile(projectile,frameCount);
                     fireBallCollisionManager.enemiesCollisions(projectile);
                 }

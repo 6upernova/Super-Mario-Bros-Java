@@ -7,8 +7,6 @@ import java.util.Collection;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.text.BoxView;
-import javax.swing.text.html.HTMLDocument.HTMLReader.BlockAction;
 
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
@@ -25,6 +23,7 @@ public class ViewController {
     protected Game game;
     protected RankingScreen rankingScreen;
     protected PreGameScreen preGameScreen;
+    protected JPanel gameOverScreen;
 
     public ViewController(Game game){   
         this.game = game;
@@ -41,6 +40,7 @@ public class ViewController {
         this.menuScreen = new MenuScreen(this);
         this.preGameScreen = new PreGameScreen(this);
         configureWindow();
+        setGameOverScreen();
         showMenuScreen();             
         
     }
@@ -86,7 +86,11 @@ public class ViewController {
         refresh();
     }
 
-    //To do resto de screens
+    public void showGameOverScreen() {
+        window.setContentPane(gameOverScreen);
+        refresh();
+    }
+
 
     public void refresh(){
         window.revalidate();
@@ -122,6 +126,8 @@ public class ViewController {
     public void removeLogicalEntity(LogicalEntity e) {
         levelScreen.removeEntity(e);
     }
+
+    //Comunication methods
     
     public void updateInformation(int newCoins, int newScore, int newTime, int newLives){
         levelScreen.updateInformationPanel(newCoins,newScore, newTime, newLives);
@@ -150,21 +156,19 @@ public class ViewController {
     public void setBackgroundAndScroll(){
         levelScreen.setBackgroundAndScroll();
     }
-    public void showGameOver() {
+
+    private void setGameOverScreen(){
         JPanel gameOverScreen = new JPanel();
         JLabel gameOverText = new JLabel("GAME OVER", JLabel.CENTER);
         gameOverText.setForeground(Color.WHITE);
         gameOverText.setFont(ViewConstants.font.deriveFont(48f));
      
-
         gameOverScreen.setPreferredSize(new Dimension(ViewConstants.WIN_WIDTH,ViewConstants.WIN_HEIGHT));
         gameOverScreen.setLayout(new BorderLayout());
         gameOverScreen.setBackground(Color.BLACK);
         gameOverScreen.add(gameOverText,BorderLayout.CENTER);
-
-        window.setContentPane(gameOverScreen);
-        refresh();
-        
+        this.gameOverScreen = gameOverScreen;
     }
+  
 
 }

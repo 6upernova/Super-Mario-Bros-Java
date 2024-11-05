@@ -1,12 +1,11 @@
 package factories;
 import java.util.LinkedList;
 import java.util.List;
-
 import entities.character.Character;
 import entities.enemies.*;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
-import entities.projectile.Projectile;
+import entities.projectile.FireBall;
 import entities.state.question.Question;
 import game.Level;
 import views.ViewConstants;
@@ -76,8 +75,8 @@ public class LevelGenerator {
         return level;
     }
 
-    public Projectile createFireBall(int x, int y, String direction) {
-        return entityFactory.newFireBall(31,x, y, direction);
+    public FireBall createFireBall(int x, int y, String direction) {
+        return entityFactory.newFireBall(x, y, direction);
     }
 
     public boolean haveNextLevel(){
