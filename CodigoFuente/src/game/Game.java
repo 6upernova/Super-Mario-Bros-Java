@@ -9,6 +9,7 @@ import entities.enemies.EnemyThread;
 import entities.enemies.Spiny;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
+import entities.projectile.FireBall;
 import entities.projectile.Projectile;
 import factories.LevelGenerator;
 import observer.GraphicObserver;
@@ -59,7 +60,7 @@ public class Game {
         boolean enterInRanking= ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         enemyThread.setIsRunning(false);
-        viewController.showGameOver();
+        viewController.showGameOverScreen();
         waitMusic();
         if(enterInRanking)
             viewController.showRankingScreen();
@@ -198,7 +199,7 @@ public class Game {
     }
 
     public void createFireBall(int x, int y, String direction) {
-        Projectile fireBall = levelGenerator.createFireBall(x,y,direction);
+        FireBall fireBall = levelGenerator.createFireBall(x,y,direction);
         currentLevel.addFireBall(fireBall);
         setProjectilesObservers(fireBall);
     }

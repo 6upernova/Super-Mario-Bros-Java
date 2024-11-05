@@ -7,7 +7,7 @@ import game.Game;
 import entities.BoundingBox;
 import entities.CollisionManager;
 
-public class FireBallCollisionManager implements CollisionManager<Projectile> {    
+public class FireBallCollisionManager implements CollisionManager<FireBall> {    
 	
 	protected List<Platform> platforms;
     protected List<Enemy> enemies;
@@ -21,7 +21,7 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
         this.spriteNumber = 1;
 	}	
 
-	public void platformsCollisions(Projectile projectile){
+	public void platformsCollisions(FireBall projectile){
 	    boolean collision = false;
         Iterator<Platform> it = platforms.iterator();
 	    BoundingBox projectileBox = projectile.getBoundingBox();
@@ -33,18 +33,22 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
                 if(projectile.rightCollision(platform) || projectile.leftCollision(platform))
                     blow(projectile);
                 else if(projectileBox.downCollision(platform.getBoundingBox()))
-                    ((FireBall)projectile).rebound();
+                    projectile.rebound();
             }
 	    }   
 	}
 
+    public void checkRemove(FireBall projectile){        
+        game.removeLogicalEntity(projectile);
+        game.getCurrentLevel().getFireBalls().remove(projectile);
+    }   
     public void blow(Projectile projectile){
         FireBall fireBall= (FireBall) projectile;
         fireBall.setIsExplotion(true);  
         spriteNumber=1;
     }
 
-    public void enemiesCollisions(Projectile projectile){
+    public void enemiesCollisions(FireBall projectile){
         if(!((FireBall)projectile).isExplotion){
         boolean collision = false;
         Iterator<Enemy> enemiesIt = enemies.iterator();
@@ -64,9 +68,9 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
     }
 
    
-    public void powerUpsCollisions(Projectile entity) {}
+    public void powerUpsCollisions(FireBall entity) {}
     
-    public void moveProjectile(Projectile projectile, int frame) {   
+    public void moveProjectile(FireBall projectile, int frame) {   
         if(frame%5==0) 
             spriteNumber = spriteNumber == 4 ? 1 : spriteNumber + 1;     
         platformsCollisions(projectile);
@@ -95,25 +99,26 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 
     private void remove(FireBall fireBall){ 
         game.removeLogicalEntity(fireBall);
-        game.getCurrentLevel().getProjectiles().remove(fireBall);
+        game.getCurrentLevel().getFireBalls().remove(fireBall);
     }
 
-    private void moveProjectileLeft(Projectile projectile) {
+    private void moveProjectileLeft(FireBall projectile) {
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             blow(projectile);
         } 
         else {
-            ((FireBall)projectile).moveLeft(spriteNumber);
+            projectile.moveLeft(spriteNumber);
         }
     }
 
-    private void moveProjectileRight(Projectile projectile) {
+    private void moveProjectileRight(FireBall projectile) {
         if (Math.abs(projectile.getX() - projectile.getInitialX()) >= 15) {
             blow(projectile);
         } 
         else {
-            ((FireBall)projectile).moveRight(spriteNumber);
+            projectile.moveRight(spriteNumber);
         }
     }
 
 }
+

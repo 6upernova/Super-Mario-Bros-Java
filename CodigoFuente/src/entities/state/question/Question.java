@@ -1,6 +1,8 @@
 package entities.state.question;
 
 import java.util.HashMap;
+
+import entities.character.CharacterEntity;
 import entities.character.CharacterVisitor;
 import entities.platforms.Platform;
 import entities.powerUps.Coin;
@@ -31,8 +33,8 @@ public class Question extends Platform {
 		actualState.setPowerUp(coin);
 	}
 	
-	public int damage(SoundObserver soundObserver){
-		int points= actualState.damaged(soundObserver); 
+	public int damage(SoundObserver soundObserver,CharacterEntity character){
+		int points=actualState.damaged(soundObserver,character); 
         if(actualState.isEmpty()) {
         	changeToVoidQuestionBlock();
         	observer.update();

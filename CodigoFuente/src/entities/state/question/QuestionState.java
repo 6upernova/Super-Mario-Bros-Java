@@ -1,6 +1,7 @@
 package entities.state.question;
 import factories.Sprite;
 import observer.SoundObserver;
+import entities.character.CharacterEntity;
 import entities.powerUps.PowerUp;
 
 public abstract class QuestionState {
@@ -26,7 +27,7 @@ public abstract class QuestionState {
 		return hits == 0;
 	}
 	
-	public abstract int damaged(SoundObserver soundObserver);
+	public abstract int damaged(SoundObserver soundObserver, CharacterEntity character);
 
 	public PowerUp getPowerUp() {
 		return powerUpOn;

@@ -34,7 +34,8 @@ public class Animations{
             character.setIsBusy(true);
             if(character.isInAir())
                 changeSpritesIfJump(character, actualState, newState);
-            else changeSpritesIfNoJump(character,actualState,newState);
+            else 
+                changeSpritesIfNoJump(character,actualState,newState);
             character.setIsBusy(false);
     }
 
@@ -64,18 +65,18 @@ public class Animations{
                 if(character.isMovingRight()) {
                     character.setSprite(jumpingRight);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     character.setSprite(superJumpingRight);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                 }
                 else {
                     character.setSprite(jumpingLeft);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     character.setSprite(superJumpingLeft);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                 }
             } 
             catch (InterruptedException e) {
@@ -95,18 +96,18 @@ public class Animations{
                 if(character.isMovingRight()) {
                     character.setSprite(normalRight);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     character.setSprite(superRight);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                 }
                 else {
                     character.setSprite(normalLeft);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     character.setSprite(superLeft);
                     character.getGraphicObserver().update();
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                 }
             } 
             catch (InterruptedException e) {

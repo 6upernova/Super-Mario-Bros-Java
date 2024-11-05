@@ -304,9 +304,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 	
 	public void visit(Question questionBlock) {
+		int points = 0;
 		if(upCollision(questionBlock)){
-		     questionBlock.damage(soundObserver);
-		}		
+			points = questionBlock.damage(soundObserver, this);
+		}
+		addScore(points);		
 	}
 	
 	
@@ -379,7 +381,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 
     public void addCoins(int coins) {
-		this.coins = coins;
+		this.coins += coins;
     }
 
     public void addLives(int lives) {

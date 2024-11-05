@@ -1,5 +1,6 @@
 package entities.state.question;
 
+import entities.character.CharacterEntity;
 import factories.Sprite;
 import observer.SoundObserver;
 
@@ -9,7 +10,7 @@ public class QuestionBlockEmpty extends QuestionState{
 		super(hits, newSprite);
 	}
 
-	public int damaged(SoundObserver soundObserver) {
+	public int damaged(SoundObserver soundObserver, CharacterEntity character) {
 		return 0;
 	}
 
