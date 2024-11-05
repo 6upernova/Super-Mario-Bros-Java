@@ -1,8 +1,6 @@
 package views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
-import entities.BoundingBox;
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
 import entities.enemies.EnemyEntity;

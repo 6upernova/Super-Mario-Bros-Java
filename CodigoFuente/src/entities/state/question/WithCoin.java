@@ -1,6 +1,4 @@
 package entities.state.question;
-import java.util.HashMap;
-
 import entities.character.CharacterEntity;
 import factories.Sprite;
 import observer.EntityObserver;

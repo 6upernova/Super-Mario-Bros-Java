@@ -24,14 +24,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	protected int coins;
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
-	protected HashMap<String, Sprite> characterInvincibleSprites;
-	protected HashMap<String, Sprite> characterSuperInvincibleSprites;
+	protected HashMap<String, Sprite> characterInvencibleSprites;
+	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
 	protected SoundObserver soundObserver;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
 	protected boolean isInAir;
 	protected boolean isInEnd;
-	protected boolean invincible;
+	protected boolean invencible;
 	protected boolean invulnerable;
 	protected boolean isBusy;
 	private Animations characterAnimations;
@@ -41,7 +41,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
         super(sprite ,5,0);
 		this.score = 0;
 		this.lives = 3;
-        this.invincible = false;
+        this.invencible = false;
 		this.invulnerable = false;
 		this.isInAir = false;
 		this.isBusy = false;
@@ -199,12 +199,12 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return lives;
 	}
 	
-	public boolean isInvincible() {
-		return invincible;
+	public boolean isInvencible() {
+		return invencible;
 	}
 
-	public void setInvincible(boolean invincible){
-		this.invincible = invincible;
+	public void setInvencible(boolean Invencible){
+		this.invencible = Invencible;
 	}
 
 	public float getSpeed() {
@@ -217,7 +217,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }    
     
     public void visit(KoopaTroopa koopaTroopa) {
-		if(!isInvincible())
+		if(!isInvencible())
 		    koopaTroopa.hit(this);
 		else{ 
 			addScore(koopaTroopa.getPointsOnDeath());
@@ -241,7 +241,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     
 	public void visit(Spiny spinny) {
-		if(invincible) {
+		if(invencible) {
 			addScore(spinny.getPointsOnDeath());
 			spinny.dead();
 		}
@@ -283,14 +283,14 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	}
 
 	public void visit(Star star){
-		if (invincible) {
+		if (invencible) {
 			addScore(35);
 		}
 		else {
 			addScore(characterActualState.getStarPoints());
 			soundObserver.reproduceSoundOneIteration("starMusic", 3);
 		}
-		invincible = true;
+		invencible = true;
 	}
 
 	public void visit(Coin coin){
@@ -374,21 +374,21 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = horizontalSpeed;
 	}
 
-	public void setNormalInvincibleSprites(HashMap<String, Sprite> characterInvincibleSprites) {
-		this.characterInvincibleSprites = characterInvincibleSprites;
+	public void setNormalInvencibleSprites(HashMap<String, Sprite> characterInvencibleSprites) {
+		this.characterInvencibleSprites = characterInvencibleSprites;
 	}
 	
-	public void setSuperInvincibleSprites(HashMap<String, Sprite> characterSuperInvincibleSprites) {
-		this.characterSuperInvincibleSprites = characterSuperInvincibleSprites;
+	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
+		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
 	}
 
 	
-	public HashMap<String, Sprite> getNormalInvincibleSprites() {
-		return characterInvincibleSprites;
+	public HashMap<String, Sprite> getNormalInvencibleSprites() {
+		return characterInvencibleSprites;
     }
 	
-    public HashMap<String, Sprite> getSuperInvincibleSprites() {
-		return characterSuperInvincibleSprites;
+    public HashMap<String, Sprite> getSuperInvencibleSprites() {
+		return characterSuperInvencibleSprites;
     }
 
     public void setInEnd(boolean isInEnd) {	
@@ -416,7 +416,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 	
     public boolean capacityToBreakBlocks() {
-    	return characterActualState.breakBlock() && !invincible;
+    	return characterActualState.breakBlock() && !invencible;
     }
 
 	public boolean canThrowFireball() {

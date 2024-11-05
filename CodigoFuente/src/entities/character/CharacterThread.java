@@ -39,7 +39,7 @@ public class CharacterThread extends Thread {
         String verticalDirection;
         String spacebar;
         int counter = 0;
-        int timer = 400;
+        int timer = ViewConstants.LEVEL_TIME_DURATION;
         int timeCounter = 0; 
         int spacebarCooldown = 0;
         setIsRunning(true);
@@ -50,9 +50,19 @@ public class CharacterThread extends Thread {
             frameCount++;
             if (character.isInEnd()) {
                 isRunning = false;
-                timer = 400;
+                timer = ViewConstants.LEVEL_TIME_DURATION;
                 game.playNextLevel();
+                timer = ViewConstants.LEVEL_TIME_DURATION;
             } 
+            else if(timer <= 0){
+                if(character.getLives()<0)  
+                    game.stop();
+                else{
+                    timer = ViewConstants.LEVEL_TIME_DURATION;
+                    character.dead();
+                    character.updateBoundingBoxToSmall();
+                }
+            }
             else if (character.getLives() <= 0) {
                 game.stop();                
                 isRunning = false;
@@ -79,10 +89,10 @@ public class CharacterThread extends Thread {
                     fireBallCollisionManager.enemiesCollisions(projectile);
                 }
 
-                if (character.isInvincible()) {
+                if (character.isInvencible()) {
                     if (counter > character.getStarInvencibilityTime()) {
                     	game.startLevelMusic();
-                        character.setInvincible(false);
+                        character.setInvencible(false);
                         counter = 0;
                     } 
                     else {

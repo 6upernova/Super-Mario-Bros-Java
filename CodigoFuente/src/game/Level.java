@@ -5,6 +5,8 @@ import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.FireBall;
+import views.ViewConstants;
+
 import java.util.LinkedList;
 
 public class Level {
@@ -19,7 +21,7 @@ public class Level {
     protected String background;
 
     public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
-        this.remainingTime = 400;
+        this.remainingTime = ViewConstants.LEVEL_TIME_DURATION;
         this.platforms = platforms;
         this.enemies = enemies;
         this.powerUps = powerUps;

@@ -160,6 +160,5 @@ public class ViewController {
         gameOverScreen.add(gameOverText,BorderLayout.CENTER);
         this.gameOverScreen = gameOverScreen;
     }
-  
 
 }

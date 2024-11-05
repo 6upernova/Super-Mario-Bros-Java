@@ -14,7 +14,7 @@ public class InformationPanel extends JLabel {
         this.score = 0;
         this.coins = 0;
         this.lives = 3;
-        this.time = 400;
+        this.time = ViewConstants.LEVEL_TIME_DURATION;
         configureFontAndBackground();
         updateInformation();
     }

@@ -55,7 +55,7 @@ public class Game {
         startLevelMusic();
     }
 
-    public void stop(){
+    public void stop(){          
         boolean enterInRanking= ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
         viewController.clearLevelScreen();
         enemyThread.setIsRunning(false);

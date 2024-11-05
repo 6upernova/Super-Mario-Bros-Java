@@ -12,8 +12,8 @@ public class FireState extends SuperState{
 	
 	public HashMap<String, Sprite>  getSprites(){
 		HashMap<String, Sprite> sprites;
-		if(character.isInvincible()){
-			sprites = character.getSuperInvincibleSprites();
+		if(character.isInvencible()){
+			sprites = character.getSuperInvencibleSprites();
 		}
 		else 
 			sprites = stateSprites;

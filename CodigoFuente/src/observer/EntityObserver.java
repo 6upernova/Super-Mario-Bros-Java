@@ -1,12 +1,9 @@
 package observer;
-
 import javax.swing.*;
-
 import entities.LogicalEntity;
 import factories.Sprite;
 import tools.GraphicTools;
 import views.LevelScreen;
-import views.ViewConstants;
 
 public class EntityObserver extends GraphicObserver{
     protected boolean isActive;

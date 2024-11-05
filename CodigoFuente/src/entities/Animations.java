@@ -1,7 +1,6 @@
 package entities;
 import entities.character.Character;
 import entities.platforms.Flag;
-import entities.state.question.Question;
 import factories.Sprite;
 import views.ViewConstants;
 

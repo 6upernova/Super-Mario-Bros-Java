@@ -32,6 +32,7 @@ public class ViewConstants {
 	public static final int GAMETICK = 16;
 	public static final Font font = setFont();
     public static final int MAX_LEVELS = 3;
+    public static final int LEVEL_TIME_DURATION = 60;
 
 	private static Font setFont() {
 		Font font;
