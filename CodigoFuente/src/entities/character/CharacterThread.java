@@ -5,7 +5,6 @@ import entities.enemies.Enemy;
 import entities.platforms.*;
 import entities.projectile.FireBall;
 import entities.projectile.FireBallCollisionManager;
-import entities.projectile.Projectile;
 import game.Game;
 import tools.LogicTools;
 import views.ViewConstants;

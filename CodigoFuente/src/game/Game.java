@@ -23,7 +23,7 @@ public class Game {
     protected Level currentLevel;
     protected String currentPlayerName;
     protected int numberLevel;
-    protected SoundReproducer sound;
+    protected SoundReproducer soundReproducer;
     protected CharacterThread characterThread;
     protected SoundGenerator generatorSounds;
     protected EnemyThread enemyThread;
@@ -34,8 +34,6 @@ public class Game {
     public Game () {
         this.numberLevel = 1;
         this.ranking = new Ranking();
-        this.generatorSounds= new SoundGenerator();
-        this.sound = new SoundReproducer(generatorSounds);
     } 
     
     public void setName(String name){
@@ -128,8 +126,8 @@ public class Game {
     }
     
     public void reproduceSound(String path) {
-    	sound.setAuxiliarSound(path);
-		sound.start();
+    	soundReproducer.setAuxiliarSound(path);
+		soundReproducer.start();
     }
 
     public void reproduceSoundDeath(String path) {
@@ -137,12 +135,12 @@ public class Game {
     }
 
     public void stopSound() {
-    	sound.stopMusic();
+    	soundReproducer.stopMusic();
     }
 
     public void startMusicLevel(){
-        sound.setMusicSound("musicLevel1");
-        sound.loop(-1);
+        soundReproducer.setMusicSound("musicLevel1");
+        soundReproducer.loop(-1);
     }
     
     protected void changeLevel() {  
@@ -172,7 +170,7 @@ public class Game {
 
 
     private void waitMusic(){
-        while(sound.isRunning()){
+        while(soundReproducer.isRunning()){
         }
     }
 
@@ -194,7 +192,9 @@ public class Game {
     
     public void setMode(String mode) {
         this.mode = mode;
-        this.levelGenerator = new LevelGenerator(mode);  
+        this.levelGenerator = new LevelGenerator(mode); 
+        this.generatorSounds= new SoundGenerator(mode);
+        this.soundReproducer = new SoundReproducer(generatorSounds); 
         setLevel(1);         
     }
 
@@ -211,23 +211,24 @@ public class Game {
 
 
     public void reproduceLoopSound(String path, int iteracions) {
-        sound.setMusicSound(path);
-        sound.loop(0);
+        soundReproducer.setMusicSound(path);
+        soundReproducer.loop(0);
     } 
 
     public void startMusic(String path){
-        sound.setMusicSound("path");
-        sound.loop(0);
+        soundReproducer.setMusicSound("path");
+        soundReproducer.loop(0);
     }
 
     public boolean isRunningSound() {
-        return sound.isRunning();
+        return soundReproducer.isRunning();
     }
 
     public void createEgg(int x, int y) {
         Spiny spinny = levelGenerator.getNewSpinny(x,y);
         currentLevel.getEnemies().add(spinny);
     	GraphicObserver enemyObserver = viewController.registerEntity(spinny);
-    	spinny.registerObserver(enemyObserver);        
+    	spinny.registerObserver(enemyObserver);  
+        reproduceSound("lakitu");      
     }
 }

@@ -11,7 +11,7 @@ public class SuperState extends CharacterState{
 	
 	public void damaged() {
 		character.changeState("Normal");
-		character.getSoundObserver().reproduceSound("superMarioDamaged");
+		character.getSoundObserver().reproduceSound("superCharacterDamaged");
 		character.getCharacterAnimations().superAnimation(character,"Super", "Normal");
 		character.updateBoundingBoxToSmall();
 	}
