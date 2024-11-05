@@ -13,7 +13,7 @@ public class PiranhaPlant extends Enemy{
 	
 	public PiranhaPlant(Sprite sprite, float positionInX, float positionInY) {
 		super(sprite, positionInX + 0.5f, positionInY - 67/43f, pointsOnDeath, pointsOnKill);
-		spawnY = positionInY - 73/43f;
+		spawnY = positionInY - 74/43f;
 		direction="Up";
 		flies=false;
 	}
