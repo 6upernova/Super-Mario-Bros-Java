@@ -210,14 +210,14 @@ public class EntityFactory {
 		return characterSuperSprites;
 	}	
 	
-	private HashMap<String, QuestionState> createQuestionStates() {
+	private HashMap<String, QuestionState> createQuestionStates(Question question) {
 		HashMap<String, QuestionState> states= new HashMap<String, QuestionState>();
 		Sprite sprite= spriteFactory.getQuestionBlockSprite();
-	    WithCoin stateWithCoin=  new WithCoin(sprite);
-	    WithPowerUp stateWithOrtherPowerUp= new WithPowerUp(sprite);
-	    QuestionBlockEmpty emptyQuestion= new QuestionBlockEmpty(0, spriteFactory.getQuestionEmptyBlock());
+	    WithCoin stateWithCoin=  new WithCoin(sprite, question);
+	    WithPowerUp stateWithOtherPowerUp= new WithPowerUp(sprite, question);
+	    QuestionBlockEmpty emptyQuestion= new QuestionBlockEmpty(0, spriteFactory.getQuestionEmptyBlock(), question);
 	    states.put("WithCoin", stateWithCoin);
-		states.put("WithOrtherPowerUp", stateWithOrtherPowerUp);
+		states.put("WithOtherPowerUp", stateWithOtherPowerUp);
 		states.put("EmptyQuestion", emptyQuestion);
 		return states;
 	}
@@ -356,9 +356,18 @@ public class EntityFactory {
 	}
 	
 	private Question newQuestion(int worldX, int worldY) {
-		HashMap<String, QuestionState> states= createQuestionStates();
-		Question question = new Question(spriteFactory.getQuestionBlockSprite(), worldX, worldY, states);
+		Question question = new Question(spriteFactory.getQuestionBlockSprite(), worldX, worldY, getCoinAnimationSprites());
+		HashMap<String, QuestionState> states= createQuestionStates(question);
+		question.setStates(states);
 	    return question;
+	}
+	private HashMap<String,Sprite> getCoinAnimationSprites(){
+		HashMap<String,Sprite> coinSprites = new HashMap<String,Sprite>();
+		for(int i = 0; i<4; i++){
+			coinSprites.put(""+(i+1),spriteFactory.getCoinAnimationSprite(i+1));
+		}
+		return coinSprites;
+
 	}
 
 	private Brick newBrick(int worldX, int worldY) {
@@ -389,10 +398,9 @@ public class EntityFactory {
 	
 	private HashMap<String,Sprite> getFireBallSprites(){
 		HashMap<String,Sprite> fireBallSprites = new HashMap<String,Sprite>();
-		fireBallSprites.put("1",spriteFactory.getFireballSprite(1));
-		fireBallSprites.put("2",spriteFactory.getFireballSprite(2));
-		fireBallSprites.put("3",spriteFactory.getFireballSprite(3));
-		fireBallSprites.put("4",spriteFactory.getFireballSprite(4));
+		for(int i = 0; i<4; i++){
+			fireBallSprites.put(""+(i+1),spriteFactory.getFireballSprite(i+1));
+		}
 		fireBallSprites.put("blow1", spriteFactory.getFireBallExplotionSprite(1));
 		fireBallSprites.put("blow2", spriteFactory.getFireBallExplotionSprite(2));
 		fireBallSprites.put("blow3", spriteFactory.getFireBallExplotionSprite(3));

@@ -6,8 +6,8 @@ import observer.SoundObserver;
 
 public class WithPowerUp extends QuestionState {
 
-	public WithPowerUp(Sprite sprite) {
-		super(1, sprite);
+	public WithPowerUp(Sprite sprite, Question question) {
+		super(1, sprite, question);
 	}
 
 	public int damaged(SoundObserver soundObserver, CharacterEntity character) {

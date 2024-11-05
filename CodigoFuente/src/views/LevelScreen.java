@@ -1,9 +1,7 @@
 package views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import HitboxDebug.HitboxPanel;
 import entities.BoundingBox;
 import entities.LogicalEntity;
@@ -99,7 +97,7 @@ public class LevelScreen extends JPanel {
     }
 
     public GraphicObserver drawLogicalEntity(LogicalEntity entity, boolean isActive) {
-        EntityObserver entityObserver = new EntityObserver(entity, isActive);
+        EntityObserver entityObserver = new EntityObserver(this, entity, isActive);
         backgroundImageLabel.add(entityObserver);
         return entityObserver;   
     }
@@ -156,4 +154,40 @@ public class LevelScreen extends JPanel {
         });
         timer.start();
     }
+
+    public void drawCoin(JLabel coinLabel) {
+        backgroundImageLabel.add(coinLabel);
+        backgroundImageLabel.repaint();
+        coinAnimation(coinLabel);
+    }
+
+   public void coinAnimation(JLabel pointsJLabel) {
+    Timer timer = new Timer(4, new ActionListener() {
+        int steps = 0;
+        boolean goingUp = true; 
+
+        
+        public void actionPerformed(ActionEvent e) {
+            if (goingUp) {
+                pointsJLabel.setLocation(pointsJLabel.getX(), pointsJLabel.getY() - 1);
+                if (steps >= 30) { 
+                    goingUp = false;
+                }
+            } 
+            else {
+                pointsJLabel.setLocation(pointsJLabel.getX(), pointsJLabel.getY() + 1);
+            }
+            steps++;
+            if (steps >= 60) { 
+                ((Timer) e.getSource()).stop();
+                backgroundImageLabel.remove(pointsJLabel);
+                backgroundImageLabel.repaint();
+            }
+        }
+    });
+
+    timer.start();
+}
+
+    
 }   

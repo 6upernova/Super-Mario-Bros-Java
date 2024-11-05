@@ -214,6 +214,9 @@ public abstract class SpriteFactory {
     public Sprite getCoinSprite(){
         return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+"Coin.png");	 
     }
+    public Sprite getCoinAnimationSprite(int frame){
+        return new Sprite(folderPath + File.separator+"PowerUps"+ File.separator+ "coinAnimation"+ frame + ".png" );
+    }
     
     /*==========================================================Projectile Sprites=========================================================*/
 

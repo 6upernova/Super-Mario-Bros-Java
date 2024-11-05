@@ -8,11 +8,13 @@ public abstract class QuestionState {
 	protected int hits;
 	protected PowerUp powerUpOn;
 	protected Sprite sprite;
+	protected Question question;
 	
-	public QuestionState(int hits, Sprite newSprite) {
+	public QuestionState(int hits, Sprite newSprite, Question question) {
 		this.hits = hits;
 		this.powerUpOn = null;
 		this.sprite = newSprite;
+		this.question = question;
 	}
 	
 	public void setPowerUp(PowerUp powerUp) {

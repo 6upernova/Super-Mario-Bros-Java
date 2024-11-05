@@ -16,15 +16,20 @@ public class Question extends Platform {
 	
 	protected QuestionState actualState;
 	protected HashMap<String,QuestionState> questionStates;
+	protected HashMap<String,Sprite> coinAnimationSprites;
 	
-	public Question(Sprite sprite, int positionInX, int positionInY, HashMap<String,QuestionState> states) {
+	public Question(Sprite sprite, int positionInX, int positionInY,  HashMap<String,Sprite> coinAnimation) {
 		super(sprite, positionInX, positionInY, isBreakeable);
-		this.questionStates= states;
+		this.coinAnimationSprites = coinAnimation;
 		this.actualState =null;
 	}
 
+	public void setStates(HashMap<String,QuestionState> states){
+		questionStates = states;
+	}
+
 	public void setPowerUp(PowerUp powerUp){
-		actualState= questionStates.get("WithOrtherPowerUp");
+		actualState= questionStates.get("WithOtherPowerUp");
 		actualState.setPowerUp(powerUp);
 	}
 	
