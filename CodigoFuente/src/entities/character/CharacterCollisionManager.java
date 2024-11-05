@@ -101,8 +101,8 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
                 }
                 platform.acceptVisit(character);
                 if(removeEntity) {
+                    platforms.remove(platform);
                 	game.removeLogicalEntity(platform);
-                	platforms.remove(platform);
                     character.getSoundObserver().reproduceSound("breakBrick");
                 	endIteration=true;
                 }

@@ -114,6 +114,10 @@ public class CharacterThread extends Thread {
         }
     }
 
+    public void resetPlatformsByCoords(){
+        this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
+    }
+
     private void checkEnemiesInRange(List<Enemy> enemyList) {
         for (Enemy enemy : enemyList)
             if (!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16) {

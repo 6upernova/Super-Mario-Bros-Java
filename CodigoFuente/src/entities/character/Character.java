@@ -217,9 +217,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		if(!isInvincible())
 		    koopaTroopa.hit(this);
 		else{ 
-			  addScore(koopaTroopa.getPointsOnDeath());
-			  koopaTroopa.dead();
-		    } 
+			addScore(koopaTroopa.getPointsOnDeath());
+			koopaTroopa.dead();
+		} 
     }   
     
     public void visit(PiranhaPlant piranhaPlant) {

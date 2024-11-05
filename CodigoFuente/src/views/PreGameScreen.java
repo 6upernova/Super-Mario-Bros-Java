@@ -128,12 +128,11 @@ public class PreGameScreen extends JPanel {
 		}
 	}
     private class BackButtonListener implements ActionListener{
-        @Override
+       
         public void actionPerformed(ActionEvent e) {
             viewController.showMenuScreen();
         }		
 	}  
-    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (background != null) {

@@ -2,7 +2,6 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import HitboxDebug.HitboxPanel;
 import entities.BoundingBox;
 import entities.LogicalEntity;
 import entities.character.CharacterEntity;
@@ -126,12 +125,6 @@ public class LevelScreen extends JPanel {
         informationPanel.updateInformation();
     }
 
-    public void drawHitbox(LogicalEntity entity) {
-        BoundingBox hitbox = entity.getBoundingBox();
-        HitboxPanel hitboxPanel = new HitboxPanel(hitbox);        
-        backgroundImageLabel.add(hitboxPanel);
-        backgroundImageLabel.repaint(); 
-    }
 
     public void drawPoints(JLabel pointsLabel) {
         backgroundImageLabel.add(pointsLabel);

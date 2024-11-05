@@ -122,6 +122,11 @@ public class Game {
         viewController.removeLogicalEntity(entity);
     }
 
+    public void removeLogicalEntity(Platform entity){
+        viewController.removeLogicalEntity(entity);
+        characterThread.resetPlatformsByCoords();
+    }
+
     public void playNextLevel() {
         changeLevel();
     }

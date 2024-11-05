@@ -16,7 +16,7 @@ public class WithCoin extends QuestionState{
 		hits--;
 		soundObserver.reproduceSound("coin");
 		character.addCoins(1);
-		((EntityObserver) question.getGraphicObserver()).spawnCoin(question.coinAnimationSprites.get("1"));
+		((EntityObserver)question.getGraphicObserver()).spawnCoin(question.coinAnimationSprites.get("1"));
 		return powerUpOn.getPoints();
 	}
 
