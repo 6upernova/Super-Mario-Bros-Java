@@ -6,7 +6,6 @@ import entities.platforms.Platform;
 import entities.state.koopaTroopa.KoopaTroopaNormalState;
 import entities.state.koopaTroopa.KoopaTroopaShellState;
 import entities.state.koopaTroopa.KoopaTroopaState;
-import entities.visitor.EnemyVisitor;
 import factories.Sprite;
 import observer.GraphicObserver;
 public class KoopaTroopa extends Enemy{
