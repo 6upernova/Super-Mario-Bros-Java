@@ -10,7 +10,7 @@ public class WithPowerUp extends QuestionState {
 		super(1, sprite, question);
 	}
 
-	public int damaged(SoundObserver soundObserver, CharacterEntity character) {
+	public int damaged(SoundObserver soundObserver) {
 	    hits--;
 	    powerUpOn.activatePowerUp();
 		soundObserver.reproduceSound("powerUpAppears");

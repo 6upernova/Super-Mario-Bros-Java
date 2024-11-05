@@ -38,8 +38,8 @@ public class Question extends Platform {
 		actualState.setPowerUp(coin);
 	}
 	
-	public int damage(SoundObserver soundObserver,CharacterEntity character){
-		int points=actualState.damaged(soundObserver,character); 
+	public int damage(SoundObserver soundObserver){
+		int points=actualState.damaged(soundObserver); 
         if(actualState.isEmpty()) {
         	changeToVoidQuestionBlock();
         	observer.update();

@@ -29,7 +29,7 @@ public abstract class QuestionState {
 		return hits == 0;
 	}
 	
-	public abstract int damaged(SoundObserver soundObserver, CharacterEntity character);
+	public abstract int damaged(SoundObserver soundObserver);
 
 	public PowerUp getPowerUp() {
 		return powerUpOn;

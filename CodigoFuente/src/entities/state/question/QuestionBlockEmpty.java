@@ -10,7 +10,7 @@ public class QuestionBlockEmpty extends QuestionState{
 		super(hits, newSprite,question);
 	}
 
-	public int damaged(SoundObserver soundObserver, CharacterEntity character) {
+	public int damaged(SoundObserver soundObserver) {
 		return 0;
 	}
 

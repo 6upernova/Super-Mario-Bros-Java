@@ -172,7 +172,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.characterActualState = characterStates.get(state);
     }
 
-	public void damaged() {
+	public void damaged(int subtractedPoints) {
+		if(!characterActualState.isSuper()){
+			addScore(subtractedPoints);
+		}
 		characterActualState.damaged();
 	}
     
@@ -223,8 +226,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }   
     
     public void visit(PiranhaPlant piranhaPlant) {
-		addScore(piranhaPlant.getPointsOnDeath());
-		this.damaged();
+		this.damaged(piranhaPlant.getPointsOnKill());
     }	
     
     public void visit(Lakitu lakitu) {
@@ -317,8 +319,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void visit(Question questionBlock) {
 		int points = 0;
 		if(upCollision(questionBlock)){
-			points = questionBlock.damage(soundObserver, this);
+			points = questionBlock.damage(soundObserver);
 		}
+		if(points != 0)
+			addCoins(1);
 		addScore(points);		
 	}
 	

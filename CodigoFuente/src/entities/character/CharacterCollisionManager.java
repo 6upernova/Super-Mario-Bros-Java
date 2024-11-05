@@ -40,7 +40,7 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
                 }
             	else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvincible() && !character.isInvulnerable()){
                     character.setInvulnerable(true);
-                    character.damaged();
+                    character.damaged(enemy.getPointsOnKill());
                 }     
                 endIteration = true;
             }

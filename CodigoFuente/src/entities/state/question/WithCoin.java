@@ -12,10 +12,9 @@ public class WithCoin extends QuestionState{
 		
 	}
 
-	public int damaged(SoundObserver soundObserver, CharacterEntity character) {
+	public int damaged(SoundObserver soundObserver) {
 		hits--;
 		soundObserver.reproduceSound("coin");
-		character.addCoins(1);
 		((EntityObserver)question.getGraphicObserver()).spawnCoin(question.coinAnimationSprites.get("1"));
 		return powerUpOn.getPoints();
 	}
