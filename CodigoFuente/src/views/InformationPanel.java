@@ -30,7 +30,7 @@ public class InformationPanel extends JLabel {
 
     public void updateInformation() {
         String separator = "    ";
-        setText(separator+"SCORE:"+score+separator+"TIME:"+time+separator+"COINS:"+coins+separator+"LIVES:"+lives);   
+        setText("  SCORE:"+score+separator+"TIME:"+time+separator+"COINS:"+coins+separator+"LIVES:"+lives);   
         int panelHeight = (int) (ViewConstants.PANEL_HEIGHT * 0.075);
         int panelWidth = ViewConstants.PANEL_WITDH;        
         setPreferredSize(new Dimension(panelWidth, panelHeight));
