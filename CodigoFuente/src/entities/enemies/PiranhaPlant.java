@@ -10,12 +10,14 @@ public class PiranhaPlant extends Enemy{
 	static final private int pointsOnKill=-30;
 	protected final float spawnY;
 	protected long stopTime;
+	protected boolean insidePipe;
 	
 	public PiranhaPlant(Sprite sprite, float positionInX, float positionInY) {
 		super(sprite, positionInX + 0.5f, positionInY - 67/43f, pointsOnDeath, pointsOnKill);
 		spawnY = positionInY - 74/43f;
 		direction="Up";
 		flies=false;
+		insidePipe = false;
 	}
 	
 	public void move(int frame){
@@ -50,6 +52,10 @@ public class PiranhaPlant extends Enemy{
 	private void checkDirectionChange(){
 		String newDirection = getDirection() == "Up" ? "Down" : "Up";
 		if(getY() <= spawnY || getY() >= spawnY + getHeight()){
+			if(getY() <= spawnY)
+				insidePipe = true;
+			else
+				insidePipe = false;
 			direction = newDirection;
 			stopTime = System.currentTimeMillis();
 		}
@@ -72,6 +78,10 @@ public class PiranhaPlant extends Enemy{
 	
 	public void setObserver(GraphicObserver observer) {
 		this.observer = observer;
+	}
+
+	public boolean isOnPipe(){
+		return insidePipe;
 	}
 
 }
