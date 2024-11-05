@@ -6,12 +6,12 @@ import tools.GraphicTools;
 public class FireBall extends Projectile {
 	protected String direction;
 	protected HashMap<String,Sprite> sprites;
-	protected boolean isExplotion;
+	protected boolean isExploding;
 
 	public FireBall(Sprite sprite, float positionInX, float positionInY, String direction, HashMap<String,Sprite> sprites ) {
 		super(sprite, positionInX, positionInY, direction);
 		this.sprites = sprites;
-		isExplotion=false;
+		isExploding=false;
 	}
 
 	public void moveRight(int spriteNumber) {
@@ -24,7 +24,7 @@ public class FireBall extends Projectile {
     }
 
 	public void rebound(){
-		setY(getY()+1);
+		setY(getY() + 0.5f);
 		verticalSpeed = -verticalSpeed*0.4f;	
 	}
 
@@ -32,8 +32,8 @@ public class FireBall extends Projectile {
 		return sprites.get(path);
 	}
 
-	public void explotion(int count){
-		sprite= sprites.get("explotion"+ count);
+	public void exploding(int count){
+		sprite= sprites.get("blow"+ count);
 		observer.update();
 	}
 
@@ -46,11 +46,11 @@ public class FireBall extends Projectile {
 		observer.update();
 	}
 
-	public boolean getIsExplotion(){
-		return isExplotion;
+	public boolean getIsExplode(){
+		return isExploding;
 	}
 
-	public void setIsExplotion(boolean isExplotion){
-		this.isExplotion= isExplotion;
+	public void setIsExplode(boolean burst){
+		isExploding= burst;
 	}
 }

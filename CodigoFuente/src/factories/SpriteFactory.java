@@ -227,7 +227,7 @@ public abstract class SpriteFactory {
     }
 
     public Sprite getFireBallExplotionSprite(int frame){
-        return new Sprite(folderPath+ File.separator+"Projectiles"+ File.separator+"FireballExplotion"+frame+".png");
+        return new Sprite(folderPath+ File.separator+"Projectiles"+ File.separator+"FireballBlow"+frame+".png");
     }
     /*==========================================================Platforms Sprites==========================================================*/
 
