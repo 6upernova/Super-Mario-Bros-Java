@@ -239,6 +239,9 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 			addScore(spinny.getPointsOnDeath());
 			spinny.dead();
 		}
+		else
+			this.dead();
+			
 	}
 	
 	public void visit(SuperMushroom mushroom){
