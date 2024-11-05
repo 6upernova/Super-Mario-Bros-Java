@@ -27,22 +27,13 @@ public class ViewController {
 
     public ViewController(Game game){   
         this.game = game;
-        this.levelScreen = new LevelScreen(this);
-        this.preGameScreen = new PreGameScreen(this);
-        configureWindow();
-
-        
-    }
-    public ViewController(){
-        this.game = new Game();
         game.setViewController(this);
         this.levelScreen = new LevelScreen(this);
         this.menuScreen = new MenuScreen(this);
         this.preGameScreen = new PreGameScreen(this);
         configureWindow();
         setGameOverScreen();
-        showMenuScreen();             
-        
+        showMenuScreen();
     }
 
     public void configureWindow (){

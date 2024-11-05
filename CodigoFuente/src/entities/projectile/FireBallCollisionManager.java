@@ -29,12 +29,12 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
 	    while (it.hasNext() && !collision){
 	        platform = it.next();
 	        collision = projectileBox.collision(platform.getBoundingBox());
-            if(collision){    
-                if(projectileBox.downCollision(platform.getBoundingBox()))
-                    projectile.rebound();
+            if(collision){   
                 if(projectile.rightCollision(platform) || projectile.leftCollision(platform)) {
                     explode(projectile);
                 }
+                else if(projectileBox.downCollision(platform.getBoundingBox()))
+                        projectile.acceptVisit(platform);
             }
 	    }   
 	}
@@ -44,41 +44,35 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
         game.getCurrentLevel().getFireBalls().remove(projectile);
     }   
 
-    public void explode(Projectile projectile){
-        FireBall fireBall= (FireBall) projectile;
-        fireBall.setIsExploding(true);
+    public void explode(FireBall projectile){
+        projectile.setIsExploding(true);
         spriteNumber=1;
     }
 
     public void enemiesCollisions(FireBall projectile){
-        if(!((FireBall)projectile).getIsExploding()){
         	boolean collision = false;
         	Iterator<Enemy> enemiesIt = enemies.iterator();
         	Enemy enemy;
-        	boolean endIteration = false;
-        	while(enemiesIt.hasNext() && !endIteration){
+        	while(enemiesIt.hasNext() && !collision){
         		enemy = enemiesIt.next();
         		collision = projectile.colision(enemy);
         		if (collision) {
         			game.getCurrentLevel().getCharacter().addScore(enemy.getPointsOnDeath());
-        			enemy.dead();
-                	explode(projectile);
+                    enemy.acceptVisit(projectile);
+                    spriteNumber=1;
                 	game.reproduceSound("kick");
-                	endIteration = true;
         		}
         	}
-        }
     }
    
     public void powerUpsCollisions(FireBall entity) {}
     
     public void moveProjectile(FireBall projectile, int frame) {   
-        if(frame%2==0) 
-            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;     
-        platformsCollisions(projectile);
-        String direction = projectile.getDirection();
-        if(!(projectile).getIsExploding())
-             switch (direction) {
+        if(frame%5==0) 
+            spriteNumber = spriteNumber == 3 ? 1 : spriteNumber + 1;   
+        if(!(projectile).getIsExploding())  {
+            String direction = projectile.getDirection();
+            switch (direction) {
                   case "Left":                
                         moveProjectileLeft(projectile);
                         break;
@@ -86,22 +80,19 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
                         moveProjectileRight(projectile);
                         break;
              }
+             platformsCollisions(projectile);
+        }
         else exploding(projectile);
     }
 
     private void exploding(FireBall projectile){
         if(spriteNumber==3){
             game.reproduceSound("fireballImpact");
-            remove(projectile);
+            checkRemove(projectile);
         }
         else{
             projectile.exploding(spriteNumber);
         }
-    }
-
-    private void remove(FireBall fireBall){ 
-        game.removeLogicalEntity(fireBall);
-        game.getCurrentLevel().getFireBalls().remove(fireBall);
     }
 
     private void moveProjectileLeft(FireBall projectile) {

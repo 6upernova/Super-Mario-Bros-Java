@@ -45,7 +45,7 @@ public class KoopaTroopaNormalState implements KoopaTroopaState {
 	}
 
 	public void hitEnemy(Enemy enemy) {
-		//String newDirection= koopaTroopa.getDirection()=="Left" ? "Right" : "Left";
-		//koopaTroopa.setDirection(newDirection);
+		String newDirection= koopaTroopa.getDirection()=="Left" ? "Right" : "Left";
+		koopaTroopa.setDirection(newDirection);
 	} 
 }

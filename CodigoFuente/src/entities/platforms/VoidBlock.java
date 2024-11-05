@@ -2,6 +2,7 @@ package entities.platforms;
 
 import entities.character.CharacterVisitor;
 import entities.enemies.Enemy;
+import entities.projectile.FireBall;
 import factories.Sprite;
 
 public class VoidBlock extends Platform{
@@ -24,5 +25,9 @@ public class VoidBlock extends Platform{
 	public void visit(Enemy enemy) {
     	enemy.dead();
     }
+
+	public void visit(FireBall fireBall){
+		fireBall.setIsExploding(true);
+	}
 	
 }

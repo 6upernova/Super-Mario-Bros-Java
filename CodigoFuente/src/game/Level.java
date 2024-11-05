@@ -8,6 +8,7 @@ import entities.projectile.FireBall;
 import java.util.LinkedList;
 
 public class Level {
+    
     protected int remainingTime; 
     protected List<Platform> platforms;
     protected List<Enemy> enemies;
@@ -15,7 +16,6 @@ public class Level {
     protected LinkedList<FireBall> fireBalls;
     protected Character character;
     protected boolean running;
-    protected boolean paused;
     protected String background;
 
     public Level(List<Platform> platforms, List<Enemy> enemies, List<PowerUp> powerUps){
@@ -24,27 +24,11 @@ public class Level {
         this.enemies = enemies;
         this.powerUps = powerUps;
         this.running = false;
-        this.paused = true;
         this.fireBalls = new LinkedList<>() ;
     }
 
     public void setCharacter(Character character){
         this.character = character;
-    }
-   
-    public void start(){
-        running = true;
-        paused = false;
-    }
-    public void end(){
-        running = false;
-    }
-
-    public void pause(){
-        paused = true;
-    }
-    public void resume(){
-        paused = false;
     }
 
     public List<Platform> getPlatforms(){
@@ -68,9 +52,6 @@ public class Level {
     }
     public boolean isRunning(){
         return running;
-    }
-    public boolean isPaused(){
-        return paused;
     }
 
     public void delete() {

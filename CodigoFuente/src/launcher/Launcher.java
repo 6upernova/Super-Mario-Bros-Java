@@ -1,9 +1,11 @@
 package launcher;
 
+import game.Game;
 import views.ViewController;
 
 public class Launcher {
     public static void main(String arg[]){
-        ViewController viewController = new ViewController();
+        Game game= new Game();
+        ViewController viewController = new ViewController(game);
     }
 }

@@ -2,7 +2,7 @@ package observer;
 import entities.LogicalEntity;
 
 public class EntityObserver extends GraphicObserver{
-    boolean isActive;
+    private boolean isActive;
 
     public EntityObserver(LogicalEntity observedEntity, boolean isActive){
         super(observedEntity);

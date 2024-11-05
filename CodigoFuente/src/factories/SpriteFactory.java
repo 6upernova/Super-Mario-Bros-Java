@@ -2,7 +2,7 @@ package factories;
 import java.io.File;
 
 public abstract class SpriteFactory {
-    String folderPath; 
+    private String folderPath; 
     
     protected SpriteFactory(String path){
         this.folderPath = path;

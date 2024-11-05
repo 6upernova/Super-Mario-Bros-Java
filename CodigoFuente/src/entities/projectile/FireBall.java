@@ -1,9 +1,13 @@
 package entities.projectile;
 import java.util.HashMap;
+
+import entities.enemies.Enemy;
+import entities.platforms.Platform;
+import entities.visitor.EnemyVisitor;
 import factories.Sprite;
 import tools.GraphicTools;
 
-public class FireBall extends Projectile {
+public class FireBall extends Projectile implements EnemyVisitor{
 	protected String direction;
 	protected HashMap<String,Sprite> sprites;
 	protected boolean isExploding;
@@ -52,5 +56,14 @@ public class FireBall extends Projectile {
 
 	public void setIsExploding(boolean burst){
 		isExploding= burst;
+	}
+
+	public void visit(Enemy enemy) {
+		enemy.dead();
+		isExploding=true;
+	}
+
+	public void acceptVisit(Platform platform) {
+		platform.visit(this);
 	}
 }

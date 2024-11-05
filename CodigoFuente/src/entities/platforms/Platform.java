@@ -2,6 +2,7 @@ package entities.platforms;
 
 import entities.Entity;
 import entities.enemies.Enemy;
+import entities.projectile.FireBall;
 import entities.visitor.EnemyVisitor;
 import entities.visitor.PlatformsVisitor;
 import entities.visitor.VisitedElement;
@@ -25,5 +26,9 @@ public abstract class Platform extends Entity implements VisitedElement, EnemyVi
 	}
 	
     public void visit(Enemy enemy) {}
+
+	public void visit(FireBall fireBall){
+		fireBall.rebound();
+	}
     
 }
