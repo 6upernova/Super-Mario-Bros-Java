@@ -52,7 +52,6 @@ public abstract class Projectile extends Entity{
 		return initialY;
 	}
 
-	// Métodos para acceder a verticalSpeed
 	public float getVerticalSpeed() {
 		return verticalSpeed;
 	}
