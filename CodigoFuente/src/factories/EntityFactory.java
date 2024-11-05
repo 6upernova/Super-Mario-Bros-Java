@@ -393,9 +393,9 @@ public class EntityFactory {
 		fireBallSprites.put("2",spriteFactory.getFireballSprite(2));
 		fireBallSprites.put("3",spriteFactory.getFireballSprite(3));
 		fireBallSprites.put("4",spriteFactory.getFireballSprite(4));
-		fireBallSprites.put("explotion1", spriteFactory.getFireBallExplotionSprite(1));
-		fireBallSprites.put("explotion2", spriteFactory.getFireBallExplotionSprite(2));
-		fireBallSprites.put("explotion3", spriteFactory.getFireBallExplotionSprite(3));
+		fireBallSprites.put("blow1", spriteFactory.getFireBallExplotionSprite(1));
+		fireBallSprites.put("blow2", spriteFactory.getFireBallExplotionSprite(2));
+		fireBallSprites.put("blow3", spriteFactory.getFireBallExplotionSprite(3));
 		return fireBallSprites;
 	}
 
