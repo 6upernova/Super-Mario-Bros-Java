@@ -26,8 +26,5 @@ public class SoundObserver {
 		game.startLevelMusic();
 	}
 	
-	public void stopSound() {
-		game.stopSound();
-	}
 
 }

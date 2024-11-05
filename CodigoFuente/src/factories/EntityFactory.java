@@ -213,16 +213,18 @@ public class EntityFactory {
 	private HashMap<String, QuestionState> createQuestionStates(Question question) {
 		HashMap<String, QuestionState> states= new HashMap<String, QuestionState>();
 		Sprite sprite= spriteFactory.getQuestionBlockSprite();
-	    WithCoin stateWithCoin=  new WithCoin(sprite, question);
-	    WithPowerUp stateWithOtherPowerUp= new WithPowerUp(sprite, question);
-	    QuestionBlockEmpty emptyQuestion= new QuestionBlockEmpty(0, spriteFactory.getQuestionEmptyBlock(), question);
+	    WithCoin stateWithCoin=  new WithCoin(sprite);
+	    WithPowerUp stateWithOrtherPowerUp= new WithPowerUp(sprite);
+	    QuestionBlockEmpty emptyQuestionState= new QuestionBlockEmpty(spriteFactory.getQuestionEmptyBlock());
+		stateWithCoin.setQuestionBlock(question);
+		stateWithOrtherPowerUp.setQuestionBlock(question);
+		emptyQuestionState.setQuestionBlock(question);
 	    states.put("WithCoin", stateWithCoin);
-		states.put("WithOtherPowerUp", stateWithOtherPowerUp);
-		states.put("EmptyQuestion", emptyQuestion);
+		states.put("WithOtherPowerUp", stateWithOrtherPowerUp);
+		states.put("EmptyQuestion", emptyQuestionState);
 		return states;
 	}
 	
-	//POWER UPS 
 	private SuperMushroom newSuperMushroom(int worldX, int worldY) {
 		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
 	    return superMushroom;
@@ -388,12 +390,8 @@ public class EntityFactory {
 	    return mast;
 	}
 
-	//Projectiles
-
     public FireBall newFireBall(int x, int y, String direction) {
-		return new FireBall(spriteFactory.getFireballSprite(1), x, y, direction, getFireBallSprites());
-
-		
+		return new FireBall(spriteFactory.getFireballSprite(1), x, y, direction, getFireBallSprites());		
     }
 	
 	private HashMap<String,Sprite> getFireBallSprites(){

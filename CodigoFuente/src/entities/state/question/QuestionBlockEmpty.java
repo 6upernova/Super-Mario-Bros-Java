@@ -4,8 +4,8 @@ import observer.SoundObserver;
 
 public class QuestionBlockEmpty extends QuestionState{
 
-	public QuestionBlockEmpty(int hits, Sprite newSprite, Question question) {
-		super(hits, newSprite,question);
+	public QuestionBlockEmpty(Sprite newSprite) {
+		super(0, newSprite);
 	}
 
 	public int damaged(SoundObserver soundObserver) {

@@ -14,6 +14,7 @@ public class BuzzyBeetleNormalState implements BuzzyBeetleState {
 		buzzyBeetle.setSprite(buzzyBeetle.getSpritesMap().get("Right" + frame));
 		buzzyBeetle.getObserver().update();
 	}
+	
 	public void moveLeft(int frame) {
 		float enemyX = buzzyBeetle.getX();
 		buzzyBeetle.setX(GraphicTools.round2Digits(enemyX - buzzyBeetle.getHorizontalSpeed()));
@@ -21,8 +22,9 @@ public class BuzzyBeetleNormalState implements BuzzyBeetleState {
 		buzzyBeetle.getObserver().update();
 	} 
 
-    public void hit() {
+    public int hit() {
         buzzyBeetle.shellMode();
+		return 0;
     }
     
 }

@@ -125,6 +125,7 @@ public class Game {
     public void removeLogicalEntity(Platform entity){
         viewController.removeLogicalEntity(entity);
         characterThread.resetPlatformsByCoords();
+        enemyThread.resetPlatformsByCoords();
     }
 
     public void playNextLevel() {
@@ -139,11 +140,6 @@ public class Game {
     public void reproduceSoundDeath(String path) {
     	reproduceSound(path);
     }
-
-    public void stopSound() {
-    	soundReproducer.stopMusic();
-    }
-
 
     public void startLevelMusic(){
         soundReproducer.setMusicSound("musicLevel1");

@@ -4,16 +4,16 @@ import observer.SoundObserver;
 import entities.powerUps.PowerUp;
 
 public abstract class QuestionState {
+
+	protected Question question;
 	protected int hits;
 	protected PowerUp powerUpOn;
 	protected Sprite sprite;
-	protected Question question;
 	
-	public QuestionState(int hits, Sprite newSprite, Question question) {
+	public QuestionState(int hits, Sprite newSprite) {
 		this.hits = hits;
 		this.powerUpOn = null;
 		this.sprite = newSprite;
-		this.question = question;
 	}
 	
 	public void setPowerUp(PowerUp powerUp) {
@@ -26,6 +26,10 @@ public abstract class QuestionState {
 	
 	public boolean isEmpty() {
 		return hits == 0;
+	}
+
+	public void setQuestionBlock(Question questionBlock){
+		question= questionBlock;
 	}
 	
 	public abstract int damaged(SoundObserver soundObserver);

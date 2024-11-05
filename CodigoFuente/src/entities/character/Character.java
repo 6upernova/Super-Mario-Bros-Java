@@ -236,13 +236,18 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     
     public void visit(BuzzyBeetle buzzyBeetle) {
-		addScore(buzzyBeetle.getPointsOnDeath());
-		buzzyBeetle.hit();
-		
+		int points=0;
+		if(!isInvencible())
+		    points= buzzyBeetle.hit();
+		else{ 
+			  points =buzzyBeetle.getPointsOnDeath();
+			  buzzyBeetle.dead();
+		    } 
+		addScore(points);
     }
     
 	public void visit(Spiny spinny) {
-		if(invencible) {
+		if(isInvencible()) {
 			addScore(spinny.getPointsOnDeath());
 			spinny.dead();
 		}

@@ -29,7 +29,6 @@ public class Ranking{
     }
 
     public void getRanking() {        
-        // Limpia el arreglo antes de cargar los datos
         size = 0;    
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String linea;

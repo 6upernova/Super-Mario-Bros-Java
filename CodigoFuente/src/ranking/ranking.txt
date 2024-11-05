@@ -1,5 +1,2 @@
 NOAH,3085,1
 Player,2925,2
-Player,2140,3
-Player,2000,4
-Player,1940,5

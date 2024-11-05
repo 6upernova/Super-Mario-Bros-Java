@@ -28,21 +28,23 @@ public class CharacterCollisionManager implements CollisionManager<Character>{
         Iterator<Enemy> enemiesIt = enemies.iterator();
         Enemy enemy;
         boolean endIteration = false;
-        while(enemiesIt.hasNext() && !endIteration){
-            enemy = enemiesIt.next();
-            collision = character.colision(enemy);
-            if (collision) {
-            	if(character.isInvencible() || character.downCollision(enemy)){
-                    if(character.downCollision(enemy))
-                        smallJump(character);
-                    enemy.acceptVisit(character);
-                    game.reproduceSound("stomp");
+        synchronized (enemiesIt){
+            while(enemiesIt.hasNext() && !endIteration){
+                enemy = enemiesIt.next();
+                collision = character.colision(enemy);
+                if (collision) {
+                    if(character.isInvencible() || character.downCollision(enemy)){
+                        if(character.downCollision(enemy))
+                            smallJump(character);
+                        enemy.acceptVisit(character);
+                        game.reproduceSound("stomp");
+                    }
+                    else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvencible() && !character.isInvulnerable()){
+                        character.setInvulnerable(true);
+                        character.damaged(enemy.getPointsOnKill());
+                    }     
+                    endIteration = true;
                 }
-            	else if((character.leftCollision(enemy) || character.rightCollision(enemy) || character.upCollision(enemy)) && !character.isInvencible() && !character.isInvulnerable()){
-                    character.setInvulnerable(true);
-                    character.damaged(enemy.getPointsOnKill());
-                }     
-                endIteration = true;
             }
         }
     }

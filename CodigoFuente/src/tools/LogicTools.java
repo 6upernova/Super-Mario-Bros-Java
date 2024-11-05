@@ -14,7 +14,6 @@ public class LogicTools {
         return scrollbarPos+0.5f;
         
     }
-    //Metodo provisional hasta tener un level data
     public static HashMap<String,Platform> groupPlatformsByCoords(List<Platform> platforms){
         HashMap<String,Platform> toret = new HashMap<String,Platform>();
         for(Platform platform : platforms){

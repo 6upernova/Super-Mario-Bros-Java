@@ -17,8 +17,9 @@ public class BuzzyBeetleShellState implements BuzzyBeetleState {
 
     }
     
-    public void hit() {
+    public int hit() {
         buzzyBeetle.dead();
+        return buzzyBeetle.getPointsOnDeath();
     }
     
 }

@@ -35,8 +35,8 @@ public class BuzzyBeetle extends Enemy {
 		buzzyBeetleActualState.moveLeft(frame);
 	}
 
-	public void hit(){
-		buzzyBeetleActualState.hit();
+	public int hit(){
+		return buzzyBeetleActualState.hit();
 	}
 
 	public void normalMode(){

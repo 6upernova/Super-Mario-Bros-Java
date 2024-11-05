@@ -79,7 +79,7 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 		return direction;
 	}
 	
-	public int getpointsOnDeath() {
+	public int getPointsOnDeath() {
 		return pointsOnDeath;
 	}
 	

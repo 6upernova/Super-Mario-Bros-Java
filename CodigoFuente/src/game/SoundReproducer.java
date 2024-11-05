@@ -54,16 +54,6 @@ public class SoundReproducer {
 		}
 	}
 	
-	public void stopMusic() {
-		audioLevelMusic.stop();
-		audioLevelMusic.close();
-	}
-	
-	public void stopSoundAuxiliar() {
-		auxiliarAudio.stop();
-		audioLevelMusic.close();
-	}
-	
 	private AudioInputStream getSound(String path)  {
 		AudioInputStream toRet=null;
 		try {
