@@ -34,7 +34,6 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
                     projectile.rebound();
                 if(projectile.rightCollision(platform) || projectile.leftCollision(platform)) {
                     explode(projectile);
-                	game.reproduceSound("fireballImpact");
                 }
             }
 	    }   
@@ -92,6 +91,7 @@ public class FireBallCollisionManager implements CollisionManager<FireBall> {
 
     private void exploding(FireBall projectile){
         if(spriteNumber==3){
+            game.reproduceSound("fireballImpact");
             remove(projectile);
         }
         else{

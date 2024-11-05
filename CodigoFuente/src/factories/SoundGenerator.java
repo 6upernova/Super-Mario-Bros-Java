@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class SoundGenerator {
 	protected HashMap<String, File> sounds;
 	protected final String folderPath;	
+	
 	public SoundGenerator(String mode) {
 		this.folderPath = "src"+ File.separator+"assets"+ File.separator+ "sounds" + File.separator + mode;
 		this.sounds = new HashMap<String, File>();
