@@ -38,7 +38,7 @@ public class ViewConstants {
 		Font font;
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("src"+File.separator+"assets"+File.separator+"font"+File.separator+"smbfont.ttf"));
-            font = font.deriveFont(Font.BOLD, 16f); // Establecer estilo y tamaño de la fuente            
+            font = font.deriveFont(Font.BOLD, 16f);           
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
             font = new Font("Arial", Font.BOLD, 16);

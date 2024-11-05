@@ -21,6 +21,12 @@ public class Question extends Platform {
 		this.actualState =null;
 	}
 
+	protected void changeEmptyQuestionState(){
+		actualState= questionStates.get("EmptyQuestion");
+		sprite= actualState.getSprite();
+		observer.update();
+	}
+
 	public void setStates(HashMap<String,QuestionState> states){
 		questionStates = states;
 	}
@@ -36,12 +42,7 @@ public class Question extends Platform {
 	}
 	
 	public int damage(SoundObserver soundObserver){
-		int points=actualState.damaged(soundObserver); 
-        if(actualState.isEmpty()) {
-        	changeToVoidQuestionBlock();
-        	observer.update();
-        }
-		return points;
+		return actualState.damaged(soundObserver); 
 	}
 
     public boolean isEmpty(){
@@ -51,11 +52,6 @@ public class Question extends Platform {
 	public void acceptVisit(CharacterVisitor visitor) {
     	visitor.visit(this);
     }
-	
-	private void changeToVoidQuestionBlock() {
-		actualState= questionStates.get("EmptyQuestion");
-		sprite= actualState.getSprite();
-	}
 	
 	public PowerUp getPowerUp() {
 		return actualState.getPowerUp();

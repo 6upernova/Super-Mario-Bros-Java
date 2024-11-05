@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 import views.ViewConstants;
 
 public class GraphicTools {
-
-    //Screen position methods
 	
     public static int getScreenPositionX(float worldX){
         return Math.round(worldX *  ViewConstants.CELL_SIZE);
@@ -18,7 +16,6 @@ public class GraphicTools {
         return Math.round(ViewConstants.PANEL_HEIGHT - (85 + worldY * ViewConstants.CELL_SIZE));
     }
 
-    // Relative position methods
     public static int transformX(float x, JLabel observer){
         return Math.round( x * ViewConstants.CELL_SIZE );
     }
@@ -26,10 +23,6 @@ public class GraphicTools {
     public static int transformY(float y , JLabel observer ){
         return Math.round((ViewConstants.PANEL_HEIGHT - (85 + observer.getIcon().getIconHeight() + y * ViewConstants.CELL_SIZE)));
     }
-
-
-
-    //Scaling methods
 
     public static ImageIcon scaleEntityImage(ImageIcon imageIcon) {
     	Image image=imageIcon.getImage();

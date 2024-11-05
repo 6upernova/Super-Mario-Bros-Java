@@ -92,8 +92,6 @@ public class ViewController {
         return keyboardInputs;
     }
 
-    // ObserverEntityMethods
-
     public GraphicObserver registerEntity(CharacterEntity character){
         GraphicObserver characterObserver = levelScreen.drawEntityCharacter(character);
         refresh();
@@ -117,8 +115,6 @@ public class ViewController {
     public void removeLogicalEntity(LogicalEntity e) {
         levelScreen.removeEntity(e);
     }
-
-    //Comunication methods
     
     public void updateInformation(int newCoins, int newScore, int newTime, int newLives){
         levelScreen.updateInformationPanel(newCoins,newScore, newTime, newLives);

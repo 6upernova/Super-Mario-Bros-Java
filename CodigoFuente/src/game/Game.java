@@ -140,11 +140,6 @@ public class Game {
     	reproduceSound(path);
     }
 
-    public void stopSound() {
-    	soundReproducer.stopMusic();
-    }
-
-
     public void startLevelMusic(){
         soundReproducer.setMusicSound("musicLevel1");
         soundReproducer.loop(-1);
