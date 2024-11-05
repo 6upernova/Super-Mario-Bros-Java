@@ -24,8 +24,8 @@ public class FireBall extends Projectile {
     }
 
 	public void rebound(){
-		setY(getY()+1);
-		verticalSpeed = -verticalSpeed*0.4f;	
+		verticalSpeed = -verticalSpeed*0.4f;
+		setY(getY()+0.5f);
 	}
 
 	public Sprite getSprite(String path){

@@ -7,7 +7,6 @@ import views.ViewConstants;
 public class Animations{
 	
     public void characterDeathAnimation(Character character) {
-        	character.getSoundObserver().reproduceSoundOneIteration("marioDie");
             character.setIsBusy(true);
             character.setVerticalSpeed(0);
             character.jump("Died");
@@ -27,7 +26,6 @@ public class Animations{
             character.setIsBusy(false);
             character.setInStart();
             character.setIsInAir(false);
-            
     }
 
     public void superAnimation(Character character, String actualState, String newState){

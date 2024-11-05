@@ -1,4 +1,4 @@
-package game;
+package factories;
 import java.io.File;
 import java.util.HashMap;
 
@@ -26,6 +26,7 @@ public class SoundGenerator {
 		 sounds.put("stomp", new File(folderPath+File.separator+ "stomp.wav"));
 		 sounds.put("breakBrick", new File(folderPath+File.separator+ "breakBrick.wav"));
 		 sounds.put("musicLevel1",new File(folderPath+ File.separator+ "musicLevel1.wav"));
+		 sounds.put("starMusic",  new File(folderPath+ File.separator+ "starMusic.wav"));
 		 sounds.put("superMarioDamaged", new File(folderPath + File.separator + "superMarioDamaged.wav"));
 
 	}

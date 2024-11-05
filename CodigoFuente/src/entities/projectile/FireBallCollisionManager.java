@@ -46,20 +46,20 @@ public class FireBallCollisionManager implements CollisionManager<Projectile> {
 
     public void enemiesCollisions(Projectile projectile){
         if(!((FireBall)projectile).isExplotion){
-        boolean collision = false;
-        Iterator<Enemy> enemiesIt = enemies.iterator();
-        Enemy enemy;
-        boolean endIteration = false;
-        while(enemiesIt.hasNext() && !endIteration){
-            enemy = enemiesIt.next();
-            collision = projectile.colision(enemy);
-            if (collision) {
-                endIteration = true;
-                enemy.dead();
-                blow(projectile);
-                game.reproduceSound("kick");
-            }
-        }
+        	boolean collision = false;
+        	Iterator<Enemy> enemiesIt = enemies.iterator();
+        	Enemy enemy;
+        	boolean endIteration = false;
+        	while(enemiesIt.hasNext() && !endIteration){
+        		enemy = enemiesIt.next();
+        		collision = projectile.colision(enemy);
+        		if (collision) {
+        			endIteration = true;
+        			enemy.dead();
+        			blow(projectile);
+        			game.reproduceSound("kick");
+        		}
+        	}
        }
     }
 

@@ -14,8 +14,8 @@ public class SoundObserver {
 		game.reproduceSound(path);
 	}
 
-	public void reproduceSoundOneIteration(String path) {
-		game.reproduceLoopSound(path,0);
+	public void reproduceSoundOneIteration(String path, int iterations) {
+		game.reproduceLoopSound(path, iterations);
 	}
 
 	public boolean isRunning(){
@@ -23,7 +23,7 @@ public class SoundObserver {
 	}
 
 	public void loopMusicLevel(){
-		game.startMusicLevel();
+		game.startLevelMusic();
 	}
 	
 	public void stopSound() {
