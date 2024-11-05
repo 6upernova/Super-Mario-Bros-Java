@@ -135,7 +135,6 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 	public void dead() {
 		((EnemyObserver)observer).remove();
 		setAlive(false);
-		
 	}
 
 	public void applyGravity() {
