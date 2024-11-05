@@ -226,7 +226,11 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }   
     
     public void visit(PiranhaPlant piranhaPlant) {
-		if(!piranhaPlant.isOnPipe())
+		if(isInvencible()){
+			piranhaPlant.dead();
+			addScore(piranhaPlant.getPointsOnDeath());
+		}
+		else if(!piranhaPlant.isOnPipe())
 			this.damaged(piranhaPlant.getPointsOnKill());
     }	
     
