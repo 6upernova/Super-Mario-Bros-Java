@@ -1,8 +1,4 @@
 package entities.state.question;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 import factories.Sprite;
 import observer.SoundObserver;
 
