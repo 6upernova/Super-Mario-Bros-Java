@@ -68,6 +68,7 @@ public class CharacterThread extends Thread {
                 isRunning = false;
             } 
             else {
+                System.out.println(character.getX()+","+character.getY());
                 if (spacebarWasPressed) {
                     spacebarCooldown += ViewConstants.GAMETICK;
                     if (spacebarCooldown >= 1000) {

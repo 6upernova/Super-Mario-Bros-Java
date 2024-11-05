@@ -1,7 +1,6 @@
 package entities.state.question;
 import factories.Sprite;
 import observer.SoundObserver;
-import entities.character.CharacterEntity;
 import entities.powerUps.PowerUp;
 
 public abstract class QuestionState {

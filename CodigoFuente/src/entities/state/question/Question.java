@@ -1,8 +1,5 @@
 package entities.state.question;
-
 import java.util.HashMap;
-
-import entities.character.CharacterEntity;
 import entities.character.CharacterVisitor;
 import entities.platforms.Platform;
 import entities.powerUps.Coin;

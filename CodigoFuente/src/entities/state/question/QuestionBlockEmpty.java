@@ -1,6 +1,4 @@
 package entities.state.question;
-
-import entities.character.CharacterEntity;
 import factories.Sprite;
 import observer.SoundObserver;
 
