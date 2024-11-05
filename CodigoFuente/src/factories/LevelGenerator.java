@@ -1,13 +1,11 @@
 package factories;
 import java.util.LinkedList;
 import java.util.List;
-
 import entities.character.Character;
 import entities.enemies.*;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.FireBall;
-import entities.projectile.Projectile;
 import entities.state.question.Question;
 import game.Level;
 import views.ViewConstants;

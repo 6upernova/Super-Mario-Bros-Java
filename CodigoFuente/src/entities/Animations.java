@@ -7,7 +7,7 @@ import views.ViewConstants;
 public class Animations{
 	
     public void characterDeathAnimation(Character character) {
-        	character.getSoundObserver().reproduceSoundOneIteration("marioDie");
+        	character.getSoundObserver().reproduceSoundOneIteration("CharacterDie");
             character.setIsBusy(true);
             character.setVerticalSpeed(0);
             character.jump("Died");

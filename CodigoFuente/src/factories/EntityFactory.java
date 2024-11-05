@@ -223,12 +223,12 @@ public class EntityFactory {
 	}
 	
 	//POWER UPS 
-	private PowerUp newSuperMushroom(int worldX, int worldY) {
+	private SuperMushroom newSuperMushroom(int worldX, int worldY) {
 		SuperMushroom superMushroom = new SuperMushroom(spriteFactory.getSuperMushroomSprite(),worldX,worldY);
 	    return superMushroom;
 	}
     
-	private PowerUp newGreenMushroom(int worldX, int worldY) {
+	private GreenMushroom newGreenMushroom(int worldX, int worldY) {
 	    GreenMushroom greenMushroom = new GreenMushroom(spriteFactory.getGreenMushroomSprite(),worldX,worldY);
 	    return greenMushroom;                   
     }

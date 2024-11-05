@@ -1,6 +1,5 @@
 package factories;
 import java.io.File;
-import java.util.HashMap;
 
 public abstract class SpriteFactory {
     String folderPath; 
@@ -8,11 +7,7 @@ public abstract class SpriteFactory {
     protected SpriteFactory(String path){
         this.folderPath = path;
     }
-    
-    public HashMap<String,Sprite> getSpriteMapEnemy(){
-    	return null;
-    }    
-    
+        
     public Sprite getBackgroundSprite(int number){
         return new Sprite(folderPath + File.separator+"Character"+number+".png");	 
     }

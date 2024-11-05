@@ -5,7 +5,6 @@ import entities.enemies.Enemy;
 import entities.platforms.Platform;
 import entities.powerUps.PowerUp;
 import entities.projectile.FireBall;
-import entities.projectile.Projectile;
 import java.util.LinkedList;
 
 public class Level {
