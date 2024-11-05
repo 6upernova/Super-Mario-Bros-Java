@@ -13,6 +13,7 @@ public class KoopaTroopa extends Enemy{
 
 	static final private int pointsOnDeath=90;
 	static final private int pointsOnKill=-45;	
+	
 	protected HashMap<String, KoopaTroopaState> koopaTroopaStates;
 	protected KoopaTroopaState koopaTroopaActualState;
 	

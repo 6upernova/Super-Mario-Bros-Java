@@ -40,8 +40,8 @@ public class Animations{
     public void characterInFlagAnimation(Character character, Flag flag){
         character.setIsBusy(true);
         while(flag.getY()>1){
-            character.setY(character.getY()-1);
-            flag.setY(flag.getY()-1);
+            character.setY(character.getY()-0.5f);
+            flag.setY(flag.getY()-0.5f);
             character.getGraphicObserver().update();
             flag.getGraphicObserver().update();
             try{

@@ -6,7 +6,7 @@ Level name convention: levelX.txt
 int type, int position in x, int position in y
 
 type is represented by int number:
-    type    vulues  represents
+    type    values  represents
     
     enemies
             2       Goomba
@@ -15,10 +15,9 @@ type is represented by int number:
             5       Lakitu
             6       Spiny
             7       Buzzy Beetle
-            8       Shell
 
     power ups with question block
-            10      Mushroom
+            10      SuperMushroom
             11      FireFlower
             12      Star
             13      GreenMushroom
@@ -29,7 +28,7 @@ type is represented by int number:
 
     platforms   
             21      SolidBlock
-            22      BickBlock
+            22      BrickBlock
             23      Void
             24      Flag
             25      Mast
@@ -40,8 +39,4 @@ type is represented by int number:
             30      PipeTopRight
     projetiles
             31      Fireball
-            32      SpinyEgg
 
-Values greater than 100 represent compositions
-    101     questionBlock 
-    102     pipe with piranhaPlant

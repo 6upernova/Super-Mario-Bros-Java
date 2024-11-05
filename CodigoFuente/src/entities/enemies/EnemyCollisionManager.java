@@ -74,8 +74,7 @@ public class EnemyCollisionManager implements CollisionManager<Enemy> {
         }
 	}
 
-	public void powerUpsCollisions(Enemy entity) {		
-	}
+	public void powerUpsCollisions(Enemy entity) {}
 	
 	private void collisionWithOtherEnemy(Enemy enemySource, Enemy enemyDestination){
 		enemyDestination.acceptVisit(enemySource);

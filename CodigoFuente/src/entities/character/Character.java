@@ -17,7 +17,7 @@ import views.ViewConstants;
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	
 	private final int HIT_INVINCIBILITY_TIME = 500;
-	private final int STAR_INVINCIBILITY_TIME = 6000 ;
+	private final int STAR_INVINCIBILITY_TIME = 9000 ;
 	
 	protected int lives;
 	protected int score;
@@ -408,7 +408,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
 	
     public boolean capacityToBreakBlocks() {
-    	return characterActualState.breakBlock();
+    	return characterActualState.breakBlock() && !invincible;
     }
 
 	public boolean canThrowFireball() {

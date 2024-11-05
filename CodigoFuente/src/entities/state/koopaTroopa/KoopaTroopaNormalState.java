@@ -6,6 +6,7 @@ import entities.enemies.KoopaTroopa;
 import tools.GraphicTools;
 
 public class KoopaTroopaNormalState implements KoopaTroopaState {
+	
     protected KoopaTroopa koopaTroopa;
 
     public KoopaTroopaNormalState(KoopaTroopa koopaTroopa){
@@ -44,6 +45,7 @@ public class KoopaTroopaNormalState implements KoopaTroopaState {
 	}
 
 	public void hitEnemy(Enemy enemy) {
-		
+		//String newDirection= koopaTroopa.getDirection()=="Left" ? "Right" : "Left";
+		//koopaTroopa.setDirection(newDirection);
 	} 
 }
