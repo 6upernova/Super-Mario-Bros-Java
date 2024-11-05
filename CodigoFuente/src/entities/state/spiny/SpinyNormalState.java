@@ -13,12 +13,14 @@ public class SpinyNormalState extends SpinyState {
 		spiny.setSprite(spiny.getSpritesMap().get("Right" + frame));
 		spiny.getObserver().update();
 	}
+
 	public void moveLeft(int frame) {
 		float enemyX = spiny.getX();
 		spiny.setX(GraphicTools.round2Digits(enemyX - spiny.getHorizontalSpeed()));
 		spiny.setSprite(spiny.getSpritesMap().get("Left" + frame));
 		spiny.getObserver().update();
 	}
+
 	public void applyGravity() {
 		if (spiny.isInAir() && !spiny.getFlies()){ 
 			spiny.setVerticalSpeed(spiny.getVerticalSpeed() + ViewConstants.WORLD_GRAVITY);

@@ -17,7 +17,7 @@ public class NormalState extends CharacterState{
 	public HashMap<String, Sprite> getSprites() {
 		HashMap<String, Sprite> sprites;
 		if(character.isInvincible())
-			sprites = character.getNormalInvencibleSprites();
+			sprites = character.getNormalInvincibleSprites();
 		else 
 			sprites = stateSprites;
 		return sprites;

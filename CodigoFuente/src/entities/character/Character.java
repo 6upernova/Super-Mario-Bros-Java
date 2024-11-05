@@ -17,15 +17,15 @@ import views.ViewConstants;
 public class Character extends Entity implements CharacterEntity,CharacterVisitor {
 	
 	private final int HIT_INVINCIBILITY_TIME = 500;
-	private final int STAR_INVINCIBILITY_TIME = 5000 ;
+	private final int STAR_INVINCIBILITY_TIME = 6000 ;
 	
 	protected int lives;
 	protected int score;
 	protected int coins;
 	protected CharacterState characterActualState;
 	protected HashMap<String,CharacterState> characterStates;
-	protected HashMap<String, Sprite> characterInvencibleSprites;
-	protected HashMap<String, Sprite> characterSuperInvencibleSprites;
+	protected HashMap<String, Sprite> characterInvincibleSprites;
+	protected HashMap<String, Sprite> characterSuperInvincibleSprites;
 	protected SoundObserver soundObserver;
 	protected float verticalSpeed;
 	protected float horizontalSpeed;
@@ -134,9 +134,10 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public void dead(){
 		lives--;
 		if(this.lives > 0) {
+			soundObserver.reproduceSoundOneIteration("characterDies",0);
 			characterAnimations.characterDeathAnimation(this);
 		}
-		else soundObserver.reproduceSoundOneIteration("gameOver");
+		else soundObserver.reproduceSoundOneIteration("gameOver",0);
 	}
 
 	public boolean isInAir(){
@@ -199,7 +200,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		return invincible;
 	}
 
-	public void setInvencible(boolean invincible){
+	public void setInvincible(boolean invincible){
 		this.invincible = invincible;
 	}
 
@@ -234,8 +235,13 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
     }
     
 	public void visit(Spiny spinny) {
-		addScore(spinny.getPointsOnDeath());
-		spinny.dead();
+		if(invincible) {
+			addScore(spinny.getPointsOnDeath());
+			spinny.dead();
+		}
+		else
+			this.dead();
+			
 	}
 	
 	public void visit(SuperMushroom mushroom){
@@ -276,6 +282,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		}
 		else {
 			addScore(characterActualState.getStarPoints());
+			soundObserver.reproduceSoundOneIteration("starMusic", 3);
 		}
 		invincible = true;
 	}
@@ -316,7 +323,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));
 		addScore(Math.round(100 + 25 * flag.getY()));	
-		soundObserver.reproduceSoundOneIteration("stageClear");
+		soundObserver.reproduceSoundOneIteration("stageClear",0);
 		characterAnimations.characterInFlagAnimation(this, flag);
 		observer.update();
 	}
@@ -326,7 +333,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));
 		addScore(Math.round(100 + 25 * mast.getY()));	
-		soundObserver.reproduceSoundOneIteration("stageClear");
+		soundObserver.reproduceSoundOneIteration("stageClear",0);
 		observer.update();
 	}
 
@@ -334,7 +341,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		isInEnd = true;
 		setSprite(characterActualState.getSprites().get("InFlag"));	
 		addScore(Math.round(100 + 25 * mast.getY()));
-		soundObserver.reproduceSoundOneIteration("stageClear");	
+		soundObserver.reproduceSoundOneIteration("stageClear",0);	
 		observer.update();
 	}
 
@@ -359,21 +366,21 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 		this.horizontalSpeed = horizontalSpeed;
 	}
 
-	public void setNormalInvencibleSprites(HashMap<String, Sprite> characterInvencibleSprites) {
-		this.characterInvencibleSprites = characterInvencibleSprites;
+	public void setNormalInvincibleSprites(HashMap<String, Sprite> characterInvincibleSprites) {
+		this.characterInvincibleSprites = characterInvincibleSprites;
 	}
 	
-	public void setSuperInvencibleSprites(HashMap<String, Sprite> characterSuperInvencibleSprites) {
-		this.characterSuperInvencibleSprites = characterSuperInvencibleSprites;
+	public void setSuperInvincibleSprites(HashMap<String, Sprite> characterSuperInvincibleSprites) {
+		this.characterSuperInvincibleSprites = characterSuperInvincibleSprites;
 	}
 
 	
-	public HashMap<String, Sprite> getNormalInvencibleSprites() {
-		return characterInvencibleSprites;
+	public HashMap<String, Sprite> getNormalInvincibleSprites() {
+		return characterInvincibleSprites;
     }
 	
-    public HashMap<String, Sprite> getSuperInvencibleSprites() {
-		return characterSuperInvencibleSprites;
+    public HashMap<String, Sprite> getSuperInvincibleSprites() {
+		return characterSuperInvincibleSprites;
     }
 
     public void setInEnd(boolean isInEnd) {	

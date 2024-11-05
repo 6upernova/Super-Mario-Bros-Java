@@ -11,6 +11,7 @@ public class Spiny extends Enemy{
 	static final private int pointsOnKill=-30;	
 	protected SpinyState spinyActualState;
 	protected HashMap<String, SpinyState> spinyStates;	
+	
 	public Spiny(Sprite sprite, int positionInX, int positionInY) {
 		super(sprite, positionInX, positionInY, pointsOnDeath, pointsOnKill);
 		this.direction = "Left";

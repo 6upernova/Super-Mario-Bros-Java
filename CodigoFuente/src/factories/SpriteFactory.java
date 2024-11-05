@@ -75,59 +75,59 @@ public abstract class SpriteFactory {
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Fire"+ File.separator + "FireCharacterDies" + ".png");
     }
 
-    /*================================================Invencible Normal Character Sprites================================================*/
+    /*================================================Invincible Normal Character Sprites================================================*/
 
-    public Sprite getCharacterInvencibleStillSprite(String direction){
-        return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator + "Normal" + File.separator + "Invencible"+ direction +"Still.png");
+    public Sprite getCharacterInvincibleStillSprite(String direction){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invincible"+ File.separator + "Normal" + File.separator + "Invincible"+ direction +"Still.png");
     }
-    public Sprite getCharacterInvencibleRightSprite(int frame) {
+    public Sprite getCharacterInvincibleRightSprite(int frame) {
         Sprite sprite;
     	if(frame % 2 == 0)
-            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator + "Normal"+ File.separator +"InvencibleRight"+ frame + ".png");
+            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invincible"+ File.separator + "Normal"+ File.separator +"InvincibleRight"+ frame + ".png");
         else 
         	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterRight"+ frame + ".png");
         return sprite;
     }
-    public Sprite getCharacterInvencibleLeftSprite(int frame) {
+    public Sprite getCharacterInvincibleLeftSprite(int frame) {
         Sprite sprite;
         if(frame % 2 != 0)
-            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invencible"+ File.separator + "Normal"+ File.separator +"InvencibleLeft"+ frame + ".png");
+            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invincible"+ File.separator + "Normal"+ File.separator +"InvincibleLeft"+ frame + ".png");
         else 
         	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterLeft"+ frame + ".png");
         return sprite;
     }
-    public Sprite getCharacterInvencibleJumpingSprite(String direction){
+    public Sprite getCharacterInvincibleJumpingSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Normal"+ File.separator +"CharacterJumping" + direction + ".png");
     }
-    public Sprite getCharacterInvencibleDead(){
+    public Sprite getCharacterInvincibleDead(){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Normal"+ File.separator + "CharacterDies" + ".png");
     }
     
-    /*==================================================Invencible Super Character Sprites=================================================*/
+    /*==================================================Invincible Super Character Sprites=================================================*/
 
-    public Sprite getSuperCharacterInvencibleStillSprite(String direction){
-        return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator +"Super" +File.separator + "Invencible"+ direction +"Still.png");
+    public Sprite getSuperCharacterInvincibleStillSprite(String direction){
+        return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invincible"+ File.separator +"Super" +File.separator + "Invincible"+ direction +"Still.png");
     }
-    public Sprite getSuperCharacterInvencibleRightSprite(int frame) {
+    public Sprite getSuperCharacterInvincibleRightSprite(int frame) {
         Sprite sprite;
     	if(frame % 2 == 0)
-            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invencible"+ File.separator + "Super"+ File.separator +"InvencibleRight"+ frame + ".png");
+            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Invincible"+ File.separator + "Super"+ File.separator +"InvincibleRight"+ frame + ".png");
         else 
         	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterRight"+ frame + ".png");
         return sprite;
     }
-    public Sprite getSuperCharacterInvencibleLeftSprite(int frame) {
+    public Sprite getSuperCharacterInvincibleLeftSprite(int frame) {
         Sprite sprite;
         if(frame % 2 != 0)
-            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invencible"+ File.separator + "Super"+ File.separator +"InvencibleLeft"+ frame + ".png");
+            sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator +"Invincible"+ File.separator + "Super"+ File.separator +"InvincibleLeft"+ frame + ".png");
         else 
         	sprite = new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterLeft"+ frame + ".png");
         return sprite;
     }
-    public Sprite getSuperCharacterInvencibleJumpingSprite(String direction){
+    public Sprite getSuperCharacterInvincibleJumpingSprite(String direction){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator + "Super"+ File.separator +"SuperCharacterJumping" + direction + ".png");
     }
-    public Sprite getSuperCharacterInvencibleDead(){
+    public Sprite getSuperCharacterInvincibleDead(){
         return new Sprite(folderPath + File.separator+"Character"+ File.separator+"Super"+ File.separator + "SuperCharacterDies" + ".png");
     }
 
@@ -222,7 +222,7 @@ public abstract class SpriteFactory {
     }
 
     public Sprite getFireBallExplotionSprite(int frame){
-        return new Sprite(folderPath+ File.separator+"Projectiles"+ File.separator+"FireballExplotion"+frame+".png");
+        return new Sprite(folderPath+ File.separator+"Projectiles"+ File.separator+"FireballBlow"+frame+".png");
     }
     /*==========================================================Platforms Sprites==========================================================*/
 

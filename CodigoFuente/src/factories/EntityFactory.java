@@ -120,8 +120,8 @@ public class EntityFactory {
 		characterStates.put("Normal",normal);
 		characterStates.put("Super", supers);
 		characterStates.put("Fire", fire);
-		character.setNormalInvencibleSprites(characterInvencibleSprites());
-		character.setSuperInvencibleSprites(characterSuperInvencibleSprites());
+		character.setNormalInvincibleSprites(characterInvincibleSprites());
+		character.setSuperInvincibleSprites(characterSuperInvincibleSprites());
 		return characterStates;
 	}
 
@@ -176,35 +176,35 @@ public class EntityFactory {
 		return characterFireSprites;
 	}
 	
-	private HashMap<String, Sprite> characterInvencibleSprites() {
+	private HashMap<String, Sprite> characterInvincibleSprites() {
 		HashMap<String,Sprite> characterSprites = new HashMap<String,Sprite>();
-		characterSprites.put("StillLeft",spriteFactory.		getCharacterInvencibleStillSprite("Left"));
-		characterSprites.put("StillRight",spriteFactory.	getCharacterInvencibleStillSprite("Right"));
-		characterSprites.put("Left1",spriteFactory.			getCharacterInvencibleLeftSprite(1));
-		characterSprites.put("Left2", spriteFactory.		getCharacterInvencibleLeftSprite(2));
-		characterSprites.put("Left3",spriteFactory.			getCharacterInvencibleLeftSprite(3));
-		characterSprites.put("Right1",spriteFactory.		getCharacterInvencibleRightSprite(1));
-		characterSprites.put("Right2", spriteFactory.		getCharacterInvencibleRightSprite(2));
-		characterSprites.put("Right3",spriteFactory.		getCharacterInvencibleRightSprite(3));
-		characterSprites.put("JumpingRight",spriteFactory.	getCharacterInvencibleJumpingSprite("Right"));
-		characterSprites.put("JumpingLeft",spriteFactory.	getCharacterInvencibleJumpingSprite("Left"));
+		characterSprites.put("StillLeft",spriteFactory.		getCharacterInvincibleStillSprite("Left"));
+		characterSprites.put("StillRight",spriteFactory.	getCharacterInvincibleStillSprite("Right"));
+		characterSprites.put("Left1",spriteFactory.			getCharacterInvincibleLeftSprite(1));
+		characterSprites.put("Left2", spriteFactory.		getCharacterInvincibleLeftSprite(2));
+		characterSprites.put("Left3",spriteFactory.			getCharacterInvincibleLeftSprite(3));
+		characterSprites.put("Right1",spriteFactory.		getCharacterInvincibleRightSprite(1));
+		characterSprites.put("Right2", spriteFactory.		getCharacterInvincibleRightSprite(2));
+		characterSprites.put("Right3",spriteFactory.		getCharacterInvincibleRightSprite(3));
+		characterSprites.put("JumpingRight",spriteFactory.	getCharacterInvincibleJumpingSprite("Right"));
+		characterSprites.put("JumpingLeft",spriteFactory.	getCharacterInvincibleJumpingSprite("Left"));
 		characterSprites.put("InFlag",spriteFactory.getCharacterInFlag());
 		characterSprites.put("Died", spriteFactory.getCharacterDead());
 		return characterSprites;
 	}
 
-	private HashMap<String, Sprite> characterSuperInvencibleSprites() {
+	private HashMap<String, Sprite> characterSuperInvincibleSprites() {
 		HashMap<String,Sprite> characterSuperSprites = new HashMap<String,Sprite>();
-		characterSuperSprites.put("StillLeft",spriteFactory.	getSuperCharacterInvencibleStillSprite("Left"));
-		characterSuperSprites.put("StillRight",spriteFactory.	getSuperCharacterInvencibleStillSprite("Right"));
-		characterSuperSprites.put("Left1",spriteFactory.		getSuperCharacterInvencibleLeftSprite(1));
-		characterSuperSprites.put("Left2", spriteFactory.		getSuperCharacterInvencibleLeftSprite(2));
-		characterSuperSprites.put("Left3",spriteFactory.		getSuperCharacterInvencibleLeftSprite(3));
-		characterSuperSprites.put("Right1",spriteFactory.		getSuperCharacterInvencibleRightSprite(1));
-		characterSuperSprites.put("Right2", spriteFactory.		getSuperCharacterInvencibleRightSprite(2));
-		characterSuperSprites.put("Right3",spriteFactory.		getSuperCharacterInvencibleRightSprite(3));
-		characterSuperSprites.put("JumpingRight",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Right"));
-		characterSuperSprites.put("JumpingLeft",spriteFactory.	getSuperCharacterInvencibleJumpingSprite("Left"));
+		characterSuperSprites.put("StillLeft",spriteFactory.	getSuperCharacterInvincibleStillSprite("Left"));
+		characterSuperSprites.put("StillRight",spriteFactory.	getSuperCharacterInvincibleStillSprite("Right"));
+		characterSuperSprites.put("Left1",spriteFactory.		getSuperCharacterInvincibleLeftSprite(1));
+		characterSuperSprites.put("Left2", spriteFactory.		getSuperCharacterInvincibleLeftSprite(2));
+		characterSuperSprites.put("Left3",spriteFactory.		getSuperCharacterInvincibleLeftSprite(3));
+		characterSuperSprites.put("Right1",spriteFactory.		getSuperCharacterInvincibleRightSprite(1));
+		characterSuperSprites.put("Right2", spriteFactory.		getSuperCharacterInvincibleRightSprite(2));
+		characterSuperSprites.put("Right3",spriteFactory.		getSuperCharacterInvincibleRightSprite(3));
+		characterSuperSprites.put("JumpingRight",spriteFactory.	getSuperCharacterInvincibleJumpingSprite("Right"));
+		characterSuperSprites.put("JumpingLeft",spriteFactory.	getSuperCharacterInvincibleJumpingSprite("Left"));
 		characterSuperSprites.put("InFlag",spriteFactory.getSuperCharacterInFlag());
 		characterSuperSprites.put("Died", spriteFactory.getSuperCharacterDead());
 		return characterSuperSprites;
@@ -393,9 +393,9 @@ public class EntityFactory {
 		fireBallSprites.put("2",spriteFactory.getFireballSprite(2));
 		fireBallSprites.put("3",spriteFactory.getFireballSprite(3));
 		fireBallSprites.put("4",spriteFactory.getFireballSprite(4));
-		fireBallSprites.put("explotion1", spriteFactory.getFireBallExplotionSprite(1));
-		fireBallSprites.put("explotion2", spriteFactory.getFireBallExplotionSprite(2));
-		fireBallSprites.put("explotion3", spriteFactory.getFireBallExplotionSprite(3));
+		fireBallSprites.put("blow1", spriteFactory.getFireBallExplotionSprite(1));
+		fireBallSprites.put("blow2", spriteFactory.getFireBallExplotionSprite(2));
+		fireBallSprites.put("blow3", spriteFactory.getFireBallExplotionSprite(3));
 		return fireBallSprites;
 	}
 

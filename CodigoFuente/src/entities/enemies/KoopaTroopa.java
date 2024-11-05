@@ -72,9 +72,5 @@ public class KoopaTroopa extends Enemy{
 	public void visit(Platform platform) {
 		
 	}
-
-	public void acceptVisit(EnemyVisitor enemy) {
-		
-	}
 	
 }

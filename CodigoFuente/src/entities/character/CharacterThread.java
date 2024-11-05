@@ -81,7 +81,8 @@ public class CharacterThread extends Thread {
 
                 if (character.isInvincible()) {
                     if (counter > character.getStarInvencibilityTime()) {
-                        character.setInvencible(false);
+                    	game.startLevelMusic();
+                        character.setInvincible(false);
                         counter = 0;
                     } 
                     else {

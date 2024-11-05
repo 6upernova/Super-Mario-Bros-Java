@@ -12,6 +12,7 @@ import entities.powerUps.PowerUp;
 import entities.projectile.FireBall;
 import entities.projectile.Projectile;
 import factories.LevelGenerator;
+import factories.SoundGenerator;
 import observer.GraphicObserver;
 import observer.SoundObserver;
 import ranking.Ranking;
@@ -51,7 +52,7 @@ public class Game {
         characterThread.start();
         enemyThread.start();
         viewController.showLevelScreen();
-        startMusicLevel();
+        startLevelMusic();
     }
 
     public void stop(){
@@ -138,7 +139,8 @@ public class Game {
     	soundReproducer.stopMusic();
     }
 
-    public void startMusicLevel(){
+
+    public void startLevelMusic(){
         soundReproducer.setMusicSound("musicLevel1");
         soundReproducer.loop(-1);
     }
@@ -158,7 +160,7 @@ public class Game {
             setObservers();
             this.characterThread = new CharacterThread(viewController.getKeyboard(), this);
             this.enemyThread = new EnemyThread(this);
-            startMusicLevel();
+            startLevelMusic();
             characterThread.start();
             enemyThread.start();
             currentCharacter.setIsBusy(false);
@@ -210,9 +212,10 @@ public class Game {
     }
 
 
-    public void reproduceLoopSound(String path, int iteracions) {
+
+    public void reproduceLoopSound(String path, int iterations) {
         soundReproducer.setMusicSound(path);
-        soundReproducer.loop(0);
+        soundReproducer.loop(iterations);
     } 
 
     public void startMusic(String path){
