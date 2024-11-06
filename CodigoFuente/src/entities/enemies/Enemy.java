@@ -23,6 +23,7 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 	protected float horizontalSpeed;
 	protected float verticalSpeed;
 	protected HashMap<String, Sprite> sprites;
+	protected int spriteNumber;
 	
 	public Enemy(Sprite sprite, float positionInX, float positionInY, int pointsOnDeath,int pointsOnKill) {
 		super(sprite, positionInX, positionInY);
@@ -33,32 +34,33 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 		this.isActive = false;
 		this.isInAir = true;
 		this.isAlive = true;
+		this.spriteNumber = 1;
 	}
 
-	public void move(int frame){
+	public void move(){
 		switch (direction) {
             case "Left":
-                moveLeft(frame);
+                moveLeft();
                 break;
             case "Right":
-                moveRight(frame);
+                moveRight();
                 break;
             case "None":
             	break;
         }
 	}
 
-	public void moveRight(int frame) {
+	public void moveRight() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		setSprite(sprites.get("Right" + frame));
+		setSprite(sprites.get("Right" + spriteNumber));
 		observer.update();
 	}
 	
-	public void moveLeft(int frame) {
+	public void moveLeft() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		setSprite(sprites.get("Left" + frame));
+		setSprite(sprites.get("Left" + spriteNumber));
 		observer.update();
 	}
 	
@@ -178,6 +180,10 @@ public abstract class Enemy extends Entity implements EnemyEntity, VisitedElemen
 			leftEnemyCollision(enemy);
 		else if(this.rightCollision(enemy))
 			rightEnemyCollision(enemy);
+	}
+
+	public void updateSpriteNumber(){
+		spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
 	}
 	
 }

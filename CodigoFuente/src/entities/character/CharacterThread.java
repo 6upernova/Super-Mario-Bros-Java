@@ -130,7 +130,7 @@ public class CharacterThread extends Thread {
 
     private void checkEnemiesInRange(List<Enemy> enemyList) {
         for (Enemy enemy : enemyList)
-            if (!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16) {
+            if (!enemy.isActive() && enemy.getX() <= Math.round(character.getX()) + 16 && enemy.getX() >= Math.round(character.getX()) - ViewConstants.LEFT_CHARACTER_SPACE) {
                 enemy.activateEnemy();
             }
     }

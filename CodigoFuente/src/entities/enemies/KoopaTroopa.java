@@ -31,8 +31,8 @@ public class KoopaTroopa extends Enemy{
 		return koopaTroopaStates;
 	}
 	
-	public void move(int frame){
-		koopaTroopaActualState.move(frame);
+	public void move(){
+		koopaTroopaActualState.move(spriteNumber);
 	}
 
 	public void hit(Character character){

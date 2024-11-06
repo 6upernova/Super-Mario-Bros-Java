@@ -32,13 +32,13 @@ public class Lakitu extends Enemy {
 		this.eggCooldown = ViewConstants.EGG_COOLDOWN;
 	}
 
-	public void move(int frame){
+	public void move(){
 		updateCooldown();
 		float destinationX = characterSide == "Right" ? characterReference.getX() - 3 : characterReference.getX() + 3;
 		if(!isOnDestinationCoords(destinationX)){
 			updateHorizontalSpeed();
 			changeDirectionToDestination(destinationX);
-			super.move(frame);
+			super.move();
 		}
 		else {
 			travelTime = 0;
@@ -90,14 +90,14 @@ public class Lakitu extends Enemy {
 		horizontalSpeed =  ViewConstants.CHARACTER_SPEED + 0.08f * travelTime * travelTime * travelTime;		
 	}
 
-	public void moveRight(int frame) {
+	public void moveRight() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
 		setSprite(sprites.get("Right"));
 		observer.update();
 	}
 	
-	public void moveLeft(int frame) {
+	public void moveLeft() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
 		setSprite(sprites.get("Left"));

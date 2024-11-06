@@ -7,6 +7,7 @@ import entities.platforms.Platform;
 import game.Game;
 import tools.LogicTools;
 import views.ViewConstants;
+import entities.character.Character;
 
 public class EnemyThread extends Thread {
 	
@@ -41,9 +42,8 @@ public class EnemyThread extends Thread {
                         game.createEgg(Math.round(enemy.getX()), Math.round(enemy.getY()));                        
                         enemyCopy = new ArrayList<>(enemies);
                     }
-
     				moveEnemy(enemy);
-                    
+                    checkDeactivateEnemy(enemy);
     			}
                 if(!enemy.isAlive()){
                     enemies.remove(enemy);                      
@@ -73,16 +73,24 @@ public class EnemyThread extends Thread {
         ecm.enemiesCollisions(enemy);
         enemy.applyGravity();
         checkEnemyInAir(enemy);
-        enemy.move(spriteNumber);
+        enemy.move();
         
-        if(frameCount%20==0) 
-            spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
+        if(frameCount%40==0)
+            enemy.updateSpriteNumber();
+            //spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }
     
     private void checkEnemyInAir(Enemy enemy){
     	if(!enemy.isInAir() && !LogicTools.isOnSolid(platformsByCoords,enemy) ){
             enemy.setIsInAir(true);
         }
+    }
+
+    private void checkDeactivateEnemy(Enemy enemy){
+        Character character = game.getCurrentLevel().getCharacter();
+        if(enemy.getX() <= character.getX() - (ViewConstants.LEFT_CHARACTER_SPACE + 4))
+            enemy.deactivateEnemy();
+
     }
     
 }

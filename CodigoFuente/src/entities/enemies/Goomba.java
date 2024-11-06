@@ -16,17 +16,17 @@ public class Goomba extends Enemy{
 		flies=false;
 	}
 
-	public void moveRight(int frame) {
+	public void moveRight() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX + horizontalSpeed));
-		setSprite(sprites.get("Walking" + frame));
+		setSprite(sprites.get("Walking" + spriteNumber));
 		observer.update();
 	}
 	
-	public void moveLeft(int frame) {
+	public void moveLeft() {
 		float enemyX=getX();
 		setX(GraphicTools.round2Digits(enemyX - horizontalSpeed));
-		setSprite(sprites.get("Walking" + frame));
+		setSprite(sprites.get("Walking" + spriteNumber));
 		observer.update();
 	}
 	

@@ -20,31 +20,31 @@ public class PiranhaPlant extends Enemy{
 		insidePipe = false;
 	}
 	
-	public void move(int frame){
+	public void move(){
 		long currentTime = System.currentTimeMillis();
 		if(currentTime - stopTime >= 2000){
 			switch (direction) {
 				case "Up":
-					moveUp(frame);
+					moveUp();
 					break;
 				case "Down":
-					moveDown(frame);
+					moveDown();
 					break;
 				case "None":
 					break;
 			}
 			checkDirectionChange();
 		}	
-		setSprite(sprites.get("PiranhaPlant" + frame));
+		setSprite(sprites.get("PiranhaPlant" + spriteNumber));
 		observer.update();
 	}
 
-	public void moveUp(int frame){
+	public void moveUp(){
 		float enemyY = getY();
 		setY(GraphicTools.round2Digits(enemyY + horizontalSpeed));
 	}
 
-	public void moveDown(int frame){
+	public void moveDown(){
 		float enemyY = getY();
 		setY(GraphicTools.round2Digits(enemyY - horizontalSpeed));
 	}

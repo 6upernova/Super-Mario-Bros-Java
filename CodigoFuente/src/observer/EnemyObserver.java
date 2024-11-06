@@ -46,4 +46,8 @@ public class EnemyObserver extends GraphicObserver{
 		update();
     }
 
+	public void updateBoundingBoxSize(){
+		super.setEntityBoundingBox();
+	}
+	
 }

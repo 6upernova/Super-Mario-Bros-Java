@@ -4,6 +4,7 @@ import entities.character.CharacterVisitor;
 import entities.platforms.Platform;
 import entities.state.spiny.*;
 import factories.Sprite;
+import observer.EnemyObserver;
 import observer.GraphicObserver;
 
 public class Spiny extends Enemy{		
@@ -20,13 +21,13 @@ public class Spiny extends Enemy{
 		this.spinyActualState = spinyStates.get("Egg");
 	}
 	
-	public void move(int frame){
+	public void move(){
 		switch (direction) {
             case "Left":
-                moveLeft(frame);
+                moveLeft();
                 break;
             case "Right":
-				moveRight(frame);
+				moveRight();
                 break;
             case "None":
             	break;
@@ -59,7 +60,8 @@ public class Spiny extends Enemy{
 		spinyActualState = spinyStates.get("Normal");
         Sprite normalSprite = sprites.get("Right1");
         setSprite(normalSprite);
-        observer.update();	
+        observer.update();
+		((EnemyObserver)observer).updateBoundingBoxSize();
 	}
 	private HashMap<String, SpinyState> getSpinyStates(){
 		HashMap<String, SpinyState> spinyStates = new HashMap<String, SpinyState>();
@@ -68,12 +70,12 @@ public class Spiny extends Enemy{
 		return spinyStates;
 	}
 	
-	public void moveRight(int frame) {
-		spinyActualState.moveRight(frame);
+	public void moveRight() {
+		spinyActualState.moveRight(spriteNumber);
 	}	
 	
-	public void moveLeft(int frame) {
-		spinyActualState.moveLeft(frame);
+	public void moveLeft() {
+		spinyActualState.moveLeft(spriteNumber);
 	}
 
 	public void applyGravity(){

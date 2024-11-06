@@ -27,12 +27,12 @@ public class BuzzyBeetle extends Enemy {
 		return buzzyBeetleStates;
 	}
 	
-	public void moveRight(int frame) {
-		buzzyBeetleActualState.moveRight(frame);
+	public void moveRight() {
+		buzzyBeetleActualState.moveRight(spriteNumber);
 	}
 	
-	public void moveLeft(int frame) {
-		buzzyBeetleActualState.moveLeft(frame);
+	public void moveLeft() {
+		buzzyBeetleActualState.moveLeft(spriteNumber);
 	}
 
 	public int hit(){
