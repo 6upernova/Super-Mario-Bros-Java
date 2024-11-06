@@ -167,7 +167,12 @@ public class Game {
             currentCharacter.setIsBusy(false);
         }
         else{      
-            viewController.showMenuScreen();
+            boolean enterInRanking = ranking.addToRank(currentPlayerName, getCurrentLevel().getCharacter().getScore());
+            viewController.clearLevelScreen();
+            enemyThread.setIsRunning(false);
+            if(enterInRanking)  
+                viewController.showRankingScreen();
+            else viewController.showMenuScreen();
         }
     }
 

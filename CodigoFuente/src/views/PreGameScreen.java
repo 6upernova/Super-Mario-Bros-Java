@@ -51,7 +51,7 @@ public class PreGameScreen extends JPanel {
             @Override
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (nameInput.getText().isEmpty()) {
-                    nameInput.setText("ENTER YOUR NAME"); 
+                    nameInput.setText(""); 
                     nameInput.setForeground(Color.GRAY);    
                 }
             }

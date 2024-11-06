@@ -118,6 +118,7 @@ public class Ranking{
     }
 
     public Collection<String> getPlayers() {
+        updateRanking();
         List<String> players = new LinkedList<>();
         for(int i = 0;i<size;i++){
             String player = ranking[i].getTop()+"   "+ranking[i].getName().toUpperCase()+"  "+ranking[i].getScore(); 

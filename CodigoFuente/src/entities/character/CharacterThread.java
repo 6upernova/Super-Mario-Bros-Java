@@ -50,7 +50,7 @@ public class CharacterThread extends Thread {
             frameCount++;
             if (character.isInEnd()) {
                 isRunning = false;
-                timer = ViewConstants.LEVEL_TIME_DURATION;
+                //timer = ViewConstants.LEVEL_TIME_DURATION;
                 game.playNextLevel();
                 timer = ViewConstants.LEVEL_TIME_DURATION;
             } 
