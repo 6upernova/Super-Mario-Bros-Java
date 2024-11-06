@@ -125,7 +125,7 @@ public class PreGameScreen extends JPanel {
     private class NewGameButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
             setName(name);
-			viewController.newGame(mode, name);
+			viewController.newGame(mode, nameInput.getText());
 		}
 	}
     private class BackButtonListener implements ActionListener{
