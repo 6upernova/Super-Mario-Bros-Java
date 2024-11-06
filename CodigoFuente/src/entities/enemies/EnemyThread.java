@@ -14,7 +14,6 @@ public class EnemyThread extends Thread {
     protected List<Enemy> enemies;
     private EnemyCollisionManager ecm; 
     private int frameCount;
-    private int spriteNumber;
 	private HashMap<String, Platform> platformsByCoords;
     private boolean isRunning;
     private Game game;
@@ -22,7 +21,6 @@ public class EnemyThread extends Thread {
     public EnemyThread(Game game) {
         this.enemies = game.getCurrentLevel().getEnemies();
         this.frameCount = 0;
-        this.spriteNumber = 1;
         this.ecm = new EnemyCollisionManager(game);
         this.platformsByCoords = LogicTools.groupPlatformsByCoords(game.getCurrentLevel().getPlatforms());
         this.game = game;
