@@ -40,7 +40,7 @@ public class Character extends Entity implements CharacterEntity,CharacterVisito
 	public Character(Sprite sprite) {
         super(sprite ,5,0);
 		this.score = 0;
-		this.lives = 1;
+		this.lives = 3;
         this.invencible = false;
 		this.invulnerable = false;
 		this.isInAir = false;
