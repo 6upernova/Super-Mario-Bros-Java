@@ -73,9 +73,8 @@ public class EnemyThread extends Thread {
         checkEnemyInAir(enemy);
         enemy.move();
         
-        if(frameCount%40==0)
+        if(frameCount%20==0)
             enemy.updateSpriteNumber();
-            //spriteNumber = spriteNumber == 2 ? 1 : spriteNumber + 1;
     }
     
     private void checkEnemyInAir(Enemy enemy){
