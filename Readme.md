@@ -1,7 +1,7 @@
 # Super Mario Bros - Java Implementation
 
-Welcome to my implementation of **Super Mario Bros** in Java! 🎮✨ This project was developed as part of a group assignment for the course *Tecnología de Programación* at the Universidad Nacional del Sur. It showcases the development of a 2D platformer game inspired by the iconic Mario series. It demonstrates the application of object-oriented programming principles, design patterns, and custom game mechanics to create an engaging gaming experience. 🎉🌟
-
+Welcome to my implementation of **Super Mario Bros** in Java! 🎮✨ This project was developed as part of a group assignment for the course *Tecnología de Programación* at the Universidad Nacional del Sur. It showcases the development of a 2D platformer game inspired by the iconic Mario series. It demonstrates the application of object-oriented programming principles, design patterns, data structures and 
+various other programming techniques.
 ---
 
 ## Table of Contents
@@ -31,9 +31,9 @@ Welcome to my implementation of **Super Mario Bros** in Java! 🎮✨ This proje
 
 ### Object-Oriented Programming (OOP)
 
-- **Encapsulation**: Clear separation of concerns using classes for entities such as `Mario`, `Enemies`, and `Platforms`. 🛠️📦
-- **Inheritance**: Hierarchical structure where entities like `Goomba` and `KoopaTroopa` inherit from a common `Enemy` class. 🐢⬆️
-- **Polymorphism**: Flexible methods allowing diverse behaviors, such as unique enemy interactions. 🔄✨
+- **Encapsulation**: Clear separation of concerns using classes for entities such as `Mario`, `Enemies`, and `Platforms`. 
+- **Inheritance**: Hierarchical structure where entities like `Goomba` and `KoopaTroopa` inherit from a common `Enemy` class. 
+- **Polymorphism**: Flexible methods allowing diverse behaviors, such as unique enemy interactions. 
 
 ### Design Patterns
 
