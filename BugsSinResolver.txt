@@ -1,3 +1,0 @@
-- Enemigo en rara ocasion duplica los puntos al matarlo
-- En espacios reducidos los enemigos se pueden superponer en vez de cambiar de direccion y generar colisiones confusas
-- Colisionar de costado a un caparazon de costado te mata
