@@ -1,6 +1,6 @@
 # Super Mario Bros - Java Implementation
 
-Welcome to my implementation of **Super Mario Bros** in Java! 🎮✨ This project was developed as part of a group assignment for the course *Tecnología de Programación* at the Universidad Nacional del Sur. It showcases the development of a 2D platformer game inspired by the iconic Mario series. It demonstrates the application of object-oriented programming principles, design patterns, data structures and 
+Welcome to my implementation of **Super Mario Bros** in Java!  This project was developed as part of a group assignment for the course *Tecnología de Programación* at the Universidad Nacional del Sur. It showcases the development of a 2D platformer game inspired by the iconic Mario series. It demonstrates the application of object-oriented programming principles, design patterns, data structures and 
 various other programming techniques.
 
 ---
