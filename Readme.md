@@ -19,7 +19,7 @@ various other programming techniques.
 ---
 ## Diagrams
 
-![diagrama reducido](image.png)
+![diagrama reducido](diagrama-reducido.png)
 
 ---
 
